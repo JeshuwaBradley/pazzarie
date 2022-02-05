@@ -1,33 +1,43 @@
 import React from "react";
 
 const Hero = () => {
-	// const [index, setIndex] = useState(0);
-	// const images = [
-	// 	"/img/featured.jpg",
-	// 	"/img/featured2.jpg",
-	// 	"/img/featured3.jpg",
-	// ];
-	// const handleArrow = (direction) => {
-	// 	if (direction === "l") {
-	// 		setIndex(index !== 0 ? index - 1 : 2);
-	// 	}
-	// 	if (direction === "r") {
-	// 		setIndex(index !== 2 ? index + 1 : 0);
-	// 	}
-	// };
+	const slides = document.getElementsByClassName("carousel-item");
+	let position = 0;
+
+	function hideAllSlides() {
+		for (const slide of slides) {
+			slide.classList.remove("carousel-item-visible");
+			slide.classList.add("carousel-item-hidden");
+		}
+	}
+
+	const handleMoveToNextSlide = function () {
+		hideAllSlides();
+		if (position === 0) {
+			position++;
+		} else if (position === 1) {
+			position++;
+		} else if (position === 2) {
+			position = 0;
+		}
+		slides[position].classList.add("carousel-item-visible");
+	};
+	(function loop() {
+		setTimeout(function () {
+			handleMoveToNextSlide();
+			loop();
+		}, 10000);
+	})();
+
 	return (
 		<div className="hero-container">
-			{/* <div
-				className="arrowContainer"
-				style={{ left: 0 }}
-				onClick={() => handleArrow("l")}
+			<div
+				className="hero-wrapper carousel slide"
+				id="carouselExampleSlidesOnly"
+				data-ride="carousel"
 			>
-				<img src="/img/arrowl.png" alt="left arrow" layout="fill" />
-			</div> */}
-			<div className="hero-wrapper">
-				{/* {images.map((image, i) => ( */}
-				<div className="hero-imageContainer">
-					<div className="hero-text" style={{ display: "none" }}>
+				<div className="hero-imageContainer carousel">
+					<div className="hero-text carousel-item carousel-item-visible">
 						<h2 className="second-h2">Discover what's new!</h2>
 						<div className="text second-text">
 							<div className="small-text small-text-1">and</div>
@@ -38,7 +48,7 @@ const Hero = () => {
 							<div className="large-text">online</div>
 						</div>
 					</div>
-					<div className="hero-text" style={{ display: "none" }}>
+					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-clr">
 							<h2 className="third-h2">$ 12.99</h2>
 							<h3>only</h3>
@@ -50,7 +60,7 @@ const Hero = () => {
 							</div>
 						</div>
 					</div>
-					<div className="hero-text" style={{ display: "block" }}>
+					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-trns">
 							<div className="new-tag">
 								<h2>new!</h2>
@@ -65,15 +75,7 @@ const Hero = () => {
 						</div>
 					</div>
 				</div>
-				{/* ))} */}
 			</div>
-			{/* <div
-				className="arrowContainer"
-				style={{ right: 0 }}
-				onClick={() => handleArrow("r")}
-			>
-				<img src="/img/arrowr.png" alt="right arrow" layout="fill" />
-			</div> */}
 		</div>
 	);
 };
