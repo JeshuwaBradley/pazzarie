@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = () => {
 	return (
@@ -24,7 +25,7 @@ const Card = () => {
 					Lorem ipsum dolor sit amet consectetur aduofsfs elit.
 				</p>
 				<span className="card-price">$19.9</span>
-				<a href="/" className="card-link">
+				<a href="/product" className="card-link">
 					Select Options
 				</a>
 			</div>

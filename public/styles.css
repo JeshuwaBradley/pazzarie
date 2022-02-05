@@ -68,6 +68,7 @@ body {
 .navbar-text {
 	margin-left: 20px;
 	color: #000;
+	text-decoration: none;
 }
 
 .navbar-text:first-child {
@@ -170,10 +171,62 @@ body {
 	padding-bottom: 50px;
 	border-top: 5px solid #fff;
 	border-bottom: 5px solid #fff;
+	position: relative;
+}
+
+.hero-text .special-tag {
+	position: absolute;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.new-tag {
+	width: 70px;
+	height: 70px;
+	background-color: orange;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.new-tag h2 {
+	color: #fff;
+	font-size: 25px !important;
+}
+
+.hero-text .special-tag-clr {
+	background-color: teal;
+	width: 200px;
+	top: -20%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	flex-direction: column;
+}
+
+.hero-text .special-tag-trns {
+	background-color: transparent;
+	width: auto;
+	top: -28%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	flex-direction: row;
+}
+
+.special-tag h3 {
+	font-size: 30px;
+	color: #fff;
 }
 
 .hero-text h2 {
-	color: #c00a27;
 	font-size: 62px;
 	font-weight: 600;
 	line-height: 60px;
@@ -181,25 +234,54 @@ body {
 	text-align: center;
 }
 
-.hero-text .second-text {
+.hero-text .second-h2 {
+	color: #c00a27;
+}
+
+.hero-text .third-h2 {
+	color: #fff;
+}
+
+.hero-text .text {
 	width: 100%;
 	display: flex;
-	flex-direction: row;
-	align-items: flex-end;
 	justify-content: space-evenly;
 	color: #fff;
 	text-transform: uppercase;
 }
 
-.second-text .small-text {
-	font-size: 50px;
-	font-weight: 400;
+.hero-text .second-text {
+	flex-direction: row;
+	align-items: flex-end;
+}
+
+.hero-text .third-text {
+	flex-direction: column;
+	align-items: center;
+}
+
+.hero-text .fourth-text {
+	flex-direction: column;
+	align-items: center;
+}
+
+.small-text {
 	padding-bottom: 20px;
 	padding-right: 15px;
 	padding-left: 15px;
 }
 
-.second-text .large-text {
+.small-text-1 {
+	font-size: 50px;
+	font-weight: 400;
+}
+
+.small-text-2 {
+	font-size: 62px;
+	font-weight: 400;
+}
+
+.large-text {
 	font-size: 130px;
 	font-weight: 700;
 	padding-right: 15px;
@@ -327,15 +409,23 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 	padding-top: 30px;
 	padding-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .productList-title {
-	font-size: 60px;
+	font-size: 50px;
 	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
+	font-weight: 600;
 	color: #ca0808;
+}
+
+.productList-hr {
+	border-bottom: 2px solid #b1b1b1;
+	width: 75%;
 }
 
 /* Product page  */

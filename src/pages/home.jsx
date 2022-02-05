@@ -12,6 +12,7 @@ const Home = () => {
 			<div className="productList">
 				<div className="productList-title-container">
 					<h2 className="productList-title">Our Menu</h2>
+					<hr className="productList-hr" />
 				</div>
 				<div className="productList-container">
 					<div className="productList-wrapper">
