@@ -424,7 +424,7 @@ body {
 
 /* product List  */
 
-.productList-container {
+/* .productList-container {
 	padding: 20px 10px;
 	display: flex;
 	flex-direction: column;
@@ -455,14 +455,88 @@ body {
 	margin-top: 30px;
 	margin-bottom: 10px;
 	font-weight: 600;
-	/* color: #ca0808; */
+	 color: #ca0808; 
 	color: #e2241a;
 }
 
 .productList-hr {
 	border-bottom: 2px solid #e2241a;
 	width: 75%;
+} */
+
+/* Home Page  */
+
+.home-image-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
+
+.home-image-container .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 95%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.row .row-item {
+	flex: 1;
+	width: 45%;
+	height: 425px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.row:nth-child(1) .row-item:nth-child(1) {
+	background-image: url("https://ediblehappypizzeria.com/static/d1a7bf676097f964926191d6e0e22b8c/e1ce7/image_6483441.webp");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.text-row {
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.text-row h3 {
+	font-size: 35px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 40px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.text-row p {
+	font-size: 25px;
+	font-weight: 300;
+	letter-spacing: 1px;
+	text-align: center;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.row:nth-child(2) .row-item:nth-child(2) {
+	background-image: url("https://ediblehappypizzeria.com/static/72473e52a67e2191eb8a8e5cb91fb128/e3bd4/image_6483441_4.webp");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* .row-item img {
+	object-fit: cover !important;
+	overflow: hidden;
+	max-width: 100%;
+	max-height: 100%;
+} */
 
 /* Product page  */
 
