@@ -26,7 +26,7 @@ const Card = () => {
 				</p>
 				<span className="card-price">$19.9</span>
 				<a href="/product" className="card-link">
-					Select Options
+					Order
 				</a>
 			</div>
 		</div>

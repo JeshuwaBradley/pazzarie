@@ -52,7 +52,7 @@ const Review = () => {
 			<main className="review-container col">
 				<section className="review-container col">
 					<div className="review-container-title">
-						<h2>Our Reviews</h2>
+						<h2>Our Customer Reviews</h2>
 						<div className="underline"></div>
 					</div>
 					<article className="review">
