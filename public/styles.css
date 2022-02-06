@@ -531,12 +531,157 @@ body {
 	background-size: cover;
 }
 
-/* .row-item img {
-	object-fit: cover !important;
-	overflow: hidden;
-	max-width: 100%;
-	max-height: 100%;
-} */
+/* Review Section  */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+main {
+	min-width: 98vw;
+	min-height: 80vh;
+}
+
+.review-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.review-container.col {
+	flex-direction: column;
+}
+
+.review-container-title h2 {
+	font-size: 35px;
+	line-height: 1;
+	margin-bottom: 12px;
+	letter-spacing: 2px;
+}
+
+.underline {
+	height: 4px;
+	width: 80px;
+	background: #e2241a;
+	margin: 0 auto 54px;
+}
+
+.review {
+	background: white;
+	border-radius: 10px;
+	width: 70vw;
+	max-width: 550px;
+	text-align: center;
+	padding: 24px 32px;
+}
+
+.review-img-container {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: 0 auto;
+	margin-bottom: 1.5rem;
+}
+
+.review-img-container:before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	background: #e2241a;
+	position: absolute;
+	top: -0.25rem;
+	right: -0.5rem;
+	border-radius: 50%;
+}
+.fas.fa-quote-right {
+	font-weight: 900;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	transform: translateY(25%);
+	background: #49a6e9;
+	color: white;
+}
+
+#img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	position: relative;
+}
+
+.review p {
+	margin-bottom: 4px;
+	text-align: center;
+}
+
+#author {
+	font-weight: 700;
+	font-size: 18px;
+	letter-spacing: 2px;
+	text-transform: capitalize;
+}
+
+#job {
+	font-size: 13px;
+	color: #49a6e9;
+	text-transform: uppercase;
+}
+
+#info {
+	color: #617d98;
+	line-height: 1.4;
+	font-size: 16px;
+}
+
+.review-arrow-buttons {
+	margin-top: 10px;
+}
+
+.btn {
+	outline: none;
+	border: none;
+	background: transparent;
+	user-select: none;
+}
+
+.arrow-btn,
+.surprise-btn {
+	transition: all 0.3s linear;
+}
+
+.arrow-btn {
+	color: #f5ebdc;
+	margin: 0 10px;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.arrow-btn:hover {
+	color: #f0bda9;
+}
+
+.surprise-btn {
+	border: 2px solid #49a6e9;
+	font-size: 12px;
+	padding: 5px 10px;
+	margin: 15px 0 0;
+	border-radius: 10px;
+	color: #49a6e9;
+}
+
+.surprise-btn:hover {
+	color: black;
+	background: #49a6e9;
+}
 
 /* Product page  */
 

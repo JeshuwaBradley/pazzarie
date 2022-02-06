@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
+import Review from "../components/review";
 
 const Home = () => {
 	return (
@@ -48,6 +49,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div> */}
+			<Review />
 			<Footer />
 		</div>
 	);
