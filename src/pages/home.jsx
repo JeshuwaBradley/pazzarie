@@ -43,7 +43,7 @@ const Home = () => {
 						<Card />
 						<Card />
 					</div>
-					<a href="/" className="productList-menu-link">
+					<a href="/menu" className="productList-menu-link">
 						View Full Menu
 						<span>
 							<i
