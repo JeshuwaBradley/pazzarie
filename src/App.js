@@ -7,6 +7,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import Menu from './pages/menu';
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/product' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/menu' element={<Menu />} />
         </Routes>
       </BrowserRouter>
     </div>
