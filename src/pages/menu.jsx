@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Card from "../components/card";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
@@ -27,6 +28,34 @@ const Menu = () => {
 		} else if (value === "drinks") {
 			setDrinks(true);
 		}
+	};
+
+	const pizzaItem = {
+		imgSrc: "/img/pizza.png",
+		title: "FIORI DI ZUCCA",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "19.9",
+	};
+
+	const fries = {
+		imgSrc: "/img/fries.jpg",
+		title: "FRENCH FRIES",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "10.9",
+	};
+
+	const salad = {
+		imgSrc: "/img/salad.jpg",
+		title: "Salad",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "15.9",
+	};
+
+	const drink = {
+		imgSrc: "/img/drink.jpg",
+		title: "Fizzy Cola",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "20.9",
 	};
 
 	return (
@@ -83,7 +112,14 @@ const Menu = () => {
 								<h2>Pizzas</h2>
 								<div className="underline"></div>
 							</div>
-							<div className="productList-wrapper"></div>
+							<div className="productList-wrapper">
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+							</div>
 						</div>
 					) : (
 						""
@@ -94,7 +130,14 @@ const Menu = () => {
 								<h2>Appetizers and sides</h2>
 								<div className="underline"></div>
 							</div>
-							<div className="productList-wrapper"></div>
+							<div className="productList-wrapper">
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+							</div>
 						</div>
 					) : (
 						""
@@ -105,7 +148,14 @@ const Menu = () => {
 								<h2>Salads</h2>
 								<div className="underline"></div>
 							</div>
-							<div className="productList-wrapper"></div>
+							<div className="productList-wrapper">
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+							</div>
 						</div>
 					) : (
 						""
@@ -116,7 +166,14 @@ const Menu = () => {
 								<h2>Drinks and Desserts</h2>
 								<div className="underline"></div>
 							</div>
-							<div className="productList-wrapper"></div>
+							<div className="productList-wrapper">
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+							</div>
 						</div>
 					) : (
 						""
