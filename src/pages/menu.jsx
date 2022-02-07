@@ -47,7 +47,8 @@ const Menu = () => {
 	const salad = {
 		imgSrc: "/img/salad.jpg",
 		title: "Salad",
-		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		description:
+			"Lorem ipsum dolor sit amet consectetur aduofsfs elit. Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
 		price: "15.9",
 	};
 
