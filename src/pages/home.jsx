@@ -6,6 +6,12 @@ import Review from "../components/review";
 import Card from "../components/card";
 
 const Home = () => {
+	const item = {
+		imgSrc: "/img/pizza.png",
+		title: "FIORI DI ZUCCA",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "19.9",
+	};
 	return (
 		<div className="">
 			<Navbar />
@@ -39,9 +45,9 @@ const Home = () => {
 				</div>
 				<div className="productList-container">
 					<div className="productList-wrapper">
-						<Card />
-						<Card />
-						<Card />
+						<Card item={item} />
+						<Card item={item} />
+						<Card item={item} />
 					</div>
 					<a href="/menu" className="productList-menu-link">
 						View Full Menu

@@ -377,6 +377,7 @@ body {
 	font-style: 18px;
 	text-align: center;
 	font-weight: bold;
+	text-transform: uppercase;
 	/* color: #c00a27; */
 	color: #e2241a;
 	margin-bottom: 15px;
@@ -392,7 +393,6 @@ body {
 .card-description {
 	text-align: center;
 	font-style: italic;
-	color: #5e5e5e;
 	margin-bottom: 10px;
 }
 
@@ -661,6 +661,12 @@ body {
 	width: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+
+.tab .card,
+.card-description,
+.card-price {
+	color: #000 !important;
 }
 
 .tab-title {
