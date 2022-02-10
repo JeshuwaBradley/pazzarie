@@ -42,17 +42,11 @@ const Footer = () => {
 				<div className="links-container">
 					<div className="links-main">
 						<div className="links">
-							<a href="/csdc">Nutritional Value</a>
+							<a href="/csdc">Privacy Policy</a>
 							<a href="/sdc">Locations</a>
 							<a href="/dcsd">Catering</a>
 							<a href="/sdc">Contact</a>
 						</div>
-					</div>
-					<div className="signup">
-						<form action="">
-							<input type="email" />
-							<button type="submit">Sign-Up</button>
-						</form>
 					</div>
 				</div>
 				<div className="copyright">
