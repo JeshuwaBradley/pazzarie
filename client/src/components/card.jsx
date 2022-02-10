@@ -95,9 +95,9 @@ const Card = ({ item }) => {
 								<h3>Choose additional ingredients</h3>
 								<form>
 									{item?.extraOptions.length !== 0
-										? item.extraOptions.map((option) => {
+										? item.extraOptions.map((option, i) => {
 												return (
-													<div>
+													<div key={i}>
 														<input
 															type="checkbox"
 															id="extra-cheese"
