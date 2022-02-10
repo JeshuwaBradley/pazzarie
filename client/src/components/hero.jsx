@@ -31,6 +31,23 @@ const Hero = () => {
 
 	return (
 		<div className="hero-container">
+			<div>
+				<video
+					playsInline
+					autoPlay
+					muted
+					loop
+					id="bgvideo"
+					width="x"
+					height="y"
+				>
+					<source
+						src="https://player.vimeo.com/external/479813000.sd.mp4?s=a2312b396bb4384593e8f2e1d5a8b891ab23f4fd&profile_id=139&oauth2_token_id=57447761"
+						type="video/mp4"
+					/>
+					'Your browser does not support video'
+				</video>
+			</div>
 			<div
 				className="hero-wrapper carousel slide"
 				id="carouselExampleSlidesOnly"
@@ -47,6 +64,7 @@ const Hero = () => {
 							</div>
 							<div className="large-text">online</div>
 						</div>
+						<div className="order-online-btn">Order Online</div>
 					</div>
 					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-clr">
@@ -59,6 +77,7 @@ const Hero = () => {
 								pizza lovers set
 							</div>
 						</div>
+						<div className="order-online-btn">Order Online</div>
 					</div>
 					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-trns">
@@ -73,6 +92,7 @@ const Hero = () => {
 								chicken
 							</div>
 						</div>
+						<div className="order-online-btn">Order Online</div>
 					</div>
 				</div>
 			</div>
