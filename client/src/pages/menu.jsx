@@ -24,7 +24,7 @@ const Menu = () => {
 	}, []);
 
 	if (data) {
-		data.map((item) => {
+		data.forEach((item) => {
 			if (item.itemCategory === "pizza") {
 				pizzaItems.push(item);
 			} else if (item.itemCategory === "drinks") {
@@ -114,8 +114,8 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{pizzaItems.length !== 0
-									? pizzaItems.map((item) => (
-											<Card item={item} />
+									? pizzaItems.map((item, i) => (
+											<Card item={item} key={i} />
 									  ))
 									: ""}
 							</div>
@@ -131,8 +131,8 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{appetizerItems.length !== 0
-									? appetizerItems.map((item) => (
-											<Card item={item} />
+									? appetizerItems.map((item, i) => (
+											<Card item={item} key={i} />
 									  ))
 									: ""}
 							</div>
@@ -148,8 +148,8 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{saladItems.length !== 0
-									? saladItems.map((item) => (
-											<Card item={item} />
+									? saladItems.map((item, i) => (
+											<Card item={item} key={i} />
 									  ))
 									: ""}
 							</div>
@@ -165,8 +165,8 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{drinkItems.length !== 0
-									? drinkItems.map((item) => (
-											<Card item={item} />
+									? drinkItems.map((item, i) => (
+											<Card item={item} key={i} />
 									  ))
 									: ""}
 							</div>
