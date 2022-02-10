@@ -13,10 +13,7 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 
 mongoose.connect(
-    process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
+    process.env.MONGO_URL
 )
     .then(() => console.log('DB connection successfull!'))
     .catch((err) => {
@@ -25,7 +22,7 @@ mongoose.connect(
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use('/api/order', orderRoute);
 app.use('/api/product', productRoute);
 
