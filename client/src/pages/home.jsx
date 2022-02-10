@@ -8,9 +8,10 @@ import Card from "../components/card";
 const Home = () => {
 	const item = {
 		imgSrc: "/img/pizza.png",
-		title: "FIORI DI ZUCCA",
-		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
-		price: "19.9",
+		itemTitle: "FIORI DI ZUCCA",
+		itemDesc: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		itemPrices: [19.9, 12.9, 10],
+		extraOptions: [],
 	};
 	return (
 		<div className="">

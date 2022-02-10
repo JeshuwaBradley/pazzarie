@@ -1,6 +1,5 @@
 import React from 'react'
 import Home from './pages/home';
-import Product from './pages/product';
 import Cart from './pages/cart';
 import {
   BrowserRouter,
