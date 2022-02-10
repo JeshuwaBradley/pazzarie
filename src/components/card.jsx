@@ -18,9 +18,9 @@ const Card = ({ item }) => {
 						width="200"
 						height="200"
 					/>
-					<h1 className="card-title">{item.itemTitle}</h1>
-					<p className="card-description">{item.itemDesc}</p>
-					<span className="card-price">$ {item.itemPrices[0]}</span>
+					<h1 className="card-title">{item.title}</h1>
+					<p className="card-description">{item.description}</p>
+					<span className="card-price">$ {item.price}</span>
 					<button
 						className="card-link"
 						onClick={(e) => setModalOpen(true)}
@@ -51,11 +51,11 @@ const Card = ({ item }) => {
 				<div className="modal-right">
 					<div className="detail">
 						<div className="detail-item">
-							<h2 className="detail-title">{item.itemTitle}</h2>
+							<h2 className="detail-title">{item.title}</h2>
 						</div>
 						<div className="detail-item">
 							<p className="detail-description">
-								{item.itemDesc}
+								{item.description}
 							</p>
 						</div>
 						<div className="detail-item">
@@ -90,36 +90,57 @@ const Card = ({ item }) => {
 								</div>
 							</form>
 						</div>
-						{item?.extraOptions.length !== 0 ? (
-							<div className="detail-item">
-								<h3>Choose additional ingredients</h3>
-								<form>
-									{item?.extraOptions.length !== 0
-										? item.extraOptions.map((option) => {
-												return (
-													<div>
-														<input
-															type="checkbox"
-															id="extra-cheese"
-															name="extra-cheese"
-															value="extra-cheese"
-														/>
-														<label htmlFor="extra-cheese">
-															{option?.text}
-														</label>
-													</div>
-												);
-										  })
-										: ""}
-								</form>
-							</div>
-						) : (
-							""
-						)}
 						<div className="detail-item">
-							<p className="detail-price">
-								$ {item.itemPrices[0]}
-							</p>
+							<h3>Choose additional ingredients</h3>
+							<form>
+								<div>
+									<input
+										type="checkbox"
+										id="double-ingredients"
+										name="double-ingredients"
+										value="double-ingredients"
+									/>
+									<label htmlFor="double-ingredients">
+										Double Ingredients
+									</label>
+								</div>
+								<div>
+									<input
+										type="checkbox"
+										id="extra-cheese"
+										name="extra-cheese"
+										value="extra-cheese"
+									/>
+									<label htmlFor="extra-cheese">
+										Extra Cheese
+									</label>
+								</div>
+								<div>
+									<input
+										type="checkbox"
+										id="spicy-sauce"
+										name="spicy-sauce"
+										value="spicy-sauce"
+									/>
+									<label htmlFor="spicy-sauce">
+										Spicy Sauce
+									</label>
+								</div>
+								<div>
+									<input
+										type="checkbox"
+										id="garlic-sauce"
+										name="garlic-sauce"
+										value="garlic-sauce"
+									/>
+									<label htmlFor="garlic-sauce">
+										Garlic Sauce
+									</label>
+								</div>
+							</form>
+						</div>
+						<div className="detail-item">
+							<p className="detail-price">$ {item.price}</p>
 						</div>
 						<div className="detail-item">
 							<p className="detail-bagBtn">Add to Cart</p>

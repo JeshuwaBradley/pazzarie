@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
@@ -9,33 +8,6 @@ const Menu = () => {
 	const [appetizer, setAppetizer] = useState(false);
 	const [salads, setSalads] = useState(false);
 	const [drinks, setDrinks] = useState(false);
-	const [data, setData] = useState(null);
-
-	const pizzaItems = [];
-	const appetizerItems = [];
-	const saladItems = [];
-	const drinkItems = [];
-
-	useEffect(() => {
-		axios
-			.get("/api/product/find")
-			.then((res) => setData(res.data))
-			.catch((err) => console.log(err));
-	}, []);
-
-	if (data) {
-		data.map((item) => {
-			if (item.itemCategory === "pizza") {
-				pizzaItems.push(item);
-			} else if (item.itemCategory === "drinks") {
-				drinkItems.push(item);
-			} else if (item.itemCategory === "appetizer") {
-				appetizerItems.push(item);
-			} else if (item.itemCategory === "salads") {
-				saladItems.push(item);
-			}
-		});
-	}
 
 	const setAllStates = () => {
 		setPizza(false);
@@ -56,6 +28,35 @@ const Menu = () => {
 		} else if (value === "drinks") {
 			setDrinks(true);
 		}
+	};
+
+	const pizzaItem = {
+		imgSrc: "/img/pizza.png",
+		title: "FIORI DI ZUCCA",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "19.9",
+	};
+
+	const fries = {
+		imgSrc: "/img/fries.jpg",
+		title: "FRENCH FRIES",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "10.9",
+	};
+
+	const salad = {
+		imgSrc: "/img/salad.jpg",
+		title: "Salad",
+		description:
+			"Lorem ipsum dolor sit amet consectetur aduofsfs elit. Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "15.9",
+	};
+
+	const drink = {
+		imgSrc: "/img/drink.jpg",
+		title: "Fizzy Cola",
+		description: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
+		price: "20.9",
 	};
 
 	return (
@@ -113,11 +114,12 @@ const Menu = () => {
 								<div className="underline"></div>
 							</div>
 							<div className="productList-wrapper">
-								{pizzaItems.length !== 0
-									? pizzaItems.map((item) => (
-											<Card item={item} />
-									  ))
-									: ""}
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
+								<Card item={pizzaItem} />
 							</div>
 						</div>
 					) : (
@@ -130,11 +132,12 @@ const Menu = () => {
 								<div className="underline"></div>
 							</div>
 							<div className="productList-wrapper">
-								{appetizerItems.length !== 0
-									? appetizerItems.map((item) => (
-											<Card item={item} />
-									  ))
-									: ""}
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
+								<Card item={fries} />
 							</div>
 						</div>
 					) : (
@@ -147,11 +150,12 @@ const Menu = () => {
 								<div className="underline"></div>
 							</div>
 							<div className="productList-wrapper">
-								{saladItems.length !== 0
-									? saladItems.map((item) => (
-											<Card item={item} />
-									  ))
-									: ""}
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
+								<Card item={salad} />
 							</div>
 						</div>
 					) : (
@@ -164,11 +168,12 @@ const Menu = () => {
 								<div className="underline"></div>
 							</div>
 							<div className="productList-wrapper">
-								{drinkItems.length !== 0
-									? drinkItems.map((item) => (
-											<Card item={item} />
-									  ))
-									: ""}
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
+								<Card item={drink} />
 							</div>
 						</div>
 					) : (
