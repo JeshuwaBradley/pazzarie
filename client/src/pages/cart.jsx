@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { reset } from "../redux/cartSlice";
+import { reset, deleteProduct } from "../redux/cartSlice";
 import axios from "axios";
 
 const Cart = () => {
@@ -22,11 +22,9 @@ const Cart = () => {
 	// 	}
 	// };
 
-	const reload = () => {
-		console.log(cart);
-		cart.products.forEach((element) => {
-			console.log(element);
-		});
+	const handleDelete = (x) => {
+		// console.log(x._id);
+		dispatch(deleteProduct(x));
 	};
 
 	return (
@@ -111,6 +109,9 @@ const Cart = () => {
 														color: "#d1411e",
 														cursor: "pointer",
 													}}
+													onClick={() =>
+														handleDelete(product)
+													}
 												>
 													<i
 														className="fa fa-trash"
@@ -138,10 +139,7 @@ const Cart = () => {
 									<b className="totalTextTitle">Total:</b>$
 									{cart.total.toFixed(2)}
 								</div>
-								<button
-									className="checkout-button"
-									onClick={reload}
-								>
+								<button className="checkout-button">
 									CHECKOUT NOW!
 								</button>
 							</div>
