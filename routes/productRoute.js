@@ -11,7 +11,6 @@ router.post('/', async (req, res) => {
     try {
         const saved = await newProduct.save();
         res.status(200).json(saved)
-        console.log(saved);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -23,10 +22,8 @@ router.get('/find', async (req, res) => {
     try {
         const products = await Product.find();
         res.status(200).json(products);
-        console.log(products);
     } catch (error) {
         res.status(500).json(error);
-        console.log(error);
     }
 })
 

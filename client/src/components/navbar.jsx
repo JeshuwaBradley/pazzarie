@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+	const quantity = useSelector((state) => state.cart.quantity);
 	return (
 		<div className="navbar">
 			<div className="">
@@ -39,7 +41,11 @@ const Navbar = () => {
 										width="30px"
 										height="30px"
 									/>
-									<div className="count">2</div>
+									{quantity !== 0 ? (
+										<div className="count">{quantity}</div>
+									) : (
+										""
+									)}
 								</div>
 							</Link>
 						</div>
