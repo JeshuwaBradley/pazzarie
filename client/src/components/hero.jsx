@@ -20,7 +20,7 @@ const Hero = () => {
 		} else if (position === 2) {
 			position = 0;
 		}
-		slides[position].classList.add("carousel-item-visible");
+		slides[position].classList?.add("carousel-item-visible");
 	};
 	(function loop() {
 		setTimeout(function () {

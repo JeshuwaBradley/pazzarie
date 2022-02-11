@@ -1,10 +1,64 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/cartSlice";
 
 const Card = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
+	const [price, setPrice] = useState(0);
+	const [size, setSize] = useState();
+	const [quantity, setQuantity] = useState(1);
+	const [extras, setExtras] = useState([]);
+	const dispatch = useDispatch();
 
 	const handleClose = () => {
 		setModalOpen(false);
+	};
+
+	const resetExtras = () => {
+		setExtras([]);
+		let x = document.querySelectorAll('input[type="checkbox"]:checked');
+
+		x.forEach((item) => {
+			item.checked = false;
+		});
+	};
+
+	const resetQuantity = () => {
+		setQuantity(1);
+	};
+
+	const handleSize = (sizeIndex) => {
+		setSize(sizeIndex);
+		setPrice(item.itemPrices[sizeIndex]);
+		resetExtras();
+		resetQuantity();
+	};
+
+	const handleChange = (e, option) => {
+		const checked = e.target.checked;
+
+		if (checked) {
+			setPrice(price + option.price);
+			setExtras((prev) => [...prev, option]);
+		} else {
+			setPrice(price - option.price);
+			setExtras(extras.filter((extra) => extra._id !== option._id));
+		}
+	};
+
+	const handleIncrease = () => {
+		setQuantity(quantity + 1);
+	};
+
+	const handleDecrease = () => {
+		if (quantity > 1) {
+			setQuantity(quantity - 1);
+		}
+	};
+
+	const handleCart = () => {
+		dispatch(addProduct({ ...item, extras, price, quantity, size }));
+		handleClose();
 	};
 
 	return (
@@ -52,21 +106,20 @@ const Card = ({ item }) => {
 					<div className="detail">
 						<div className="detail-item">
 							<h2 className="detail-title">{item.itemTitle}</h2>
-						</div>
-						<div className="detail-item">
+
 							<p className="detail-description">
 								{item.itemDesc}
 							</p>
 						</div>
 						<div className="detail-item">
 							<h3>Choose the size</h3>
-							<form>
+							<form onChange={(e) => handleSize(e.target.value)}>
 								<div>
 									<input
 										type="radio"
 										name="size"
 										id="large"
-										value="large"
+										value="2"
 									/>
 									<label htmlFor="large">Large</label>
 								</div>
@@ -75,7 +128,7 @@ const Card = ({ item }) => {
 										type="radio"
 										name="size"
 										id="medium"
-										value="medium"
+										value="1"
 									/>
 									<label htmlFor="medium">Medium</label>
 								</div>
@@ -84,7 +137,7 @@ const Card = ({ item }) => {
 										type="radio"
 										name="size"
 										id="small"
-										value="small"
+										value="0"
 									/>
 									<label htmlFor="small">Small</label>
 								</div>
@@ -100,11 +153,21 @@ const Card = ({ item }) => {
 													<div key={i}>
 														<input
 															type="checkbox"
-															id="extra-cheese"
-															name="extra-cheese"
-															value="extra-cheese"
+															id={option?.text}
+															name={option?.text}
+															value={option?.text}
+															onChange={(e) =>
+																handleChange(
+																	e,
+																	option
+																)
+															}
 														/>
-														<label htmlFor="extra-cheese">
+														<label
+															htmlFor={
+																option?.text
+															}
+														>
 															{option?.text}
 														</label>
 													</div>
@@ -116,13 +179,24 @@ const Card = ({ item }) => {
 						) : (
 							""
 						)}
-						<div className="detail-item">
-							<p className="detail-price">
-								$ {item.itemPrices[0]}
-							</p>
+						<div className="detail-item quantity-box">
+							<span onClick={handleIncrease}>+</span>
+							<p>{quantity}</p>
+							<span onClick={handleDecrease}>-</span>
 						</div>
 						<div className="detail-item">
-							<p className="detail-bagBtn">Add to Cart</p>
+							<p className="detail-price">$ {price.toFixed(2)}</p>
+						</div>
+						<div className="detail-item" onClick={handleCart}>
+							<p
+								className={
+									size == null
+										? "detail-bagBtn-disabled"
+										: "detail-bagBtn"
+								}
+							>
+								Add to Cart
+							</p>
 						</div>
 					</div>
 				</div>
