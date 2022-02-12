@@ -42,9 +42,7 @@ const Footer = () => {
 				<div className="links-container">
 					<div className="links-main">
 						<div className="links">
-							<a href="/csdc">Privacy Policy</a>
 							<a href="/sdc">Locations</a>
-							<a href="/dcsd">Catering</a>
 							<a href="/sdc">Contact</a>
 						</div>
 					</div>

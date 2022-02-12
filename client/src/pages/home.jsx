@@ -15,7 +15,7 @@ const Home = () => {
 	};
 	return (
 		<div className="">
-			<Navbar />
+			{/* <Navbar /> */}
 			<Hero />
 			<div className="home-image-container">
 				<div className="row">
