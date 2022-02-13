@@ -93,18 +93,18 @@ const Navbar = () => {
 				</div>
 				{open ? (
 					<div className="navbar-bottom-container-mobile">
-						<a href="/menu" className="mobile-nav-item">
+						<Link to="/menu" className="mobile-nav-item">
 							<div className="">Menu</div>
-						</a>
-						<a href="/" className="mobile-nav-item">
+						</Link>
+						<Link to="/" className="mobile-nav-item">
 							<div className="mobile-nav-item">Promotions</div>
-						</a>
-						<a href="/" className="mobile-nav-item">
+						</Link>
+						<Link to="/" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
-						</a>
-						<a href="/cart" className="mobile-nav-item">
+						</Link>
+						<Link to="/cart" className="mobile-nav-item">
 							<div className="">Cart</div>
-						</a>
+						</Link>
 					</div>
 				) : (
 					""
