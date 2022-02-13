@@ -861,12 +861,6 @@ video#bgvideo {
 	border-bottom: 3px solid #fff;
 	width: 75%;
 }
-/* 
-.productList .card-title,
-.card-description,
-.card-price {
-	color: #fff !important;
-} */
 
 .productList .card-link {
 	background-color: #fff;
@@ -884,6 +878,19 @@ video#bgvideo {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 40px;
+}
+
+@media only screen and (max-width: 900px) {
+	.productList-title {
+		font-size: 30px;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		font-weight: 500;
+	}
+	.productList-menu-link {
+		margin-top: 20px;
+	}
 }
 
 /* Home Page  */
@@ -950,6 +957,54 @@ video#bgvideo {
 	background-image: url("https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+
+@media only screen and (max-width: 900px) {
+	.home-image-container {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.home-image-container .row {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: fit-content;
+	}
+	.row .row-item {
+		flex: 1;
+		width: 95%;
+		min-height: 300px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.row:nth-child(2) {
+		flex-direction: column-reverse;
+	}
+	.row:nth-child(1) .row-item:nth-child(1) {
+		width: 95%;
+		background-image: url("https://images.unsplash.com/photo-1609159085964-e47ec0804449?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTEyfHxwaXp6YXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.text-row h3 {
+		font-size: 23px;
+		font-weight: 600;
+		margin-bottom: 20px;
+		margin-right: 20px;
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+	.text-row p {
+		font-size: 18px;
+		margin-bottom: 20px;
+	}
+	.row:nth-child(2) .row-item:nth-child(2) {
+		width: 95%;
+		background-image: url("https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 }
 
 /* Menu Page  */
@@ -1225,6 +1280,14 @@ main {
 .surprise-btn:hover {
 	color: black;
 	background: #49a6e9;
+}
+
+@media only screen and (max-width: 900px) {
+	.review-container-title h2 {
+		font-size: 28px;
+		text-align: center;
+		margin-bottom: 5px;
+	}
 }
 
 /* Product page  */
