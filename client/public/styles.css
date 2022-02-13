@@ -1013,7 +1013,7 @@ video#bgvideo {
 }
 
 .menu-hero {
-	height: 550px;
+	height: 300px;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -1035,7 +1035,7 @@ video#bgvideo {
 .menu-hero-title-bgc {
 	background-color: #fff;
 	opacity: 0.2;
-	height: 200px;
+	height: 150px;
 	width: 100%;
 }
 
@@ -1046,21 +1046,21 @@ video#bgvideo {
 	text-transform: uppercase;
 }
 
-/* .menu-wrapper {
-} */
-
 .menu-list {
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: #e2241a;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 100px;
+	z-index: 900;
 }
 
 .menu-list ul {
 	width: 80%;
 	height: 100%;
-	font-size: 20px;
 	color: #000;
 	list-style: none;
 	display: flex;
@@ -1081,6 +1081,7 @@ video#bgvideo {
 	letter-spacing: 1px;
 	cursor: pointer;
 	position: relative;
+	text-align: center;
 }
 
 .menu-list .active {
@@ -1106,12 +1107,6 @@ video#bgvideo {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-/* 
-.tab .card,
-.card-description,
-.card-price {
-	color: #000 !important;
-} */
 
 .tab-title {
 	width: 100%;
@@ -1128,6 +1123,53 @@ video#bgvideo {
 	font-size: 30px;
 	text-transform: uppercase;
 	color: #e2241a;
+}
+
+@media only screen and (max-width: 900px) {
+	.menu-hero {
+		height: 200px;
+	}
+	.menu-hero-title-bgc {
+		height: 120px;
+	}
+	.menu-hero-title h1 {
+		font-size: 65px;
+	}
+	.menu-list {
+		height: 70px;
+		top: 70px;
+	}
+
+	.menu-list ul {
+		width: 98%;
+	}
+
+	.menu-list ul li {
+		font-size: 13px;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		font-weight: 600;
+		letter-spacing: normal;
+	}
+
+	.arrow-up {
+		position: absolute;
+		bottom: 0;
+		width: 0;
+		height: 0;
+		border-left: 12px solid transparent;
+		border-right: 12px solid transparent;
+		border-bottom: 12px solid #f5ebdc;
+	}
+
+	.tab-title h2 {
+		margin-bottom: 5px;
+		font-size: 23px;
+		text-align: center;
+	}
 }
 
 /* Review Section  */
