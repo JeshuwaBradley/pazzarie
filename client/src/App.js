@@ -7,6 +7,7 @@ import {
   Route
 } from "react-router-dom";
 import Menu from './pages/menu';
+import Admin from './pages/admin';
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/menu' element={<Menu />} />
+          <Route path='/admin' element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>
