@@ -2259,7 +2259,7 @@ h2.large-title {
 	cursor: pointer;
 }
 
-.active {
+.paginate-active {
 	background-color: teal;
 	padding: 5px 8px;
 	border-radius: 3px;
