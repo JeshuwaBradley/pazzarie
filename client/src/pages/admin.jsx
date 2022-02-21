@@ -215,7 +215,7 @@ const Admin = () => {
 							previousLabel="<"
 							renderOnZeroPageCount={null}
 							className="react-paginate"
-							activeClassName="active"
+							activeClassName="paginate-active"
 							previousClassName="arrow-button"
 							nextClassName="arrow-button"
 							previousLinkClassName="previous"
@@ -256,7 +256,7 @@ const Admin = () => {
 							previousLabel="<"
 							renderOnZeroPageCount={null}
 							className="react-paginate"
-							activeClassName="active"
+							activeClassName="paginate-active"
 							previousClassName="arrow-button"
 							nextClassName="arrow-button"
 							previousLinkClassName="previous"

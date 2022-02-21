@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
 	const slides = document.getElementsByClassName("carousel-item");
@@ -62,9 +63,12 @@ const Hero = () => {
 							<div className="small-text small-text-1">
 								with <br /> visa
 							</div>
+
 							<div className="large-text">online</div>
 						</div>
-						<div className="order-online-btn">Order Online</div>
+						<Link to="/menu">
+							<div className="order-online-btn">Order Online</div>
+						</Link>
 					</div>
 					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-clr">
@@ -77,7 +81,9 @@ const Hero = () => {
 								pizza lovers set
 							</div>
 						</div>
-						<div className="order-online-btn">Order Online</div>
+						<Link to="/menu">
+							<div className="order-online-btn">Order Online</div>
+						</Link>
 					</div>
 					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-trns">
@@ -92,7 +98,9 @@ const Hero = () => {
 								chicken
 							</div>
 						</div>
-						<div className="order-online-btn">Order Online</div>
+						<Link to="/menu">
+							<div className="order-online-btn">Order Online</div>
+						</Link>
 					</div>
 				</div>
 			</div>
