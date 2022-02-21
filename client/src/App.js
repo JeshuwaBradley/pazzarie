@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Menu from './pages/menu';
 import Admin from './pages/admin';
+import Shop from './pages/shop';
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/menu' element={<Menu />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='/shop/:id' element={<Shop />} />
         </Routes>
       </BrowserRouter>
     </div>
