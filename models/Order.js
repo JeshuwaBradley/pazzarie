@@ -16,6 +16,11 @@ const OrderSchema = new mongoose.Schema(
             required: true,
             maxlength: 100,
         },
+        mobile: {
+            type: String,
+            required: true,
+            maxlength: 100,
+        },
         orderItems: {
             type: [
                 {
@@ -53,6 +58,14 @@ const OrderSchema = new mongoose.Schema(
             ],
             required: true,
         },
+        promote: {
+            type: Boolean,
+            required: true,
+        },
+        deliver: {
+            type: Boolean,
+            required: true,
+        },
         address: {
             type: String,
             maxlength: 200,
@@ -71,7 +84,7 @@ const OrderSchema = new mongoose.Schema(
         total: {
             type: Number,
             required: true,
-        }
+        },
     },
     { timestamps: true }
 );

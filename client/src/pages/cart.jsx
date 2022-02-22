@@ -15,6 +15,8 @@ import axios from "axios";
 const Cart = () => {
 	const cart = useSelector((state) => state.cart);
 	const [deliver, setDeliver] = useState(false);
+	const [promote, setPromote] = useState(true);
+	const [shop, setShop] = useState(1);
 	const [inputs, setInputs] = useState({});
 	const dispatch = useDispatch();
 
@@ -71,9 +73,13 @@ const Cart = () => {
 		e.preventDefault();
 		let x = {
 			...inputs,
+			shop: shop,
+			deliver: deliver,
+			promote: promote,
 			orderItems: orderItems,
 			total: total,
 		};
+		console.log(x);
 		axios
 			.post("http://localhost:5000/api/order/", { ...x })
 			.then((response) => {
@@ -288,7 +294,23 @@ const Cart = () => {
 												/>
 											</div>
 										</div>
-
+										<div className="form-item">
+											<div className="form-label">
+												<label htmlFor="mobile">
+													Customer Mobile:
+												</label>
+											</div>
+											<div className="form-input">
+												<input
+													type="text"
+													name="mobile"
+													placeholder="+1-123-456-7890"
+													onChange={(e) =>
+														handleChange(e)
+													}
+												/>
+											</div>
+										</div>
 										{deliver && (
 											<>
 												<div className="form-item">
@@ -362,8 +384,31 @@ const Cart = () => {
 											</>
 										)}
 										<div className="form-item">
+											<div className="promotional-checkbox">
+												<input
+													type="checkbox"
+													name="promotion"
+													id="promotion"
+													defaultChecked
+													onChange={(e) => {
+														setPromote(!promote);
+													}}
+												/>
+												<label htmlFor="promotion">
+													Yes, we would like to
+													receive promotional offers
+													from Nova’s pizza.
+												</label>
+											</div>
+										</div>
+										<div className="form-item">
 											<button
 												onClick={(e) => handleOrder(e)}
+												className={
+													cart.products.length === 0
+														? "checkout-button-disabled"
+														: "checkout-button"
+												}
 											>
 												Continue Checkout
 											</button>
