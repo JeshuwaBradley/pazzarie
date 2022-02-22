@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import ReactPaginate from "react-paginate";
+import { useParams } from "react-router-dom";
 
 const Items = ({ currentItems }) => {
 	return (
@@ -33,6 +34,7 @@ const Items = ({ currentItems }) => {
 };
 
 const Shop = () => {
+	const { id } = useParams();
 	const [orders, setOrders] = useState(null);
 	const itemsPerPage = 10;
 	const [currentItems, setCurrentItems] = useState(null);
@@ -41,7 +43,7 @@ const Shop = () => {
 
 	useEffect(() => {
 		axios
-			.get("/api/order/find")
+			.get(`/api/order/find-shop/${id}`)
 			.then((res) => {
 				setOrders(res.data);
 				const endOffset = itemOffset + itemsPerPage;
@@ -50,6 +52,8 @@ const Shop = () => {
 			})
 			.catch((err) => console.log(err));
 	}, [itemOffset, itemsPerPage]);
+
+	useEffect(() => {});
 
 	const handlePageClick = (event) => {
 		const newOffset = (event.selected * itemsPerPage) % orders.length;
@@ -62,6 +66,9 @@ const Shop = () => {
 			<div className="shop-main">
 				<div className="shop-main-title">
 					<h2>Orders for shop id: 1</h2>
+				</div>
+				<div className="refresh">
+					<button>refresh</button>
 				</div>
 				<div className="shop-main-table">
 					<div className="shop-table">
