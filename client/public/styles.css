@@ -98,7 +98,7 @@ body {
 .left,
 .right,
 .center {
-	flex: 1;
+	/* flex: 1; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -566,7 +566,8 @@ video#bgvideo {
 	color: #fff;
 	background-color: #e2241a;
 	padding: 10px 30px;
-	border-radius: 20px;
+	width: 80%;
+	border-radius: 5px;
 	margin-bottom: 20px;
 	cursor: pointer;
 	border: 0;
@@ -1602,17 +1603,6 @@ main {
 	margin-right: 10px;
 }
 
-.checkout-button {
-	padding: 10px 10px;
-	color: #e2241a;
-	font-weight: bold;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 20px;
-}
-
 .cart-total-title {
 	text-align: center;
 	margin-bottom: 10px;
@@ -1731,16 +1721,32 @@ main {
 	justify-content: center;
 }
 
-.form-item:last-child button {
+.checkout-button {
 	margin-top: 10px;
+	letter-spacing: 1px;
 	padding: 15px;
-	font-size: 16px;
+	font-size: 18px;
 	border-radius: 10px;
 	outline: none;
 	border: none;
 	background-color: #e2241a;
 	color: #fff;
 	cursor: pointer;
+}
+
+.checkout-button-disabled {
+	margin-top: 10px;
+	letter-spacing: 1px;
+	padding: 15px;
+	font-size: 18px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	background-color: #e2241a;
+	color: #fff;
+	cursor: pointer;
+	pointer-events: none;
+	opacity: 0.5;
 }
 
 .form-label {
@@ -1756,6 +1762,15 @@ main {
 	width: 60%;
 	font-size: 16px;
 	padding: 5px 10px;
+}
+
+.promotional-checkbox input {
+	margin-right: 15px;
+	font-size: 18px;
+}
+
+.promotional-checkbox label {
+	font-size: 16px;
 }
 
 @media screen and (max-width: 480px) {

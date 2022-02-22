@@ -19,7 +19,9 @@ const Items = ({ currentItems }) => {
 							<p>{order.orderItems.length}</p>
 						</div>
 						<div className="shop-table-row-deliver">
-							<p>Deliver</p>
+							<p>
+								{order.deliver === true ? "Deliver" : "Pickup"}
+							</p>
 						</div>
 						<div className="shop-table-row-status">
 							<p>Complete</p>

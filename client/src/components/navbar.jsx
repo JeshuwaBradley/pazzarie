@@ -32,7 +32,9 @@ const Navbar = () => {
 										<li className="listItem">Menu</li>
 									</Link>
 									<Link to="">
-										<li className="listItem">Promotions</li>
+										<li className="listItem">
+											Deal of the day
+										</li>
 									</Link>
 									<Link to="">
 										<li className="listItem">Contact</li>
