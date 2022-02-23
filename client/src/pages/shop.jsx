@@ -8,27 +8,39 @@ const Items = ({ currentItems }) => {
 	return (
 		<>
 			{currentItems &&
-				currentItems.map((order, i) => (
-					<div className="shop-table-row" key={i}>
-						<div className="shop-table-row-id">
-							<p>{order._id.slice(0, 5)}</p>
+				currentItems.map((order, i) => {
+					const orderStatus =
+						order.status === 0
+							? "Ordered"
+							: order.status === 1
+							? "Preparing"
+							: order.status === 2
+							? "Delivered"
+							: "";
+					return (
+						<div className="shop-table-row" key={i}>
+							<div className="shop-table-row-id">
+								<p>{order._id.slice(0, 5)}</p>
+							</div>
+							<div className="shop-table-row-customer">
+								<p>{order.customer}</p>
+							</div>
+							<div className="shop-table-row-number">
+								<p>{order.orderItems.length}</p>
+							</div>
+							<div className="shop-table-row-deliver">
+								<p>
+									{order.deliver === true
+										? "Deliver"
+										: "Pickup"}
+								</p>
+							</div>
+							<div className="shop-table-row-status">
+								<p>{orderStatus}</p>
+							</div>
 						</div>
-						<div className="shop-table-row-customer">
-							<p>{order.customer}</p>
-						</div>
-						<div className="shop-table-row-number">
-							<p>{order.orderItems.length}</p>
-						</div>
-						<div className="shop-table-row-deliver">
-							<p>
-								{order.deliver === true ? "Deliver" : "Pickup"}
-							</p>
-						</div>
-						<div className="shop-table-row-status">
-							<p>Complete</p>
-						</div>
-					</div>
-				))}
+					);
+				})}
 		</>
 	);
 };
@@ -51,13 +63,27 @@ const Shop = () => {
 				setPageCount(Math.ceil(res.data.length / itemsPerPage));
 			})
 			.catch((err) => console.log(err));
-	}, [itemOffset, itemsPerPage]);
-
-	useEffect(() => {});
+	}, [itemOffset, itemsPerPage, id]);
 
 	const handlePageClick = (event) => {
 		const newOffset = (event.selected * itemsPerPage) % orders.length;
 		setItemOffset(newOffset);
+	};
+
+	const handleRefresh = () => {
+		setOrders(null);
+		setCurrentItems(null);
+		setPageCount(0);
+		setItemOffset(0);
+		axios
+			.get(`/api/order/find-shop/${id}`)
+			.then((res) => {
+				setOrders(res.data);
+				const endOffset = itemOffset + itemsPerPage;
+				setCurrentItems(res.data?.slice(itemOffset, endOffset));
+				setPageCount(Math.ceil(res.data.length / itemsPerPage));
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -68,7 +94,12 @@ const Shop = () => {
 					<h2>Orders for shop id: 1</h2>
 				</div>
 				<div className="refresh">
-					<button>refresh</button>
+					<button onClick={handleRefresh}>
+						Refresh
+						<span>
+							<i className="fa fa-refresh"></i>
+						</span>
+					</button>
 				</div>
 				<div className="shop-main-table">
 					<div className="shop-table">

@@ -2185,6 +2185,22 @@ h2.large-title {
 	text-transform: uppercase;
 }
 
+.refresh {
+	width: 98%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.refresh button {
+	padding: 10px 15px;
+	font-size: 14px;
+}
+
+.refresh .fa-refresh {
+	margin-left: 10px;
+	font-size: 16px;
+}
+
 .shop-main-table {
 	display: flex;
 	align-items: center;
