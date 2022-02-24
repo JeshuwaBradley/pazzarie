@@ -2393,6 +2393,14 @@ h2.large-title {
 	color: #555;
 }
 
+.admin-logout {
+	padding: 8px 15px;
+	outline: none;
+	cursor: pointer;
+	font-size: 16px;
+	border: none;
+}
+
 .admin-topbar-iconBadge {
 	position: absolute;
 	top: -5px;
