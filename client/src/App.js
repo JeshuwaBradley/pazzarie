@@ -12,6 +12,7 @@ import Shop from './pages/shop';
 import AdminLogin from './pages/admin-login'
 import { AppContext } from "./lib/contextLib";
 import { useState } from 'react';
+import ShopLogin from './pages/shop-login';
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -25,8 +26,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/shop/:id' element={<Shop />} />
-            {/* <Route path='/admin-login' element={<AdminLogin />} />
-            {isAuthenticated && <Route path='/admin' element={<Admin />} />} */}
+            <Route path='/shop-login' element={<ShopLogin />} />
             {<Route path='/admin' element={isAuthenticated ? <Admin /> : <AdminLogin />} />}
           </Routes>
         </AppContext.Provider>
