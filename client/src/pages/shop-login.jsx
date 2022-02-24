@@ -1,19 +1,19 @@
 // import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../lib/contextLib";
+// import { useNavigate } from "react-router-dom";
+// import { useAppContext } from "../lib/contextLib";
 
-const AdminLogin = () => {
-	const navigate = useNavigate();
-	const { userHasAuthenticated } = useAppContext();
+const ShopLogin = () => {
+	// const navigate = useNavigate();
+	// const { userHasAuthenticated } = useAppContext();
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [error, setError] = useState(false);
 
 	const handleClick = async () => {
 		console.log(email, password);
-		userHasAuthenticated(true);
-		navigate("/admin");
+		// userHasAuthenticated(true);
+		// navigate("/shop/1");
 		// try {
 		// 	await axios.post("http://localhost:5000/api/auth/login", {
 		// 		email: email,
@@ -27,7 +27,7 @@ const AdminLogin = () => {
 	return (
 		<div className="admin-login-container">
 			<div className="admin-login-wrapper">
-				<h1>Admin Dashboard</h1>
+				<h1>Shop Dashboard</h1>
 				<input
 					type="email"
 					placeholder="johndoe@email.com"
@@ -53,4 +53,4 @@ const AdminLogin = () => {
 	);
 };
 
-export default AdminLogin;
+export default ShopLogin;
