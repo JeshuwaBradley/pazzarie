@@ -3,42 +3,56 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
+import Topbar from "../components/admin-topbar";
 import Navbar from "../components/navbar";
 
 const OrderItems = ({ currentOrderItems }) => {
 	return (
 		<>
 			{currentOrderItems &&
-				currentOrderItems.map((order, i) => (
-					<div className="orders-table-body" key={i}>
-						<div className="order-id">
-							<p>{order._id.slice(0, 5)}</p>
+				currentOrderItems.map((order, i) => {
+					const orderStatus =
+						order.status === 0
+							? "Ordered"
+							: order.status === 1
+							? "Preparing"
+							: order.status === 2
+							? "Delivered"
+							: "";
+					return (
+						<div className="orders-table-body" key={i}>
+							<div className="order-id">
+								<p>{order._id.slice(0, 5)}</p>
+							</div>
+							<div className="order-customer">
+								<p>{order.customer}</p>
+							</div>
+							<div className="order-total">
+								<p>{order.total}</p>
+							</div>
+							<div className="order-payment">
+								<p>{orderStatus}</p>
+							</div>
+							<div className="order-payment">
+								<div className="order-success">success</div>
+							</div>
+							<div className="order-action">
+								<span
+									style={{
+										fontSize: "1.5em",
+										color: "#d1411e",
+										cursor: "pointer",
+									}}
+								>
+									<i
+										className="fa fa-trash"
+										aria-hidden="true"
+									></i>
+								</span>
+							</div>
 						</div>
-						<div className="order-customer">
-							<p>{order.customer}</p>
-						</div>
-						<div className="order-total">
-							<p>{order.total}</p>
-						</div>
-						<div className="order-payment">
-							<div className="order-success">success</div>
-						</div>
-						<div className="order-action">
-							<span
-								style={{
-									fontSize: "1.5em",
-									color: "#d1411e",
-									cursor: "pointer",
-								}}
-							>
-								<i
-									className="fa fa-trash"
-									aria-hidden="true"
-								></i>
-							</span>
-						</div>
-					</div>
-				))}
+					);
+				})}
 		</>
 	);
 };
@@ -94,7 +108,7 @@ const Admin = () => {
 
 	const [currentOrderItems, setCurrentOrderItems] = useState(null);
 	const [ordersPageCount, setOrdersPageCount] = useState(0);
-	const [ordersItemOffset, seOrdersItemsOffset] = useState(0);
+	const [ordersItemOffset, setOrdersItemsOffset] = useState(0);
 
 	const [currentProductItems, setCurrentProductItems] = useState(null);
 	const [productsPageCount, setProductsPageCount] = useState(0);
@@ -124,7 +138,6 @@ const Admin = () => {
 			.then((res) => {
 				setProducts(res.data);
 				const endOffset = productsItemOffset + productsItemsPerPage;
-				console.log(endOffset);
 				setCurrentProductItems(
 					res.data?.slice(productsItemOffset, endOffset)
 				);
@@ -150,12 +163,51 @@ const Admin = () => {
 
 	const handleOrderPageClick = (event) => {
 		const newOffset = (event.selected * ordersItemsPerPage) % orders.length;
-		seOrdersItemsOffset(newOffset);
+		setOrdersItemsOffset(newOffset);
+	};
+
+	const handleProductRefresh = () => {
+		setCurrentProductItems(null);
+		setProductsPageCount(0);
+		setProductsItemOffset(0);
+		axios
+			.get("/api/product/find")
+			.then((res) => {
+				setProducts(res.data);
+				const endOffset = productsItemOffset + productsItemsPerPage;
+				setCurrentProductItems(
+					res.data?.slice(productsItemOffset, endOffset)
+				);
+				setProductsPageCount(
+					Math.ceil(res.data.length / productsItemsPerPage)
+				);
+			})
+			.catch((err) => console.log(err));
+	};
+
+	const handleOrderRefresh = () => {
+		setCurrentOrderItems(null);
+		setOrdersPageCount(0);
+		setOrdersItemsOffset(0);
+		axios
+			.get("/api/order/find")
+			.then((res) => {
+				setOrders(res.data);
+				const endOffset = ordersItemOffset + ordersItemsPerPage;
+				setCurrentOrderItems(
+					res.data?.slice(ordersItemOffset, endOffset)
+				);
+				setOrdersPageCount(
+					Math.ceil(res.data.length / ordersItemsPerPage)
+				);
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
 		<div className="admin">
-			<Navbar />
+			{/* <Navbar /> */}
+			<Topbar />
 			<div className="admin-main-one">
 				<div className="numbers-container">
 					<div className="numbers-container-inner white">
@@ -188,7 +240,30 @@ const Admin = () => {
 			</div>
 			<div className="admin-main-two">
 				<div className="main-two-section-one">
-					<h2>Products</h2>
+					<div className="main-two-top">
+						<h2>Products</h2>
+						<div className="main-two-top-right">
+							<div className="expand">
+								Expand
+								<span>
+									<i
+										className="fa fa-external-link"
+										style={{
+											// fontSize: "1.5em",
+											marginLeft: "10px",
+											// color: "#e2241a",
+										}}
+									></i>
+								</span>{" "}
+							</div>
+							<button onClick={handleProductRefresh}>
+								Refresh
+								<span>
+									<i className="fa fa-refresh"></i>
+								</span>
+							</button>
+						</div>
+					</div>
 					<div className="products-table">
 						<>
 							<div className="products-table-body">
@@ -225,7 +300,30 @@ const Admin = () => {
 					</div>
 				</div>
 				<div className="main-two-section-two">
-					<h2>Orders</h2>
+					<div className="main-two-top">
+						<h2>Orders</h2>
+						<div className="main-two-top-right">
+							<div className="expand">
+								Expand
+								<span>
+									<i
+										className="fa fa-external-link"
+										style={{
+											// fontSize: "1.5em",
+											marginLeft: "10px",
+											// color: "#e2241a",
+										}}
+									></i>
+								</span>
+							</div>
+							<button onClick={handleOrderRefresh}>
+								Refresh
+								<span>
+									<i className="fa fa-refresh"></i>
+								</span>
+							</button>
+						</div>
+					</div>
 					<div className="orders-table">
 						<>
 							<div className="orders-table-body">
@@ -237,6 +335,9 @@ const Admin = () => {
 								</div>
 								<div className="order-total">
 									<h2>Total</h2>
+								</div>
+								<div className="order-payment">
+									<h2>Status</h2>
 								</div>
 								<div className="order-payment">
 									<h2>Payment</h2>
