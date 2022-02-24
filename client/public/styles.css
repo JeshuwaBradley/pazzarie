@@ -2463,3 +2463,42 @@ h2.large-title {
 	margin-right: 5px;
 	font-size: 20px !important;
 }
+
+/* admin login  */
+
+.admin-login-container {
+	height: calc(100vh - 100px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.admin-login-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.admin-login-input {
+	height: 40px;
+	margin-bottom: 20px;
+	padding: 0px 10px;
+}
+
+.admin-login-input:first-of-type {
+	margin-top: 20px;
+}
+
+.admin-login-button {
+	height: 40px;
+	margin-bottom: 20px;
+	border: none;
+	background-color: teal;
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.admin-login-error {
+	font-size: 13px;
+	color: red;
+}
