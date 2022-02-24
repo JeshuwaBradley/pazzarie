@@ -10,19 +10,26 @@ import Menu from './pages/menu';
 import Admin from './pages/admin';
 import Shop from './pages/shop';
 import AdminLogin from './pages/admin-login'
+import { AppContext } from "./lib/contextLib";
+import { useState } from 'react';
+
 function App() {
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/menu' element={<Menu />} />
-          <Route path='/shop/:id' element={<Shop />} />
-          <Route path='/admin-login' element={<AdminLogin />} />
-          <Route path='/admin' element={<Admin />} />
-
-        </Routes>
+        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/menu' element={<Menu />} />
+            <Route path='/shop/:id' element={<Shop />} />
+            {/* <Route path='/admin-login' element={<AdminLogin />} />
+            {isAuthenticated && <Route path='/admin' element={<Admin />} />} */}
+            {<Route path='/admin' element={isAuthenticated ? <Admin /> : <AdminLogin />} />}
+          </Routes>
+        </AppContext.Provider>
       </BrowserRouter>
     </div>
   );

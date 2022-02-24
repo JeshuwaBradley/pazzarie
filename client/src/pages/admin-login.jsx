@@ -1,13 +1,19 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../lib/contextLib";
 
 const AdminLogin = () => {
+	const navigate = useNavigate();
+	const { userHasAuthenticated } = useAppContext();
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [error, setError] = useState(false);
 
 	const handleClick = async () => {
 		console.log(email, password);
+		userHasAuthenticated(true);
+		navigate("/admin");
 		// try {
 		// 	await axios.post("http://localhost:5000/api/auth/login", {
 		// 		email: email,
@@ -36,7 +42,7 @@ const AdminLogin = () => {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<button onClick={handleClick} className="admin-login-button">
-					Sign In
+					Log In
 				</button>
 				{error && (
 					<span className="admin-login-error">

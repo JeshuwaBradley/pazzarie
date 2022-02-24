@@ -1,10 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import Sidebar from "./admin-sidebar";
-// import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+// import Sidebar from "./admin-sidebar";
+import { useAppContext } from "../lib/contextLib";
 
 export default function Topbar() {
+	const { userHasAuthenticated } = useAppContext();
 	const [open, setOpen] = useState(false);
+	function handleLogout() {
+		userHasAuthenticated(false);
+	}
 	return (
 		<div className="admin-topbar">
 			<div className="admin-topbarWrapper">
@@ -21,6 +25,18 @@ export default function Topbar() {
 					<span className="admin-topbar-logo">Nova's</span>
 				</div>
 				<div className="admin-topbar-topRight">
+					<div className="topbarIconContainer">
+						<button onClick={handleLogout} className="admin-logout">
+							<span>
+								<i
+									className="fa fa-sign-out"
+									aria-hidden="true"
+									style={{ marginRight: "10px" }}
+								></i>
+							</span>
+							Logout
+						</button>
+					</div>
 					<div className="topbarIconContainer">
 						<span>
 							<i class="fa fa-bell fa-lg"></i>
