@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const productRoute = require("./routes/productRoute");
 const orderRoute = require("./routes/orderRoute");
+const authRoute = require("./routes/auth")
 const cors = require("cors");
 const path = require("path")
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.use('/api/order', orderRoute);
 app.use('/api/product', productRoute);
+app.use('/api/auth', authRoute);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));

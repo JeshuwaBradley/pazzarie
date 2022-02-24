@@ -9,6 +9,7 @@ import {
 import Menu from './pages/menu';
 import Admin from './pages/admin';
 import Shop from './pages/shop';
+import AdminLogin from './pages/admin-login'
 function App() {
   return (
     <div className="App">
@@ -17,8 +18,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/menu' element={<Menu />} />
-          <Route path='/admin' element={<Admin />} />
           <Route path='/shop/:id' element={<Shop />} />
+          <Route path='/admin-login' element={<AdminLogin />} />
+          <Route path='/admin' element={<Admin />} />
+
         </Routes>
       </BrowserRouter>
     </div>
