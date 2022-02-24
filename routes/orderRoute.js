@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 
 router.get('/find', async (req, res) => {
     try {
-        const orders = await Order.find();
+        const orders = await Order.find().sort({ createdAt: -1 });
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json(error)
