@@ -24,13 +24,7 @@ const Home = () => {
 			}
 		});
 	}
-	const item = {
-		imgSrc: "/img/pizza.png",
-		itemTitle: "FIORI DI ZUCCA",
-		itemDesc: "Lorem ipsum dolor sit amet consectetur aduofsfs elit.",
-		itemPrices: [19.9, 12.9, 10],
-		extraOptions: [],
-	};
+
 	return (
 		<div className="">
 			<Navbar />
@@ -65,9 +59,8 @@ const Home = () => {
 				<div className="productList-container">
 					<div className="productList-wrapper">
 						{pizzaItems !== 0 &&
-							pizzaItems?.slice(0, 4).map((item) => {
-								console.log(item);
-								return <Card item={item} />;
+							pizzaItems?.slice(0, 4).map((item, i) => {
+								return <Card item={item} key={i} />;
 							})}
 					</div>
 					<a href="/menu" className="productList-menu-link">

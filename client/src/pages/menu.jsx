@@ -59,7 +59,7 @@ const Menu = () => {
 	};
 
 	return (
-		<div className="menu-main">
+		<div className="menu-main" style={{ position: "relative" }}>
 			<Navbar />
 			<div className="menu-hero">
 				<div className="menu-hero-title">
