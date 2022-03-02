@@ -649,9 +649,31 @@ video#bgvideo {
 	z-index: 3;
 }
 
-.modal-img {
-	width: 100%;
+.modal-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	height: 500px;
 }
+.modal-right {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	height: 100%;
+}
+
+.modal-left img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain !important;
+}
+
+/* .modal-img {
+	max-width: 100%;
+	max-height: 100%;
+} */
 
 .modal-close {
 	position: absolute;
@@ -665,15 +687,6 @@ video#bgvideo {
 
 .modal-close:hover {
 	color: #212527;
-}
-
-.modal-left,
-.modal-right {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	height: 100%;
 }
 
 .detail {

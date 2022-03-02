@@ -5,14 +5,13 @@ import { useAppContext } from "../lib/contextLib";
 
 const AdminLogin = () => {
 	const navigate = useNavigate();
-	const { userHasAuthenticated } = useAppContext();
+	const { userAdminHasAuthenticated } = useAppContext();
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [error, setError] = useState(false);
 
 	const handleClick = async () => {
-		console.log(email, password);
-		userHasAuthenticated(true);
+		userAdminHasAuthenticated(true);
 		navigate("/admin");
 		// try {
 		// 	await axios.post("http://localhost:5000/api/auth/login", {

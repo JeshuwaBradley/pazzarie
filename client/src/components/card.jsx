@@ -29,7 +29,7 @@ const Card = ({ item }) => {
 
 	const handleSize = (sizeIndex) => {
 		setSize(sizeIndex);
-		setPrice(item.itemPrices[sizeIndex]);
+		setPrice(item.itemPrices[sizeIndex].price);
 		resetExtras();
 		resetQuantity();
 	};
@@ -74,7 +74,9 @@ const Card = ({ item }) => {
 					/>
 					<h1 className="card-title">{item.itemTitle}</h1>
 					<p className="card-description">{item.itemDesc}</p>
-					<span className="card-price">$ {item.itemPrices[0]}</span>
+					<span className="card-price">
+						$ {item.itemPrices[0].price}
+					</span>
 					<button
 						className="card-link"
 						onClick={(e) => setModalOpen(true)}
@@ -111,38 +113,33 @@ const Card = ({ item }) => {
 								{item.itemDesc}
 							</p>
 						</div>
-						<div className="detail-item">
-							<h3>Choose the size</h3>
-							<form onChange={(e) => handleSize(e.target.value)}>
-								<div>
-									<input
-										type="radio"
-										name="size"
-										id="large"
-										value="2"
-									/>
-									<label htmlFor="large">Large</label>
-								</div>
-								<div>
-									<input
-										type="radio"
-										name="size"
-										id="medium"
-										value="1"
-									/>
-									<label htmlFor="medium">Medium</label>
-								</div>
-								<div>
-									<input
-										type="radio"
-										name="size"
-										id="small"
-										value="0"
-									/>
-									<label htmlFor="small">Small</label>
-								</div>
-							</form>
-						</div>
+						{item?.itemPrices !== 0 ? (
+							<div className="detail-item">
+								<h3>Choose the size</h3>
+								<form
+									onChange={(e) => handleSize(e.target.value)}
+								>
+									{item?.itemPrices.map((size, i) => {
+										console.log(size);
+										return (
+											<div key={i}>
+												<input
+													type="radio"
+													name="size"
+													id={size?.text}
+													value={i}
+												/>
+												<label htmlFor={size?.text}>
+													{size?.text}
+												</label>
+											</div>
+										);
+									})}
+								</form>
+							</div>
+						) : (
+							""
+						)}
 						{item?.extraOptions.length !== 0 ? (
 							<div className="detail-item">
 								<h3>Choose additional ingredients</h3>

@@ -58,11 +58,23 @@ const OrderItems = ({ currentOrderItems }) => {
 };
 
 const ProductItems = ({ currentProductItems }) => {
+	const handleDelete = (product) => {
+		let id = product._id;
+		console.log(id);
+		axios
+			.delete(`/api/product/delete/${id}`)
+			.then((res) => {
+				console.log(`item ${id} deleted`);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 	return (
 		<>
 			{currentProductItems &&
-				currentProductItems.map((product, i) => (
-					<div className="products-table-body" key={i}>
+				currentProductItems.map((product) => (
+					<div className="products-table-body" key={product._id}>
 						<div className="products-image">
 							<img
 								src={product.imgSrc}
@@ -86,6 +98,7 @@ const ProductItems = ({ currentProductItems }) => {
 									color: "#d1411e",
 									cursor: "pointer",
 								}}
+								onClick={() => handleDelete(product)}
 							>
 								<i
 									className="fa fa-trash"
