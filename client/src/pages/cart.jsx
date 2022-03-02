@@ -237,26 +237,26 @@ const Cart = () => {
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Subtotal: $
+										Subtotal:
 									</div>
 									<div className="total-container-total">
-										{cart.subtotal.toFixed(2)}
+										$ {cart.subtotal.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Sales-Tax: $
+										Sales-Tax:
 									</div>
 									<div className="total-container-total">
-										{cart.salesTax.toFixed(2)}
+										$ {cart.salesTax.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Total to pay: $
+										Total to pay:
 									</div>
 									<div className="total-container-total">
-										{cart.total.toFixed(2)}
+										$ {cart.total.toFixed(2)}
 									</div>
 								</div>
 							</div>
