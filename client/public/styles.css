@@ -630,7 +630,7 @@ video#bgvideo {
 	align-items: center;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	height: 540px;
+	max-height: 650px;
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
@@ -831,9 +831,9 @@ video#bgvideo {
 		height: 100%;
 	}
 
-	.detail-item {
+	/* .detail-item {
 		padding: 5px 1px;
-	}
+	} */
 }
 
 /* product List  */
