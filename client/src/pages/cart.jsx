@@ -92,6 +92,7 @@ const Cart = () => {
 			.then((response) => {
 				console.log(response);
 				setDefault();
+				window.location.reload();
 			})
 			.catch((error) => {
 				console.log(error);
