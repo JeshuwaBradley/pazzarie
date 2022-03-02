@@ -1594,6 +1594,10 @@ main {
 	margin-bottom: 20px;
 }
 
+.cart-row-main {
+	overflow: auto;
+}
+
 .cart-row {
 	display: flex;
 	flex-direction: row;
@@ -1825,6 +1829,10 @@ main {
 
 	.cart-table {
 		margin-bottom: 25px;
+	}
+
+	.cart-row-main {
+		overflow: auto;
 	}
 
 	.cart-row {

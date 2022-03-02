@@ -119,7 +119,7 @@ const Cart = () => {
 										</div>
 									</div>
 								) : (
-									<div>
+									<div className="cart-row-main">
 										<div className="cart-row">
 											<div className="cart-column">
 												<h3>Product</h3>
