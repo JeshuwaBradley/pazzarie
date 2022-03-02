@@ -120,7 +120,6 @@ const Card = ({ item }) => {
 									onChange={(e) => handleSize(e.target.value)}
 								>
 									{item?.itemPrices.map((size, i) => {
-										console.log(size);
 										return (
 											<div key={i}>
 												<input

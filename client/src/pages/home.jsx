@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
 import Review from "../components/review";
 import Card from "../components/card";
+import axios from "axios";
 
 const Home = () => {
+	const [data, setData] = useState(null);
+	useEffect(() => {
+		axios
+			.get("/api/product/find")
+			.then((res) => setData(res.data))
+			.catch((err) => console.log(err));
+	}, []);
+
+	const pizzaItems = [];
+
+	if (data) {
+		data.forEach((item) => {
+			if (item.itemCategory === "pizza") {
+				pizzaItems.push(item);
+			}
+		});
+	}
 	const item = {
 		imgSrc: "/img/pizza.png",
 		itemTitle: "FIORI DI ZUCCA",
@@ -46,9 +64,11 @@ const Home = () => {
 				</div>
 				<div className="productList-container">
 					<div className="productList-wrapper">
-						<Card item={item} />
-						<Card item={item} />
-						<Card item={item} />
+						{pizzaItems !== 0 &&
+							pizzaItems?.slice(0, 4).map((item) => {
+								console.log(item);
+								return <Card item={item} />;
+							})}
 					</div>
 					<a href="/menu" className="productList-menu-link">
 						View Full Menu
