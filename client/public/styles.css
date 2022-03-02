@@ -806,11 +806,22 @@ video#bgvideo {
 	}
 	.modal-content {
 		grid-template-columns: repeat(1, 1fr) !important;
-		max-height: fit-content;
-		max-width: 800px;
+		height: fit-content;
+		width: 90vw;
+		max-width: 90vw;
 	}
 	.modal-content-show {
-		left: 400px;
+		transform: translateY(0);
+		visibility: visible;
+		opacity: 1;
+		z-index: 101;
+		top: 50%;
+		left: 50%;
+		margin-top: -270px;
+		margin-left: -45vw;
+	}
+	.modal-left {
+		height: 200px;
 	}
 	.modal-right,
 	.modal-left {
@@ -821,7 +832,7 @@ video#bgvideo {
 	}
 
 	.detail-item {
-		padding: 8px 1px;
+		padding: 5px 1px;
 	}
 }
 
