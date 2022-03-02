@@ -88,7 +88,7 @@ const Cart = () => {
 		};
 		console.log(x);
 		axios
-			.post("http://localhost:5000/api/order/", { ...x })
+			.post("/api/order/", { ...x })
 			.then((response) => {
 				console.log(response);
 				setDefault();
