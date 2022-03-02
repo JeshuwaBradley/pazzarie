@@ -239,15 +239,15 @@ const Cart = () => {
 										Subtotal: $
 									</div>
 									<div className="total-container-total">
-										{cart.total.toFixed(2)}
+										{cart.subtotal.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Tax: $
+										Sales-Tax: $
 									</div>
 									<div className="total-container-total">
-										0.00
+										{cart.salesTax.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
