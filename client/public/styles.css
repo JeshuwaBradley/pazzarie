@@ -630,7 +630,7 @@ video#bgvideo {
 	align-items: center;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	max-height: 540px;
+	height: 540px;
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
@@ -817,7 +817,7 @@ video#bgvideo {
 		z-index: 101;
 		top: 50%;
 		left: 50%;
-		margin-top: -240px;
+		margin-top: -300px;
 		margin-left: -45vw;
 	}
 	.modal-left {
