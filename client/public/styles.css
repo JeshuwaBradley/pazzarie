@@ -619,7 +619,7 @@ video#bgvideo {
 .modal-bg {
 	visibility: visible;
 	opacity: 1;
-	z-index: 100;
+	z-index: 1000;
 }
 
 .modal-content {
@@ -643,7 +643,7 @@ video#bgvideo {
 	transform: translateY(0);
 	visibility: visible;
 	opacity: 1;
-	z-index: 101;
+	z-index: 1001;
 	top: 50%;
 	left: 50%;
 	margin-top: -270px;
@@ -814,7 +814,7 @@ video#bgvideo {
 		transform: translateY(0);
 		visibility: visible;
 		opacity: 1;
-		z-index: 101;
+		z-index: 1001;
 		top: 50%;
 		left: 50%;
 		margin-top: -300px;
