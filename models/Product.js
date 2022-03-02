@@ -9,7 +9,6 @@ const ProductSchema = new mongoose.Schema(
         },
         itemDesc: {
             type: String,
-            required: true,
             maxlength: 200,
         },
         itemCategory: {
@@ -21,7 +20,12 @@ const ProductSchema = new mongoose.Schema(
             required: true,
         },
         itemPrices: {
-            type: [Number],
+            type: [
+                {
+                    text: { type: String },
+                    price: { type: Number },
+                },
+            ],
             required: true,
         },
         extraOptions: {

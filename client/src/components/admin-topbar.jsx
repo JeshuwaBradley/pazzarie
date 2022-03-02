@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useAppContext } from "../lib/contextLib";
 
 export default function Topbar() {
-	const { userHasAuthenticated } = useAppContext();
+	const { userAdminHasAuthenticated } = useAppContext();
 	const [open, setOpen] = useState(false);
 	function handleLogout() {
-		userHasAuthenticated(false);
+		userAdminHasAuthenticated(false);
 	}
 	return (
 		<div className="admin-topbar">
@@ -39,7 +39,7 @@ export default function Topbar() {
 					</div>
 					<div className="topbarIconContainer">
 						<span>
-							<i class="fa fa-bell fa-lg"></i>
+							<i className="fa fa-bell fa-lg"></i>
 						</span>
 						<span className="admin-topbar-iconBadge">2</span>
 					</div>

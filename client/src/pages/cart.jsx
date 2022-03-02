@@ -69,6 +69,13 @@ const Cart = () => {
 		setInputs((values) => ({ ...values, [name]: value }));
 	};
 
+	const setDefault = () => {
+		setDeliver(false);
+		setPromote(true);
+		setInputs({});
+		dispatch(reset());
+	};
+
 	const handleOrder = (e) => {
 		e.preventDefault();
 		let x = {
@@ -84,7 +91,7 @@ const Cart = () => {
 			.post("http://localhost:5000/api/order/", { ...x })
 			.then((response) => {
 				console.log(response);
-				dispatch(reset());
+				setDefault();
 			})
 			.catch((error) => {
 				console.log(error);
@@ -237,7 +244,7 @@ const Cart = () => {
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Discount: $
+										Tax: $
 									</div>
 									<div className="total-container-total">
 										0.00

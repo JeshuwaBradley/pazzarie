@@ -15,19 +15,19 @@ import { useState } from 'react';
 import ShopLogin from './pages/shop-login';
 
 function App() {
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+        <AppContext.Provider value={{ isAdminAuthenticated, userAdminHasAuthenticated }}>
           <Routes>
             <Route index element={<Home />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/shop/:id' element={<Shop />} />
             <Route path='/shop-login' element={<ShopLogin />} />
-            {<Route path='/admin' element={isAuthenticated ? <Admin /> : <AdminLogin />} />}
+            {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
           </Routes>
         </AppContext.Provider>
       </BrowserRouter>
