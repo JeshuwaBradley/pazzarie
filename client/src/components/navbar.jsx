@@ -159,7 +159,35 @@ const Navbar = () => {
 							<div className="mobile-nav-item">Contact</div>
 						</Link>
 						<Link to="/cart" className="mobile-nav-item">
-							<div className="">Cart</div>
+							<div className="">
+								{quantity === 0 ? (
+									<>
+										Cart{"  "}
+										<i
+											class="fa fa-regular fa-angle-right"
+											style={{
+												marginLeft: "5px",
+											}}
+										></i>
+									</>
+								) : quantity === 1 ? (
+									<>
+										{quantity} Item in Cart{" "}
+										<i
+											class="fa fa-regular fa-angle-right"
+											style={{ marginLeft: "5px" }}
+										></i>
+									</>
+								) : (
+									<>
+										{quantity} Items in Cart{" "}
+										<i
+											class="fa fa-regular fa-angle-right"
+											style={{ marginLeft: "5px" }}
+										></i>
+									</>
+								)}
+							</div>
 						</Link>
 					</div>
 				) : (
