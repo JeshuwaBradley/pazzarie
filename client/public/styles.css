@@ -126,6 +126,40 @@ body {
 	cursor: pointer;
 }
 
+.right .item:first-child {
+	position: relative;
+}
+
+.nav-list-open {
+	width: 100%;
+	position: absolute;
+	top: 26px;
+	right: 0;
+	background-color: #fff;
+	color: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 0;
+	box-shadow: 0 2px 4px 0 rgb(34 36 38 / 12%),
+		0 2px 10px 0 rgb(34 36 38 / 15%);
+}
+
+.nav-list-open ul {
+	list-style: none;
+}
+
+.nav-list-item {
+	padding-bottom: 3px;
+	margin-top: 3px;
+	letter-spacing: 1px;
+}
+
+.nav-list-item h3 {
+	font-size: 19px;
+	text-transform: uppercase;
+}
+
 .item {
 	display: flex;
 	align-items: center;
