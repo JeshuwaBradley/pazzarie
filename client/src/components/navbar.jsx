@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
 	const [width, setWindowWidth] = useState(0);
 	const [open, setOpen] = useState(false);
+	const [list, setList] = useState(false);
 	useEffect(() => {
 		updateDimensions();
 
@@ -44,9 +45,62 @@ const Navbar = () => {
 						</div>
 						<div className="center"></div>
 						<div className="right">
-							<div className="item">
+							<div
+								className="item"
+								onClick={() => setList(!list)}
+							>
 								<span className="open-status open"> Open </span>{" "}
-								9:00 A.M - 1:00 A.M
+								<span>9:00AM - 1:00AM</span>
+								{list ? (
+									<div className="nav-list-open">
+										<ul>
+											<li>
+												<div className="nav-list-item">
+													<h3>Monday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+											<li>
+												<div className="nav-list-item">
+													<h3>Tuesday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+											<li>
+												<div className="nav-list-item">
+													<h3>Wednesday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+											<li>
+												<div className="nav-list-item">
+													<h3>Thursday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+											<li>
+												<div className="nav-list-item">
+													<h3>Friday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+											<li>
+												<div className="nav-list-item">
+													<h3>Saturday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+											<li>
+												<div className="nav-list-item">
+													<h3>Sunday</h3>
+													<span>9:00AM - 1:00AM</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								) : (
+									""
+								)}
 							</div>
 							<div className="item">
 								<Link to="/cart">
