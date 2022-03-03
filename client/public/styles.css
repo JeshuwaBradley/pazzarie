@@ -1033,6 +1033,7 @@ video#bgvideo {
 /* Menu Page  */
 .menu-main {
 	background-color: #f5ebdc;
+	overflow: auto;
 }
 
 .menu-hero {
@@ -1070,7 +1071,7 @@ video#bgvideo {
 }
 
 .menu-list {
-	height: 100px;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1116,9 +1117,9 @@ video#bgvideo {
 	bottom: 0;
 	width: 0;
 	height: 0;
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	border-bottom: 20px solid #f5ebdc;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid #f5ebdc;
 }
 
 .tab {
@@ -1921,7 +1922,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-direction: row;
+	flex-direction: column;
 	color: #fff;
 	font-size: 15px;
 	letter-spacing: 1px;
@@ -1930,12 +1931,14 @@ main {
 .copyright span {
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
-.copyright span:nth-child(2) {
+/* .copyright span:nth-child(2) {
 	border-left: 3px solid #fff;
 	border-right: 3px solid #fff;
-}
+} */
 
 @media only screen and (max-width: 900px) {
 	.footer {

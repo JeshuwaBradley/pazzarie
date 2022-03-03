@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
 	return (
@@ -42,13 +43,17 @@ const Footer = () => {
 				<div className="links-container">
 					<div className="links-main">
 						<div className="links">
-							<a href="/sdc">Locations</a>
-							<a href="/sdc">Contact</a>
+							<Link to="/sdc">About Us</Link>
+							<Link to="/menu">Menu</Link>
+							<Link to="/sdc">Locations</Link>
+							<Link to="/sdc">Contact</Link>
 						</div>
 					</div>
 				</div>
 				<div className="copyright">
-					<span>© {new Date().getFullYear()} Company Name.</span>
+					<span>
+						© {new Date().getFullYear()} Nova's All Rights Reserved.
+					</span>
 					<span>Designed and developed by Jeshuwa Bradley</span>
 					<span>Privacy Policy</span>
 				</div>
