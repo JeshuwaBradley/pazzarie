@@ -14,6 +14,7 @@ import { AppContext } from "./lib/contextLib";
 import { useState } from 'react';
 import ShopLogin from './pages/shop-login';
 import Contact from './pages/contact';
+import DailyDeals from './pages/daily-deals';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -27,6 +28,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/daily-deals' element={<DailyDeals />} />
             <Route path='/shop/:id' element={<Shop />} />
             <Route path='/shop-login' element={<ShopLogin />} />
             {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
