@@ -152,8 +152,10 @@ const Navbar = () => {
 						<Link to="/menu" className="mobile-nav-item">
 							<div className="">Menu</div>
 						</Link>
-						<Link to="/" className="mobile-nav-item">
-							<div className="mobile-nav-item">Promotions</div>
+						<Link to="/daily-deals" className="mobile-nav-item">
+							<div className="mobile-nav-item">
+								Deals of the Day
+							</div>
 						</Link>
 						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
