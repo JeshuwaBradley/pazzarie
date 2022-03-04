@@ -37,7 +37,7 @@ const Navbar = () => {
 											Deal of the day
 										</li>
 									</Link>
-									<Link to="">
+									<Link to="/contact">
 										<li className="listItem">Contact</li>
 									</Link>
 								</ul>
@@ -155,7 +155,7 @@ const Navbar = () => {
 						<Link to="/" className="mobile-nav-item">
 							<div className="mobile-nav-item">Promotions</div>
 						</Link>
-						<Link to="/" className="mobile-nav-item">
+						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
 						</Link>
 						<Link to="/cart" className="mobile-nav-item">
