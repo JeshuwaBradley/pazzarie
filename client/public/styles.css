@@ -2368,9 +2368,9 @@ h2.large-title {
 	border-bottom: #ccc 1px solid;
 }
 
-.shop-table-row:hover {
+/* .shop-table-row:hover {
 	background-color: #fff;
-}
+} */
 
 .shop-table-row:nth-child(2n + 3) {
 	background: #e9e9e9;
