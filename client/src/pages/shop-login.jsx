@@ -1,19 +1,18 @@
 // import axios from "axios";
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useAppContext } from "../lib/contextLib";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../lib/contextLib";
 
 const ShopLogin = () => {
-	// const navigate = useNavigate();
-	// const { userHasAuthenticated } = useAppContext();
+	const navigate = useNavigate();
+	const { userShopHasAuthenticated } = useAppContext();
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [error, setError] = useState(false);
 
 	const handleClick = async () => {
-		console.log(email, password);
-		// userHasAuthenticated(true);
-		// navigate("/shop/1");
+		userShopHasAuthenticated(true);
+		navigate("/shop/1");
 		// try {
 		// 	await axios.post("http://localhost:5000/api/auth/login", {
 		// 		email: email,

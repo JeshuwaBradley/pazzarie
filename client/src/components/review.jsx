@@ -4,20 +4,20 @@ const Review = () => {
 	const [pos, setPos] = useState(0);
 	const articles = [
 		{
-			author: "Susan Smith",
-			info: "I'm baby meggings twee health goth +1. Bicycle rights tumeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled coloring book salvia hoodie, cold-pressed four dollar toast everyday carry",
+			author: "Josuhua",
+			info: "The pizza here is real amazing and would recommend trying these guys out. They have a great toppings selections and great prices on a single sliced.",
 		},
 		{
 			author: "Peter Jones",
-			info: "Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit, fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst raclette post-ironic jianbing swag.",
+			info: "The best pizza we ever had in (City)!! The pizza was so delicious and with so many flavor could choose that we even ordered pizza twice in the same day!",
 		},
 		{
 			author: "Anna Johnson",
-			info: "Helvetica artisan kinfolk thundercats lumbersexual blue bottle. Disrupt glossier gastropub deep v vice franzen hell of brooklyn twee enamel pin fashion axe.photo booth jean shorts artisan narwhal.",
+			info: "Consistently great pizza with great variety of toppings and styles. Delivery is fast too. Can’t go wrong with this place.",
 		},
 		{
 			author: "Bill Anderson",
-			info: "Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic.",
+			info: "They offer an awesome range of fresh pizzas. I liked ordering pizza from here. Prices are reasonable and delivers the pizza fast.",
 		},
 	];
 
