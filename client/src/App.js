@@ -13,6 +13,7 @@ import AdminLogin from './pages/admin-login'
 import { AppContext } from "./lib/contextLib";
 import { useState } from 'react';
 import ShopLogin from './pages/shop-login';
+import Contact from './pages/contact';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -25,6 +26,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/menu' element={<Menu />} />
+            <Route path='/contact' element={<Contact />} />
             <Route path='/shop/:id' element={<Shop />} />
             <Route path='/shop-login' element={<ShopLogin />} />
             {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
