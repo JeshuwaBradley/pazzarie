@@ -1099,6 +1099,7 @@ video#bgvideo {
 
 .menu-hero-title h1 {
 	position: absolute;
+	text-align: center;
 	font-size: 90px;
 	color: #fff;
 	text-transform: uppercase;
@@ -1191,7 +1192,7 @@ video#bgvideo {
 		height: 120px;
 	}
 	.menu-hero-title h1 {
-		font-size: 65px;
+		font-size: 50px;
 	}
 	.menu-list {
 		height: 70px;

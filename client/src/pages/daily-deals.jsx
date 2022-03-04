@@ -9,7 +9,7 @@ const DailyDeals = () => {
 			<div className="menu-hero">
 				<div className="menu-hero-title">
 					<div className="menu-hero-title-bgc"></div>
-					<h1>Daily Deals</h1>
+					<h1>Deals of the Day</h1>
 				</div>
 			</div>
 			<Footer />
