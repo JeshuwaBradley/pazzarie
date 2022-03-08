@@ -56,7 +56,14 @@ const Footer = () => {
 						© {new Date().getFullYear()} Nova's All Rights Reserved.
 					</span>
 					<span>Designed and developed by Jeshuwa Bradley</span>
-					<span>Privacy Policy</span>
+					<span>
+						<Link
+							to="/privacy-policy"
+							style={{ textDecoration: "none", color: "#fff" }}
+						>
+							Privacy Policy
+						</Link>
+					</span>
 				</div>
 			</div>
 		</div>
