@@ -12,37 +12,47 @@ const Modal = ({ order, setOpen }) => {
 					className="shop-modal-close fa fa-times fa-lg"
 					onClick={handleClose}
 				></i>
-				<div className="shop-modal-row">
+				<div className="shop-modal-row first">
 					<div className="shop-modal-column">
-						Order ID : {order._id}
+						<div>Order ID : {order._id}</div>
+						<div>Shop No: : {order.shop}</div>
 					</div>
 					<div className="shop-modal-column">
-						Customer : {order.customer}
+						<div>Customer : {order.customer}</div>
+						<div>Customer Phone: {order.mobile}</div>
+						<div>
+							Items Deliver:{" "}
+							{order.deliver === true ? "Deliver" : "Pickup"}
+						</div>
+						{order.deliver === true ? (
+							<div>
+								Customer Address: {order.address}, {order.city},{" "}
+								{order.state}, {order.zip}.
+							</div>
+						) : (
+							""
+						)}
+						<div>No. of Items: {order.orderItems.length}</div>
 					</div>
 				</div>
 				<div className="shop-modal-row">
-					<div className="shop-modal-column">
-						Customer Phone: {order.mobile}
-					</div>
-					<div className="shop-modal-column">
-						Shop No: : {order.shop}
-					</div>
+					<h3>Order Items</h3>
 				</div>
-				<p></p>
-				<p>{order.shop}</p>
-				<p>{order.email}</p>
-				<p></p>
-				<p></p>
-				<p>{order.deliver === true ? "True" : "False"}</p>
-				{order.orderItems?.map((item) => (
-					<>
-						<p>{item.itemName}</p>
-						<p>{item.size}</p>
-						{item?.extras?.map((extra) => (
-							<p>{extra}</p>
-						))}
-						<p>{item.quantity}</p>
-					</>
+				{order.orderItems?.map((item, i) => (
+					<div className="shop-modal-row" key={i}>
+						<div>Item Name: {item.itemName}</div>
+						<div>Item Size: {item.size}</div>
+						<div>
+							Extras:{" "}
+							{item?.extras?.map((extra, i) => (
+								<span key={i}>
+									{extra}
+									{", "}
+								</span>
+							))}
+						</div>
+						<div>Quantity: {item.quantity}</div>
+					</div>
 				))}
 				{console.log(order)}
 			</div>

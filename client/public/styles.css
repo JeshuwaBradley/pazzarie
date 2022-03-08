@@ -2436,11 +2436,9 @@ h2.large-title {
 }
 
 .shop-modal-content {
-	padding: 10px 5px;
+	padding: 30px 30px 50px 30px;
 	position: fixed;
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
 	max-height: 650px;
 	max-width: 960px;
@@ -2480,13 +2478,28 @@ h2.large-title {
 
 .shop-modal-row {
 	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: fit-content;
+	padding: 20px 15px;
+}
+
+.shop-modal-row.first {
+	display: flex;
 	flex-direction: row;
 	width: 100%;
-	flex: 1;
+	height: fit-content;
 }
 
 .shop-modal-column {
 	flex: 1;
+}
+
+.shop-modal-row .shop-modal-column {
+	display: flex;
+	align-items: flex-start;
+	align-content: center;
+	flex-direction: column;
 }
 
 /* Admin top bar  */

@@ -55,7 +55,20 @@ const Footer = () => {
 					<span>
 						© {new Date().getFullYear()} Nova's All Rights Reserved.
 					</span>
-					<span>Designed and developed by Jeshuwa Bradley</span>
+					<span>
+						Designed and developed by{" "}
+						<a
+							href="https://portfolio-bradley.herokuapp.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{
+								textDecoration: "underline",
+								color: "#fff",
+							}}
+						>
+							Jeshuwa Bradley
+						</a>
+					</span>
 					<span>
 						<Link
 							to="/privacy-policy"
