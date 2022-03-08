@@ -3,43 +3,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router-dom";
+import ShopItem from "../components/shop-item";
 
 const Items = ({ currentItems }) => {
 	return (
 		<>
 			{currentItems &&
 				currentItems.map((order, i) => {
-					const orderStatus =
-						order.status === 0
-							? "Ordered"
-							: order.status === 1
-							? "Preparing"
-							: order.status === 2
-							? "Delivered"
-							: "";
-					return (
-						<div className="shop-table-row" key={i}>
-							<div className="shop-table-row-id">
-								<p>{order._id.slice(0, 5)}</p>
-							</div>
-							<div className="shop-table-row-customer">
-								<p>{order.customer}</p>
-							</div>
-							<div className="shop-table-row-number">
-								<p>{order.orderItems.length}</p>
-							</div>
-							<div className="shop-table-row-deliver">
-								<p>
-									{order.deliver === true
-										? "Deliver"
-										: "Pickup"}
-								</p>
-							</div>
-							<div className="shop-table-row-status">
-								<p>{orderStatus}</p>
-							</div>
-						</div>
-					);
+					return <ShopItem order={order} key={i} />;
 				})}
 		</>
 	);

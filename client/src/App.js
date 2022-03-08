@@ -15,6 +15,7 @@ import { useState } from 'react';
 import ShopLogin from './pages/shop-login';
 import Contact from './pages/contact';
 import DailyDeals from './pages/daily-deals';
+import Privacy from './pages/privacy';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -29,6 +30,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/privacy-policy' element={<Privacy />} />
             <Route path='/daily-deals' element={<DailyDeals />} />
             {<Route path='/shop/:id' element={isShopAuthenticated ? <Shop /> : <ShopLogin />} />}
             {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
