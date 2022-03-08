@@ -44,10 +44,6 @@ const Privacy = () => {
 					access directly provided to us through our form or
 					explicitly requested.
 				</p>
-				<p>
-					All information may be stored by the website developer,
-					Fisherman Technologies, Inc.
-				</p>
 				<h3>How the information is used</h3>
 				<p>
 					We use the collected information in order to enhance the
