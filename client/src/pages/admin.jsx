@@ -70,46 +70,42 @@ const ProductItems = ({ currentProductItems }) => {
 				console.log(err);
 			});
 	};
-	return (
-		<>
-			{currentProductItems &&
-				currentProductItems.map((product) => (
-					<div className="products-table-body" key={product._id}>
-						<div className="products-image">
-							<img
-								src={product.imgSrc}
-								layout="fill"
-								objectfit="cover"
-								className="cart-item-image"
-								alt=""
-							/>
-						</div>
-						<div className="products-desc">
-							<h3>{product.itemTitle} </h3>
-							<p>
-								Price: $ {product.itemPrices[0]} -{" "}
-								{product.itemPrices[2]}
-							</p>
-						</div>
-						<div className="products-action">
-							<span
-								style={{
-									fontSize: "1.5em",
-									color: "#d1411e",
-									cursor: "pointer",
-								}}
-								onClick={() => handleDelete(product)}
-							>
-								<i
-									className="fa fa-trash"
-									aria-hidden="true"
-								></i>
-							</span>
-						</div>
-					</div>
-				))}
-		</>
-	);
+	if (currentProductItems) {
+		currentProductItems.map((product, i) => (
+			<div className="products-table-body" key={i}>
+				<div className="products-image">
+					<img
+						src={product.imgSrc}
+						layout="fill"
+						objectfit="cover"
+						className="cart-item-image"
+						alt=""
+					/>
+				</div>
+				<div className="products-desc">
+					<h3>{product.itemTitle}</h3>
+					<span>
+						Price: $ {product.itemPrices[0]} -{" "}
+						{product.itemPrices[2]}
+					</span>
+				</div>
+				<div className="products-action">
+					<span
+						style={{
+							fontSize: "1.5em",
+							color: "#d1411e",
+							cursor: "pointer",
+						}}
+						onClick={() => handleDelete(product)}
+					>
+						<i className="fa fa-trash" aria-hidden="true"></i>
+					</span>
+				</div>
+			</div>
+		));
+	} else {
+		console.log("nothing was rendered");
+	}
 };
 
 const Admin = () => {
@@ -290,11 +286,11 @@ const Admin = () => {
 									<h2>Action</h2>
 								</div>
 							</div>
-							<ProductItems
+							{/* <ProductItems
 								currentProductItems={currentProductItems}
-							/>
+							/> */}
 						</>
-						<ReactPaginate
+						{/* <ReactPaginate
 							breakLabel="..."
 							nextLabel=">"
 							onPageChange={handleProductPageClick}
@@ -309,7 +305,7 @@ const Admin = () => {
 							previousLinkClassName="previous"
 							nextLinkClassName="next"
 							disabledClassName="disabled"
-						/>
+						/> */}
 					</div>
 				</div>
 				<div className="main-two-section-two">
