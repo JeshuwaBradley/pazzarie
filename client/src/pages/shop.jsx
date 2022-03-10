@@ -17,6 +17,8 @@ const Items = ({ currentItems }) => {
 };
 
 const Shop = () => {
+	var url = window.location.pathname;
+	var ids = url.substring(url.lastIndexOf("/") + 1);
 	const { id } = useParams();
 	const [orders, setOrders] = useState(null);
 	const itemsPerPage = 10;
@@ -62,7 +64,7 @@ const Shop = () => {
 			<Navbar />
 			<div className="shop-main">
 				<div className="shop-main-title">
-					<h2>Orders for shop id: 1</h2>
+					<h2>Orders for shop id: {ids}</h2>
 				</div>
 				<div className="refresh">
 					<button onClick={handleRefresh}>
