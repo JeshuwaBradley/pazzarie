@@ -30,7 +30,9 @@ router.post('/register', async (req, res) => {
         username: req.body.username,
         email: req.body.email,
         password: CryptoJS.AES.encrypt(req.body.password, process.env.PASSWORD_SEC),
-        isAdmin: req.body.admin,
+        isAdmin: req.body.isAdmin,
+        isShop: req.body.isShop,
+        shopNo: req.body.shopNo,
     })
     try {
         const savedUser = await newUser.save();
