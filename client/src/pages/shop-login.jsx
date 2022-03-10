@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../lib/contextLib";
@@ -11,16 +11,28 @@ const ShopLogin = () => {
 	const [error, setError] = useState(false);
 
 	const handleClick = async () => {
-		userShopHasAuthenticated(true);
-		navigate("/shop/1");
-		// try {
-		// 	await axios.post("http://localhost:5000/api/auth/login", {
-		// 		email: email,
-		// 		password: password,
-		// 	});
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		try {
+			await axios
+				.post("http://localhost:5000/api/auth/login", {
+					email: email,
+					password: password,
+				})
+				.then((res) => {
+					if (res.data.isShop === true) {
+						userShopHasAuthenticated(true);
+						navigate(`/shop/${res.data.shopNo}`);
+					} else {
+						setError(true);
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					setError(true);
+				});
+		} catch (error) {
+			console.log(error);
+			setError(true);
+		}
 	};
 
 	return (

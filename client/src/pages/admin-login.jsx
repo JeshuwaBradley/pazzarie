@@ -21,6 +21,8 @@ const AdminLogin = () => {
 					if (res.data.isAdmin === true) {
 						userAdminHasAuthenticated(true);
 						navigate("/admin");
+					} else {
+						setError(true);
 					}
 				})
 				.catch((error) => {
