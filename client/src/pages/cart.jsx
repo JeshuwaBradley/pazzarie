@@ -224,15 +224,19 @@ const Cart = () => {
 							<div className="total-container">
 								<div className="total-container-inner">
 									<div className="deliver-container">
-										<input
-											type="checkbox"
-											name="deliver"
-											id="deliver"
-											onChange={(e) => deliverToMe(e)}
-										/>
-										<label htmlFor="deliver">
-											Deliver the goods to me
+										<label
+											htmlFor="deliver"
+											className="switch"
+										>
+											<input
+												type="checkbox"
+												name="deliver"
+												id="deliver"
+												onChange={(e) => deliverToMe(e)}
+											/>
+											<span className="slider round"></span>
 										</label>
+										Deliver to my doorstep
 									</div>
 								</div>
 								<div className="total-container-inner">
