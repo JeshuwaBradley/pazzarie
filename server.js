@@ -1,15 +1,17 @@
+
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require("express");
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const productRoute = require("./routes/productRoute");
 const orderRoute = require("./routes/orderRoute");
 const authRoute = require("./routes/auth")
+const stripeRoute = require("./routes/stripe");
 const cors = require("cors");
 const path = require("path")
 
 
 const app = express();
-dotenv.config();
 
 const port = process.env.PORT || 5000;
 
@@ -27,6 +29,8 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 app.use('/api/order', orderRoute);
 app.use('/api/product', productRoute);
 app.use('/api/auth', authRoute);
+app.use("/api/checkout", stripeRoute);
+
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
