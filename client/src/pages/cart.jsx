@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +8,13 @@ import {
 	deleteDelivery,
 	reset,
 } from "../redux/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import StripeCheckout from "react-stripe-checkout";
 
 const Cart = () => {
+	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
 	const [deliver, setDeliver] = useState(false);
 	const [promote, setPromote] = useState(true);
@@ -69,35 +71,58 @@ const Cart = () => {
 		setInputs((values) => ({ ...values, [name]: value }));
 	};
 
-	const setDefault = () => {
-		setDeliver(false);
-		setPromote(true);
-		setInputs({});
-		dispatch(reset());
+	const [stripeToken, setStripeToken] = useState(null);
+
+	const onToken = (token) => {
+		setStripeToken(token);
 	};
 
-	const handleOrder = (e) => {
-		e.preventDefault();
-		let x = {
-			...inputs,
-			shop: shop,
-			deliver: deliver,
-			promote: promote,
-			orderItems: orderItems,
-			total: total,
+	useEffect(() => {
+		const handleOrder = (e) => {
+			let x = {
+				...inputs,
+				shop: shop,
+				deliver: deliver,
+				promote: promote,
+				orderItems: orderItems,
+				total: total,
+			};
+			axios
+				.post("/api/order/", { ...x })
+				.then((response) => {
+					console.log(response);
+					dispatch(reset());
+					navigate(`/`);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 		};
-		console.log(x);
-		axios
-			.post("/api/order/", { ...x })
-			.then((response) => {
-				console.log(response);
-				setDefault();
-				window.location.reload();
-			})
-			.catch((error) => {
+
+		const makeRequest = async () => {
+			try {
+				const res = await axios.post("/api/checkout/payment", {
+					tokenId: stripeToken.id,
+					amount: total * 100,
+				});
+				console.log(res);
+				handleOrder();
+			} catch (error) {
 				console.log(error);
-			});
-	};
+			}
+		};
+		makeRequest();
+	}, [
+		dispatch,
+		stripeToken,
+		total,
+		deliver,
+		inputs,
+		orderItems,
+		promote,
+		shop,
+		navigate,
+	]);
 
 	return (
 		<div>
@@ -414,16 +439,29 @@ const Cart = () => {
 											</div>
 										</div>
 										<div className="form-item">
-											<button
-												onClick={(e) => handleOrder(e)}
-												className={
-													cart.products.length === 0
-														? "checkout-button-disabled"
-														: "checkout-button"
+											<StripeCheckout
+												name="Nova's"
+												description={`Your total is $${cart.total}`}
+												amount={total * 100}
+												token={onToken}
+												stripeKey={
+													process.env.REACT_APP_STRIPE
 												}
 											>
-												Continue Checkout
-											</button>
+												<button
+													onClick={(e) => {
+														e.preventDefault();
+													}}
+													className={
+														cart.products.length ===
+														0
+															? "checkout-button-disabled"
+															: "checkout-button"
+													}
+												>
+													Continue Checkout
+												</button>
+											</StripeCheckout>
 										</div>
 									</form>
 								</div>
