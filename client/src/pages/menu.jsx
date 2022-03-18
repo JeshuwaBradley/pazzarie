@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../components/card";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
+import NewCard from "../components/card/new-card";
 
 const Menu = () => {
 	const [pizza, setPizza] = useState(true);
@@ -114,9 +114,11 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{pizzaItems.length !== 0
-									? pizzaItems.map((item, i) => (
-											<Card item={item} key={i} />
-									  ))
+									? pizzaItems.map((item, i) => {
+											return (
+												<NewCard item={item} key={i} />
+											);
+									  })
 									: ""}
 							</div>
 						</div>
@@ -131,9 +133,11 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{appetizerItems.length !== 0
-									? appetizerItems.map((item, i) => (
-											<Card item={item} key={i} />
-									  ))
+									? appetizerItems.map((item, i) => {
+											return (
+												<NewCard item={item} key={i} />
+											);
+									  })
 									: ""}
 							</div>
 						</div>
@@ -148,9 +152,11 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{saladItems.length !== 0
-									? saladItems.map((item, i) => (
-											<Card item={item} key={i} />
-									  ))
+									? saladItems.map((item, i) => {
+											return (
+												<NewCard item={item} key={i} />
+											);
+									  })
 									: ""}
 							</div>
 						</div>
@@ -165,9 +171,11 @@ const Menu = () => {
 							</div>
 							<div className="productList-wrapper">
 								{drinkItems.length !== 0
-									? drinkItems.map((item, i) => (
-											<Card item={item} key={i} />
-									  ))
+									? drinkItems.map((item, i) => {
+											return (
+												<NewCard item={item} key={i} />
+											);
+									  })
 									: ""}
 							</div>
 						</div>
