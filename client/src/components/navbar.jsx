@@ -27,7 +27,12 @@ const Navbar = () => {
 							<div className="item">
 								<ul className="list">
 									<Link to="/">
-										<li className="listItem">Homepage</li>
+										<li className="listItem">
+											<i
+												className="fa fa-home fa-lg"
+												style={{ marginLeft: "20px" }}
+											></i>
+										</li>
 									</Link>
 									<Link to="/menu">
 										<li className="listItem">Menu</li>
