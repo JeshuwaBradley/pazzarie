@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import NewCard from "../components/card/new-card";
+import NewCard from "../components/card/newCard";
+import CardSimple from "../components/card-simple/cardSimple";
 
 const Menu = () => {
 	const [pizza, setPizza] = useState(true);
@@ -135,7 +136,10 @@ const Menu = () => {
 								{appetizerItems.length !== 0
 									? appetizerItems.map((item, i) => {
 											return (
-												<NewCard item={item} key={i} />
+												<CardSimple
+													item={item}
+													key={i}
+												/>
 											);
 									  })
 									: ""}
@@ -154,7 +158,10 @@ const Menu = () => {
 								{saladItems.length !== 0
 									? saladItems.map((item, i) => {
 											return (
-												<NewCard item={item} key={i} />
+												<CardSimple
+													item={item}
+													key={i}
+												/>
 											);
 									  })
 									: ""}
@@ -173,7 +180,10 @@ const Menu = () => {
 								{drinkItems.length !== 0
 									? drinkItems.map((item, i) => {
 											return (
-												<NewCard item={item} key={i} />
+												<CardSimple
+													item={item}
+													key={i}
+												/>
 											);
 									  })
 									: ""}

@@ -4,7 +4,8 @@ import Hero from "../components/hero";
 import Navbar from "../components/navbar";
 import Review from "../components/review";
 import axios from "axios";
-import NewCard from "../components/card/new-card";
+import NewCard from "../components/card/newCard";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	const [data, setData] = useState(null);
@@ -63,7 +64,7 @@ const Home = () => {
 								return <NewCard item={item} key={i} />;
 							})}
 					</div>
-					<a href="/menu" className="productList-menu-link">
+					<Link to="/menu" className="productList-menu-link">
 						View Full Menu
 						<span>
 							<i
@@ -75,7 +76,7 @@ const Home = () => {
 								}}
 							></i>
 						</span>
-					</a>
+					</Link>
 				</div>
 			</div>
 			<Review />
