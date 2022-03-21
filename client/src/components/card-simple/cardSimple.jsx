@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
-import "./style.css";
+import "./cardSimple.css";
 
-const NewCard = ({ item }) => {
+const CardSimple = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [size, setSize] = useState(1);
@@ -147,7 +147,7 @@ const NewCard = ({ item }) => {
 									})}
 								</select>
 							</div>
-							<div className="card-front-crust">
+							{/* <div className="card-front-crust">
 								<label htmlFor="crust">Crust</label>
 								<select
 									id="crust"
@@ -170,7 +170,7 @@ const NewCard = ({ item }) => {
 										Cheese Float
 									</option>
 								</select>
-							</div>
+							</div> */}
 						</div>
 						<div className="card-cart-container">
 							<div className="card-front-add-button">
@@ -298,4 +298,4 @@ const NewCard = ({ item }) => {
 	);
 };
 
-export default NewCard;
+export default CardSimple;

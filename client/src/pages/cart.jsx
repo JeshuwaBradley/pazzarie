@@ -52,6 +52,12 @@ const Cart = () => {
 	});
 
 	const deliverToMe = (e) => {
+		// const showPosition = (pos) => {
+		// 	console.log(pos.coords.latitude, pos.coords.longitude);
+		// };
+		// if (navigator.geolocation) {
+		// 	navigator.geolocation.getCurrentPosition(showPosition);
+		// }
 		setDeliver(!deliver);
 		const checked = e.target.checked;
 		if (checked) {
