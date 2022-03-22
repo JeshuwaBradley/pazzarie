@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const nodemailer = require("nodemailer");
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com", //replace with your email provider
         port: 587,
@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
         subject: req.body.name,
         text: `${req.body.city}, ${req.body.name}, ${req.body.email}, ${req.body.number}, ${req.body.message}`
     }
-    transporter.sendMail(mail, (err, data) => {
+    await transporter.sendMail(mail, (err, data) => {
         if (err) {
             console.log(err);
             res.status(500).send("Something went wrong.");
