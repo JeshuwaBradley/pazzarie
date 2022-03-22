@@ -10,22 +10,9 @@ const Contact = () => {
 	const [number, setNumber] = useState("");
 	const [message, setMessage] = useState("");
 	const [sent, setSent] = useState(false);
-	const validate = () => {
-		if (
-			city === "" ||
-			name === "" ||
-			email === "" ||
-			number === "" ||
-			message === ""
-		) {
-			return false;
-		} else {
-			return true;
-		}
-	};
+
 	const handleSend = (e) => {
 		e.preventDefault();
-		validate();
 		axios
 			.post("/api/contact/", { city, name, email, number, message })
 			.then((res) => {
@@ -37,6 +24,7 @@ const Contact = () => {
 				console.log(err);
 			});
 	};
+
 	return (
 		<div>
 			<Navbar />
@@ -58,6 +46,7 @@ const Contact = () => {
 									name="city"
 									id="city"
 									onChange={(e) => setCity(e.target.value)}
+									required
 								/>
 							</div>
 							<div className="contact-form-item">
@@ -67,6 +56,7 @@ const Contact = () => {
 									name="name"
 									id="name"
 									onChange={(e) => setName(e.target.value)}
+									required
 								/>
 							</div>
 							<div className="contact-form-item">
@@ -76,6 +66,7 @@ const Contact = () => {
 									name="email"
 									id="email"
 									onChange={(e) => setEmail(e.target.value)}
+									required
 								/>
 							</div>
 							<div className="contact-form-item">
@@ -88,6 +79,7 @@ const Contact = () => {
 									name="number"
 									id="number"
 									onChange={(e) => setNumber(e.target.value)}
+									required
 								/>
 							</div>
 							<div className="contact-form-item">
@@ -98,6 +90,7 @@ const Contact = () => {
 									cols="50"
 									rows="10"
 									onChange={(e) => setMessage(e.target.value)}
+									required
 								></textarea>
 							</div>
 							<div className="contact-form-item">
@@ -121,7 +114,7 @@ const Contact = () => {
 					}}
 				>
 					<div
-						class="success-message"
+						className="success-message"
 						style={{
 							textAlign: "center",
 							maxWidth: " 500px",
@@ -133,7 +126,7 @@ const Contact = () => {
 					>
 						<svg
 							viewBox="0 0 76 76"
-							class="success-message__icon icon-checkmark"
+							className="success-message__icon icon-checkmark"
 							style={{
 								maxWidth: "75px",
 							}}
@@ -153,10 +146,10 @@ const Contact = () => {
 							<path
 								fill="none"
 								stroke="#FFFFFF"
-								stroke-width="5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-miterlimit="10"
+								strokeWidth="5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeMiterlimit="10"
 								d="M17.7,40.9l10.9,10.9l28.7-28.7"
 								style={{
 									transition: "stroke-dashoffset 350ms ease",
@@ -165,7 +158,7 @@ const Contact = () => {
 							/>
 						</svg>
 						<h1
-							class="success-message__title"
+							className="success-message__title"
 							style={{
 								color: "#3DC480",
 								transform: "translateY(25px)",
@@ -176,7 +169,7 @@ const Contact = () => {
 							Message Received
 						</h1>
 						<div
-							class="success-message__content"
+							className="success-message__content"
 							style={{
 								color: "#000",
 								transition: "all 200ms ease",
