@@ -48,7 +48,14 @@ const Navbar = () => {
 								</ul>
 							</div>
 						</div>
-						<div className="center"></div>
+						<div className="center">
+							<img
+								src="/img/logo.png"
+								alt="Logo"
+								width="180px"
+								height="75px"
+							/>
+						</div>
 						<div className="right">
 							<div
 								className="item"
