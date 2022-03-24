@@ -43,10 +43,10 @@ const Footer = () => {
 				<div className="links-container">
 					<div className="links-main">
 						<div className="links">
-							<Link to="/sdc">About Us</Link>
+							<Link to="/about-us">About Us</Link>
 							<Link to="/menu">Menu</Link>
 							<Link to="/daily-deals">Daily Deals</Link>
-							<Link to="/sdc">Locations</Link>
+							<Link to="/locations">Locations</Link>
 							<Link to="/contact">Contact</Link>
 						</div>
 					</div>
