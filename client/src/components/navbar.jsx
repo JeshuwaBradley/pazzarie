@@ -144,7 +144,14 @@ const Navbar = () => {
 				<div className="navbar-top-container-mobile">
 					<div className="mobile-left">
 						<Link to="/">
-							<div className="item">Nova's</div>
+							<div className="item">
+								<img
+									src="/img/logo.png"
+									alt="Logo"
+									width="110px"
+									height="40px"
+								/>
+							</div>
 						</Link>
 					</div>
 					<div className="mobile-right">
