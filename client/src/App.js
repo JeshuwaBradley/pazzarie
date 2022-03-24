@@ -16,6 +16,8 @@ import ShopLogin from './pages/shop-login';
 import Contact from './pages/contact';
 import DailyDeals from './pages/daily-deals';
 import Privacy from './pages/privacy';
+import About from './pages/about';
+import Locations from './pages/locations';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -28,6 +30,8 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/about-us' element={<About />} />
+            <Route path='/locations' element={<Locations />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/privacy-policy' element={<Privacy />} />
