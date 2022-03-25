@@ -34,10 +34,10 @@ const Home = () => {
 				<div className="row">
 					<div className="row-item"></div>
 					<div className="row-item text-row">
-						<h3>Welcome to edible happy pizzerie</h3>
+						<h3>Welcome to Nova's Pizza.</h3>
 						<p>
-							Edible happy pizzerie proudly serves delicious food
-							to the greater oakland community
+							Nova's Pizza proudly serves delicious food to the
+							Californian community
 						</p>
 					</div>
 				</div>
@@ -46,7 +46,7 @@ const Home = () => {
 						<h3>The best pizza you can get in town</h3>
 						<p>
 							Get a taste of the best pizza you can get in the
-							town of Oakland.
+							town of California.
 						</p>
 					</div>
 					<div className="row-item"></div>

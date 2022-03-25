@@ -152,22 +152,16 @@ const NewCard = ({ item }) => {
 								<select
 									id="crust"
 									className="select"
-									defaultValue={"Cheese Burnt"}
+									defaultValue={"Classic hand toasted"}
 									onChange={(e) =>
 										handleCrust(e.target.value)
 									}
 								>
 									<option value="Classic hand toasted">
-										Classic hand toasted
+										Classic hand tossed
 									</option>
 									<option value="Wheat this crust">
-										Wheat this crust
-									</option>
-									<option value="Cheese Burnt">
-										Cheese burnt
-									</option>
-									<option value="cheese float">
-										Cheese Float
+										Thin crust
 									</option>
 								</select>
 							</div>
