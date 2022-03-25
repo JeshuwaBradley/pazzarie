@@ -36,18 +36,16 @@ const Home = () => {
 					<div className="row-item text-row">
 						<h3>Welcome to Nova's Pizza.</h3>
 						<p>
-							Nova's Pizza proudly serves delicious food to the
-							Californian community
+							Nova's Pizza proudly serves delicious, quality and
+							authentic Italian Pizza to the San Francisco east
+							bay.
 						</p>
 					</div>
 				</div>
 				<div className="row">
 					<div className="row-item text-row">
-						<h3>The best pizza you can get in town</h3>
-						<p>
-							Get a taste of the best pizza you can get in the
-							town of California.
-						</p>
+						<h3>The best pizza in town</h3>
+						<p>Get a taste of authentic Italian Pizza.</p>
 					</div>
 					<div className="row-item"></div>
 				</div>

@@ -98,10 +98,14 @@ body {
 .left,
 .right,
 .center {
-	/* flex: 1; */
+	flex: 1;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.left {
+	justify-content: flex-start;
 }
 
 .mobile-left,
@@ -189,7 +193,7 @@ body {
 
 .listItem {
 	cursor: pointer;
-	margin: 20px;
+	margin: 10px;
 	font-size: 20px;
 	font-weight: 500;
 }
@@ -1007,8 +1011,8 @@ video#bgvideo {
 	font-weight: 300;
 	letter-spacing: 1px;
 	text-align: center;
-	margin-right: 20px;
-	margin-left: 20px;
+	margin-right: 40px;
+	margin-left: 40px;
 }
 
 .row:nth-child(2) .row-item:nth-child(2) {
