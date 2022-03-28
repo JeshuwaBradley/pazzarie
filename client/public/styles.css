@@ -895,7 +895,7 @@ video#bgvideo {
 
 .productList-wrapper {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 	width: 100%;
 	flex-wrap: wrap;

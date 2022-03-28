@@ -103,14 +103,12 @@ const CardSimple = ({ item }) => {
 						</button>
 					</div>
 				</div>
-				<div className="card-desc-container">
+				<div className="card-simple-desc-container">
 					<div className="card-front-title">
 						<p>{item.itemTitle}</p>
 					</div>
 					<div className="card-front-desc">
-						<p>
-							Selectable skinless sausage chunks bedded on a pizza
-						</p>
+						<p>{item?.itemDesc}</p>
 					</div>
 					<div className="card-cart-container-main">
 						<div className="card-cart-container">
