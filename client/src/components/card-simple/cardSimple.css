@@ -22,9 +22,10 @@
 	background-size: cover;
 	background-color: #cccccc;
 }
-.card-desc-container {
+.card-simple-desc-container {
 	padding: 10px;
 	padding-bottom: 15px;
+	width: 90%;
 }
 .card-front-price {
 	position: absolute;

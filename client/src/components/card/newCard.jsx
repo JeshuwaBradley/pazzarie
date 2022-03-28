@@ -108,9 +108,7 @@ const NewCard = ({ item }) => {
 						<p>{item.itemTitle}</p>
 					</div>
 					<div className="card-front-desc">
-						<p>
-							Selectable skinless sausage chunks bedded on a pizza
-						</p>
+						<p>{item?.itemDesc}</p>
 					</div>
 					<div className="card-cart-container-main">
 						<div className="card-cart-container">
