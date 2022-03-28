@@ -117,7 +117,7 @@ const Cart = () => {
 				console.log(error);
 			}
 		};
-		makeRequest();
+		stripeToken && makeRequest();
 	}, [
 		dispatch,
 		stripeToken,
