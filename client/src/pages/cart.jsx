@@ -177,13 +177,24 @@ const Cart = () => {
 										{cart?.products?.map((product, i) => (
 											<div className="cart-row" key={i}>
 												<div className="cart-column">
-													<img
-														src={product.imgSrc}
-														layout="fill"
-														objectfit="cover"
-														className="cart-item-image"
-														alt=""
-													/>
+													{product.itemCategory ===
+													"pizza" ? (
+														<img
+															src={`/img/${product.imgSrc}`}
+															layout="fill"
+															objectfit="cover"
+															className="cart-item-image"
+															alt=""
+														/>
+													) : (
+														<img
+															src={product.imgSrc}
+															layout="fill"
+															objectfit="cover"
+															className="cart-item-image"
+															alt=""
+														/>
+													)}
 												</div>
 												<div className="cart-column">
 													<span className="cart-name">
