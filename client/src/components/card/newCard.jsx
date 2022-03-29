@@ -11,6 +11,7 @@ const NewCard = ({ item }) => {
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("Cheese Burnt");
 	const dispatch = useDispatch();
+
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
 			setPrice(item.itemPrices[1].price);
@@ -70,6 +71,7 @@ const NewCard = ({ item }) => {
 	const handleCart = () => {
 		dispatch(addProduct({ ...item, extras, price, quantity, size }));
 		handleClose();
+		alert("Product added to cart");
 	};
 
 	return (
