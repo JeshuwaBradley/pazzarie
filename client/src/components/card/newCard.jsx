@@ -79,7 +79,8 @@ const NewCard = ({ item }) => {
 				<div
 					className="card-image-container"
 					style={{
-						backgroundImage: "url(" + `${item.imgSrc}` + ")",
+						backgroundImage: "url(" + `/img/${item.imgSrc}` + ")",
+						// backgroundImage: "url(" + `${item.imgSrc}` + ")",
 					}}
 				>
 					{price !== 0 ? (
@@ -190,7 +191,12 @@ const NewCard = ({ item }) => {
 				></i>
 
 				<div className="modal-left">
-					<img className="modal-img" src={item.imgSrc} alt="" />
+					<img
+						className="modal-img"
+						src={`/img/${item.imgSrc}`}
+						alt=""
+					/>
+					{/* <img className="modal-img" src={item.imgSrc} alt="" /> */}
 				</div>
 
 				<div className="modal-right">
