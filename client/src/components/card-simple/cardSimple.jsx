@@ -77,9 +77,20 @@ const CardSimple = ({ item }) => {
 			<div className="card">
 				<div
 					className="card-image-container"
-					style={{
-						backgroundImage: "url(" + `${item.imgSrc}` + ")",
-					}}
+					// style={{
+					// 	backgroundImage: "url(" + `${item.imgSrc}` + ")",
+					// }}
+					style={
+						`${item.imgSrc}`.slice(0, 5) === "https"
+							? {
+									backgroundImage:
+										"url(" + `${item.imgSrc}` + ")",
+							  }
+							: {
+									backgroundImage:
+										"url(" + `/img/${item.imgSrc}` + ")",
+							  }
+					}
 				>
 					{price !== 0 ? (
 						<div className="card-front-price">$ {price}</div>
@@ -195,7 +206,17 @@ const CardSimple = ({ item }) => {
 				></i>
 
 				<div className="modal-left">
-					<img className="modal-img" src={item.imgSrc} alt="" />
+					<img
+						className="modal-img"
+						alt=""
+						// src={`/img/${item.imgSrc}`}
+						src={
+							`${item.imgSrc}`.slice(0, 5) === "https"
+								? `${item.imgSrc}`
+								: `/img/${item.imgSrc}`
+						}
+					/>
+					{/* <img className="modal-img" src={item.imgSrc} alt="" /> */}
 				</div>
 
 				<div className="modal-right">
