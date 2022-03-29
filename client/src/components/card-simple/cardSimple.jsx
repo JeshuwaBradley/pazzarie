@@ -70,6 +70,7 @@ const CardSimple = ({ item }) => {
 	const handleCart = () => {
 		dispatch(addProduct({ ...item, extras, price, quantity, size }));
 		handleClose();
+		alert("Product added to cart");
 	};
 
 	return (

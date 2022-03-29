@@ -37,6 +37,7 @@ function App() {
             <Route path='/privacy-policy' element={<Privacy />} />
             <Route path='/daily-deals' element={<DailyDeals />} />
             {<Route path='/shop/:id' element={isShopAuthenticated ? <Shop /> : <ShopLogin />} />}
+            {/* <Route path='/shop/:id' element={<Shop />} /> */}
             {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
           </Routes>
         </AppContext.Provider>

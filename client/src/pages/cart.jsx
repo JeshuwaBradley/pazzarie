@@ -38,7 +38,7 @@ const Cart = () => {
 		let itemPrice = product.price.toFixed(2);
 		let itemTotal = (product.price * product.quantity).toFixed(2);
 		let extras = [];
-		product.extraOptions.map((item) => {
+		product.extras.map((item) => {
 			extras.push(item.text);
 		});
 		orderItems.push({
