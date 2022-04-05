@@ -235,21 +235,42 @@ const CardSimple = ({ item }) => {
 								<form
 									onChange={(e) => handleSize(e.target.value)}
 								>
-									{item?.itemPrices.map((size, i) => {
-										return (
-											<div key={i}>
-												<input
-													type="radio"
-													name="size"
-													id={size?.text}
-													value={i}
-												/>
-												<label htmlFor={size?.text}>
-													{size?.text}
-												</label>
-											</div>
-										);
-									})}
+									{item?.itemPrices.length === 1
+										? item?.itemPrices.map((size, i) => {
+												return (
+													<div key={i}>
+														<input
+															type="radio"
+															name="size"
+															id={size?.text}
+															value={i}
+															checked
+														/>
+														<label
+															htmlFor={size?.text}
+														>
+															{size?.text}
+														</label>
+													</div>
+												);
+										  })
+										: item?.itemPrices.map((size, i) => {
+												return (
+													<div key={i}>
+														<input
+															type="radio"
+															name="size"
+															id={size?.text}
+															value={i}
+														/>
+														<label
+															htmlFor={size?.text}
+														>
+															{size?.text}
+														</label>
+													</div>
+												);
+										  })}
 								</form>
 							</div>
 						) : (
