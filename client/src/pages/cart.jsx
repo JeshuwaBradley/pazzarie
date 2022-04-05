@@ -13,14 +13,120 @@ import { useState } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
+let autoComplete;
+
+const loadScript = (url, callback) => {
+	let script = document.createElement("script");
+	script.type = "text/javascript";
+
+	if (script.readyState) {
+		script.onreadystatechange = function () {
+			if (
+				script.readyState === "loaded" ||
+				script.readyState === "complete"
+			) {
+				script.onreadystatechange = null;
+				callback();
+			}
+		};
+	} else {
+		script.onload = () => callback();
+	}
+
+	script.src = url;
+	document.getElementsByTagName("head")[0].appendChild(script);
+};
+
+const handleScriptLoad = (updateQuery) => {
+	const componentForm = [
+		"location",
+		"locality",
+		"administrative_area_level_1",
+		"country",
+		"postal_code",
+	];
+	const autocompleteInput = document.getElementById("location");
+	autoComplete = new window.google.maps.places.Autocomplete(
+		autocompleteInput,
+		{
+			fields: ["address_components", "geometry", "name"],
+			types: ["address"],
+		}
+	);
+	// autoComplete.setFields(["address_components", "formatted_address"]);
+	autoComplete.addListener("place_changed", function () {
+		const place = autoComplete.getPlace();
+
+		if (!place.geometry) {
+			window.alert(
+				"No details available for input: '" + place.name + "'"
+			);
+			return;
+		}
+		fillInAddress(place);
+	});
+	const fillInAddress = (place) => {
+		const addressNameFormat = {
+			street_number: "short_name",
+			route: "long_name",
+			locality: "long_name",
+			administrative_area_level_1: "short_name",
+			country: "long_name",
+			postal_code: "short_name",
+		};
+		const getAddressComp = function (type) {
+			for (const component of place.address_components) {
+				if (component.types[0] === type) {
+					return component[addressNameFormat[type]];
+				}
+			}
+			return "";
+		};
+		document.getElementById("location").value =
+			getAddressComp("street_number") + " " + getAddressComp("route");
+		for (const component of componentForm) {
+			if (component !== "location") {
+				document.getElementById(component).value =
+					getAddressComp(component);
+			}
+			updateQuery();
+		}
+	};
+};
+
 const Cart = () => {
 	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
 	const [deliver, setDeliver] = useState(false);
 	const [promote, setPromote] = useState(true);
+
 	const [shop, setShop] = useState(1);
 	const [inputs, setInputs] = useState({});
 	const dispatch = useDispatch();
+
+	console.log(inputs);
+
+	const handleAddressChange = () => {
+		let x = document.getElementById("location").value;
+		let y = document.getElementById("locality").value;
+		let z = document.getElementById("administrative_area_level_1").value;
+		let a = document.getElementById("country").value;
+		let b = document.getElementById("postal_code").value;
+		let g = {
+			address: x,
+			city: y,
+			state: z,
+
+			zip: b,
+		};
+		setInputs((values) => ({ ...values, ...g }));
+	};
+	useEffect(() => {
+		loadScript(
+			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAC`,
+			() => handleScriptLoad(handleAddressChange)
+		);
+	}, []);
 
 	const total = cart.total.toFixed(2);
 	const orderItems = [];
@@ -52,12 +158,6 @@ const Cart = () => {
 	});
 
 	const deliverToMe = (e) => {
-		// const showPosition = (pos) => {
-		// 	console.log(pos.coords.latitude, pos.coords.longitude);
-		// };
-		// if (navigator.geolocation) {
-		// 	navigator.geolocation.getCurrentPosition(showPosition);
-		// }
 		setDeliver(!deliver);
 		const checked = e.target.checked;
 		if (checked) {
@@ -378,6 +478,7 @@ const Cart = () => {
 															type="text"
 															name="address"
 															placeholder="250 W Bullard Ave"
+															id="location"
 															onChange={
 																handleChange
 															}
@@ -395,6 +496,7 @@ const Cart = () => {
 															type="text"
 															name="city"
 															placeholder="Clovis"
+															id="locality"
 															onChange={(e) =>
 																handleChange(e)
 															}
@@ -412,6 +514,7 @@ const Cart = () => {
 															type="text"
 															name="state"
 															placeholder="California"
+															id="administrative_area_level_1"
 															onChange={(e) =>
 																handleChange(e)
 															}
@@ -429,6 +532,26 @@ const Cart = () => {
 															type="text"
 															name="zip"
 															placeholder="93612"
+															id="postal_code"
+															onChange={(e) =>
+																handleChange(e)
+															}
+														/>
+													</div>
+												</div>
+
+												<div className="form-item">
+													<div className="form-label">
+														<label htmlFor="country">
+															Country:
+														</label>
+													</div>
+													<div className="form-input">
+														<input
+															type="text"
+															name="country"
+															placeholder="USA"
+															id="country"
 															onChange={(e) =>
 																handleChange(e)
 															}

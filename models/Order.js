@@ -79,7 +79,8 @@ const OrderSchema = new mongoose.Schema(
             maxlength: 60,
         },
         zip: {
-            type: Number,
+            type: String,
+            maxlength: 60,
         },
         total: {
             type: Number,
