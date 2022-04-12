@@ -13,87 +13,6 @@ import { useState } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
-let autoComplete;
-
-const loadScript = (url, callback) => {
-	let script = document.createElement("script");
-	script.type = "text/javascript";
-
-	if (script.readyState) {
-		script.onreadystatechange = function () {
-			if (
-				script.readyState === "loaded" ||
-				script.readyState === "complete"
-			) {
-				script.onreadystatechange = null;
-				callback();
-			}
-		};
-	} else {
-		script.onload = () => callback();
-	}
-
-	script.src = url;
-	document.getElementsByTagName("head")[0].appendChild(script);
-};
-
-const handleScriptLoad = (updateQuery) => {
-	const componentForm = [
-		"location",
-		"locality",
-		"administrative_area_level_1",
-		"country",
-		"postal_code",
-	];
-	const autocompleteInput = document.getElementById("location");
-	autoComplete = new window.google.maps.places.Autocomplete(
-		autocompleteInput,
-		{
-			fields: ["address_components", "geometry", "name"],
-			types: ["address"],
-		}
-	);
-	// autoComplete.setFields(["address_components", "formatted_address"]);
-	autoComplete.addListener("place_changed", function () {
-		const place = autoComplete.getPlace();
-
-		if (!place.geometry) {
-			window.alert(
-				"No details available for input: '" + place.name + "'"
-			);
-			return;
-		}
-		fillInAddress(place);
-	});
-	const fillInAddress = (place) => {
-		const addressNameFormat = {
-			street_number: "short_name",
-			route: "long_name",
-			locality: "long_name",
-			administrative_area_level_1: "short_name",
-			country: "long_name",
-			postal_code: "short_name",
-		};
-		const getAddressComp = function (type) {
-			for (const component of place.address_components) {
-				if (component.types[0] === type) {
-					return component[addressNameFormat[type]];
-				}
-			}
-			return "";
-		};
-		document.getElementById("location").value =
-			getAddressComp("street_number") + " " + getAddressComp("route");
-		for (const component of componentForm) {
-			if (component !== "location") {
-				document.getElementById(component).value =
-					getAddressComp(component);
-			}
-			updateQuery();
-		}
-	};
-};
-
 const Cart = () => {
 	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
@@ -104,7 +23,87 @@ const Cart = () => {
 	const [inputs, setInputs] = useState({});
 	const dispatch = useDispatch();
 
-	console.log(inputs);
+	let autoComplete;
+
+	const loadScript = (url, callback) => {
+		let script = document.createElement("script");
+		script.type = "text/javascript";
+
+		if (script.readyState) {
+			script.onreadystatechange = function () {
+				if (
+					script.readyState === "loaded" ||
+					script.readyState === "complete"
+				) {
+					script.onreadystatechange = null;
+					callback();
+				}
+			};
+		} else {
+			script.onload = () => callback();
+		}
+
+		script.src = url;
+		document.getElementsByTagName("head")[0].appendChild(script);
+	};
+
+	const handleScriptLoad = (updateQuery) => {
+		const componentForm = [
+			"location",
+			"locality",
+			"administrative_area_level_1",
+			"country",
+			"postal_code",
+		];
+
+		const autocompleteInput = document.getElementById("location");
+		autoComplete = new window.google.maps.places.Autocomplete(
+			autocompleteInput,
+			{
+				fields: ["address_components", "geometry", "name"],
+				types: ["address"],
+			}
+		);
+		// autoComplete.setFields(["address_components", "formatted_address"]);
+		autoComplete.addListener("place_changed", function () {
+			const place = autoComplete.getPlace();
+
+			if (!place.geometry) {
+				window.alert(
+					"No details available for input: '" + place.name + "'"
+				);
+				return;
+			}
+			fillInAddress(place);
+		});
+		const fillInAddress = (place) => {
+			const addressNameFormat = {
+				street_number: "short_name",
+				route: "long_name",
+				locality: "long_name",
+				administrative_area_level_1: "long_name",
+				country: "long_name",
+				postal_code: "short_name",
+			};
+			const getAddressComp = function (type) {
+				for (const component of place.address_components) {
+					if (component.types[0] === type) {
+						return component[addressNameFormat[type]];
+					}
+				}
+				return "";
+			};
+			document.getElementById("location").value =
+				getAddressComp("street_number") + " " + getAddressComp("route");
+			for (const component of componentForm) {
+				if (component !== "location") {
+					document.getElementById(component).value =
+						getAddressComp(component);
+				}
+				updateQuery();
+			}
+		};
+	};
 
 	const handleAddressChange = () => {
 		let x = document.getElementById("location").value;
@@ -123,10 +122,10 @@ const Cart = () => {
 	};
 	useEffect(() => {
 		loadScript(
-			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cAC`,
+			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=handleScriptLoad&solution_channel=GMP_QB_addressselection_v1_cAC`,
 			() => handleScriptLoad(handleAddressChange)
 		);
-	}, []);
+	});
 
 	const total = cart.total.toFixed(2);
 	const orderItems = [];
