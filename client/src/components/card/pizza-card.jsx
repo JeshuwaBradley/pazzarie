@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
-import "./newCard.css";
+import "./pizza-card.css";
 
-const NewCard = ({ item }) => {
+const PizzaCard = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [size, setSize] = useState(1);
@@ -313,4 +313,4 @@ const NewCard = ({ item }) => {
 	);
 };
 
-export default NewCard;
+export default PizzaCard;

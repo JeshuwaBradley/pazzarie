@@ -4,8 +4,8 @@ import Hero from "../components/hero";
 import Navbar from "../components/navbar";
 import Review from "../components/review";
 import axios from "axios";
-import NewCard from "../components/card/newCard";
 import { Link } from "react-router-dom";
+import PizzaCard from "../components/card/pizza-card";
 
 const Home = () => {
 	const [data, setData] = useState(null);
@@ -59,7 +59,7 @@ const Home = () => {
 					<div className="productList-wrapper">
 						{pizzaItems !== 0 &&
 							pizzaItems?.slice(0, 4).map((item, i) => {
-								return <NewCard item={item} key={i} />;
+								return <PizzaCard item={item} key={i} />;
 							})}
 					</div>
 					<Link to="/menu" className="productList-menu-link">
