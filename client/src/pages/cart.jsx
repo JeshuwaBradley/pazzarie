@@ -18,9 +18,11 @@ const Cart = () => {
 	const cart = useSelector((state) => state.cart);
 	const [deliver, setDeliver] = useState(false);
 	const [promote, setPromote] = useState(true);
-
 	const [shop, setShop] = useState(1);
 	const [inputs, setInputs] = useState({});
+	const [error, setError] = useState(false);
+	const [addressSet, setAddressSet] = useState(false);
+	const [deliverySet, setDeliverySet] = useState(false);
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -42,7 +44,6 @@ const Cart = () => {
 		} else {
 			script.onload = () => callback();
 		}
-
 		script.src = url;
 		document.getElementsByTagName("head")[0].appendChild(script);
 	};
@@ -115,11 +116,48 @@ const Cart = () => {
 			address: x,
 			city: y,
 			state: z,
-
 			zip: b,
+			country: a,
 		};
 		setInputs((values) => ({ ...values, ...g }));
+		setTimeout(() => setAddressSet(true), 1000);
 	};
+
+	const handleDeliveryFee = () => {
+		// e.preventDefault();
+		console.log(inputs);
+		if (!deliverySet) {
+			axios
+				.post("/api/distance", {
+					address: inputs.address,
+					city: inputs.city,
+					state: inputs.state,
+					zip: inputs.zip,
+					country: inputs.country,
+				})
+				.then((response) => {
+					let distance =
+						response.data.rows[0].elements[0].distance.value;
+					if (distance > 4828) {
+						setError(true);
+						setDeliver();
+						let input = document.getElementById("deliver");
+						input.checked = false;
+					} else {
+						dispatch(addDelivery(calcDeliveryFee(distance)));
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	};
+
+	if (addressSet && !deliverySet) {
+		handleDeliveryFee();
+		setDeliverySet(true);
+	}
+
 	useEffect(() => {
 		loadScript(
 			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=handleScriptLoad&solution_channel=GMP_QB_addressselection_v1_cAC`,
@@ -158,11 +196,16 @@ const Cart = () => {
 
 	const deliverToMe = (e) => {
 		setDeliver(!deliver);
-		const checked = e.target.checked;
-		if (checked) {
-			dispatch(addDelivery(200));
+	};
+
+	const calcDeliveryFee = (distance) => {
+		if (distance <= 1609.34) {
+			return 6.99;
 		} else {
-			dispatch(deleteDelivery(200));
+			let initialCharge = 6.99;
+			let secondHalf = ((distance - 1609) / 804) * 1.5;
+			let finalCharge = initialCharge + secondHalf;
+			return finalCharge;
 		}
 	};
 
@@ -217,17 +260,7 @@ const Cart = () => {
 			}
 		};
 		stripeToken && makeRequest();
-	}, [
-		dispatch,
-		stripeToken,
-		total,
-		deliver,
-		inputs,
-		orderItems,
-		promote,
-		shop,
-		navigate,
-	]);
+	});
 
 	return (
 		<div>
@@ -557,7 +590,32 @@ const Cart = () => {
 														/>
 													</div>
 												</div>
+
+												{/* <div className="form-item">
+													<button
+														className="checkout-button"
+														onClick={
+															handleDeliveryFee
+														}
+													>
+														Calculate Delivery Fee
+													</button>
+												</div> */}
 											</>
+										)}
+										{error ? (
+											<div className="form-item">
+												<p
+													style={{
+														color: "red",
+														fontWeight: "bold",
+													}}
+												>
+													Cannot deliver. Too far
+												</p>
+											</div>
+										) : (
+											""
 										)}
 										<div className="form-item">
 											<div className="promotional-checkbox">
