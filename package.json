@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/JeshuwaBradley/pazzarie#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
