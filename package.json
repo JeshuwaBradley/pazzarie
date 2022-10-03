@@ -27,7 +27,7 @@
     "express": "^4.17.2",
     "mongoose": "^6.2.1",
     "nodemailer": "^6.7.3",
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.20",
     "stripe": "^8.208.0"
   },
   "engines": {
