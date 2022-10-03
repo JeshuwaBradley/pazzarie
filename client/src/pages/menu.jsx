@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import CardSimple from "../components/card-simple/cardSimple";
-import PizzaCard from "../components/card/pizza-card";
-import SaladCard from "../components/salad-card/salad-card";
+import CardSimple from "../components/cardSimple";
+import PizzaCard from "../components/pizza-card";
+import SaladCard from "../components/salad-card";
 
 const Menu = () => {
 	const [pizza, setPizza] = useState(true);
@@ -111,12 +111,28 @@ const Menu = () => {
 					{pizza ? (
 						<div className="tab" id="pizza-tab">
 							<div className="tab-title">
-								<h2>Pizzas</h2>
-								<div className="underline"></div>
+								<h2>Traditional Pizzas</h2>
+								<div className="underline menu"></div>
+							</div>
+							<div className="productList-wrapper bottom-margin">
+								{pizzaItems.length !== 0
+									? pizzaItems.slice(0, 3).map((item, i) => {
+											return (
+												<PizzaCard
+													item={item}
+													key={i}
+												/>
+											);
+									  })
+									: ""}
+							</div>
+							<div className="tab-title">
+								<h2>House Specialty</h2>
+								<div className="underline menu"></div>
 							</div>
 							<div className="productList-wrapper">
 								{pizzaItems.length !== 0
-									? pizzaItems.map((item, i) => {
+									? pizzaItems.slice(3).map((item, i) => {
 											return (
 												<PizzaCard
 													item={item}

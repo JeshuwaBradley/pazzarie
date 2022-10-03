@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/cartSlice";
-import "./salad-card.css";
+import { addProduct } from "../redux/cartSlice";
 
 const SaladCard = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -244,7 +243,7 @@ const SaladCard = ({ item }) => {
 															name="size"
 															id={size?.text}
 															value={i}
-															checked
+															defaultChecked
 														/>
 														<label
 															htmlFor={size?.text}

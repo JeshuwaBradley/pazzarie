@@ -6,9 +6,9 @@ const cartSlice = createSlice({
         products: [],
         quantity: 0,
         salesTax: 0,
+        deliveryCharges: 0,
         subtotal: 0,
         total: 0,
-        deliveryCharges: 0
     },
     reducers: {
         addProduct: (state, action) => {
@@ -28,9 +28,11 @@ const cartSlice = createSlice({
         },
         addDelivery: (state, action) => {
             state.total += action.payload
+            state.deliveryCharges += action.payload
         },
         deleteDelivery: (state, action) => {
-            state.total -= action.payload
+            state.total -= state.deliveryCharges
+            state.deliveryCharges -= state.deliveryCharges
         },
         reset: (state) => {
             state.products = [];

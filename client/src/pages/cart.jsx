@@ -196,10 +196,15 @@ const Cart = () => {
 
 	const deliverToMe = (e) => {
 		setDeliver(!deliver);
+		if (deliver === true) {
+			dispatch(deleteDelivery());
+			setDeliverySet(false);
+			setAddressSet(false);
+		}
 	};
 
 	const calcDeliveryFee = (distance) => {
-		if (distance <= 1609.34) {
+		if (distance <= 5632.7) {
 			return 6.99;
 		} else {
 			let initialCharge = 6.99;
@@ -419,6 +424,14 @@ const Cart = () => {
 									</div>
 									<div className="total-container-total">
 										$ {cart.subtotal.toFixed(2)}
+									</div>
+								</div>
+								<div className="total-container-inner">
+									<div className="total-container-text">
+										Delivery Fee:
+									</div>
+									<div className="total-container-total">
+										$ {cart.deliveryCharges.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">

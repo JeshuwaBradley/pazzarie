@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/cartSlice";
-import "./pizza-card.css";
+import { addProduct } from "../redux/cartSlice";
 
-const PizzaCard = ({ item }) => {
+const CardSimple = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [size, setSize] = useState(1);
@@ -11,7 +10,6 @@ const PizzaCard = ({ item }) => {
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("Cheese Burnt");
 	const dispatch = useDispatch();
-
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
 			setPrice(item.itemPrices[1].price);
@@ -80,8 +78,7 @@ const PizzaCard = ({ item }) => {
 				<div
 					className="card-image-container"
 					// style={{
-					// 	backgroundImage: "url(" + `/img/${item.imgSrc}` + ")",
-					// 	// backgroundImage: "url(" + `${item.imgSrc}` + ")",
+					// 	backgroundImage: "url(" + `${item.imgSrc}` + ")",
 					// }}
 					style={
 						`${item.imgSrc}`.slice(0, 5) === "https"
@@ -116,7 +113,7 @@ const PizzaCard = ({ item }) => {
 						</button>
 					</div>
 				</div>
-				<div className="card-desc-container">
+				<div className="card-simple-desc-container">
 					<div className="card-front-title">
 						<p>{item.itemTitle}</p>
 					</div>
@@ -158,24 +155,30 @@ const PizzaCard = ({ item }) => {
 									})}
 								</select>
 							</div>
-							<div className="card-front-crust">
+							{/* <div className="card-front-crust">
 								<label htmlFor="crust">Crust</label>
 								<select
 									id="crust"
 									className="select"
-									defaultValue={"Classic hand toasted"}
+									defaultValue={"Cheese Burnt"}
 									onChange={(e) =>
 										handleCrust(e.target.value)
 									}
 								>
 									<option value="Classic hand toasted">
-										Classic hand tossed
+										Classic hand toasted
 									</option>
 									<option value="Wheat this crust">
-										Thin crust
+										Wheat this crust
+									</option>
+									<option value="Cheese Burnt">
+										Cheese burnt
+									</option>
+									<option value="cheese float">
+										Cheese Float
 									</option>
 								</select>
-							</div>
+							</div> */}
 						</div>
 						<div className="card-cart-container">
 							<div className="card-front-add-button">
@@ -231,21 +234,42 @@ const PizzaCard = ({ item }) => {
 								<form
 									onChange={(e) => handleSize(e.target.value)}
 								>
-									{item?.itemPrices.map((size, i) => {
-										return (
-											<div key={i}>
-												<input
-													type="radio"
-													name="size"
-													id={size?.text}
-													value={i}
-												/>
-												<label htmlFor={size?.text}>
-													{size?.text}
-												</label>
-											</div>
-										);
-									})}
+									{item?.itemPrices.length === 1
+										? item?.itemPrices.map((size, i) => {
+												return (
+													<div key={i}>
+														<input
+															type="radio"
+															name="size"
+															id={size?.text}
+															value={i}
+															defaultChecked
+														/>
+														<label
+															htmlFor={size?.text}
+														>
+															{size?.text}
+														</label>
+													</div>
+												);
+										  })
+										: item?.itemPrices.map((size, i) => {
+												return (
+													<div key={i}>
+														<input
+															type="radio"
+															name="size"
+															id={size?.text}
+															value={i}
+														/>
+														<label
+															htmlFor={size?.text}
+														>
+															{size?.text}
+														</label>
+													</div>
+												);
+										  })}
 								</form>
 							</div>
 						) : (
@@ -313,4 +337,4 @@ const PizzaCard = ({ item }) => {
 	);
 };
 
-export default PizzaCard;
+export default CardSimple;

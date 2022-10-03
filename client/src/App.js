@@ -12,12 +12,13 @@ import Shop from './pages/shop';
 import AdminLogin from './pages/admin-login'
 import { AppContext } from "./lib/contextLib";
 import { useState } from 'react';
-import ShopLogin from './pages/shop-login';
+// import ShopLogin from './pages/shop-login';
 import Contact from './pages/contact';
 import DailyDeals from './pages/daily-deals';
 import Privacy from './pages/privacy';
 import About from './pages/about';
 import Locations from './pages/locations';
+import Popup from './components/popup';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -30,14 +31,15 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/popup' element={<Popup />} />
             <Route path='/about-us' element={<About />} />
             <Route path='/locations' element={<Locations />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/privacy-policy' element={<Privacy />} />
             <Route path='/daily-deals' element={<DailyDeals />} />
-            {<Route path='/shop/:id' element={isShopAuthenticated ? <Shop /> : <ShopLogin />} />}
-            {/* <Route path='/shop/:id' element={<Shop />} /> */}
+            {/* {<Route path='/shop/:id' element={isShopAuthenticated ? <Shop /> : <ShopLogin />} />} */}
+            <Route path='/shop/:id' element={<Shop />} />
             {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
           </Routes>
         </AppContext.Provider>

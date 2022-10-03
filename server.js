@@ -7,8 +7,9 @@ const productRoute = require("./routes/productRoute");
 const orderRoute = require("./routes/orderRoute");
 const authRoute = require("./routes/auth")
 const stripeRoute = require("./routes/stripe");
-const contactRoute = require("./routes/contact")
-const distanceRoute = require("./routes/distanceRoute")
+const contactRoute = require("./routes/contact");
+const distanceRoute = require("./routes/distanceRoute");
+const emailRoute = require('./routes/emailRoute');
 const cors = require("cors");
 const path = require("path")
 
@@ -34,7 +35,7 @@ app.use('/api/auth', authRoute);
 app.use("/api/checkout", stripeRoute);
 app.use("/api/contact", contactRoute);
 app.use("/api/distance", distanceRoute)
-
+app.use("/api/email", emailRoute);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));

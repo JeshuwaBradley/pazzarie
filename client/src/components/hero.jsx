@@ -72,7 +72,7 @@ const Hero = () => {
 					</div>
 					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-clr">
-							<h2 className="third-h2">$ 12.99</h2>
+							<h2 className="third-h2">$ 16</h2>
 							<h3>only</h3>
 						</div>
 						<div className="text third-text">

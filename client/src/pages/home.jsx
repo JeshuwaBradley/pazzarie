@@ -2,13 +2,25 @@ import React, { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
-import Review from "../components/review";
+// import Review from "../components/review";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PizzaCard from "../components/card/pizza-card";
+import PizzaCard from "../components/pizza-card";
+import Popup from "../components/popup";
 
 const Home = () => {
 	const [data, setData] = useState(null);
+	const [showPopUp, setShowPopUp] = useState(false);
+	const showPopupHandler = () => setShowPopUp(true);
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			showPopupHandler();
+		}, 7000);
+	}, []);
+	let popup = null;
+	if (showPopUp) {
+		popup = <Popup setShowPopUp={setShowPopUp} />;
+	}
 	useEffect(() => {
 		axios
 			.get("/api/product/find")
@@ -30,16 +42,20 @@ const Home = () => {
 		<div className="">
 			<Navbar />
 			<Hero />
+			{popup}
 			<div className="home-image-container">
 				<div className="row">
 					<div className="row-item"></div>
 					<div className="row-item text-row">
-						<h3>Welcome to Nova's Pizza.</h3>
-						<p>
+						<h3>
+							Nova's pizza proudly serves delicious, quality, and
+							authentic Italian pizza.
+						</h3>
+						{/* <p>
 							Nova's Pizza proudly serves delicious, quality and
 							authentic Italian Pizza to the San Francisco east
 							bay.
-						</p>
+						</p> */}
 					</div>
 				</div>
 				<div className="row">
@@ -77,7 +93,7 @@ const Home = () => {
 					</Link>
 				</div>
 			</div>
-			<Review />
+			{/* <Review /> */}
 			<Footer />
 		</div>
 	);
