@@ -31,11 +31,16 @@ const Home = () => {
 	const pizzaItems = [];
 
 	if (data) {
-		data.forEach((item) => {
-			if (item.itemCategory === "pizza") {
-				pizzaItems.push(item);
+		for (let i in data) {
+			if (data.hasOwnProperty(i)) {
+				if (data[i].itemCategory === "pizza") {
+					pizzaItems.push(data[i]);
+				}
 			}
-		});
+			// if (item?.itemCategory === "pizza") {
+			// 	pizzaItems.push(item);
+			// }
+		}
 	}
 
 	return (

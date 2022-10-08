@@ -26,17 +26,31 @@ const Menu = () => {
 	}, []);
 
 	if (data) {
-		data.forEach((item) => {
-			if (item.itemCategory === "pizza") {
-				pizzaItems.push(item);
-			} else if (item.itemCategory === "drinks") {
-				drinkItems.push(item);
-			} else if (item.itemCategory === "appetizer") {
-				appetizerItems.push(item);
-			} else if (item.itemCategory === "salads") {
-				saladItems.push(item);
+		for (let i in data) {
+			if (data.hasOwnProperty(i)) {
+				if (data[i].itemCategory === "pizza") {
+					pizzaItems.push(data[i]);
+				} else if (data[i].itemCategory === "drinks") {
+					drinkItems.push(data[i]);
+				} else if (data[i].itemCategory === "appetizer") {
+					appetizerItems.push(data[i]);
+				} else if (data[i].itemCategory === "salads") {
+					saladItems.push(data[i]);
+				}
 			}
-		});
+		}
+		console.log(pizzaItems, saladItems, appetizerItems, drinkItems);
+		// data.forEach((item) => {
+		// 	if (item.itemCategory === "pizza") {
+		// 		pizzaItems.push(item);
+		// 	} else if (item.itemCategory === "drinks") {
+		// 		drinkItems.push(item);
+		// 	} else if (item.itemCategory === "appetizer") {
+		// 		appetizerItems.push(item);
+		// 	} else if (item.itemCategory === "salads") {
+		// 		saladItems.push(item);
+		// 	}
+		// });
 	}
 
 	const setAllStates = () => {
