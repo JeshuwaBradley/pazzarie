@@ -37,9 +37,6 @@ const Home = () => {
 					pizzaItems.push(data[i]);
 				}
 			}
-			// if (item?.itemCategory === "pizza") {
-			// 	pizzaItems.push(item);
-			// }
 		}
 	}
 

@@ -44,5 +44,5 @@ app.get("*", (req, res) => {
 // comment 
 
 app.listen(port, () => {
-    console.log(`Server started listening`);
+    console.log(`Server started listening ${port}`);
 });
