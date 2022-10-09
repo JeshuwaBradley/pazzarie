@@ -27,11 +27,6 @@ const Cart = () => {
 
 	let autoComplete;
 
-	const getkey = () => {
-		console.log(process.env.REACT_APP_PUBLISHABLE_KEY);
-	};
-	getkey();
-
 	const loadScript = (url, callback) => {
 		let script = document.createElement("script");
 		script.type = "text/javascript";
