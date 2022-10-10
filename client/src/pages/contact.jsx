@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import axios from "axios";
@@ -24,6 +24,11 @@ const Contact = () => {
 				console.log(err);
 			});
 	};
+
+	let title = "Contact Us | Nova's Pizza";
+	useEffect(() => {
+		document.title = title;
+	});
 
 	return (
 		<div>

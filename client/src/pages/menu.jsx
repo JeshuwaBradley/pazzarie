@@ -7,6 +7,11 @@ import PizzaCard from "../components/pizza-card";
 import SaladCard from "../components/salad-card";
 
 const Menu = () => {
+	let title = "Menu | Nova's Pizza";
+	useEffect(() => {
+		document.title = title;
+	});
+
 	const [pizza, setPizza] = useState(true);
 	const [appetizer, setAppetizer] = useState(false);
 	const [salads, setSalads] = useState(false);

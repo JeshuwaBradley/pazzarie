@@ -11,9 +11,12 @@ import Popup from "../components/popup";
 const Home = () => {
 	const [data, setData] = useState(null);
 	const [showPopUp, setShowPopUp] = useState(false);
+
+	//time the popup for email marketing
+
 	const showPopupHandler = () => setShowPopUp(true);
 	useEffect(() => {
-		const timer = setTimeout(() => {
+		setTimeout(() => {
 			showPopupHandler();
 		}, 7000);
 	}, []);
@@ -21,6 +24,8 @@ const Home = () => {
 	if (showPopUp) {
 		popup = <Popup setShowPopUp={setShowPopUp} />;
 	}
+
+	//get products for the specials section on home page
 	useEffect(() => {
 		axios
 			.get("/api/product/find")
@@ -39,6 +44,13 @@ const Home = () => {
 			}
 		}
 	}
+
+	//set the title of homepage
+
+	let title = "Home | Nova's Pizza";
+	useEffect(() => {
+		document.title = title;
+	});
 
 	return (
 		<div className="">
