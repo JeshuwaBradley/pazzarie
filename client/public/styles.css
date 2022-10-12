@@ -561,7 +561,6 @@ video#bgvideo {
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
 		rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 	margin: 15px;
-	/* box-sizing: border-box; */
 }
 .card-image-container {
 	height: 180px;
@@ -627,6 +626,7 @@ video#bgvideo {
 	color: #000;
 	font-weight: 600;
 	margin: 10px 0;
+	text-transform: uppercase;
 }
 .card-front-desc p {
 	margin: 0 0 15px 0;
@@ -1276,6 +1276,42 @@ video#bgvideo {
 
 .underline.menu {
 	margin-bottom: 30px;
+}
+
+.cyo-link {
+	border-radius: 5px;
+	width: 370px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fff;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+		rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	margin: 15px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: fill;
+}
+.cyo-details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.cyo-link a {
+	text-align: center;
+	border: 1px solid #e2241a;
+	border-radius: 5px;
+	font-family: "Yanone Kaffeesatz", sans-serif;
+	font-weight: 600;
+	font-size: 25px;
+	color: #e2241a;
+	width: 100%;
+	padding: 10px 0;
+	margin: 10px 0 30px;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 900px) {
