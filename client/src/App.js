@@ -19,6 +19,7 @@ import Privacy from './pages/privacy';
 import About from './pages/about';
 import Locations from './pages/locations';
 import Popup from './components/popup';
+import CreateYourOwn from './pages/create-your-own';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/menu/create-your-own' element={<CreateYourOwn />} />
             <Route path='/popup' element={<Popup />} />
             <Route path='/about-us' element={<About />} />
             <Route path='/locations' element={<Locations />} />

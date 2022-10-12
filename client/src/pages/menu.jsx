@@ -5,6 +5,7 @@ import Navbar from "../components/navbar";
 import CardSimple from "../components/cardSimple";
 import PizzaCard from "../components/pizza-card";
 import SaladCard from "../components/salad-card";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
 	let title = "Menu | Nova's Pizza";
@@ -44,18 +45,6 @@ const Menu = () => {
 				}
 			}
 		}
-		console.log(pizzaItems, saladItems, appetizerItems, drinkItems);
-		// data.forEach((item) => {
-		// 	if (item.itemCategory === "pizza") {
-		// 		pizzaItems.push(item);
-		// 	} else if (item.itemCategory === "drinks") {
-		// 		drinkItems.push(item);
-		// 	} else if (item.itemCategory === "appetizer") {
-		// 		appetizerItems.push(item);
-		// 	} else if (item.itemCategory === "salads") {
-		// 		saladItems.push(item);
-		// 	}
-		// });
 	}
 
 	const setAllStates = () => {
@@ -129,6 +118,30 @@ const Menu = () => {
 				<div className="menu-tabs">
 					{pizza ? (
 						<div className="tab" id="pizza-tab">
+							<div className="tab-title">
+								<h2>Create Your Own Pizza</h2>
+								<div className="underline menu"></div>
+							</div>
+							<div className="productList-wrapper bottom-margin">
+								<div className="cyo-link">
+									<div
+										className="card-image-container"
+										style={{
+											backgroundImage:
+												'url("/img/CYO_RegLg.jpg")',
+										}}
+									></div>
+
+									<div className="cyo-details">
+										<div className="card-front-title">
+											<p>Create Your Own Pizza</p>
+										</div>
+										<Link to="create-your-own" className="">
+											Let's Go
+										</Link>
+									</div>
+								</div>
+							</div>
 							<div className="tab-title">
 								<h2>Traditional Pizzas</h2>
 								<div className="underline menu"></div>

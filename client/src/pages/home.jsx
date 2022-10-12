@@ -65,11 +65,6 @@ const Home = () => {
 							Nova's pizza proudly serves delicious, quality, and
 							authentic Italian pizza.
 						</h3>
-						{/* <p>
-							Nova's Pizza proudly serves delicious, quality and
-							authentic Italian Pizza to the San Francisco east
-							bay.
-						</p> */}
 					</div>
 				</div>
 				<div className="row">

@@ -13,7 +13,7 @@ const PizzaCard = ({ item }) => {
 
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
-			setPrice(item.itemPrices[1].price);
+			setPrice(item.itemPrices[0].price);
 		} else {
 			setPrice(item.itemPrices[0].price);
 		}
@@ -78,10 +78,6 @@ const PizzaCard = ({ item }) => {
 			<div className="card">
 				<div
 					className="card-image-container"
-					// style={{
-					// 	backgroundImage: "url(" + `/img/${item.imgSrc}` + ")",
-					// 	// backgroundImage: "url(" + `${item.imgSrc}` + ")",
-					// }}
 					style={
 						`${item.imgSrc}`.slice(0, 5) === "https"
 							? {
