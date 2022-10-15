@@ -7,6 +7,7 @@ import {
 	addDelivery,
 	deleteDelivery,
 	reset,
+	addCoupon,
 } from "../redux/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -28,6 +29,7 @@ const Cart = () => {
 	const [error, setError] = useState(false);
 	const [addressSet, setAddressSet] = useState(false);
 	const [deliverySet, setDeliverySet] = useState(false);
+	const [coupon, setCoupon] = useState("");
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -167,7 +169,7 @@ const Cart = () => {
 			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=handleScriptLoad&solution_channel=GMP_QB_addressselection_v1_cAC`,
 			() => handleScriptLoad(handleAddressChange)
 		);
-	});
+	}, []);
 
 	const total = cart.total.toFixed(2);
 	const orderItems = [];
@@ -228,6 +230,11 @@ const Cart = () => {
 		setInputs((values) => ({ ...values, [name]: value }));
 	};
 
+	// const handleCouponCode = (e) => {
+	// 	const code = e.target.value;
+	// 	setCoupon(code);
+	// };
+
 	const [stripeToken, setStripeToken] = useState(null);
 
 	const onToken = (token) => {
@@ -244,6 +251,7 @@ const Cart = () => {
 				orderItems: orderItems,
 				total: total,
 			};
+			console.log(x);
 			axios
 				.post("/api/order/", { ...x })
 				.then((response) => {
@@ -262,7 +270,6 @@ const Cart = () => {
 					tokenId: stripeToken.id,
 					amount: total * 100,
 				});
-				console.log(res);
 				handleOrder();
 			} catch (error) {
 				console.log(error);
@@ -503,6 +510,23 @@ const Cart = () => {
 												/>
 											</div>
 										</div>
+										{/* <div className="form-item">
+											<div className="form-label">
+												<label htmlFor="mobile">
+													Coupon Code:
+												</label>
+											</div>
+											<div className="form-input">
+												<input
+													type="text"
+													name="mobile"
+													placeholder=""
+													onChange={(e) =>
+														handleCouponCode(e)
+													}
+												/>
+											</div>
+										</div> */}
 										{deliver && (
 											<>
 												<div className="form-item">
@@ -629,7 +653,6 @@ const Cart = () => {
 													type="checkbox"
 													name="promotion"
 													id="promotion"
-													defaultChecked
 													onChange={(e) => {
 														setPromote(!promote);
 													}}
@@ -643,7 +666,7 @@ const Cart = () => {
 										</div>
 										<div className="form-item">
 											<StripeCheckout
-												name="Nova's"
+												name="Nova's Pizza"
 												description={`Your total is $${cart.total}`}
 												amount={total * 100}
 												token={onToken}

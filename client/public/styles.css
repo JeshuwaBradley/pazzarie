@@ -3165,3 +3165,29 @@ h2.large-title {
 		border-bottom-left-radius: 5px;
 	}
 }
+
+/* ---------------------create your own page------------------------ */
+
+.create-your-own {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.create-your-own .cyo-left,
+.create-your-own .cyo-right {
+	height: 350px;
+	width: 50%;
+}
+
+.create-your-own .cyo-right {
+}
+
+.create-your-own .cyo-left {
+	display: flex;
+	flex-direction: column;
+}
+
+.cyo-left .cyo-item {
+	border: 1px solid black;
+}

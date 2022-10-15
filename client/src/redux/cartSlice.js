@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { startTransition } from 'react';
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -9,6 +10,7 @@ const cartSlice = createSlice({
         deliveryCharges: 0,
         subtotal: 0,
         total: 0,
+        discount: 0,
     },
     reducers: {
         addProduct: (state, action) => {
