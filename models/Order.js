@@ -60,7 +60,7 @@ const OrderSchema = new mongoose.Schema(
         },
         promote: {
             type: Boolean,
-            required: true,
+            required: false,
         },
         deliver: {
             type: Boolean,

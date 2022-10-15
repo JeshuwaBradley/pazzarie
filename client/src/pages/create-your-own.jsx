@@ -6,7 +6,16 @@ const CreateYourOwn = () => {
 	return (
 		<>
 			<Navbar />
-			<div>create-your-own</div>
+			<div className="create-your-own">
+				<div className="cyo-left">
+					<div className="cyo-item"></div>
+					<div className="cyo-item"></div>
+					<div className="cyo-item"></div>
+					<div className="cyo-item"></div>
+					<div className="cyo-item"></div>
+				</div>
+				<div className="cyo-right"></div>
+			</div>
 			<Footer />
 		</>
 	);
