@@ -43,8 +43,16 @@ const cartSlice = createSlice({
             state.subtotal = 0;
             state.total = 0;
         },
+        addCoupon: (state, action) => {
+            state.discount += state.subtotal * 10 / 100;
+            state.subtotal -= state.subtotal * 10 / 100;
+        },
+        removeCoupon: (state) => {
+            state.subtotal += state.discount;
+            state.discount = 0;
+        }
     },
 });
 
-export const { addProduct, deleteProduct, addDelivery, deleteDelivery, reset } = cartSlice.actions;
+export const { addProduct, deleteProduct, addDelivery, deleteDelivery, reset, addCoupon, removeCoupon } = cartSlice.actions;
 export default cartSlice.reducer;
