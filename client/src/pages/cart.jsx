@@ -8,6 +8,7 @@ import {
 	deleteDelivery,
 	reset,
 	addCoupon,
+	removeCoupon,
 } from "../redux/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -29,7 +30,7 @@ const Cart = () => {
 	const [error, setError] = useState(false);
 	const [addressSet, setAddressSet] = useState(false);
 	const [deliverySet, setDeliverySet] = useState(false);
-	const [coupon, setCoupon] = useState("");
+	// const [coupon, setCoupon] = useState("");
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -230,10 +231,19 @@ const Cart = () => {
 		setInputs((values) => ({ ...values, [name]: value }));
 	};
 
-	// const handleCouponCode = (e) => {
-	// 	const code = e.target.value;
-	// 	setCoupon(code);
-	// };
+	const handleCouponCode = (e) => {
+		const code = e.target.value;
+		if (cart.discount === 0) {
+			if (code === "NOVASPIZZA") {
+				dispatch(addCoupon());
+			}
+		}
+		if (cart.discount !== 0 && code !== "NOVASPIZZA") {
+			dispatch(removeCoupon());
+		}
+		console.log(cart.discount);
+		// setCoupon(code);
+	};
 
 	const [stripeToken, setStripeToken] = useState(null);
 
@@ -510,7 +520,7 @@ const Cart = () => {
 												/>
 											</div>
 										</div>
-										{/* <div className="form-item">
+										<div className="form-item">
 											<div className="form-label">
 												<label htmlFor="mobile">
 													Coupon Code:
@@ -520,13 +530,13 @@ const Cart = () => {
 												<input
 													type="text"
 													name="mobile"
-													placeholder=""
+													placeholder="Coupon Code"
 													onChange={(e) =>
 														handleCouponCode(e)
 													}
 												/>
 											</div>
-										</div> */}
+										</div>
 										{deliver && (
 											<>
 												<div className="form-item">
