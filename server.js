@@ -40,15 +40,9 @@ app.use("/api/contact", contactRoute);
 app.use("/api/distance", distanceRoute)
 app.use("/api/email", emailRoute);
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-// });
-app.get('*', function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] != 'https')
-        res.redirect('https://novaspizza.com' + req.url)
-    else
-        next() /* Continue to other routes if we're not redirecting */
-})
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 // comment 
 
