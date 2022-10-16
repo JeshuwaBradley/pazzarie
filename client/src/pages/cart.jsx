@@ -170,7 +170,7 @@ const Cart = () => {
 			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=handleScriptLoad&solution_channel=GMP_QB_addressselection_v1_cAC`,
 			() => handleScriptLoad(handleAddressChange)
 		);
-	}, []);
+	});
 
 	const total = cart.total.toFixed(2);
 	const orderItems = [];

@@ -36,6 +36,16 @@ const cartSlice = createSlice({
             state.total -= state.deliveryCharges
             state.deliveryCharges -= state.deliveryCharges
         },
+        addCoupon: (state, action) => {
+            state.discount += state.subtotal * 10 / 100;
+            state.subtotal -= state.subtotal * 10 / 100;
+            state.salesTax = state.subtotal * 10 / 100;
+            state.total = state.subtotal + state.deliveryCharges + state.salesTax
+        },
+        removeCoupon: (state) => {
+            state.subtotal += state.discount;
+            state.discount = 0;
+        },
         reset: (state) => {
             state.products = [];
             state.quantity = 0;
@@ -43,14 +53,6 @@ const cartSlice = createSlice({
             state.subtotal = 0;
             state.total = 0;
         },
-        addCoupon: (state, action) => {
-            state.discount += state.subtotal * 10 / 100;
-            state.subtotal -= state.subtotal * 10 / 100;
-        },
-        removeCoupon: (state) => {
-            state.subtotal += state.discount;
-            state.discount = 0;
-        }
     },
 });
 
