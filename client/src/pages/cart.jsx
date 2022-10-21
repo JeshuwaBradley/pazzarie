@@ -276,7 +276,7 @@ const Cart = () => {
 
 		const makeRequest = async () => {
 			try {
-				const res = await axios.post("/api/checkout/payment", {
+				await axios.post("/api/checkout/payment", {
 					tokenId: stripeToken.id,
 					amount: total * 100,
 				});
