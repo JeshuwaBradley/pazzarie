@@ -3,6 +3,8 @@ import axios from "axios";
 
 const Popup = ({ setShowPopUp }) => {
 	const [inputs, setInputs] = useState({});
+	const [show, setShow] = useState(false);
+	const [copied, setCopied] = useState(false);
 	const handleChange = (event) => {
 		const name = event.target.name;
 		const value = event.target.value;
@@ -14,11 +16,20 @@ const Popup = ({ setShowPopUp }) => {
 			.post("/api/email/", { ...inputs })
 			.then((response) => {
 				console.log(response);
-				setShowPopUp(false);
+				setShow(true);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+	};
+
+	const handleCopy = () => {
+		let copyText = "NOVASPIZZA";
+		navigator.clipboard.writeText(copyText);
+		setCopied(true);
+		setTimeout(() => {
+			setShowPopUp(false);
+		}, 1000);
 	};
 	return (
 		<div className="popup-back">
@@ -30,25 +41,46 @@ const Popup = ({ setShowPopUp }) => {
 				</div>
 				<h1 className="title">Get 10% OFF</h1>
 				<p>Enter your email to get the 10% OFF discount code</p>
-				<div className="popup-form">
-					<input
-						type="emial"
-						name="email"
-						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-						placeholder="Enter your email here"
-						onChange={(e) => handleChange(e)}
-					/>
-					<button type="submit" onClick={handleEmail}>
-						Get Code
-					</button>
-				</div>
+				{show === false ? (
+					<div className="popup-form">
+						<input
+							type="emial"
+							name="email"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+							placeholder="Enter your email here"
+							onChange={(e) => handleChange(e)}
+						/>
+						<button type="submit" onClick={handleEmail}>
+							Get Code
+						</button>
+					</div>
+				) : (
+					<div className="popup-form">
+						<input
+							type="text"
+							id="coupon-value"
+							value="NOVASPIZZA"
+							style={{
+								textAlign: "center",
+								borderColor: copied ? "green" : "red",
+							}}
+						/>
+						<button
+							type="submit"
+							onClick={handleCopy}
+							style={{
+								backgroundColor: copied ? "green" : "",
+							}}
+						>
+							{copied ? "Copied" : "Copy"}
+						</button>
+					</div>
+				)}
 
 				<p className="small">
 					*By completing this form you are subscribing to our emails
 					and can unsubscribe anytime.
 				</p>
-
-				{/* <button onClick={() => setShowPopUp(false)}>close</button> */}
 			</div>
 		</div>
 	);
