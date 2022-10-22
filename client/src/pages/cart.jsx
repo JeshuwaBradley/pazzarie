@@ -140,7 +140,7 @@ const Cart = () => {
 				.then((response) => {
 					let distance =
 						response.data.rows[0].elements[0].distance.value;
-					if (distance > 4828) {
+					if (distance > 5632.7) {
 						setError(true);
 						setDeliver();
 						let input = document.getElementById("deliver");
@@ -214,14 +214,16 @@ const Cart = () => {
 	};
 
 	const calcDeliveryFee = (distance) => {
-		if (distance <= 5632.7) {
-			return 6.99;
-		} else {
-			let initialCharge = 6.99;
-			let secondHalf = ((distance - 1609) / 804) * 1.5;
-			let finalCharge = initialCharge + secondHalf;
-			return finalCharge;
-		}
+		// if (distance <= 5632.7) {
+		// 	return 6.99;
+		// } else {
+		// 	let initialCharge = 6.99;
+		// 	let secondHalf = ((distance - 1609) / 804) * 1.5;
+		// 	let finalCharge = initialCharge + secondHalf;
+		// 	return finalCharge;
+		// }
+		let finalCharge = 5.99;
+		return finalCharge;
 	};
 
 	const handleDelete = (x) => {
@@ -244,7 +246,7 @@ const Cart = () => {
 		if (cart.discount !== 0 && code !== "NOVASPIZZA") {
 			dispatch(removeCoupon());
 		}
-		console.log(cart.discount);
+		// console.log(cart.discount);
 		// setCoupon(code);
 	};
 
@@ -264,7 +266,6 @@ const Cart = () => {
 				orderItems: orderItems,
 				total: total,
 			};
-			console.log(x);
 			axios
 				.post("/api/order/", { ...x })
 				.then((response) => {
