@@ -113,7 +113,7 @@ const Menu = () => {
 				<div className="menu-tabs">
 					{pizza ? (
 						<div className="tab" id="pizza-tab">
-							<div className="tab-title">
+							{/* <div className="tab-title">
 								<h2>Create Your Own Pizza</h2>
 								<div className="underline menu"></div>
 							</div>
@@ -136,7 +136,7 @@ const Menu = () => {
 										</Link>
 									</div>
 								</div>
-							</div>
+							</div> */}
 							<div className="tab-title">
 								<h2>Traditional Pizzas</h2>
 								<div className="underline menu"></div>
