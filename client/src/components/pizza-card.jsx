@@ -5,7 +5,7 @@ import { addProduct } from "../redux/cartSlice";
 const PizzaCard = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
-	const [size, setSize] = useState(1);
+	const [size, setSize] = useState(0);
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
@@ -72,7 +72,7 @@ const PizzaCard = ({ item }) => {
 	};
 
 	const handleCart = () => {
-		// console.log({ ...item, extras, price, quantity, size, crust });
+		console.log({ ...item, extras, price, quantity, size, crust });
 		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
 		handleClose();
 		alert("Product added to cart");
@@ -171,7 +171,7 @@ const PizzaCard = ({ item }) => {
 									<option value="Classic hand toasted">
 										Classic pan tossed
 									</option>
-									<option value="Wheat this crust">
+									<option value="thin crust">
 										Thin crust
 									</option>
 								</select>
