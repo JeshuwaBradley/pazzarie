@@ -8,7 +8,7 @@ const sendMail = () => {
     let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         auth: {
-            type: "login"
+            type: "login",
             user: process.env.EMAIL,
             pass: process.env.PASSWORD,
         },
