@@ -171,14 +171,20 @@ const Cart = () => {
 	const orderItems = [];
 	cart.products.forEach((product) => {
 		let itemName = product.itemTitle;
-		let size =
-			product.size == 0
-				? "small"
-				: product.size == 1
-				? "medium"
-				: product.size == 2
-				? "large"
-				: "";
+		let size;
+		if (product.category === "pizza") {
+			size =
+				product.size == 0 ? "small" : product.size == 1 ? "large" : "";
+		} else {
+			size =
+				product.size == 0
+					? "small"
+					: product.size == 1
+					? "medium"
+					: product.size == 2
+					? "large"
+					: "";
+		}
 		let quantity = product.quantity;
 		let itemPrice = product.price.toFixed(2);
 		let itemTotal = (product.price * product.quantity).toFixed(2);

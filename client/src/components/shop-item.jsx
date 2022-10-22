@@ -40,19 +40,32 @@ const Modal = ({ order, setOpen }) => {
 				</div>
 				<div className="shop-modal-row-main">
 					{order.orderItems?.map((item, i) => (
-						<div className="shop-modal-row" key={i}>
-							<div>Item Name: {item.itemName}</div>
-							<div>Item Size: {item.size}</div>
+						<div className="shop-modal-row-item" key={i}>
+							<div>
+								Item Name:{" "}
+								<span className="bold">{item.itemName}</span>
+							</div>
+							<div>
+								Item Size:{" "}
+								<span className="bold">{item.size}</span>
+							</div>
+							<div className="">
+								Item Crust:{" "}
+								<span className="bold">{item.crust}</span>
+							</div>
 							<div>
 								Extras:{" "}
 								{item?.extras?.map((extra, i) => (
 									<span key={i}>
-										{extra}
+										<span className="bold">{extra}</span>
 										{", "}
 									</span>
 								))}
 							</div>
-							<div>Quantity: {item.quantity}</div>
+							<div>
+								Quantity:{" "}
+								<span className="bold">{item.quantity}</span>
+							</div>
 						</div>
 					))}
 				</div>
