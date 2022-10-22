@@ -25,11 +25,6 @@ const Contact = () => {
 			});
 	};
 
-	let title = "Contact Us | Nova's Pizza";
-	useEffect(() => {
-		document.title = title;
-	});
-
 	return (
 		<div>
 			<Navbar />

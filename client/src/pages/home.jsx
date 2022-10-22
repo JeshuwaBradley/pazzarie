@@ -45,13 +45,6 @@ const Home = () => {
 		}
 	}
 
-	//set the title of homepage
-
-	let title = "Home | Nova's Pizza";
-	useEffect(() => {
-		document.title = title;
-	});
-
 	return (
 		<div className="">
 			<Navbar />
