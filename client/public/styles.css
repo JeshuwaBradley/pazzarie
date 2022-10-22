@@ -2662,6 +2662,12 @@ h2.large-title {
 	color: #212527;
 }
 
+.shop-modal-row-main {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .shop-modal-row {
 	display: flex;
 	flex-direction: column;

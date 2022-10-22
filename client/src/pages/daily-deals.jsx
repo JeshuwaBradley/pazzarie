@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 const DailyDeals = () => {
-	let title = "Deals | Nova's Pizza";
-	useEffect(() => {
-		document.title = title;
-	});
 	return (
 		<div>
 			<Navbar />

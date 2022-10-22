@@ -16,11 +16,6 @@ import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 
 const Cart = () => {
-	let title = "Cart | Nova's Pizza";
-	useEffect(() => {
-		document.title = title;
-	});
-
 	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
 	const [deliver, setDeliver] = useState(false);
