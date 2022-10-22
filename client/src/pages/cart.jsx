@@ -183,12 +183,14 @@ const Cart = () => {
 		let itemPrice = product.price.toFixed(2);
 		let itemTotal = (product.price * product.quantity).toFixed(2);
 		let extras = [];
+		let crust = product.crust;
 		product.extras.map((item) => {
 			extras.push(item.text);
 		});
 		orderItems.push({
 			itemName: itemName,
 			size: size,
+			crust: crust,
 			quantity: quantity,
 			itemPrice: itemPrice,
 			itemTotal: itemTotal,

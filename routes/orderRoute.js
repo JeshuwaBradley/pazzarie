@@ -5,19 +5,24 @@ const nodemailer = require("nodemailer")
 //create 
 
 const sendMail = () => {
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        auth: {
-            type: "login",
-            user: process.env.EMAIL,
-            pass: process.env.PASSWORD,
-        },
-    })
-    let mailOptions = {
-        from: 'jeshuwabradley@gmail.com',
-        to: "eco.products.slc@gmail.com",
-        subject: `The subject goes here`,
-        html: `<body class="clean-body" style="
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    auth: {
+      // type: "login",
+      // user: process.env.EMAIL,
+      // pass: process.env.PASSWORD,
+      type: "OAuth2",
+      user: process.env.EMAIL,
+      clientId: "...",
+      clientSecret: "..",
+      refreshToken: "..."
+    },
+  })
+  let mailOptions = {
+    from: 'jeshuwabradley@gmail.com',
+    to: "eco.products.slc@gmail.com",
+    subject: `The subject goes here`,
+    html: `<body class="clean-body" style="
         margin: 0;
         padding: 0;
         -webkit-text-size-adjust: 100%;
@@ -1828,72 +1833,72 @@ const sendMail = () => {
        </table>
      </body>
      `,
-    };
-    transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(info)
-        }
-    });
+  };
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(info)
+    }
+  });
 }
 
 router.post('/', async (req, res) => {
-    const newOrder = new Order(req.body);
-    try {
-        const saved = await newOrder.save();
-        res.status(200).json(saved);
-        sendMail()
-    } catch (error) {
-        res.status(500).json(error);
-    }
+  const newOrder = new Order(req.body);
+  try {
+    const saved = await newOrder.save();
+    res.status(200).json(saved);
+    // sendMail()
+  } catch (error) {
+    res.status(500).json(error);
+  }
 })
 
 //get all orders
 
 router.get('/find', async (req, res) => {
-    try {
-        const orders = await Order.find().sort({ createdAt: -1 });
-        res.status(200).json(orders);
-    } catch (error) {
-        res.status(500).json(error)
-    }
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json(error)
+  }
 })
 
 //get one order
 
 router.get("/find/:id", async (req, res) => {
-    try {
-        const order = await Order.findById(req.params.id)
-        res.status(200).json(order)
-    } catch (error) {
-        res.status(500).json(error)
-    }
+  try {
+    const order = await Order.findById(req.params.id)
+    res.status(200).json(order)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 })
 
 //find orders according to shop
 
 router.get("/find-shop/:id", async (req, res) => {
-    let query = { shop: req.params.id }
-    try {
-        const orders = await Order.find(query).sort({ createdAt: -1 })
-        res.status(200).json(orders)
-    } catch (error) {
-        console.log(error)
-        res.status(error.response.status).json(error)
-    }
+  let query = { shop: req.params.id }
+  try {
+    const orders = await Order.find(query).sort({ createdAt: -1 })
+    res.status(200).json(orders)
+  } catch (error) {
+    console.log(error)
+    res.status(error.response.status).json(error)
+  }
 })
 
 
 //delete orders
 
 router.delete('/:id', async (req, res) => {
-    try {
-        await Order.findByIdAndDelete(req.params.id)
-        res.status(200).json(`Order ${req.params.id} has been deleted...`)
-    } catch (error) {
-        res.status(500).json(error)
-    }
+  try {
+    await Order.findByIdAndDelete(req.params.id)
+    res.status(200).json(`Order ${req.params.id} has been deleted...`)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 })
 
 //update orders

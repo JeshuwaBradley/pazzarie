@@ -8,7 +8,7 @@ const PizzaCard = ({ item }) => {
 	const [size, setSize] = useState(1);
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
-	const [crust, setCrust] = useState("Cheese Burnt");
+	const [crust, setCrust] = useState("classic-pan-tossed");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -44,6 +44,10 @@ const PizzaCard = ({ item }) => {
 
 	const handleCrust = (value) => {
 		setCrust(value);
+		const checked = value.target.checked;
+		if (checked) {
+			setCrust(value.target.value);
+		}
 	};
 
 	const handleChange = (e, option) => {
@@ -68,7 +72,8 @@ const PizzaCard = ({ item }) => {
 	};
 
 	const handleCart = () => {
-		dispatch(addProduct({ ...item, extras, price, quantity, size }));
+		// console.log({ ...item, extras, price, quantity, size, crust });
+		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
 		handleClose();
 		alert("Product added to cart");
 	};
@@ -164,7 +169,7 @@ const PizzaCard = ({ item }) => {
 									}
 								>
 									<option value="Classic hand toasted">
-										Classic hand tossed
+										Classic pan tossed
 									</option>
 									<option value="Wheat this crust">
 										Thin crust
@@ -219,6 +224,33 @@ const PizzaCard = ({ item }) => {
 							<p className="detail-description">
 								{item.itemDesc}
 							</p>
+						</div>
+						<div className="detail-item">
+							<h3>Choose the crust</h3>
+							<form onChange={(e) => handleCrust(e.target.value)}>
+								<div>
+									<input
+										type="radio"
+										name="size"
+										id="classic-pan-tossed"
+										value="classic-pan-tossed"
+									/>
+									<label htmlFor="classic-pan-tossed">
+										Classic Pan Tossed
+									</label>
+								</div>
+								<div>
+									<input
+										type="radio"
+										name="size"
+										id="thin-crust"
+										value="thin-crust"
+									/>
+									<label htmlFor="thin-crust">
+										Thin Crust
+									</label>
+								</div>
+							</form>
 						</div>
 						{item?.itemPrices !== 0 ? (
 							<div className="detail-item">

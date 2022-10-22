@@ -42,6 +42,10 @@ const OrderSchema = new mongoose.Schema(
                         required: true,
                         maxlength: 60,
                     },
+                    crust: {
+                        type: String,
+                        maxlength: 60,
+                    },
                     quantity: {
                         type: Number,
                         required: true,
