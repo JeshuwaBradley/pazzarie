@@ -46,6 +46,10 @@ const OrderSchema = new mongoose.Schema(
                         type: String,
                         maxlength: 60,
                     },
+                    specialNotes: {
+                        type: String,
+                        maxlength: 200,
+                    },
                     quantity: {
                         type: Number,
                         required: true,
