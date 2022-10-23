@@ -750,7 +750,7 @@ video#bgvideo {
 	align-items: center;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	max-height: 650px;
+	/* max-height: 650px; */
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
@@ -769,7 +769,6 @@ video#bgvideo {
 	margin-top: -270px;
 	margin-left: -480px;
 }
-
 .modal-left {
 	display: flex;
 	align-items: center;
@@ -784,13 +783,11 @@ video#bgvideo {
 	padding: 20px;
 	height: 100%;
 }
-
 .modal-left img {
 	max-width: 100%;
 	max-height: 100%;
 	object-fit: contain !important;
 }
-
 .modal-close {
 	position: absolute;
 	top: 20px;
@@ -800,11 +797,9 @@ video#bgvideo {
 	transition: all 250ms ease-in-out;
 	z-index: 3;
 }
-
 .modal-close:hover {
 	color: #212527;
 }
-
 .detail {
 	color: #000 !important;
 	height: 95%;
@@ -813,7 +808,6 @@ video#bgvideo {
 	justify-content: center;
 	flex-direction: column;
 }
-
 .detail-item {
 	flex: 1;
 	display: flex;
@@ -821,28 +815,23 @@ video#bgvideo {
 	justify-content: center;
 	flex-direction: column;
 }
-
 .detail-item div {
 	margin-left: 5px;
 	margin-bottom: 5px;
 }
-
 .detail-item form {
 	display: flex;
 	flex-wrap: wrap;
 }
-
 .detail-item label {
 	margin-left: 3px;
 	margin-right: 10px;
 }
-
 .detail-item h3 {
 	font-size: 18px;
 	font-weight: 500;
 	margin-bottom: 10px;
 }
-
 .detail-item input[type="number"] {
 	font-size: 18px;
 	font-weight: 600;
@@ -850,24 +839,20 @@ video#bgvideo {
 	padding: 5px 10px;
 	text-align: center;
 }
-
 .detail-item input::-webkit-outer-spin-button,
 .detail-item input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
-
 .detail-item input[type="number"] {
 	-moz-appearance: textfield;
 }
-
 .detail-item.quantity-box {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: row-reverse;
 }
-
 .quantity-box span {
 	padding: 8px 12px;
 	margin-left: 10px;
@@ -879,17 +864,14 @@ video#bgvideo {
 	border-radius: 5px;
 	cursor: pointer;
 }
-
 .quantity-box p {
 	padding: 8px 10px;
 	width: 15px;
 	text-align: center;
 }
-
 .quantity-box span:last-child {
 	padding: 8px 14px;
 }
-
 .detail-title {
 	text-transform: uppercase;
 	margin-bottom: 10px;
@@ -913,7 +895,6 @@ video#bgvideo {
 	font-weight: bold;
 	transition: all 250ms ease-in-out;
 }
-
 .detail-bagBtn-disabled {
 	pointer-events: none;
 	opacity: 0.5;
@@ -926,7 +907,8 @@ video#bgvideo {
 	}
 	.modal-content {
 		grid-template-columns: repeat(1, 1fr) !important;
-		height: fit-content;
+		/* height: fit-content; */
+		height: 92vh;
 		width: 90vw;
 		max-width: 90vw;
 	}
@@ -937,8 +919,9 @@ video#bgvideo {
 		z-index: 1001;
 		top: 50%;
 		left: 50%;
-		margin-top: -300px;
+		margin-top: -42vh;
 		margin-left: -45vw;
+		overflow-y: scroll;
 	}
 	.modal-left {
 		height: 200px;
@@ -947,13 +930,12 @@ video#bgvideo {
 	.modal-left {
 		padding: 25px 20px;
 	}
+	.modal-right {
+		padding-bottom: 30px;
+	}
 	.detail {
 		height: 100%;
 	}
-
-	/* .detail-item {
-		padding: 5px 1px;
-	} */
 }
 
 /*----------------------------- product List  ---------------------------*/
