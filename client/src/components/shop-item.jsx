@@ -66,12 +66,6 @@ const Modal = ({ order, setOpen }) => {
 								Quantity:{" "}
 								<span className="bold">{item.quantity}</span>
 							</div>
-							<div>
-								Special Notes:{" "}
-								<span className="bold">
-									{item.specialNotes}
-								</span>
-							</div>
 						</div>
 					))}
 				</div>

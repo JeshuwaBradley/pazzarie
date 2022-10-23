@@ -9,7 +9,6 @@ const PizzaCard = ({ item }) => {
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
-	const [notes, setNotes] = useState("");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -51,10 +50,6 @@ const PizzaCard = ({ item }) => {
 		}
 	};
 
-	const handleNote = (e) => {
-		setNotes(e.target.value);
-	};
-
 	const handleChange = (e, option) => {
 		const checked = e.target.checked;
 		if (checked) {
@@ -78,9 +73,7 @@ const PizzaCard = ({ item }) => {
 
 	const handleCart = () => {
 		console.log({ ...item, extras, price, quantity, size, crust });
-		dispatch(
-			addProduct({ ...item, extras, price, quantity, size, crust, notes })
-		);
+		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
 		handleClose();
 		alert("Product added to cart");
 	};
@@ -321,19 +314,6 @@ const PizzaCard = ({ item }) => {
 						) : (
 							""
 						)}
-						<div className="detail-item messsage-area">
-							<h3>Notes for the kitchen</h3>
-							<form action="">
-								<textarea
-									name=""
-									id=""
-									cols="30"
-									rows="2"
-									style={{ resize: "none" }}
-									onChange={handleNote}
-								></textarea>
-							</form>
-						</div>
 						<div className="detail-item quantity-box">
 							<span onClick={handleIncrease}>+</span>
 							<p>{quantity}</p>
