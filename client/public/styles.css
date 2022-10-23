@@ -908,7 +908,7 @@ video#bgvideo {
 	.modal-content {
 		grid-template-columns: repeat(1, 1fr) !important;
 		/* height: fit-content; */
-		height: 92vh;
+		height: 75vh;
 		width: 90vw;
 		max-width: 90vw;
 	}
@@ -919,7 +919,7 @@ video#bgvideo {
 		z-index: 1001;
 		top: 50%;
 		left: 50%;
-		margin-top: -42vh;
+		margin-top: -47vh;
 		margin-left: -45vw;
 		overflow-y: scroll;
 	}
