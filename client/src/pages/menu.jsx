@@ -6,7 +6,6 @@ import CardSimple from "../components/cardSimple";
 import PizzaCard from "../components/pizza-card";
 import SaladCard from "../components/salad-card";
 import { Link } from "react-router-dom";
-import AppetizerCard from "../components/appetizer-card";
 
 const Menu = () => {
 	const [pizza, setPizza] = useState(true);
@@ -184,7 +183,7 @@ const Menu = () => {
 								{appetizerItems.length !== 0
 									? appetizerItems.map((item, i) => {
 											return (
-												<AppetizerCard
+												<CardSimple
 													item={item}
 													key={i}
 												/>

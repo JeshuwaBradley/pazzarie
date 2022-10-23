@@ -9,7 +9,6 @@ const SaladCard = ({ item }) => {
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("Cheese Burnt");
-	const [notes, setNotes] = useState("");
 	const dispatch = useDispatch();
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
@@ -45,9 +44,6 @@ const SaladCard = ({ item }) => {
 	const handleCrust = (value) => {
 		setCrust(value);
 	};
-	const handleNote = (e) => {
-		setNotes(e.target.value);
-	};
 
 	const handleChange = (e, option) => {
 		const checked = e.target.checked;
@@ -71,7 +67,7 @@ const SaladCard = ({ item }) => {
 	};
 
 	const handleCart = () => {
-		dispatch(addProduct({ ...item, extras, price, notes, quantity, size }));
+		dispatch(addProduct({ ...item, extras, price, quantity, size }));
 		handleClose();
 		alert("Product added to cart");
 	};
@@ -315,25 +311,22 @@ const SaladCard = ({ item }) => {
 						) : (
 							""
 						)}
-						<div className="detail-item messsage-area">
-							<h3>Notes for the kitchen:</h3>
-							<form>
-								<textarea
-									name=""
-									id=""
-									cols="30"
-									rows="2"
-									style={{ resize: "none" }}
-									onChange={handleNote}
-								></textarea>
-							</form>
-						</div>
 						<div className="detail-item quantity-box">
 							<span onClick={handleIncrease}>+</span>
 							<p>{quantity}</p>
 							<span onClick={handleDecrease}>-</span>
 						</div>
-
+						<div className="detail-item messsage-area">
+							<h3>Additionally:</h3>
+							<form>
+								<textarea
+									name=""
+									id=""
+									cols="40"
+									rows="3"
+								></textarea>
+							</form>
+						</div>
 						<div className="detail-item">
 							<p className="detail-price">$ {price.toFixed(2)}</p>
 						</div>

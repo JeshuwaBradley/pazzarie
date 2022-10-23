@@ -190,7 +190,6 @@ const Cart = () => {
 		let itemTotal = (product.price * product.quantity).toFixed(2);
 		let extras = [];
 		let crust = product.crust;
-		let specialNotes = product.notes;
 		product.extras.map((item) => {
 			extras.push(item.text);
 		});
@@ -198,7 +197,6 @@ const Cart = () => {
 			itemName: itemName,
 			size: size,
 			crust: crust,
-			specialNotes: specialNotes,
 			quantity: quantity,
 			itemPrice: itemPrice,
 			itemTotal: itemTotal,

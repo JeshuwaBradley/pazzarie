@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
     const email = req.body;
     const coupon = createCode();
     const newEmail = new Email({ ...email, coupon: coupon })
+    console.log(email)
     try {
         const saved = await newEmail.save()
         res.status(200).json(saved)

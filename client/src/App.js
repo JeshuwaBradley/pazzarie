@@ -42,8 +42,7 @@ function App() {
             <Route path='/daily-deals' element={<DailyDeals />} />
             {/* {<Route path='/shop/:id' element={isShopAuthenticated ? <Shop /> : <ShopLogin />} />} */}
             <Route path='/shop/:id' element={<Shop />} />
-            <Route path='/admin' element={<Admin />} />
-            {/* {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />} */}
+            {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />}
           </Routes>
         </AppContext.Provider>
       </BrowserRouter>
