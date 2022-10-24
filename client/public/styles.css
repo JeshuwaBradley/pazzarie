@@ -172,12 +172,17 @@ body {
 }
 
 .item .open-status {
-	color: #1ae224;
 	font-size: 20px;
 	font-weight: 600;
 	margin-right: 10px;
 }
 
+.open-status.open {
+	color: #1ae224;
+}
+.open-status.closed {
+	color: rgb(249, 248, 246);
+}
 .list {
 	padding: 0;
 	display: flex;
