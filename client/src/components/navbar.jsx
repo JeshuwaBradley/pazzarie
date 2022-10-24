@@ -17,6 +17,18 @@ const Navbar = () => {
 		const width = window.innerWidth;
 		setWindowWidth(width);
 	};
+
+	useEffect(() => {
+		const d = new Date();
+		let day = d.getDay();
+		let time = d.getHours();
+		if (day === 1 || (time >= 1 && time < 9)) {
+			setOpen(false);
+		} else {
+			setOpen(true);
+		}
+	}, []);
+
 	const quantity = useSelector((state) => state.cart.quantity);
 	if (width > 900) {
 		return (
@@ -26,7 +38,7 @@ const Navbar = () => {
 						<div className="left">
 							<div className="item">
 								<ul className="list">
-									<Link to="/">
+									<Link to="/" title="Home">
 										<li className="listItem">
 											<i
 												className="fa fa-home fa-lg"
@@ -34,15 +46,15 @@ const Navbar = () => {
 											></i>
 										</li>
 									</Link>
-									<Link to="/menu">
+									<Link to="/menu" title="Menu">
 										<li className="listItem">Menu</li>
 									</Link>
-									<Link to="/daily-deals">
+									<Link to="/daily-deals" title="Daily Deals">
 										<li className="listItem">
 											Deal of the day
 										</li>
 									</Link>
-									<Link to="/contact">
+									<Link to="/contact" title="Contact">
 										<li className="listItem">Contact</li>
 									</Link>
 								</ul>
@@ -61,17 +73,20 @@ const Navbar = () => {
 								className="item"
 								onClick={() => setList(!list)}
 							>
-								<span className="open-status open"> Open </span>{" "}
+								{open ? (
+									<span className="open-status open">
+										Open
+									</span>
+								) : (
+									<span className="open-status closed">
+										Closed
+									</span>
+								)}
+
 								<span>9:00AM - 1:00AM</span>
 								{list ? (
 									<div className="nav-list-open">
 										<ul>
-											<li>
-												<div className="nav-list-item">
-													<h3>Monday</h3>
-													<span>9:00AM - 1:00AM</span>
-												</div>
-											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Tuesday</h3>
@@ -115,7 +130,7 @@ const Navbar = () => {
 								)}
 							</div>
 							<div className="item">
-								<Link to="/cart">
+								<Link to="/cart" title="Cart">
 									<div className="cart">
 										<img
 											src="/img/cart.png"

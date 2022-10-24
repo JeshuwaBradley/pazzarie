@@ -9,29 +9,43 @@ const AdminLogin = () => {
 	const [email, setEmail] = useState(null);
 	const [password, setPassword] = useState(null);
 	const [error, setError] = useState(false);
+	const [view, setView] = useState(true);
 
-	const handleClick = async () => {
-		try {
-			await axios
-				.post("http://localhost:5000/api/auth/login", {
-					email: email,
-					password: password,
-				})
-				.then((res) => {
-					if (res.data.isAdmin === true) {
-						userAdminHasAuthenticated(true);
-						navigate("/admin");
-					} else {
-						setError(true);
-					}
-				})
-				.catch((error) => {
-					console.log(error);
-					setError(true);
-				});
-		} catch (error) {
-			setError(true);
+	const viewPassword = () => {
+		setView(!view);
+		let x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
 		}
+	};
+
+	// const handleClick = async () => {
+	// 	try {
+	// 		await axios
+	// 			.post("http://localhost:5000/api/auth/login", {
+	// 				email: email,
+	// 				password: password,
+	// 			})
+	// 			.then((res) => {
+	// 				if (res.data.isAdmin === true) {
+	// 					userAdminHasAuthenticated(true);
+	// 					navigate("/admin");
+	// 				} else {
+	// 					setError(true);
+	// 				}
+	// 			})
+	// 			.catch((error) => {
+	// 				console.log(error);
+	// 				setError(true);
+	// 			});
+	// 	} catch (error) {
+	// 		setError(true);
+	// 	}
+	// };
+	const handleClick = () => {
+		viewPassword();
 	};
 
 	return (
@@ -47,6 +61,7 @@ const AdminLogin = () => {
 				<input
 					placeholder="password"
 					type="password"
+					id="password"
 					className="admin-login-input"
 					onChange={(e) => setPassword(e.target.value)}
 				/>
