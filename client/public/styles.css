@@ -1082,7 +1082,7 @@ video#bgvideo {
 	flex-direction: column;
 }
 
-.text-row h3 {
+.text-row h1 {
 	font-size: 35px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -1092,7 +1092,7 @@ video#bgvideo {
 	margin-left: 20px;
 }
 
-.text-row p {
+.text-row h2 {
 	font-size: 25px;
 	font-weight: 300;
 	letter-spacing: 1px;
@@ -1135,7 +1135,7 @@ video#bgvideo {
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	.text-row h3 {
+	.text-row h1 {
 		font-size: 23px;
 		font-weight: 600;
 		margin-bottom: 20px;
@@ -1143,7 +1143,7 @@ video#bgvideo {
 		margin-left: 20px;
 		margin-top: 20px;
 	}
-	.text-row p {
+	.text-row h2 {
 		font-size: 18px;
 		margin-bottom: 20px;
 	}

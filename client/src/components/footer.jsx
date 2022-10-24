@@ -29,7 +29,7 @@ const Footer = () => {
 									cursor: "pointer",
 								}}
 							>
-								<i class="fa fa-brands fa-yelp"></i>
+								<i className="fa fa-brands fa-yelp"></i>
 							</span>
 						</a>
 					</div>
@@ -48,6 +48,9 @@ const Footer = () => {
 				<div className="links-container">
 					<div className="links-main">
 						<div className="links">
+							<Link to="/" title="Home">
+								Home
+							</Link>
 							<Link to="/about-us" title="About Us">
 								About Us
 							</Link>
