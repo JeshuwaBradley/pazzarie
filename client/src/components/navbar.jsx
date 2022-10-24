@@ -69,6 +69,17 @@ const Navbar = () => {
 							/>
 						</div>
 						<div className="right">
+							<div className="item">
+								<a
+									href="tel:5108419378"
+									style={{
+										textDecoration: "none",
+										color: "white",
+									}}
+								>
+									(510) 841-9378
+								</a>
+							</div>
 							<div
 								className="item"
 								onClick={() => setList(!list)}

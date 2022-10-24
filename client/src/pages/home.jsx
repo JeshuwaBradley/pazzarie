@@ -54,16 +54,16 @@ const Home = () => {
 				<div className="row">
 					<div className="row-item"></div>
 					<div className="row-item text-row">
-						<h3>
+						<h1>
 							Nova's pizza proudly serves delicious, quality, and
 							authentic Italian pizza.
-						</h3>
+						</h1>
 					</div>
 				</div>
 				<div className="row">
 					<div className="row-item text-row">
-						<h3>The best pizza in town</h3>
-						<p>Get a taste of authentic Italian Pizza.</p>
+						<h1>The best pizza in town</h1>
+						<h2>Get a taste of authentic Italian Pizza.</h2>
 					</div>
 					<div className="row-item"></div>
 				</div>
