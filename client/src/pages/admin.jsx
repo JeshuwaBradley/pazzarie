@@ -103,8 +103,9 @@ const ProductItems = ({ currentProductItems, handleRefresh }) => {
 							<div className="products-desc">
 								<h3>{product.itemTitle}</h3>
 								<span>
-									Price: $ {product.itemPrices[0]["price"]} -{" "}
-									{product.itemPrices[1]["price"]}
+									{product.itemPrices.length > 1
+										? `Price: $ ${product?.itemPrices[0]["price"]} - ${product?.itemPrices[1]["price"]}`
+										: `Price: $ ${product.itemPrices[0]["price"]}`}
 								</span>
 							</div>
 							<div className="products-action">

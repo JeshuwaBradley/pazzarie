@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
 	const [width, setWindowWidth] = useState(0);
 	const [open, setOpen] = useState(false);
+	const [shopOpen, setShopOpen] = useState(false);
 	const [list, setList] = useState(false);
 	useEffect(() => {
 		updateDimensions();
@@ -23,9 +24,9 @@ const Navbar = () => {
 		let day = d.getDay();
 		let time = d.getHours();
 		if (day === 1 || (time >= 1 && time < 9)) {
-			setOpen(false);
+			setShopOpen(false);
 		} else {
-			setOpen(true);
+			setShopOpen(true);
 		}
 	}, []);
 
@@ -84,7 +85,7 @@ const Navbar = () => {
 								className="item"
 								onClick={() => setList(!list)}
 							>
-								{open ? (
+								{shopOpen ? (
 									<span className="open-status open">
 										Open
 									</span>

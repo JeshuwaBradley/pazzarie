@@ -9,6 +9,8 @@ import {
 	reset,
 	addCoupon,
 	removeCoupon,
+	addTip,
+	removeTip,
 } from "../redux/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -292,6 +294,12 @@ const Cart = () => {
 		stripeToken && makeRequest();
 	});
 
+	const handleTip = (amount) => {
+		let tip = (cart.subtotal * amount) / 100;
+		let tipFixed = Math.round(tip * 100) / 100;
+		dispatch(addTip(tipFixed));
+	};
+
 	return (
 		<div>
 			<Navbar />
@@ -434,34 +442,69 @@ const Cart = () => {
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Subtotal:
+										Subtotal
 									</div>
 									<div className="total-container-total">
-										$ {cart.subtotal.toFixed(2)}
+										${cart.subtotal.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Delivery Fee:
+										Sales-Tax
 									</div>
 									<div className="total-container-total">
-										$ {cart.deliveryCharges.toFixed(2)}
+										${cart.salesTax.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Sales-Tax:
+										Delivery Fee
 									</div>
 									<div className="total-container-total">
-										$ {cart.salesTax.toFixed(2)}
+										${cart.deliveryCharges.toFixed(2)}
 									</div>
 								</div>
 								<div className="total-container-inner">
 									<div className="total-container-text">
-										Total to pay:
+										Tip
 									</div>
 									<div className="total-container-total">
-										$ {cart.total.toFixed(2)}
+										${cart.tip.toFixed(2)}
+									</div>
+								</div>
+								<div className="total-container-inner tipping">
+									<div
+										className="tip"
+										onClick={() => handleTip(10)}
+									>
+										10%
+									</div>
+									<div
+										className="tip"
+										onClick={() => handleTip(15)}
+									>
+										15%
+									</div>
+									<div
+										className="tip"
+										onClick={() => handleTip(20)}
+									>
+										20%
+									</div>
+									<div
+										className="tip"
+										onClick={() => handleTip(25)}
+									>
+										25%
+									</div>
+									<div className="tip">Other</div>
+								</div>
+								<div className="total-container-inner">
+									<div className="total-container-text">
+										Total to pay
+									</div>
+									<div className="total-container-total">
+										${cart.total.toFixed(2)}
 									</div>
 								</div>
 							</div>
