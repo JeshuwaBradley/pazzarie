@@ -11,6 +11,7 @@ const cartSlice = createSlice({
         subtotal: 0,
         total: 0,
         discount: 0,
+        tip: 0,
     },
     reducers: {
         addProduct: (state, action) => {
@@ -53,8 +54,26 @@ const cartSlice = createSlice({
             state.subtotal = 0;
             state.total = 0;
         },
+        addTip: (state, action) => {
+            state.tip += action.payload;
+            state.total += action.payload;
+        },
+        removeTip: (state, action) => {
+            state.tip -= action.payload;
+            state.total -= action.payload;
+        }
     },
 });
 
-export const { addProduct, deleteProduct, addDelivery, deleteDelivery, reset, addCoupon, removeCoupon } = cartSlice.actions;
+export const {
+    addProduct,
+    deleteProduct,
+    addDelivery,
+    deleteDelivery,
+    reset,
+    addCoupon,
+    removeCoupon,
+    addTip,
+    removeTip
+} = cartSlice.actions;
 export default cartSlice.reducer;
