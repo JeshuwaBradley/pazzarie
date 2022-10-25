@@ -1,8 +1,53 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const Modal = ({ order, setOpen }) => {
 	const handleClose = () => {
 		setOpen(false);
+	};
+	const orderStatus = (status) => {
+		if (status === 0) {
+			return (status = "Ordered");
+		} else if (status === 1) {
+			return (status = "Ready");
+		} else if (status === 2) {
+			return (status = "Delivered");
+		}
+	};
+	const createDate = (data) => {
+		let date = new Date(data);
+		let year = date.getFullYear();
+		let month = date.getMonth();
+		let day = date.getDate();
+		let hour = date.getHours();
+		let min = date.getMinutes();
+		return `${hour}:${min} - ${day}/${month}/${year}`;
+	};
+	const handleUpdateReady = async (id) => {
+		try {
+			const res = await axios.put(`/api/order/status/${id}`, {
+				status: 1,
+			});
+			if (res.status === 200) {
+				setOpen(false);
+			}
+			console.log(res.status);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleUpdateDelivered = async (id) => {
+		try {
+			const res = await axios.put(`/api/order/status/${id}`, {
+				status: 2,
+			});
+			if (res.status === 200) {
+				setOpen(false);
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	return (
 		<>
@@ -14,15 +59,33 @@ const Modal = ({ order, setOpen }) => {
 				></i>
 				<div className="shop-modal-row first">
 					<div className="shop-modal-column">
-						<div>Order ID : {order._id}</div>
-						<div>Shop No: : {order.shop}</div>
+						<div>
+							Order ID : <span className="bold">{order._id}</span>
+						</div>
+						<div>
+							Shop No: <span className="bold">{order.shop}</span>
+						</div>
+						<div>
+							Time/Date:
+							<span className="bold">
+								{createDate(order.createdAt)}
+							</span>
+						</div>
 					</div>
 					<div className="shop-modal-column">
-						<div>Customer : {order.customer}</div>
-						<div>Customer Phone: {order.mobile}</div>
 						<div>
-							Items Deliver:{" "}
-							{order.deliver === true ? "Deliver" : "Pickup"}
+							Customer Name:
+							<span className="bold">{order.customer}</span>
+						</div>
+						<div>
+							Customer Phone:
+							<span className="bold">{order.mobile}</span>
+						</div>
+						<div>
+							Items Deliver:
+							<span className="bold">
+								{order.deliver === true ? "Deliver" : "Pickup"}
+							</span>
 						</div>
 						{order.deliver === true ? (
 							<div>
@@ -33,6 +96,7 @@ const Modal = ({ order, setOpen }) => {
 							""
 						)}
 						<div>No. of Items: {order.orderItems.length}</div>
+						<div>Order Status: {orderStatus(order.status)}</div>
 					</div>
 				</div>
 				<div className="shop-modal-row">
@@ -69,7 +133,32 @@ const Modal = ({ order, setOpen }) => {
 						</div>
 					))}
 				</div>
-				{console.log(order)}
+				{order.status !== 2 ? (
+					<div className="shop-modal-row buttons">
+						<div className="">
+							<label htmlFor="">Update order status:</label>
+							{order.status === 0 ? (
+								<button
+									onClick={() => handleUpdateReady(order._id)}
+								>
+									Ready
+								</button>
+							) : order.status === 1 ? (
+								<button
+									onClick={() =>
+										handleUpdateDelivered(order._id)
+									}
+								>
+									Delivered
+								</button>
+							) : (
+								""
+							)}
+						</div>
+					</div>
+				) : (
+					""
+				)}
 			</div>
 		</>
 	);
@@ -77,19 +166,30 @@ const Modal = ({ order, setOpen }) => {
 
 const ShopItem = ({ order }) => {
 	const [open, setOpen] = useState(false);
-	const orderStatus =
-		order.status === 0
-			? "Ordered"
-			: order.status === 1
-			? "Preparing"
-			: order.status === 2
-			? "Delivered"
-			: "";
+	const orderStatus = (status) => {
+		if (status === 0) {
+			return "Ordered";
+		} else if (status === 1) {
+			return "Ready";
+		} else if (status === 2) {
+			return "Delivered";
+		}
+	};
+
+	const createDate = (data) => {
+		let date = new Date(data);
+		let year = date.getFullYear();
+		let month = date.getMonth();
+		let day = date.getDate();
+		let hour = date.getHours();
+		let min = date.getMinutes();
+		return `${hour}:${min} - ${day}/${month}/${year}`;
+	};
 	return (
 		<React.Fragment>
 			<div className="shop-table-row" onClick={() => setOpen(true)}>
 				<div className="shop-table-row-id">
-					<p>{order._id.slice(0, 9)}</p>
+					<p>{createDate(order.createdAt)}</p>
 				</div>
 				<div className="shop-table-row-customer">
 					<p>{order.customer}</p>
@@ -101,7 +201,7 @@ const ShopItem = ({ order }) => {
 					<p>{order.deliver === true ? "Deliver" : "Pickup"}</p>
 				</div>
 				<div className="shop-table-row-status">
-					<p>{orderStatus}</p>
+					<p>{orderStatus(order.status)}</p>
 				</div>
 			</div>
 			{open ? <Modal order={order} setOpen={setOpen} /> : ""}

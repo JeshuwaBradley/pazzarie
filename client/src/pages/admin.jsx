@@ -6,7 +6,20 @@ import ReactPaginate from "react-paginate";
 import Topbar from "../components/admin-topbar";
 import Navbar from "../components/navbar";
 
-const OrderItems = ({ currentOrderItems }) => {
+const OrderItems = ({ currentOrderItems, handleRefresh }) => {
+	const handleDelete = (e) => {
+		let id = e;
+		axios
+			.delete(`/api/order/delete/${id}`)
+			.then((res) => {
+				if (res.status === 200) {
+					handleRefresh();
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 	return (
 		<>
 			{currentOrderItems &&
@@ -15,7 +28,7 @@ const OrderItems = ({ currentOrderItems }) => {
 						order.status === 0
 							? "Ordered"
 							: order.status === 1
-							? "Preparing"
+							? "Ready"
 							: order.status === 2
 							? "Delivered"
 							: "";
@@ -43,6 +56,7 @@ const OrderItems = ({ currentOrderItems }) => {
 										color: "#d1411e",
 										cursor: "pointer",
 									}}
+									onClick={() => handleDelete(order._id)}
 								>
 									<i
 										className="fa fa-trash"
@@ -57,55 +71,62 @@ const OrderItems = ({ currentOrderItems }) => {
 	);
 };
 
-const ProductItems = ({ currentProductItems }) => {
+const ProductItems = ({ currentProductItems, handleRefresh }) => {
 	const handleDelete = (product) => {
-		let id = product._id;
-		console.log(id);
+		let id = product;
 		axios
 			.delete(`/api/product/delete/${id}`)
 			.then((res) => {
-				console.log(`item ${id} deleted`);
+				if (res.status === 200) {
+					handleRefresh();
+				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
-	if (currentProductItems) {
-		currentProductItems.map((product, i) => (
-			<div className="products-table-body" key={i}>
-				<div className="products-image">
-					<img
-						src={product.imgSrc}
-						layout="fill"
-						objectfit="cover"
-						className="cart-item-image"
-						alt=""
-					/>
-				</div>
-				<div className="products-desc">
-					<h3>{product.itemTitle}</h3>
-					<span>
-						Price: $ {product.itemPrices[0]} -{" "}
-						{product.itemPrices[2]}
-					</span>
-				</div>
-				<div className="products-action">
-					<span
-						style={{
-							fontSize: "1.5em",
-							color: "#d1411e",
-							cursor: "pointer",
-						}}
-						onClick={() => handleDelete(product)}
-					>
-						<i className="fa fa-trash" aria-hidden="true"></i>
-					</span>
-				</div>
-			</div>
-		));
-	} else {
-		console.log("nothing was rendered");
-	}
+	return (
+		<>
+			{currentProductItems &&
+				currentProductItems.map((product, i) => {
+					return (
+						<div className="products-table-body" key={i}>
+							<div className="products-image">
+								<img
+									src={product.imgSrc}
+									layout="fill"
+									objectfit="cover"
+									className="cart-item-image"
+									alt=""
+								/>
+							</div>
+							<div className="products-desc">
+								<h3>{product.itemTitle}</h3>
+								<span>
+									Price: $ {product.itemPrices[0]["price"]} -{" "}
+									{product.itemPrices[1]["price"]}
+								</span>
+							</div>
+							<div className="products-action">
+								<span
+									style={{
+										fontSize: "1.5em",
+										color: "#d1411e",
+										cursor: "pointer",
+									}}
+									onClick={() => handleDelete(product._id)}
+								>
+									<i
+										className="fa fa-trash"
+										aria-hidden="true"
+									></i>
+								</span>
+							</div>
+						</div>
+					);
+				})}
+		</>
+	);
 };
 
 const Admin = () => {
@@ -286,11 +307,12 @@ const Admin = () => {
 									<h2>Action</h2>
 								</div>
 							</div>
-							{/* <ProductItems
+							<ProductItems
 								currentProductItems={currentProductItems}
-							/> */}
+								handleRefresh={handleProductRefresh}
+							/>
 						</>
-						{/* <ReactPaginate
+						<ReactPaginate
 							breakLabel="..."
 							nextLabel=">"
 							onPageChange={handleProductPageClick}
@@ -305,7 +327,7 @@ const Admin = () => {
 							previousLinkClassName="previous"
 							nextLinkClassName="next"
 							disabledClassName="disabled"
-						/> */}
+						/>
 					</div>
 				</div>
 				<div className="main-two-section-two">
@@ -355,7 +377,10 @@ const Admin = () => {
 									<h2>Action</h2>
 								</div>
 							</div>
-							<OrderItems currentOrderItems={currentOrderItems} />
+							<OrderItems
+								currentOrderItems={currentOrderItems}
+								handleRefresh={handleOrderRefresh}
+							/>
 						</>
 						<ReactPaginate
 							breakLabel="..."
