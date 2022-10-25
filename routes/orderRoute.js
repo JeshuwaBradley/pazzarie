@@ -1876,6 +1876,20 @@ router.get("/find/:id", async (req, res) => {
   }
 })
 
+
+//update order status
+
+router.put("/status/:id", async (req, res) => {
+  let orderId = req.params.id;
+  let updates = req.body
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(orderId, updates)
+    res.status(200).json(`Order ${req.params.id} has been updated...`)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 //find orders according to shop
 
 router.get("/find-shop/:id", async (req, res) => {
@@ -1892,10 +1906,11 @@ router.get("/find-shop/:id", async (req, res) => {
 
 //delete orders
 
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
+  let id = req.params.id
   try {
-    await Order.findByIdAndDelete(req.params.id)
-    res.status(200).json(`Order ${req.params.id} has been deleted...`)
+    const deletedOrder = await Order.findByIdAndDelete(id)
+    res.status(200).json(deletedOrder)
   } catch (error) {
     res.status(500).json(error)
   }
