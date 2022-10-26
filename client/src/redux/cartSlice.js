@@ -55,12 +55,12 @@ const cartSlice = createSlice({
             state.total = 0;
         },
         addTip: (state, action) => {
-            state.tip += action.payload;
-            state.total += action.payload;
+            state.tip = action.payload;
+            state.total += state.tip;
         },
         removeTip: (state, action) => {
-            state.tip -= action.payload;
-            state.total -= action.payload;
+            state.total -= state.tip;
+            state.tip = 0;
         }
     },
 });

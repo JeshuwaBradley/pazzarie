@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
+import TippingContainer from "../components/tipping-container";
 
 const Cart = () => {
 	const navigate = useNavigate();
@@ -294,12 +295,6 @@ const Cart = () => {
 		stripeToken && makeRequest();
 	});
 
-	const handleTip = (amount) => {
-		let tip = (cart.subtotal * amount) / 100;
-		let tipFixed = Math.round(tip * 100) / 100;
-		dispatch(addTip(tipFixed));
-	};
-
 	return (
 		<div>
 			<Navbar />
@@ -472,33 +467,7 @@ const Cart = () => {
 										${cart.tip.toFixed(2)}
 									</div>
 								</div>
-								<div className="total-container-inner tipping">
-									<div
-										className="tip"
-										onClick={() => handleTip(10)}
-									>
-										10%
-									</div>
-									<div
-										className="tip"
-										onClick={() => handleTip(15)}
-									>
-										15%
-									</div>
-									<div
-										className="tip"
-										onClick={() => handleTip(20)}
-									>
-										20%
-									</div>
-									<div
-										className="tip"
-										onClick={() => handleTip(25)}
-									>
-										25%
-									</div>
-									<div className="tip">Other</div>
-								</div>
+								<TippingContainer />
 								<div className="total-container-inner">
 									<div className="total-container-text">
 										Total to pay
