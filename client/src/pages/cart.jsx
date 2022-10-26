@@ -17,6 +17,7 @@ import { useState } from "react";
 import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import TippingContainer from "../components/tipping-container";
+import CartItem from "../components/cart-item";
 
 const Cart = () => {
 	const navigate = useNavigate();
@@ -340,79 +341,11 @@ const Cart = () => {
 											</div>
 										</div>
 										{cart?.products?.map((product, i) => (
-											<div className="cart-row" key={i}>
-												<div className="cart-column">
-													<img
-														src={product.imgSrc}
-														layout="fill"
-														objectfit="cover"
-														className="cart-item-image"
-														alt=""
-													/>
-												</div>
-												<div className="cart-column">
-													<span className="cart-name">
-														{product.itemTitle}
-													</span>
-												</div>
-												<div className="cart-column">
-													<div className="cart-extras">
-														{product.extras.map(
-															(extra) => (
-																<p
-																	key={
-																		extra._id
-																	}
-																>
-																	{extra.text}
-																	,
-																</p>
-															)
-														)}
-													</div>
-												</div>
-												<div className="cart-column">
-													<span className="cart-price">
-														$
-														{product.price.toFixed(
-															2
-														)}
-													</span>
-												</div>
-												<div className="cart-column">
-													<span className="cart-quantity">
-														{product.quantity}
-													</span>
-												</div>
-												<div className="cart-column">
-													<span className="cart-total">
-														$
-														{(
-															product.price *
-															product.quantity
-														).toFixed(2)}
-													</span>
-												</div>
-												<div className="cart-column">
-													<span
-														style={{
-															fontSize: "1.5em",
-															color: "#d1411e",
-															cursor: "pointer",
-														}}
-														onClick={() =>
-															handleDelete(
-																product
-															)
-														}
-													>
-														<i
-															className="fa fa-trash"
-															aria-hidden="true"
-														></i>
-													</span>
-												</div>
-											</div>
+											<CartItem
+												product={product}
+												handleDelete={handleDelete}
+												key={i}
+											/>
 										))}
 									</div>
 								)}
@@ -646,17 +579,6 @@ const Cart = () => {
 														/>
 													</div>
 												</div>
-
-												{/* <div className="form-item">
-													<button
-														className="checkout-button"
-														onClick={
-															handleDeliveryFee
-														}
-													>
-														Calculate Delivery Fee
-													</button>
-												</div> */}
 											</>
 										)}
 										{error ? (

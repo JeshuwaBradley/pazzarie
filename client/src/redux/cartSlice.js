@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { startTransition } from 'react';
 
 const cartSlice = createSlice({
     name: 'cart',

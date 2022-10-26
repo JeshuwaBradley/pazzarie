@@ -208,7 +208,7 @@ const CardSimple = ({ item }) => {
 				<div className="modal-left">
 					<img
 						className="modal-img"
-						alt=""
+						alt={item.itemTitle}
 						// src={`/img/${item.imgSrc}`}
 						src={
 							`${item.imgSrc}`.slice(0, 5) === "https"
