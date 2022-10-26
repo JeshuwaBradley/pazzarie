@@ -1827,6 +1827,10 @@ main {
 .total-container-inner.tipping {
 	padding: 10px 5px;
 }
+.total-container-inner.otherTip input {
+	width: 100%;
+	padding: 4px 6px;
+}
 
 .tipping .tip {
 	text-align: center;
@@ -1838,6 +1842,11 @@ main {
 	background-color: rgb(209, 209, 209);
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+.tip.on {
+	color: white;
+	background-color: #000;
 }
 
 .deliver-container {
