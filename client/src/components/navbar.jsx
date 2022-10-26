@@ -212,7 +212,7 @@ const Navbar = () => {
 									<>
 										Cart{"  "}
 										<i
-											class="fa fa-regular fa-angle-right"
+											className="fa fa-regular fa-angle-right"
 											style={{
 												marginLeft: "5px",
 											}}
@@ -222,7 +222,7 @@ const Navbar = () => {
 									<>
 										{quantity} Item in Cart{" "}
 										<i
-											class="fa fa-regular fa-angle-right"
+											className="fa fa-regular fa-angle-right"
 											style={{ marginLeft: "5px" }}
 										></i>
 									</>
@@ -230,7 +230,7 @@ const Navbar = () => {
 									<>
 										{quantity} Items in Cart{" "}
 										<i
-											class="fa fa-regular fa-angle-right"
+											className="fa fa-regular fa-angle-right"
 											style={{ marginLeft: "5px" }}
 										></i>
 									</>
