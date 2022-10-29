@@ -53,7 +53,7 @@ const DailyDeals = () => {
 						</div>
 					</div>
 					<div className="deal-details">
-						<h3>Get 2 Regular Servings</h3>
+						<h3>Get 2 Regular</h3>
 						<h3 className="item-name">Cheese Bread</h3>
 						<div className="style-4">
 							<div className="">
@@ -90,7 +90,7 @@ const DailyDeals = () => {
 						</div>
 					</div>
 					<div className="deal-details">
-						<h3>Get 3 Regular Servings</h3>
+						<h3>Get 3 Regular</h3>
 						<h3 className="item-name">Cheese Bread</h3>
 						<div className="style-4">
 							<div className="">
