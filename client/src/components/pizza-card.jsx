@@ -72,7 +72,6 @@ const PizzaCard = ({ item }) => {
 	};
 
 	const handleCart = () => {
-		console.log({ ...item, extras, price, quantity, size, crust });
 		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
 		handleClose();
 		alert("Product added to cart");

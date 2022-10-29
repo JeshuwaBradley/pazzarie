@@ -245,10 +245,17 @@ const Cart = () => {
 	};
 
 	const handleCouponCode = (e) => {
-		const code = e.target.value;
+		let code = e.target.value;
+		code = code.toString().toUpperCase();
 		if (cart.discount === 0) {
 			if (code === "NOVASPIZZA") {
-				dispatch(addCoupon());
+				dispatch(addCoupon(10));
+			}
+			if (code === "15DISCOUNT") {
+				dispatch(addCoupon(15));
+			}
+			if (code === "20DISCOUNT") {
+				dispatch(addCoupon(20));
 			}
 		}
 		if (cart.discount !== 0 && code !== "NOVASPIZZA") {
@@ -263,7 +270,7 @@ const Cart = () => {
 	};
 
 	useEffect(() => {
-		const handleOrder = (e) => {
+		const handleOrder = async (e) => {
 			let x = {
 				...inputs,
 				shop: shop,
@@ -271,15 +278,18 @@ const Cart = () => {
 				notes: notes,
 				promote: promote,
 				orderItems: orderItems,
+				tip: cart.tip,
+				discount: cart.discount,
 				total: total,
 			};
 			axios
 				.post("/api/order/", { ...x })
 				.then((response) => {
-					console.log(response);
-					dispatch(reset());
-					setLoading(false);
-					navigate(`/`);
+					if (response.status === 200) {
+						dispatch(reset());
+						setLoading(false);
+						navigate(`/`);
+					}
 				})
 				.catch((error) => {
 					console.log(error);
@@ -288,18 +298,20 @@ const Cart = () => {
 
 		const makeRequest = async () => {
 			setLoading(true);
-			try {
-				await axios.post("/api/checkout/payment", {
-					tokenId: stripeToken.id,
-					amount: total * 100,
-				});
+			const res = await axios.post("/api/checkout/payment", {
+				tokenId: stripeToken.id,
+				amount: total * 100,
+			});
+			if (res.status === 200) {
 				handleOrder();
-			} catch (error) {
-				console.log(error);
+			} else {
+				console.log(res);
 			}
 		};
-		stripeToken && makeRequest();
-	});
+		if (stripeToken) {
+			makeRequest();
+		}
+	}, [stripeToken]);
 
 	const handleNotesForKitchen = (notes) => {
 		setNotes(notes);
