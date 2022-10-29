@@ -31,7 +31,6 @@ const Cart = () => {
 	const [deliverySet, setDeliverySet] = useState(false);
 	const [notes, setNotes] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [deal, setDeal] = useState(false);
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -516,26 +515,23 @@ const Cart = () => {
 												/>
 											</div>
 										</div>
-										{deal ? null : (
-											<div className="form-item">
-												<div className="form-label">
-													<label htmlFor="mobile">
-														Coupon Code:
-													</label>
-												</div>
-												<div className="form-input">
-													<input
-														type="text"
-														name="mobile"
-														placeholder="Coupon Code"
-														onChange={(e) =>
-															handleCouponCode(e)
-														}
-													/>
-												</div>
+										<div className="form-item">
+											<div className="form-label">
+												<label htmlFor="mobile">
+													Coupon Code:
+												</label>
 											</div>
-										)}
-
+											<div className="form-input">
+												<input
+													type="text"
+													name="mobile"
+													placeholder="Coupon Code"
+													onChange={(e) =>
+														handleCouponCode(e)
+													}
+												/>
+											</div>
+										</div>
 										{deliver && (
 											<>
 												<div className="form-item">

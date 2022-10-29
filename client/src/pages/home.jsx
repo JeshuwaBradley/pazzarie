@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import PizzaCard from "../components/pizza-card";
 import Popup from "../components/popup";
+import HomeDeal from "../components/deal-home";
 
 const Home = () => {
 	const [data, setData] = useState(null);
@@ -68,6 +69,7 @@ const Home = () => {
 					<div className="row-item"></div>
 				</div>
 			</div>
+			<HomeDeal />
 			<div className="productList">
 				<div className="productList-title-container">
 					<h2 className="productList-title">Today's Specials</h2>
