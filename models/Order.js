@@ -13,12 +13,10 @@ const OrderSchema = new mongoose.Schema(
         },
         email: {
             type: String,
-            required: true,
             maxlength: 100,
         },
         mobile: {
             type: String,
-            required: true,
             maxlength: 100,
         },
         orderItems: {
@@ -69,6 +67,10 @@ const OrderSchema = new mongoose.Schema(
         deliver: {
             type: Boolean,
             required: true,
+        },
+        notes: {
+            type: String,
+            maxlength: 200,
         },
         address: {
             type: String,

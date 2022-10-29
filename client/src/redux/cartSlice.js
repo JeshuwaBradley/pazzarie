@@ -3,6 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
+        pickUporDeliver: '',
+        shop: '',
+        date: '',
+        time: '',
         products: [],
         quantity: 0,
         salesTax: 0,
@@ -60,6 +64,27 @@ const cartSlice = createSlice({
         removeTip: (state, action) => {
             state.total -= state.tip;
             state.tip = 0;
+        },
+        addShop: (state, action) => {
+            state.shop = action.payload;
+        },
+        removeShop: (state, action) => {
+            state.shop = '';
+        },
+        addDate: (state, action) => {
+            state.date = action.payload;
+        },
+        removeDate: (state, action) => {
+            state.date = '';
+        },
+        addTime: (state, action) => {
+            state.time = action.payload;
+        },
+        removeTime: (state, action) => {
+            state.time = '';
+        },
+        addPickUporDeliver: (state, action) => {
+            state.pickUporDeliver = '';
         }
     },
 });
@@ -73,6 +98,13 @@ export const {
     addCoupon,
     removeCoupon,
     addTip,
-    removeTip
+    removeTip,
+    addShop,
+    removeShop,
+    addTime,
+    removeTime,
+    addDate,
+    removeDate,
+    addPickUporDeliver,
 } = cartSlice.actions;
 export default cartSlice.reducer;

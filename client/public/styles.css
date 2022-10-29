@@ -1802,6 +1802,38 @@ main {
 	flex-direction: row;
 }
 
+.cart-message-area {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.cart-message-area .message-area {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.message-area label {
+	font-weight: bold;
+}
+
+.message-area textarea {
+	padding: 10px 10px;
+	resize: vertical;
+	border-radius: 5px;
+	border: 2px solid rgb(120, 119, 119);
+}
+
+.message-area textarea:focus {
+	outline: none !important;
+	border-color: rgb(58, 58, 58);
+}
+
 .total-container {
 	display: flex;
 	align-items: center;
@@ -3234,4 +3266,134 @@ h2.large-title {
 
 .cyo-left .cyo-item {
 	border: 1px solid black;
+}
+
+/* -------------------- 404 page css ------------ */
+
+.pnf {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 60vh;
+}
+
+.pnf-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.pnf-container h1 {
+	font-family: "Poiret One", sans-serif;
+	font-size: 10rem;
+	color: #38b000;
+}
+
+.pnf-container .pizza {
+	position: absolute;
+	width: 131px;
+	height: 131px;
+	border-radius: 50%;
+	background: #f77f00;
+}
+
+.pnf-container .cheese {
+	position: absolute;
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	background: #fcbf49;
+}
+.pepperoni {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #d62828;
+}
+.pepperoni.pep-1 {
+	top: 25px;
+	left: 15px;
+}
+
+.pepperoni.pep-2 {
+	top: 22px;
+	left: 75px;
+}
+
+.pepperoni.pep-3 {
+	top: 5px;
+	left: 47px;
+}
+
+.pepperoni.pep-4 {
+	top: 73px;
+	left: 20px;
+}
+
+.pepperoni.pep-5 {
+	top: 72px;
+	left: 70px;
+}
+
+.pepperoni.pep-6 {
+	top: 49px;
+	left: 82px;
+}
+
+.pepperoni.pep-7 {
+	top: 54px;
+	left: 54px;
+}
+
+.pepperoni.pep-8 {
+	top: 85px;
+	left: 50px;
+}
+
+.pepperoni.pep-9 {
+	top: 50px;
+	left: 3px;
+}
+
+.pepperoni.pep-10 {
+	top: 50px;
+	left: 30px;
+}
+
+.pepperoni.pep-11 {
+	top: 29px;
+	left: 50px;
+}
+
+.pnf-container .line {
+	position: absolute;
+	top: 55px;
+	left: -10px;
+	width: 130px;
+	height: 1px;
+	background: #6a040f;
+	opacity: 0.25;
+}
+.line.line-1 {
+	transform: rotate(0deg);
+}
+
+.line.line-2 {
+	transform: rotate(45deg);
+}
+
+.line.line-3 {
+	transform: rotate(-45deg);
+}
+
+.line.line-4 {
+	transform: rotate(90deg);
+}
+
+.pnf-desc {
+	font-family: "Poiret One", sans-serif;
 }
