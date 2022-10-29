@@ -3546,3 +3546,55 @@ h2.large-title {
 		font-size: 30px;
 	}
 }
+
+/* ------------------------HomeDeal------------------- */
+
+.homeDeal {
+	height: 20em;
+	padding: 0 0px;
+}
+
+.homeDeal-inner {
+	background-color: #fff;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-image: url("img/georgia-z-JG5lgvc57qE-unsplash.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 1% 5%;
+}
+
+.homeDeal-inner h1 {
+	font-size: 45px;
+	color: #fff;
+	text-align: center;
+	font-weight: 500;
+}
+
+.homeDeal-inner .exclusive {
+	font-family: "Alex Brush", cursive;
+	font-weight: 600;
+	color: #e2241a;
+}
+
+.homeDeal img {
+	height: 100px;
+}
+
+.homeDeal-link {
+	margin-top: 20px;
+	font-family: "Alex Brush", cursive;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: #e2241a;
+	background-color: #fff;
+	font-size: 25px;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	padding: 10px 20px;
+}
