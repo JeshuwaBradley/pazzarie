@@ -31,6 +31,7 @@ const Cart = () => {
 	const [deliverySet, setDeliverySet] = useState(false);
 	const [notes, setNotes] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [deal, setDeal] = useState(false);
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -195,7 +196,8 @@ const Cart = () => {
 		}
 		let quantity = product.quantity;
 		let itemPrice = product.price.toFixed(2);
-		let itemTotal = (product.price * product.quantity).toFixed(2);
+		let itemTotal =
+			(product.price * product.quantity).toFixed(2) || product.itemTotal;
 		let extras = [];
 		let crust = product.crust;
 		product.extras.map((item) => {
@@ -514,23 +516,26 @@ const Cart = () => {
 												/>
 											</div>
 										</div>
-										<div className="form-item">
-											<div className="form-label">
-												<label htmlFor="mobile">
-													Coupon Code:
-												</label>
+										{deal ? null : (
+											<div className="form-item">
+												<div className="form-label">
+													<label htmlFor="mobile">
+														Coupon Code:
+													</label>
+												</div>
+												<div className="form-input">
+													<input
+														type="text"
+														name="mobile"
+														placeholder="Coupon Code"
+														onChange={(e) =>
+															handleCouponCode(e)
+														}
+													/>
+												</div>
 											</div>
-											<div className="form-input">
-												<input
-													type="text"
-													name="mobile"
-													placeholder="Coupon Code"
-													onChange={(e) =>
-														handleCouponCode(e)
-													}
-												/>
-											</div>
-										</div>
+										)}
+
 										{deliver && (
 											<>
 												<div className="form-item">

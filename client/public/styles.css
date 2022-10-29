@@ -3397,3 +3397,152 @@ h2.large-title {
 .pnf-desc {
 	font-family: "Poiret One", sans-serif;
 }
+
+/* -------------------- Deals of the day ---------------------- */
+
+.deals {
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	background-color: #fff;
+}
+
+.deals .deal {
+	height: 400px;
+	width: 350px;
+	border: 1px solid #ea4e45;
+	margin: 30px 20px;
+	padding: 30px;
+	display: flex;
+	align-items: center;
+	/* justify-content: center; */
+	flex-direction: column;
+	font-family: "Yanone Kaffeesatz", sans-serif;
+}
+
+.deal .deal-heading {
+	font-family: "Yanone Kaffeesatz", sans-serif;
+	font-size: 20px;
+	color: #ea4e45;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-decoration: underline;
+	margin-bottom: 20px;
+}
+
+.deal .image {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	border: 1px solid #ea4e45;
+	margin-bottom: 20px;
+}
+
+.image img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+}
+
+.deal .deal-details {
+	font-size: 25px;
+	color: #ea4e45;
+	text-align: center;
+}
+
+.deal-details h3 {
+	margin-bottom: 8px;
+}
+
+.deal-details .item-name {
+	font-size: 30px;
+}
+
+.style-4 {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.style-4 div {
+	margin-bottom: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.style-4 del {
+	color: #ea4e45;
+	text-decoration: none;
+	position: relative;
+	font-size: 25px;
+	font-weight: 100;
+}
+
+.style-4 del::before {
+	content: " ";
+	display: block;
+	width: 100%;
+	border-top: 2px solid #ea4e45;
+	height: 4px;
+	position: absolute;
+	bottom: 7px;
+	left: 0;
+	transform: rotate(-11deg);
+}
+
+.style-4 del::after {
+	content: " ";
+	display: block;
+	width: 100%;
+	border-top: 2px solid #ea4e45;
+	height: 4px;
+	position: absolute;
+	bottom: 7px;
+	left: 0;
+	transform: rotate(11deg);
+}
+
+.style-4 ins {
+	font-size: 45px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.deals .deal-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.deal-button .button {
+	margin-top: 10px;
+	width: 100px;
+	border: 1px solid #ea4e45;
+	border-radius: 5px;
+	background-color: #ea4e45;
+	color: #fff;
+	font-size: 18px;
+	padding: 10px 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+	.deal {
+		height: 425px;
+	}
+	.deal-button .button {
+		padding: 0px 10px;
+	}
+	.style-4 del {
+		font-size: 20px;
+	}
+	.style-4 ins {
+		font-size: 30px;
+	}
+}
