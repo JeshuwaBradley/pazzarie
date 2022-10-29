@@ -41,9 +41,9 @@ const cartSlice = createSlice({
             state.deliveryCharges -= state.deliveryCharges
         },
         addCoupon: (state, action) => {
-            state.discount += state.subtotal * 10 / 100;
-            state.subtotal -= state.subtotal * 10 / 100;
-            state.salesTax = state.subtotal * 10 / 100;
+            state.discount += state.subtotal * action.payload / 100;
+            state.subtotal -= state.subtotal * action.payload / 100;
+            state.salesTax = state.subtotal * action.payload / 100;
             state.total = state.subtotal + state.deliveryCharges + state.salesTax
         },
         removeCoupon: (state) => {

@@ -88,6 +88,12 @@ const OrderSchema = new mongoose.Schema(
             type: String,
             maxlength: 60,
         },
+        tip: {
+            type: Number,
+        },
+        discount: {
+            type: Number,
+        },
         total: {
             type: Number,
             required: true,
