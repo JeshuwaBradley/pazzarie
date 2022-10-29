@@ -58,12 +58,12 @@ const DailyDeals = () => {
 						<div className="style-4">
 							<div className="">
 								<del>
-									<span className="amount">$41.97</span>
+									<span className="amount">$27.98</span>
 								</del>
 							</div>
 							<div className="">
 								<ins>
-									<span className="amount">$32.99</span>
+									<span className="amount">$22.99</span>
 								</ins>
 							</div>
 						</div>
@@ -95,12 +95,12 @@ const DailyDeals = () => {
 						<div className="style-4">
 							<div className="">
 								<del>
-									<span className="amount">$27.98</span>
+									<span className="amount">$41.97</span>
 								</del>
 							</div>
 							<div className="">
 								<ins>
-									<span className="amount">$22.99</span>
+									<span className="amount">$32.99</span>
 								</ins>
 							</div>
 						</div>
