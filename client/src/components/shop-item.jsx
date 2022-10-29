@@ -89,14 +89,32 @@ const Modal = ({ order, setOpen }) => {
 						</div>
 						{order.deliver === true ? (
 							<div>
-								Customer Address: {order.address}, {order.city},{" "}
-								{order.state}, {order.zip}.
+								Customer Address:{" "}
+								<span className="bold">
+									{order.address}, {order.city}, {order.state}
+									, {order.zip}
+								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div>No. of Items: {order.orderItems.length}</div>
-						<div>Order Status: {orderStatus(order.status)}</div>
+						<div>
+							No. of Items:{" "}
+							<span className="bold">
+								{order.orderItems.length}
+							</span>
+						</div>
+						<div>
+							Order Status:{" "}
+							<span className="bold">
+								{orderStatus(order.status)}
+							</span>
+						</div>
+
+						<div>
+							Special Notes:{" "}
+							<span className="bold">{order.notes}</span>
+						</div>
 					</div>
 				</div>
 				<div className="shop-modal-row">

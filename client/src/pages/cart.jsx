@@ -29,7 +29,8 @@ const Cart = () => {
 	const [error, setError] = useState(false);
 	const [addressSet, setAddressSet] = useState(false);
 	const [deliverySet, setDeliverySet] = useState(false);
-	// const [coupon, setCoupon] = useState("");
+	const [notes, setNotes] = useState("");
+	const [loading, setLoading] = useState(false);
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -131,7 +132,6 @@ const Cart = () => {
 	};
 
 	const handleDeliveryFee = () => {
-		console.log(inputs);
 		if (!deliverySet) {
 			axios
 				.post("/api/distance", {
@@ -163,6 +163,10 @@ const Cart = () => {
 		handleDeliveryFee();
 		setDeliverySet(true);
 	}
+
+	// useEffect(() => {
+	// 	handleScriptLoad(handleAddressChange);
+	// });
 
 	useEffect(() => {
 		loadScript(
@@ -250,8 +254,6 @@ const Cart = () => {
 		if (cart.discount !== 0 && code !== "NOVASPIZZA") {
 			dispatch(removeCoupon());
 		}
-		// console.log(cart.discount);
-		// setCoupon(code);
 	};
 
 	const [stripeToken, setStripeToken] = useState(null);
@@ -266,6 +268,7 @@ const Cart = () => {
 				...inputs,
 				shop: shop,
 				deliver: deliver,
+				notes: notes,
 				promote: promote,
 				orderItems: orderItems,
 				total: total,
@@ -275,6 +278,7 @@ const Cart = () => {
 				.then((response) => {
 					console.log(response);
 					dispatch(reset());
+					setLoading(false);
 					navigate(`/`);
 				})
 				.catch((error) => {
@@ -283,6 +287,7 @@ const Cart = () => {
 		};
 
 		const makeRequest = async () => {
+			setLoading(true);
 			try {
 				await axios.post("/api/checkout/payment", {
 					tokenId: stripeToken.id,
@@ -295,6 +300,10 @@ const Cart = () => {
 		};
 		stripeToken && makeRequest();
 	});
+
+	const handleNotesForKitchen = (notes) => {
+		setNotes(notes);
+	};
 
 	return (
 		<div>
@@ -316,38 +325,62 @@ const Cart = () => {
 										</div>
 									</div>
 								) : (
-									<div className="cart-row-main">
-										<div className="cart-row">
-											<div className="cart-column">
-												<h3>Product</h3>
+									<>
+										<div className="cart-row-main">
+											<div className="cart-row">
+												<div className="cart-column">
+													<h3>Product</h3>
+												</div>
+												<div className="cart-column">
+													<h3>Name</h3>
+												</div>
+												<div className="cart-column">
+													<h3>Extras</h3>
+												</div>
+												<div className="cart-column">
+													<h3>Price</h3>
+												</div>
+												<div className="cart-column">
+													<h3>Quantity</h3>
+												</div>
+												<div className="cart-column">
+													<h3>Total</h3>
+												</div>
+												<div className="cart-column">
+													<h3>Actions</h3>
+												</div>
 											</div>
-											<div className="cart-column">
-												<h3>Name</h3>
-											</div>
-											<div className="cart-column">
-												<h3>Extras</h3>
-											</div>
-											<div className="cart-column">
-												<h3>Price</h3>
-											</div>
-											<div className="cart-column">
-												<h3>Quantity</h3>
-											</div>
-											<div className="cart-column">
-												<h3>Total</h3>
-											</div>
-											<div className="cart-column">
-												<h3>Actions</h3>
+											{cart?.products?.map(
+												(product, i) => (
+													<CartItem
+														product={product}
+														handleDelete={
+															handleDelete
+														}
+														key={i}
+													/>
+												)
+											)}
+										</div>
+										<div className="cart-message-area">
+											<div className="message-area">
+												<label htmlFor="" className="">
+													Notes for kitchen
+												</label>
+												<textarea
+													name=""
+													id=""
+													cols="38"
+													rows="2"
+													onChange={(e) =>
+														handleNotesForKitchen(
+															e.target.value
+														)
+													}
+												></textarea>
 											</div>
 										</div>
-										{cart?.products?.map((product, i) => (
-											<CartItem
-												product={product}
-												handleDelete={handleDelete}
-												key={i}
-											/>
-										))}
-									</div>
+									</>
 								)}
 							</div>
 							<div className="total-container">
@@ -428,7 +461,7 @@ const Cart = () => {
 												<input
 													type="text"
 													name="customer"
-													placeholder="John Doe"
+													placeholder="John Doe (Required)"
 													onChange={(e) =>
 														handleChange(e)
 													}
@@ -445,7 +478,7 @@ const Cart = () => {
 												<input
 													type="email"
 													name="email"
-													placeholder="johndoe@email.com"
+													placeholder="johndoe@email.com (Required)"
 													onChange={(e) =>
 														handleChange(e)
 													}
@@ -462,7 +495,7 @@ const Cart = () => {
 												<input
 													type="text"
 													name="mobile"
-													placeholder="+1-123-456-7890"
+													placeholder="+1-123-456-7890 (Required)"
 													onChange={(e) =>
 														handleChange(e)
 													}
@@ -613,30 +646,70 @@ const Cart = () => {
 											</div>
 										</div>
 										<div className="form-item">
-											<StripeCheckout
-												name="Nova's Pizza"
-												description={`Your total is $${cart.total}`}
-												amount={total * 100}
-												token={onToken}
-												stripeKey={
-													process.env
-														.REACT_APP_PUBLISHABLE_KEY
-												}
-											>
-												<button
-													onClick={(e) => {
-														e.preventDefault();
-													}}
-													className={
-														cart.products.length ===
-														0
-															? "checkout-button-disabled"
-															: "checkout-button"
+											{loading ? (
+												<div className="checkout-button">
+													<i
+														className="fa fa-spinner fa-spin"
+														style={{
+															marginRight: "5px",
+														}}
+													></i>
+													Placing Order
+												</div>
+											) : (
+												<StripeCheckout
+													name="Nova's Pizza"
+													description={`Your total is $${cart.total}`}
+													amount={total * 100}
+													token={onToken}
+													stripeKey={
+														process.env
+															.REACT_APP_PUBLISHABLE_KEY
 													}
 												>
-													Continue Checkout
-												</button>
-											</StripeCheckout>
+													<button
+														onClick={(e) => {
+															e.preventDefault();
+														}}
+														className={
+															cart.products
+																.length === 0
+																? "checkout-button-disabled"
+																: "checkout-button"
+														}
+													>
+														Continue Checkout
+													</button>
+												</StripeCheckout>
+											)}
+											{/* {paymentError !== "" ? (
+												<div className="form-item">
+													<p
+														style={{
+															color: "red",
+															fontWeight: "bold",
+														}}
+													>
+														{paymentError}
+													</p>
+												</div>
+											) : (
+												""
+											)}
+											{orderState !== "" ? (
+												<div className="form-item">
+													<p
+														style={{
+															color: "red",
+															fontWeight: "bold",
+														}}
+													>
+														{orderState}
+													</p>
+												</div>
+											) : (
+												""
+											)} */}
 										</div>
 									</form>
 								</div>

@@ -9,7 +9,7 @@ import {
 import Menu from './pages/menu';
 import Admin from './pages/admin';
 import Shop from './pages/shop';
-import AdminLogin from './pages/admin-login'
+// import AdminLogin from './pages/admin-login'
 import { AppContext } from "./lib/contextLib";
 import { useState } from 'react';
 // import ShopLogin from './pages/shop-login';
@@ -20,6 +20,7 @@ import About from './pages/about';
 import Locations from './pages/locations';
 import Popup from './components/popup';
 import CreateYourOwn from './pages/create-your-own';
+import PageNotFound from './pages/404-page';
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -44,6 +45,7 @@ function App() {
             <Route path='/shop/:id' element={<Shop />} />
             <Route path='/admin' element={<Admin />} />
             {/* {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />} */}
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AppContext.Provider>
       </BrowserRouter>
