@@ -9,10 +9,8 @@ import {
 import Menu from './pages/menu';
 import Admin from './pages/admin';
 import Shop from './pages/shop';
-// import AdminLogin from './pages/admin-login'
 import { AppContext } from "./lib/contextLib";
 import { useState } from 'react';
-// import ShopLogin from './pages/shop-login';
 import Contact from './pages/contact';
 import DailyDeals from './pages/daily-deals';
 import Privacy from './pages/privacy';

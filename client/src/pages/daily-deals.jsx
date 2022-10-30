@@ -47,6 +47,7 @@ const DailyDeals = () => {
 					<div className="deal-image">
 						<div className="image">
 							<img
+								loading="lazy"
 								src="https://i.ibb.co/bKJQ3cW/cheese-bread.jpg"
 								alt="cheese bread"
 							/>
@@ -84,6 +85,7 @@ const DailyDeals = () => {
 					<div className="deal-image">
 						<div className="image">
 							<img
+								loading="lazy"
 								src="https://i.ibb.co/bKJQ3cW/cheese-bread.jpg"
 								alt="cheese bread"
 							/>

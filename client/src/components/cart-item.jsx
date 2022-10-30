@@ -5,6 +5,7 @@ const CartItem = ({ product, handleDelete, i }) => {
 		<div className="cart-row" key={i}>
 			<div className="cart-column">
 				<img
+					loading="lazy"
 					src={product.imgSrc}
 					layout="fill"
 					objectfit="cover"

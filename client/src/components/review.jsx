@@ -57,7 +57,7 @@ const Review = () => {
 					</div>
 					<article className="review">
 						{/* <div className="review-img-container">
-							<img
+							<img  loading="lazy"
 								src="https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg"
 								alt=""
 								title="Peter Jones"
