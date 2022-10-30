@@ -31,6 +31,7 @@ const Cart = () => {
 	const [deliverySet, setDeliverySet] = useState(false);
 	const [notes, setNotes] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [paymentError, setPaymentError] = useState("");
 	const dispatch = useDispatch();
 
 	let autoComplete;
@@ -303,13 +304,16 @@ const Cart = () => {
 				tokenId: stripeToken.id,
 				amount: total * 100,
 			});
-			if (res.status === 200) {
-				handleOrder();
+			if (res.data?.statusCode === 402) {
+				setStripeToken(null);
+				setLoading(false);
+				setPaymentError(res.data.raw.message);
 			} else {
-				console.log(res);
+				handleOrder();
 			}
 		};
 		if (stripeToken) {
+			setPaymentError("");
 			makeRequest();
 		}
 	}, [stripeToken]);
@@ -725,6 +729,21 @@ const Cart = () => {
 											)} */}
 										</div>
 									</form>
+									{paymentError ? (
+										<div className="form-item">
+											<p
+												style={{
+													color: "red",
+													fontWeight: "bold",
+													textAlign: "center",
+												}}
+											>
+												{paymentError}
+											</p>
+										</div>
+									) : (
+										""
+									)}
 								</div>
 							</div>
 						</div>
