@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
-// import Review from "../components/review";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PizzaCard from "../components/pizza-card";
 import Popup from "../components/popup";
 import HomeDeal from "../components/deal-home";
+
+// const PizzaCard = lazy(() => import("../components/pizza-card"));
 
 const Home = () => {
 	const [data, setData] = useState(null);
