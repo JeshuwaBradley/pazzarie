@@ -93,6 +93,7 @@ const ProductItems = ({ currentProductItems, handleRefresh }) => {
 						<div className="products-table-body" key={i}>
 							<div className="products-image">
 								<img
+									loading="lazy"
 									src={product.imgSrc}
 									layout="fill"
 									objectfit="cover"

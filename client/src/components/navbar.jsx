@@ -63,7 +63,7 @@ const Navbar = () => {
 						</div>
 						<div className="center">
 							<img
-								src="/img/logo.png"
+								src="/img/logo.webp"
 								alt="Logo"
 								width="180px"
 								height="75px"
@@ -173,7 +173,7 @@ const Navbar = () => {
 						<Link to="/">
 							<div className="item">
 								<img
-									src="/img/logo.png"
+									src="/img/logo.webp"
 									alt="Logo"
 									width="110px"
 									height="40px"

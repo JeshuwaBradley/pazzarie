@@ -207,6 +207,7 @@ const CardSimple = ({ item }) => {
 
 				<div className="modal-left">
 					<img
+						loading="lazy"
 						className="modal-img"
 						alt={item.itemTitle}
 						// src={`/img/${item.imgSrc}`}

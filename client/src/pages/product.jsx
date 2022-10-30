@@ -21,6 +21,7 @@ const Product = () => {
 					<div className="product-container-left">
 						<div className="product-container-imageContainer">
 							<img
+								loading="lazy"
 								src={pizza.img}
 								objectFit="contain"
 								alt="pizza img"
@@ -41,6 +42,7 @@ const Product = () => {
 								onClick={() => setSize(0)}
 							>
 								<img
+									loading="lazy"
 									src="/img/size.png"
 									layout="fill"
 									alt=""
@@ -56,6 +58,7 @@ const Product = () => {
 								onClick={() => setSize(1)}
 							>
 								<img
+									loading="lazy"
 									src="/img/size.png"
 									layout="fill"
 									alt=""
@@ -71,6 +74,7 @@ const Product = () => {
 								onClick={() => setSize(2)}
 							>
 								<img
+									loading="lazy"
 									src="/img/size.png"
 									layout="fill"
 									alt=""
