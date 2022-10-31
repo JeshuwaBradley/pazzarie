@@ -22,8 +22,11 @@ const Navbar = () => {
 	useEffect(() => {
 		const d = new Date();
 		let day = d.getDay();
+		let date = d.getDate();
 		let time = d.getHours();
-		if (day === 1 || (time >= 1 && time < 9)) {
+		if (date === 31 || (time >= 21 && time < 9)) {
+			setShopOpen(true);
+		} else if (day === 1 || (time >= 1 && time < 9)) {
 			setShopOpen(false);
 		} else {
 			setShopOpen(true);
@@ -99,6 +102,14 @@ const Navbar = () => {
 								{list ? (
 									<div className="nav-list-open">
 										<ul>
+											<li>
+												<div className="nav-list-item">
+													<h3>Monday</h3>
+													<span>
+														9:00AM - 10:00PM
+													</span>
+												</div>
+											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Tuesday</h3>
