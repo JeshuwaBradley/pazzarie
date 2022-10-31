@@ -5,7 +5,7 @@ import { addProduct } from "../redux/cartSlice";
 const PizzaCard = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
-	const [size, setSize] = useState(0);
+	const [size, setSize] = useState("");
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
@@ -14,8 +14,10 @@ const PizzaCard = ({ item }) => {
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
 			setPrice(item.itemPrices[0].price);
+			setSize(item.itemPrices[0].text);
 		} else {
 			setPrice(item.itemPrices[0].price);
+			setSize(item.itemPrices[0].text);
 		}
 	}, [item.itemPrices]);
 
@@ -36,7 +38,7 @@ const PizzaCard = ({ item }) => {
 	};
 
 	const handleSize = (sizeIndex) => {
-		setSize(sizeIndex);
+		setSize(item.itemPrices[sizeIndex].text);
 		setPrice(item.itemPrices[sizeIndex].price);
 		resetExtras();
 		resetQuantity();
@@ -94,18 +96,7 @@ const PizzaCard = ({ item }) => {
 							  }
 					}
 				>
-					{price !== 0 ? (
-						<div className="card-front-price">$ {price}</div>
-					) : item?.itemPrices.length > 1 ? (
-						<div className="card-front-price">
-							$ {item.itemPrices[1].price}
-						</div>
-					) : (
-						<div className="card-front-price">
-							$ {item.itemPrices[0].price}
-						</div>
-					)}
-
+					<div className="card-front-price">$ {price.toFixed(2)}</div>
 					<div className="card-front-button">
 						<button onClick={() => setModalOpen(true)}>
 							Customize

@@ -5,7 +5,7 @@ import { addProduct } from "../redux/cartSlice";
 const SaladCard = ({ item }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
-	const [size, setSize] = useState(1);
+	const [size, setSize] = useState("");
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("Cheese Burnt");
@@ -13,8 +13,10 @@ const SaladCard = ({ item }) => {
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
 			setPrice(item.itemPrices[1].price);
+			setSize(item.itemPrices[1].text);
 		} else {
 			setPrice(item.itemPrices[0].price);
+			setSize(item.itemPrices[0].text);
 		}
 	}, [item.itemPrices]);
 
@@ -35,7 +37,7 @@ const SaladCard = ({ item }) => {
 	};
 
 	const handleSize = (sizeIndex) => {
-		setSize(sizeIndex);
+		setSize(item.itemPrices[sizeIndex].text);
 		setPrice(item.itemPrices[sizeIndex].price);
 		resetExtras();
 		resetQuantity();
@@ -92,18 +94,7 @@ const SaladCard = ({ item }) => {
 							  }
 					}
 				>
-					{price !== 0 ? (
-						<div className="card-front-price">$ {price}</div>
-					) : item?.itemPrices.length > 1 ? (
-						<div className="card-front-price">
-							$ {item.itemPrices[1].price}
-						</div>
-					) : (
-						<div className="card-front-price">
-							$ {item.itemPrices[0].price}
-						</div>
-					)}
-
+					<div className="card-front-price">$ {price.toFixed(2)}</div>
 					<div className="card-front-button">
 						<button onClick={() => setModalOpen(true)}>
 							Customize
@@ -155,30 +146,6 @@ const SaladCard = ({ item }) => {
 									})}
 								</select>
 							</div>
-							{/* <div className="card-front-crust">
-								<label htmlFor="crust">Crust</label>
-								<select
-									id="crust"
-									className="select"
-									defaultValue={"Cheese Burnt"}
-									onChange={(e) =>
-										handleCrust(e.target.value)
-									}
-								>
-									<option value="Classic hand toasted">
-										Classic hand toasted
-									</option>
-									<option value="Wheat this crust">
-										Wheat this crust
-									</option>
-									<option value="Cheese Burnt">
-										Cheese burnt
-									</option>
-									<option value="cheese float">
-										Cheese Float
-									</option>
-								</select>
-							</div> */}
 						</div>
 						<div className="card-cart-container">
 							<div className="card-front-add-button">
