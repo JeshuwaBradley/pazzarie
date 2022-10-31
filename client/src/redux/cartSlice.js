@@ -21,7 +21,7 @@ const cartSlice = createSlice({
             state.products.push(action.payload);
             state.quantity += 1;
             state.subtotal += action.payload.price * action.payload.quantity;
-            state.salesTax += state.subtotal * 10 / 100
+            state.salesTax = state.subtotal * 10 / 100
             state.total += action.payload.price * action.payload.quantity + action.payload.price * 10 / 100;
         },
         deleteProduct: (state, action) => {
