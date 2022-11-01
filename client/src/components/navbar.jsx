@@ -22,11 +22,8 @@ const Navbar = () => {
 	useEffect(() => {
 		const d = new Date();
 		let day = d.getDay();
-		let date = d.getDate();
 		let time = d.getHours();
-		if (date === 31 || (time >= 21 && time < 9)) {
-			setShopOpen(true);
-		} else if (day === 1 || (time >= 1 && time < 9)) {
+		if (day === 1 || (time >= 1 && time < 9)) {
 			setShopOpen(false);
 		} else {
 			setShopOpen(true);
