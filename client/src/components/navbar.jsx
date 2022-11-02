@@ -70,7 +70,7 @@ const Navbar = () => {
 							/>
 						</div>
 						<div className="right">
-							<div className="item">
+							{/* <div className="item">
 								<a
 									href="tel:5108419378"
 									style={{
@@ -80,7 +80,7 @@ const Navbar = () => {
 								>
 									(510) 841-9378
 								</a>
-							</div>
+							</div> */}
 							<div
 								className="item"
 								onClick={() => setList(!list)}
@@ -190,7 +190,7 @@ const Navbar = () => {
 						</Link>
 					</div>
 					<div className="mobile-right">
-						<div className="item">
+						<div className="item" style={{ marginRight: "20px" }}>
 							<span onClick={() => setOpen(!open)}>
 								{open !== true ? (
 									<i className="fa fa-solid fa-bars"></i>
@@ -198,6 +198,23 @@ const Navbar = () => {
 									<i className="fa fa-times"></i>
 								)}
 							</span>
+						</div>
+						<div className="item">
+							<Link to="/cart" title="Cart">
+								<div className="cart">
+									<img
+										src="/img/cart.png"
+										alt="cart"
+										width="25px"
+										height="25px"
+									/>
+									{quantity !== 0 ? (
+										<div className="count">{quantity}</div>
+									) : (
+										""
+									)}
+								</div>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -214,7 +231,7 @@ const Navbar = () => {
 						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
 						</Link>
-						<Link to="/cart" className="mobile-nav-item">
+						{/* <Link to="/cart" className="mobile-nav-item">
 							<div className="">
 								{quantity === 0 ? (
 									<>
@@ -244,7 +261,7 @@ const Navbar = () => {
 									</>
 								)}
 							</div>
-						</Link>
+						</Link> */}
 					</div>
 				) : (
 					""

@@ -225,8 +225,14 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-	.item:nth-child(2) {
+	/* .item:nth-child(2) {
 		display: none;
+	} */
+	.count {
+		width: 15px;
+		height: 15px;
+		font-weight: normal;
+		font-size: 15px;
 	}
 
 	.item:nth-child(1) {
