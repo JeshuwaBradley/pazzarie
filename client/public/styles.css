@@ -955,7 +955,7 @@ video#bgvideo {
 		top: 50%;
 		left: 50%;
 		/* The margin top value was changed to -400 from -300 */
-		margin-top: -400px;
+		margin-top: -350px;
 		margin-left: -45vw;
 	}
 	/* The below class was added */
