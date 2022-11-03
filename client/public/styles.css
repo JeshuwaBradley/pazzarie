@@ -944,6 +944,8 @@ video#bgvideo {
 		height: fit-content;
 		width: 90vw;
 		max-width: 90vw;
+		/* The below line of code was added */
+		overflow-y: scroll;
 	}
 	.modal-content-show {
 		transform: translateY(0);
@@ -952,8 +954,13 @@ video#bgvideo {
 		z-index: 1001;
 		top: 50%;
 		left: 50%;
-		margin-top: -300px;
+		/* The margin top value was changed to -400 from -300 */
+		margin-top: -400px;
 		margin-left: -45vw;
+	}
+	/* The below class was added */
+	.modal-content {
+		padding: 10px 0;
 	}
 	.modal-left {
 		height: 200px;
