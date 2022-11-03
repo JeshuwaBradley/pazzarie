@@ -4,6 +4,9 @@ import Navbar from "../components/navbar";
 import axios from "axios";
 
 const Contact = () => {
+	useEffect(() => {
+		document.title = "Contact Us | Nova's Pizza";
+	}, []);
 	const [city, setCity] = useState("");
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");

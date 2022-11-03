@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 const PageNotFound = () => {
+	useEffect(() => {
+		document.title = "404 - Page Not Found | Nova's Pizza";
+	}, []);
 	document.addEventListener("DOMContentLoaded", () => {
 		const cheese = document.querySelector(".cheese");
 
@@ -10,7 +13,7 @@ const PageNotFound = () => {
 
 		function spin() {
 			setInterval(() => {
-				deg++; 
+				deg++;
 				if (deg >= 360) {
 					deg = 0;
 				} else {

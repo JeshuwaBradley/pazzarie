@@ -11,6 +11,9 @@ import HomeDeal from "../components/deal-home";
 // const PizzaCard = lazy(() => import("../components/pizza-card"));
 
 const Home = () => {
+	useEffect(() => {
+		document.title = "Nova's Pizza - Order the best pizza in town";
+	}, []);
 	const [data, setData] = useState(null);
 	const [showPopUp, setShowPopUp] = useState(false);
 

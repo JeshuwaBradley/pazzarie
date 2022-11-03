@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 
 const Privacy = () => {
+	useEffect(() => {
+		document.title = "Privacy Policy | Nova's Pizza";
+	}, []);
 	return (
 		<div>
 			<Navbar />

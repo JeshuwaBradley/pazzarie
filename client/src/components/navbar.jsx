@@ -220,6 +220,9 @@ const Navbar = () => {
 				</div>
 				{open ? (
 					<div className="navbar-bottom-container-mobile">
+						<Link to="/" className="mobile-nav-item">
+							<div className="">Home</div>
+						</Link>
 						<Link to="/menu" className="mobile-nav-item">
 							<div className="">Menu</div>
 						</Link>

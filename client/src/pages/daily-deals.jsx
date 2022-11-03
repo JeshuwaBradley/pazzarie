@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { addProduct } from "../redux/cartSlice";
 
 const DailyDeals = () => {
+	useEffect(() => {
+		document.title = "Daily Deals | Nova's Pizza - Order Online";
+	}, []);
 	const dispatch = useDispatch();
 	let product1 = {
 		itemTitle: "Cheese Bread",
