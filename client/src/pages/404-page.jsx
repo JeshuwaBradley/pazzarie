@@ -10,7 +10,7 @@ const PageNotFound = () => {
 
 		function spin() {
 			setInterval(() => {
-				deg++;
+				deg++; 
 				if (deg >= 360) {
 					deg = 0;
 				} else {
