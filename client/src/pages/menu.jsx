@@ -8,6 +8,9 @@ import SaladCard from "../components/salad-card";
 import { Link } from "react-router-dom";
 
 const Menu = () => {
+	useEffect(() => {
+		document.title = "Menu | Nova's Pizza - Order Online";
+	}, []);
 	const [pizza, setPizza] = useState(true);
 	const [appetizer, setAppetizer] = useState(false);
 	const [salads, setSalads] = useState(false);

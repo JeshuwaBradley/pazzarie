@@ -158,7 +158,10 @@ const SaladCard = ({ item }) => {
 				</div>
 			</div>
 
-			<div className={`${modalOpen ? "modal modal-bg" : "modal"}`}></div>
+			<div
+				className={`${modalOpen ? "modal modal-bg" : "modal"}`}
+				onClick={() => setModalOpen(false)}
+			></div>
 
 			<div
 				className={`${

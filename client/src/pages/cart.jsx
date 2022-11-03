@@ -20,6 +20,9 @@ import TippingContainer from "../components/tipping-container";
 import CartItem from "../components/cart-item";
 
 const Cart = () => {
+	useEffect(() => {
+		document.title = "Cart Page | Nova's Pizza";
+	}, []);
 	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
 	const [deliver, setDeliver] = useState(false);
