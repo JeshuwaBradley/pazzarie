@@ -22,19 +22,29 @@ const cartSlice = createSlice({
             state.quantity += 1;
             state.subtotal += action.payload.price * action.payload.quantity;
             state.salesTax = state.subtotal * 10 / 100
-            state.total += action.payload.price * action.payload.quantity + action.payload.price * 10 / 100;
+            if (state.discount !== 0) {
+                state.subtotal += state.discount
+                state.discount = 0;
+            }
+            if (state.tip !== 0) {
+                state.total -= state.tip;
+                state.tip = 0;
+            }
+            state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
+            // state.total += action.payload.price * action.payload.quantity + state.tip + (action.payload.price * action.payload.quantity) * 10 / 100;
         },
         deleteProduct: (state, action) => {
             const x = state.products.find(product => product._id === action.payload._id)
             state.products.splice(state.products.indexOf(x), 1);
             state.quantity -= 1;
             state.subtotal -= action.payload.price * action.payload.quantity;
-            state.salesTax = state.subtotal * 10 / 100
-            state.total -= action.payload.price * action.payload.quantity + action.payload.price * 10 / 100;
+            state.salesTax = state.subtotal * 10 / 100;
+            state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
+            // state.total -= action.payload.price * action.payload.quantity + (action.payload.price * action.payload.quantity) * 10 / 100;
         },
         addDelivery: (state, action) => {
-            state.total += action.payload
             state.deliveryCharges += action.payload
+            state.total += state.deliveryCharges
         },
         deleteDelivery: (state, action) => {
             state.total -= state.deliveryCharges
@@ -44,11 +54,13 @@ const cartSlice = createSlice({
             state.discount += state.subtotal * action.payload / 100;
             state.subtotal -= state.subtotal * action.payload / 100;
             state.salesTax = state.subtotal * 10 / 100;
-            state.total = state.subtotal + state.deliveryCharges + state.salesTax
+            state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
         },
         removeCoupon: (state) => {
             state.subtotal += state.discount;
+            state.salesTax = state.subtotal * 10 / 100;
             state.discount = 0;
+            state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
         },
         reset: (state) => {
             state.products = [];

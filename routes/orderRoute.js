@@ -1916,7 +1916,16 @@ router.delete('/delete/:id', async (req, res) => {
   }
 })
 
-//update orders
+//get emails of all the orders
+
+router.get('/emails', async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
 
 
 module.exports = router;
