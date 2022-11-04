@@ -33,17 +33,22 @@ const Footer = () => {
 							</span>
 						</a>
 					</div>
-					{/* <div className="twitter">
-						<span
-							style={{
-								fontSize: "2em",
-								color: "#fff",
-								cursor: "pointer",
-							}}
+					<div className="twitter">
+						<a
+							title="Nova's Pizza Instagram"
+							href="https://www.instagram.com/novas_pizza_llc/"
 						>
-							<i className="fa fa-twitter-square"></i>
-						</span>
-					</div> */}
+							<span
+								style={{
+									fontSize: "2.5em",
+									color: "#fff",
+									cursor: "pointer",
+								}}
+							>
+								<i className="fa  fa-instagram"></i>
+							</span>
+						</a>
+					</div>
 				</div>
 				<div className="links-container">
 					<div className="links-main">

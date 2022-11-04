@@ -521,7 +521,7 @@ const Unsubscribe = () => {
 								</h2>
 								<p className="subtitle">
 									If you unsubscribe, you will stop receiving
-									our weekly newsletter.
+									our weekly promotions.
 								</p>
 								<div className="buttons">
 									<button
