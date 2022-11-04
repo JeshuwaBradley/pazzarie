@@ -9,7 +9,6 @@ import { useState } from 'react';
 import Home from './pages/home';
 import Cart from './pages/cart';
 import Menu from './pages/menu';
-import Product from './pages/product';
 
 const Admin = lazy(() => import('./pages/admin'))
 const Contact = lazy(() => import('./pages/contact'))
@@ -21,6 +20,7 @@ const DailyDeals = lazy(() => import('./pages/daily-deals'))
 const PageNotFound = lazy(() => import('./pages/404-page'))
 const Shop = lazy(() => import('./pages/shop'))
 const CreateYourOwn = lazy(() => import('./pages/create-your-own'))
+const Unsubscribe = lazy(() => import('./pages/unsubscribe'))
 
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
@@ -45,7 +45,7 @@ function App() {
               {/* {<Route path='/shop/:id' element={isShopAuthenticated ? <Shop /> : <ShopLogin />} />} */}
               <Route path='/shop/:id' element={<Shop />} />
               <Route path='/admin' element={<Admin />} />
-              <Route path='/product' element={<Product />} />
+              <Route path='/unsubscribe/:id' element={<Unsubscribe />} />
               {/* {<Route path='/admin' element={isAdminAuthenticated ? <Admin /> : <AdminLogin />} />} */}
               <Route path="*" element={<PageNotFound />} />
             </Routes>

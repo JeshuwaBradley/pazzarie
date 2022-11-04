@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 
 router.get('/find', async (req, res) => {
     try {
-        const emails = await Emails.find();
+        const emails = await Email.find();
         res.status(200).json(emails)
     } catch (error) {
         res.status(500).json(error);
@@ -42,9 +42,10 @@ router.get('/find', async (req, res) => {
 // delete promotion email
 
 router.delete("/delete/:id", async (req, res) => {
+    let id = req.params.id
     try {
-        await Email.findByIdAndDelete(req.params.id)
-        res.status(200).json("Email has been deleted")
+        const deletedEmail = await Email.findByIdAndDelete(id)
+        res.status(200).json(`Email has been deleted ${deletedEmail}`)
     } catch (error) {
         res.status(500).json(error)
     }
