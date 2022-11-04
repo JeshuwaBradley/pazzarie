@@ -221,10 +221,10 @@ const Navbar = () => {
 				{open ? (
 					<div className="navbar-bottom-container-mobile">
 						<Link to="/" className="mobile-nav-item">
-							<div className="">Home</div>
+							<div className="mobile-nav-item">Home</div>
 						</Link>
 						<Link to="/menu" className="mobile-nav-item">
-							<div className="">Menu</div>
+							<div className="mobile-nav-item">Menu</div>
 						</Link>
 						<Link to="/daily-deals" className="mobile-nav-item">
 							<div className="mobile-nav-item">
