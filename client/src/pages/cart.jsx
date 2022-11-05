@@ -240,7 +240,7 @@ const Cart = () => {
 		let code = e.target.value;
 		code = code.toString().toUpperCase();
 		if (cart.discount === 0) {
-			if (code === "NOVASPIZZA") {
+			if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
 				dispatch(addCoupon(10));
 			}
 			if (code === "15DISCOUNT") {
