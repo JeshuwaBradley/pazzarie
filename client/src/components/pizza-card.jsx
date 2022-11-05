@@ -13,11 +13,11 @@ const PizzaCard = ({ item }) => {
 
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
-			setPrice(item.itemPrices[0].price);
-			setSize(item.itemPrices[0].text);
+			setPrice(item.itemPrices[1].price);
+			setSize(item.itemPrices[1].text);
 		} else {
-			setPrice(item.itemPrices[0].price);
-			setSize(item.itemPrices[0].text);
+			setPrice(item.itemPrices[1].price);
+			setSize(item.itemPrices[1].text);
 		}
 	}, [item.itemPrices]);
 
@@ -120,7 +120,7 @@ const PizzaCard = ({ item }) => {
 								<select
 									id="sizes"
 									className="select"
-									defaultValue={0}
+									defaultValue={1}
 									onChange={(e) => handleSize(e.target.value)}
 								>
 									{item?.itemPrices.map((size, i) => {

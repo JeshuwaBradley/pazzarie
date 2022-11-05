@@ -6,17 +6,22 @@ const Footer = () => {
 		<div className="footer">
 			<div className="footer-wrapper">
 				<div className="social-container">
-					{/* <div className="facebook">
-						<span
-							style={{
-								fontSize: "2em",
-								color: "#fff",
-								cursor: "pointer",
-							}}
+					<div className="facebook">
+						<a
+							title="Nova's Pizza Facebook"
+							href="https://www.facebook.com/profile.php?id=100087345287467"
 						>
-							<i className="fa fa-facebook-square"></i>
-						</span>
-					</div> */}
+							<span
+								style={{
+									fontSize: "2em",
+									color: "#fff",
+									cursor: "pointer",
+								}}
+							>
+								<i className="fa fa-facebook-square"></i>
+							</span>
+						</a>
+					</div>
 					<div className="instagram">
 						<a
 							title="Nova's Pizza Yelp"
