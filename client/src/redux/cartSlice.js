@@ -21,7 +21,7 @@ const cartSlice = createSlice({
             state.products.push(action.payload);
             state.quantity += 1;
             state.subtotal += action.payload.price * action.payload.quantity;
-            state.salesTax = state.subtotal * 10 / 100
+            state.salesTax = state.subtotal * 10.25 / 100
             if (state.discount !== 0) {
                 state.subtotal += state.discount
                 state.discount = 0;
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
             state.products.splice(state.products.indexOf(x), 1);
             state.quantity -= 1;
             state.subtotal -= action.payload.price * action.payload.quantity;
-            state.salesTax = state.subtotal * 10 / 100;
+            state.salesTax = state.subtotal * 10.25 / 100;
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
             // state.total -= action.payload.price * action.payload.quantity + (action.payload.price * action.payload.quantity) * 10 / 100;
         },
@@ -53,12 +53,12 @@ const cartSlice = createSlice({
         addCoupon: (state, action) => {
             state.discount += state.subtotal * action.payload / 100;
             state.subtotal -= state.subtotal * action.payload / 100;
-            state.salesTax = state.subtotal * 10 / 100;
+            state.salesTax = state.subtotal * 10.25 / 100;
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
         },
         removeCoupon: (state) => {
             state.subtotal += state.discount;
-            state.salesTax = state.subtotal * 10 / 100;
+            state.salesTax = state.subtotal * 10.25 / 100;
             state.discount = 0;
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
         },
