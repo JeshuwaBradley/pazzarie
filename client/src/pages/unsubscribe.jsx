@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Unsubscribe = () => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [subscribed, setSubscribed] = useState(false);
 
@@ -20,6 +21,10 @@ const Unsubscribe = () => {
 			.catch((err) => {
 				console.log(err);
 			});
+	};
+
+	const handleGoBack = () => {
+		navigate(`/menu`);
 	};
 	return (
 		<>
@@ -511,7 +516,9 @@ const Unsubscribe = () => {
 									longer hear from us.
 								</p>
 								<div className="buttons">
-									<button id="go-back">Go back</button>
+									<button id="go-back" onClick={handleGoBack}>
+										Go back
+									</button>
 								</div>
 							</div>
 						) : (
