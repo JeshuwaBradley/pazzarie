@@ -23,7 +23,7 @@ const Navbar = () => {
 		const d = new Date();
 		let day = d.getDay();
 		let time = d.getHours();
-		if (day === 1 || (time >= 1 && time < 9)) {
+		if (day === 1 || (time >= 1 && time < 11)) {
 			setShopOpen(false);
 		} else {
 			setShopOpen(true);
@@ -95,7 +95,7 @@ const Navbar = () => {
 									</span>
 								)}
 
-								<span>9:00AM - 1:00AM</span>
+								<span>11:00AM - 1:00AM</span>
 								{list ? (
 									<div className="nav-list-open">
 										<ul>
@@ -103,44 +103,56 @@ const Navbar = () => {
 												<div className="nav-list-item">
 													<h3>Monday</h3>
 													<span>
-														9:00AM - 10:00PM
+														11:00AM - 10:00PM
 													</span>
 												</div>
 											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Tuesday</h3>
-													<span>9:00AM - 1:00AM</span>
+													<span>
+														11:00AM - 1:00AM
+													</span>
 												</div>
 											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Wednesday</h3>
-													<span>9:00AM - 1:00AM</span>
+													<span>
+														11:00AM - 1:00AM
+													</span>
 												</div>
 											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Thursday</h3>
-													<span>9:00AM - 1:00AM</span>
+													<span>
+														11:00AM - 1:00AM
+													</span>
 												</div>
 											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Friday</h3>
-													<span>9:00AM - 1:00AM</span>
+													<span>
+														11:00AM - 1:00AM
+													</span>
 												</div>
 											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Saturday</h3>
-													<span>9:00AM - 1:00AM</span>
+													<span>
+														11:00AM - 1:00AM
+													</span>
 												</div>
 											</li>
 											<li>
 												<div className="nav-list-item">
 													<h3>Sunday</h3>
-													<span>9:00AM - 1:00AM</span>
+													<span>
+														11:00AM - 1:00AM
+													</span>
 												</div>
 											</li>
 										</ul>
@@ -189,7 +201,7 @@ const Navbar = () => {
 						<span className="open-status closed">Closed</span>
 					)}
 					<span style={{ marginLeft: "10px", color: "white" }}>
-						9:00AM - 1:00AM
+						11:00AM - 1:00AM
 					</span>
 				</div>
 				<div className="navbar-top-container-mobile">
