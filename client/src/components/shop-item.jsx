@@ -84,10 +84,11 @@ const Modal = ({ order, setOpen }) => {
 						<div>
 							Items Deliver:
 							<span className="bold">
-								{order.deliver === true ? "Deliver" : "Pickup"}
+								{/* {order.deliver === true ? "Deliver" : "Pickup"} */}
+								{order.deliver}
 							</span>
 						</div>
-						{order.deliver === true ? (
+						{order.deliver === "deliver" ? (
 							<div>
 								Customer Address:{" "}
 								<span className="bold">
@@ -216,7 +217,10 @@ const ShopItem = ({ order }) => {
 					<p>{order.orderItems.length}</p>
 				</div>
 				<div className="shop-table-row-deliver">
-					<p>{order.deliver === true ? "Deliver" : "Pickup"}</p>
+					{/* <p>{order.deliver === true ? "Deliver" : "Pickup"}</p> */}
+					<p style={{ textTransform: "capitalize" }}>
+						{order.deliver}
+					</p>
 				</div>
 				<div className="shop-table-row-status">
 					<p>{orderStatus(order.status)}</p>

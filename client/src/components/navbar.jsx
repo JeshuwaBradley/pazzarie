@@ -176,6 +176,22 @@ const Navbar = () => {
 	} else {
 		return (
 			<div className="navbar-mobile">
+				<div
+					style={{
+						textAlign: "center",
+						padding: "10px",
+						paddingBottom: "0px",
+					}}
+				>
+					{shopOpen ? (
+						<span className="open-status open">Open</span>
+					) : (
+						<span className="open-status closed">Closed</span>
+					)}
+					<span style={{ marginLeft: "10px", color: "white" }}>
+						9:00AM - 1:00AM
+					</span>
+				</div>
 				<div className="navbar-top-container-mobile">
 					<div className="mobile-left">
 						<Link to="/">
