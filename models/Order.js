@@ -65,7 +65,7 @@ const OrderSchema = new mongoose.Schema(
             required: false,
         },
         deliver: {
-            type: Boolean,
+            type: String,
             required: true,
         },
         notes: {

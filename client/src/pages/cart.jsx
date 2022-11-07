@@ -18,6 +18,7 @@ import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import TippingContainer from "../components/tipping-container";
 import CartItem from "../components/cart-item";
+import PickUpDeliver from "../components/pickup-deliver";
 
 const Cart = () => {
 	useEffect(() => {
@@ -25,159 +26,17 @@ const Cart = () => {
 	}, []);
 	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
-	const [deliver, setDeliver] = useState(false);
+
 	const [promote, setPromote] = useState(true);
-	const [shop, setShop] = useState(1);
 	const [inputs, setInputs] = useState({});
-	const [error, setError] = useState(false);
-	const [addressSet, setAddressSet] = useState(false);
-	const [deliverySet, setDeliverySet] = useState(false);
 	const [notes, setNotes] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [paymentError, setPaymentError] = useState("");
+	const [button, setButton] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [inputError, setInputError] = useState(false);
+
 	const dispatch = useDispatch();
-
-	let autoComplete;
-
-	const loadScript = (url, callback) => {
-		let script = document.createElement("script");
-		script.type = "text/javascript";
-
-		if (script.readyState) {
-			script.onreadystatechange = function () {
-				if (
-					script.readyState === "loaded" ||
-					script.readyState === "complete"
-				) {
-					script.onreadystatechange = null;
-					callback();
-				}
-			};
-		} else {
-			script.onload = () => callback();
-		}
-		script.src = url;
-		document.getElementsByTagName("head")[0].appendChild(script);
-	};
-
-	const handleScriptLoad = (updateQuery) => {
-		const componentForm = [
-			"location",
-			"locality",
-			"administrative_area_level_1",
-			"country",
-			"postal_code",
-		];
-
-		const autocompleteInput = document.getElementById("location");
-		autoComplete = new window.google.maps.places.Autocomplete(
-			autocompleteInput,
-			{
-				fields: ["address_components", "geometry", "name"],
-				types: ["address"],
-			}
-		);
-		// autoComplete.setFields(["address_components", "formatted_address"]);
-		autoComplete.addListener("place_changed", function () {
-			const place = autoComplete.getPlace();
-
-			if (!place.geometry) {
-				window.alert(
-					"No details available for input: '" + place.name + "'"
-				);
-				return;
-			}
-			fillInAddress(place);
-		});
-		const fillInAddress = (place) => {
-			const addressNameFormat = {
-				street_number: "short_name",
-				route: "long_name",
-				locality: "long_name",
-				administrative_area_level_1: "long_name",
-				country: "long_name",
-				postal_code: "short_name",
-			};
-			const getAddressComp = function (type) {
-				for (const component of place.address_components) {
-					if (component.types[0] === type) {
-						return component[addressNameFormat[type]];
-					}
-				}
-				return "";
-			};
-			document.getElementById("location").value =
-				getAddressComp("street_number") + " " + getAddressComp("route");
-			for (const component of componentForm) {
-				if (component !== "location") {
-					document.getElementById(component).value =
-						getAddressComp(component);
-				}
-				updateQuery();
-			}
-		};
-	};
-
-	const handleAddressChange = () => {
-		let x = document.getElementById("location").value;
-		let y = document.getElementById("locality").value;
-		let z = document.getElementById("administrative_area_level_1").value;
-		let a = document.getElementById("country").value;
-		let b = document.getElementById("postal_code").value;
-		let g = {
-			address: x,
-			city: y,
-			state: z,
-			zip: b,
-			country: a,
-		};
-		setInputs((values) => ({ ...values, ...g }));
-		setTimeout(() => setAddressSet(true), 1000);
-	};
-
-	const handleDeliveryFee = () => {
-		if (!deliverySet) {
-			axios
-				.post("/api/distance", {
-					address: inputs.address,
-					city: inputs.city,
-					state: inputs.state,
-					zip: inputs.zip,
-					country: inputs.country,
-				})
-				.then((response) => {
-					let distance =
-						response.data.rows[0].elements[0].distance.value;
-					if (distance > 5632.7) {
-						setError(true);
-						setDeliver();
-						let input = document.getElementById("deliver");
-						input.checked = false;
-					} else {
-						dispatch(addDelivery(calcDeliveryFee(distance)));
-					}
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		}
-	};
-
-	if (addressSet && !deliverySet) {
-		handleDeliveryFee();
-		setDeliverySet(true);
-	}
-
-	// useEffect(() => {
-	// 	handleScriptLoad(handleAddressChange);
-	// });
-
-	useEffect(() => {
-		loadScript(
-			`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places&callback=handleScriptLoad&solution_channel=GMP_QB_addressselection_v1_cAC`,
-			() => handleScriptLoad(handleAddressChange)
-		);
-	});
 
 	const total = cart.total.toFixed(2);
 	const orderItems = [];
@@ -203,28 +62,6 @@ const Cart = () => {
 			extras: extras,
 		});
 	});
-
-	const deliverToMe = (e) => {
-		setDeliver(!deliver);
-		if (deliver === true) {
-			dispatch(deleteDelivery());
-			setDeliverySet(false);
-			setAddressSet(false);
-		}
-	};
-
-	const calcDeliveryFee = (distance) => {
-		// if (distance <= 5632.7) {
-		// 	return 6.99;
-		// } else {
-		// 	let initialCharge = 6.99;
-		// 	let secondHalf = ((distance - 1609) / 804) * 1.5;
-		// 	let finalCharge = initialCharge + secondHalf;
-		// 	return finalCharge;
-		// }
-		let finalCharge = 5.99;
-		return finalCharge;
-	};
 
 	const handleDelete = (x) => {
 		dispatch(deleteProduct(x));
@@ -265,8 +102,8 @@ const Cart = () => {
 		const handleOrder = async (e) => {
 			let x = {
 				...inputs,
-				shop: shop,
-				deliver: deliver,
+				shop: Number(cart.shop),
+				deliver: cart.pickUporDeliver,
 				notes: notes,
 				promote: promote,
 				orderItems: orderItems,
@@ -278,9 +115,10 @@ const Cart = () => {
 				.post("/api/order/", { ...x })
 				.then((response) => {
 					if (response.status === 200) {
+						setSuccess(true);
 						dispatch(reset());
 						setLoading(false);
-						navigate(`/`);
+						// navigate(`/`);
 					}
 				})
 				.catch((error) => {
@@ -317,384 +155,449 @@ const Cart = () => {
 			<Navbar />
 			<div>
 				<div className="cart-container">
-					<div className="cart-title">
-						<h2>Cart</h2>
-						<div className="underline"></div>
-					</div>
-					<div className="cart-main">
-						<div className="cart-container-left">
-							<div className="cart-table">
-								{cart.products.length === 0 ? (
-									<div className="empty-cart">
-										Your cart is empty. Explore items
-										<div className="cart-menu-link">
-											<Link to="/menu">Explore</Link>
-										</div>
-									</div>
-								) : (
-									<>
-										<div className="cart-row-main">
-											<div className="cart-row">
-												<div className="cart-column">
-													<h3>Product</h3>
-												</div>
-												<div className="cart-column">
-													<h3>Name</h3>
-												</div>
-												<div className="cart-column">
-													<h3>Extras</h3>
-												</div>
-												<div className="cart-column">
-													<h3>Price</h3>
-												</div>
-												<div className="cart-column">
-													<h3>Quantity</h3>
-												</div>
-												<div className="cart-column">
-													<h3>Total</h3>
-												</div>
-												<div className="cart-column">
-													<h3>Actions</h3>
-												</div>
-											</div>
-											{cart?.products?.map(
-												(product, i) => (
-													<CartItem
-														product={product}
-														handleDelete={
-															handleDelete
-														}
-														key={i}
-													/>
-												)
-											)}
-										</div>
-										<div className="cart-message-area">
-											<div className="message-area">
-												<label htmlFor="" className="">
-													Notes for kitchen
-												</label>
-												<textarea
-													name=""
-													id=""
-													cols="38"
-													rows="2"
-													onChange={(e) =>
-														handleNotesForKitchen(
-															e.target.value
-														)
-													}
-												></textarea>
-											</div>
-										</div>
-									</>
-								)}
-							</div>
-							<div className="total-container">
-								<div className="total-container-inner">
-									<div className="deliver-container">
-										<label
-											htmlFor="deliver"
-											className="switch"
-										>
-											<input
-												type="checkbox"
-												name="deliver"
-												id="deliver"
-												onChange={(e) => deliverToMe(e)}
-											/>
-											<span className="slider round"></span>
-										</label>
-										Deliver to my doorstep
-									</div>
-								</div>
-								<div className="total-container-inner">
-									<div className="total-container-text">
-										Subtotal
-									</div>
-									<div className="total-container-total">
-										${cart.subtotal.toFixed(2)}
-									</div>
-								</div>
-								<div className="total-container-inner">
-									<div className="total-container-text">
-										Sales-Tax
-									</div>
-									<div className="total-container-total">
-										${cart.salesTax.toFixed(2)}
-									</div>
-								</div>
-								<div className="total-container-inner">
-									<div className="total-container-text">
-										Delivery Fee
-									</div>
-									<div className="total-container-total">
-										${cart.deliveryCharges.toFixed(2)}
-									</div>
-								</div>
-								<div className="total-container-inner">
-									<div className="total-container-text">
-										Tip
-									</div>
-									<div className="total-container-total">
-										${cart.tip.toFixed(2)}
-									</div>
-								</div>
-								<TippingContainer />
-								<div className="total-container-inner">
-									<div className="total-container-text">
-										Total to pay
-									</div>
-									<div className="total-container-total">
-										${cart.total.toFixed(2)}
-									</div>
+					{success ? (
+						<div
+							style={{
+								height: "30em",
+								position: "relative",
+								paddingTop: "30px",
+								paddingBottom: "30px",
+							}}
+						>
+							<div
+								className="success-message"
+								style={{
+									textAlign: "center",
+									maxWidth: " 500px",
+									position: "absolute",
+									top: "50%",
+									left: "50%",
+									transform: "translate(-50%, -50%)",
+								}}
+							>
+								<svg
+									viewBox="0 0 76 76"
+									className="success-message__icon icon-checkmark"
+									style={{
+										maxWidth: "75px",
+									}}
+								>
+									<circle
+										cx="38"
+										cy="38"
+										r="36"
+										style={{
+											fill: "#3DC480",
+											transformOrigin: "50% 50%",
+											transition:
+												"transform 200ms cubic-bezier(.22, .96, .38, .98)",
+											transform: "scale(1)",
+										}}
+									/>
+									<path
+										fill="none"
+										stroke="#FFFFFF"
+										strokeWidth="5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeMiterlimit="10"
+										d="M17.7,40.9l10.9,10.9l28.7-28.7"
+										style={{
+											transition:
+												"stroke-dashoffset 350ms ease",
+											transitionDelay: "100ms",
+										}}
+									/>
+								</svg>
+								<h1
+									className="success-message__title"
+									style={{
+										color: "#3DC480",
+										opacity: "0",
+										transform: "translateY(25px)",
+
+										transition: "all 200ms ease",
+									}}
+								>
+									Order has been placed
+								</h1>
+								<div
+									className="success-message__content"
+									style={{
+										color: "#000",
+										transition: "all 200ms ease",
+										transitionDelay: "50ms",
+										transform: "translateY(0)",
+										opacity: "1",
+										lineHeight: "25px",
+									}}
+								>
+									<p>Order has been placed</p>
+									{cart.pickUporDeliver === "deliver" ? (
+										<p>
+											Your order will be delivered in 15
+											minutes to the given
+										</p>
+									) : (
+										<p>
+											Your order will be ready in 15
+											minutes <br />
+											You can collect it from <br />
+											<strong>
+												1706 University Ave, Berkeley,
+												CA 94703, USA.
+											</strong>
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
-						<div className="cart-container-right">
-							<div className="checkout-form">
-								<div className="form-title">
-									<h2>Customer Information</h2>
-								</div>
-								<div className="form">
-									<form action="">
-										<div className="form-item">
-											<div className="form-label">
-												<label htmlFor="customer">
-													Customer Name:
-												</label>
+					) : (
+						<>
+							<div className="cart-title">
+								<h2>Cart</h2>
+								<div className="underline"></div>
+							</div>
+							<div className="cart-main">
+								<div className="cart-container-left">
+									<div className="cart-table">
+										{cart.products.length === 0 ? (
+											<div className="empty-cart">
+												Your cart is empty. Explore
+												items
+												<div className="cart-menu-link">
+													<Link to="/menu">
+														Explore
+													</Link>
+												</div>
 											</div>
-											<div className="form-input">
-												<input
-													type="text"
-													name="customer"
-													placeholder="John Doe (Required)"
-													onChange={(e) =>
-														handleChange(e)
-													}
-												/>
-											</div>
-										</div>
-										<div className="form-item">
-											<div className="form-label">
-												<label htmlFor="email">
-													Customer Email:
-												</label>
-											</div>
-											<div className="form-input">
-												<input
-													type="email"
-													name="email"
-													placeholder="johndoe@email.com (Required)"
-													onChange={(e) =>
-														handleChange(e)
-													}
-												/>
-											</div>
-										</div>
-										<div className="form-item">
-											<div className="form-label">
-												<label htmlFor="mobile">
-													Customer Mobile:
-												</label>
-											</div>
-											<div className="form-input">
-												<input
-													type="text"
-													name="mobile"
-													placeholder="+1-123-456-7890 (Required)"
-													onChange={(e) =>
-														handleChange(e)
-													}
-												/>
-											</div>
-										</div>
-										<div className="form-item">
-											<div className="form-label">
-												<label htmlFor="mobile">
-													Coupon Code:
-												</label>
-											</div>
-											<div className="form-input">
-												<input
-													type="text"
-													name="mobile"
-													placeholder="Coupon Code"
-													onChange={(e) =>
-														handleCouponCode(e)
-													}
-												/>
-											</div>
-										</div>
-										{deliver && (
+										) : (
 											<>
-												<div className="form-item">
-													<div className="form-label">
-														<label htmlFor="address">
-															Address:
-														</label>
+												<div className="cart-row-main">
+													<div className="cart-row">
+														<div className="cart-column">
+															<h3>Product</h3>
+														</div>
+														<div className="cart-column">
+															<h3>Name</h3>
+														</div>
+														<div className="cart-column">
+															<h3>Extras</h3>
+														</div>
+														<div className="cart-column">
+															<h3>Price</h3>
+														</div>
+														<div className="cart-column">
+															<h3>Quantity</h3>
+														</div>
+														<div className="cart-column">
+															<h3>Total</h3>
+														</div>
+														<div className="cart-column">
+															<h3>Actions</h3>
+														</div>
 													</div>
-													<div className="form-input">
-														<input
-															type="text"
-															name="address"
-															placeholder="250 W Bullard Ave"
-															id="location"
-															onChange={
-																handleChange
-															}
-														/>
-													</div>
+													{cart?.products?.map(
+														(product, i) => (
+															<CartItem
+																product={
+																	product
+																}
+																handleDelete={
+																	handleDelete
+																}
+																key={i}
+															/>
+														)
+													)}
 												</div>
-												<div className="form-item">
-													<div className="form-label">
-														<label htmlFor="city">
-															City:
+												<div className="cart-message-area">
+													<div className="message-area">
+														<label
+															htmlFor=""
+															className=""
+														>
+															Notes for kitchen
 														</label>
-													</div>
-													<div className="form-input">
-														<input
-															type="text"
-															name="city"
-															placeholder="Clovis"
-															id="locality"
+														<textarea
+															name=""
+															id=""
+															cols="38"
+															rows="2"
 															onChange={(e) =>
-																handleChange(e)
+																handleNotesForKitchen(
+																	e.target
+																		.value
+																)
 															}
-														/>
-													</div>
-												</div>
-												<div className="form-item">
-													<div className="form-label">
-														<label htmlFor="state">
-															State:
-														</label>
-													</div>
-													<div className="form-input">
-														<input
-															type="text"
-															name="state"
-															placeholder="California"
-															id="administrative_area_level_1"
-															onChange={(e) =>
-																handleChange(e)
-															}
-														/>
-													</div>
-												</div>
-												<div className="form-item">
-													<div className="form-label">
-														<label htmlFor="zip">
-															ZIP:
-														</label>
-													</div>
-													<div className="form-input">
-														<input
-															type="text"
-															name="zip"
-															placeholder="93612"
-															id="postal_code"
-															onChange={(e) =>
-																handleChange(e)
-															}
-														/>
-													</div>
-												</div>
-
-												<div className="form-item">
-													<div className="form-label">
-														<label htmlFor="country">
-															Country:
-														</label>
-													</div>
-													<div className="form-input">
-														<input
-															type="text"
-															name="country"
-															placeholder="USA"
-															id="country"
-															onChange={(e) =>
-																handleChange(e)
-															}
-														/>
+														></textarea>
 													</div>
 												</div>
 											</>
 										)}
-										{error ? (
-											<div className="form-item">
-												<p
-													style={{
-														color: "red",
-														fontWeight: "bold",
-													}}
-												>
-													Cannot deliver. Too far
-												</p>
+									</div>
+									<div className="total-container">
+										<div className="total-container-inner">
+											<div className="total-container-text">
+												Subtotal
 											</div>
-										) : (
-											""
-										)}
-										<div className="form-item">
-											<div className="promotional-checkbox">
-												<input
-													type="checkbox"
-													name="promotion"
-													id="promotion"
-													onChange={(e) => {
-														setPromote(!promote);
-													}}
-												/>
-												<label htmlFor="promotion">
-													Yes, we would like to
-													receive promotional offers
-													from Nova’s pizza.
-												</label>
+											<div className="total-container-total">
+												${cart.subtotal.toFixed(2)}
 											</div>
 										</div>
-										<div className="form-item">
-											{loading ? (
-												<div className="checkout-button">
-													<i
+										<div className="total-container-inner">
+											<div className="total-container-text">
+												Sales-Tax
+											</div>
+											<div className="total-container-total">
+												${cart.salesTax.toFixed(2)}
+											</div>
+										</div>
+										<div className="total-container-inner">
+											<div className="total-container-text">
+												Delivery Fee
+											</div>
+											<div className="total-container-total">
+												$
+												{cart.deliveryCharges.toFixed(
+													2
+												)}
+											</div>
+										</div>
+										<div className="total-container-inner">
+											<div className="total-container-text">
+												Tip
+											</div>
+											<div className="total-container-total">
+												${cart.tip.toFixed(2)}
+											</div>
+										</div>
+										<TippingContainer />
+										<div className="total-container-inner">
+											<div className="total-container-text">
+												Total to pay
+											</div>
+											<div className="total-container-total">
+												${cart.total.toFixed(2)}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="cart-container-right">
+									<div className="checkout-form">
+										<div className="form-title">
+											<h2>Customer Information</h2>
+										</div>
+										<div className="form">
+											<form action="">
+												<div className="form-item">
+													<div className="form-label">
+														<label htmlFor="customer">
+															Customer Name:
+														</label>
+													</div>
+													<div className="form-input">
+														<input
+															type="text"
+															name="customer"
+															id="customer"
+															style={
+																inputError
+																	? {
+																			borderColor:
+																				"red",
+																	  }
+																	: null
+															}
+															placeholder="John Doe (Required)"
+															onChange={(e) =>
+																handleChange(e)
+															}
+														/>
+														{inputError ? (
+															<small>
+																Required
+															</small>
+														) : null}
+													</div>
+												</div>
+												<div className="form-item">
+													<div className="form-label">
+														<label htmlFor="email">
+															Customer Email:
+														</label>
+													</div>
+													<div className="form-input">
+														<input
+															type="email"
+															name="email"
+															id="email"
+															style={
+																inputError
+																	? {
+																			borderColor:
+																				"red",
+																	  }
+																	: null
+															}
+															placeholder="johndoe@email.com (Required)"
+															onChange={(e) =>
+																handleChange(e)
+															}
+														/>
+														{inputError ? (
+															<small>
+																Required
+															</small>
+														) : null}
+													</div>
+												</div>
+												<div className="form-item">
+													<div className="form-label">
+														<label htmlFor="mobile">
+															Customer Mobile:
+														</label>
+													</div>
+													<div className="form-input">
+														<input
+															type="text"
+															name="mobile"
+															id="mobile"
+															style={
+																inputError
+																	? {
+																			borderColor:
+																				"red",
+																	  }
+																	: null
+															}
+															placeholder="+1-123-456-7890 (Required)"
+															onChange={(e) =>
+																handleChange(e)
+															}
+														/>
+														{inputError ? (
+															<small>
+																Required
+															</small>
+														) : null}
+													</div>
+												</div>
+												<div className="form-item">
+													<div className="form-label">
+														<label htmlFor="mobile">
+															Coupon Code:
+														</label>
+													</div>
+													<div className="form-input">
+														<input
+															type="text"
+															name="mobile"
+															placeholder="Coupon Code"
+															onChange={(e) =>
+																handleCouponCode(
+																	e
+																)
+															}
+														/>
+													</div>
+												</div>
+												<PickUpDeliver
+													inputs={inputs}
+													setInputs={setInputs}
+													setButton={setButton}
+													inputError={inputError}
+												/>
+												<div className="form-item">
+													<div className="promotional-checkbox">
+														<input
+															type="checkbox"
+															name="promotion"
+															id="promotion"
+															onChange={(e) => {
+																setPromote(
+																	!promote
+																);
+															}}
+														/>
+														<label htmlFor="promotion">
+															Yes, we would like
+															to receive
+															promotional offers
+															from Nova’s pizza.
+														</label>
+													</div>
+												</div>
+												<div className="form-item">
+													{button === false ? (
+														<button
+															className="checkout-button"
+															onClick={(e) => {
+																e.preventDefault();
+																setInputError(
+																	true
+																);
+															}}
+														>
+															{/* <i
 														className="fa fa-spinner fa-spin"
 														style={{
 															marginRight: "5px",
 														}}
-													></i>
-													Placing Order
+													></i> */}
+															Continue Checkout
+														</button>
+													) : loading ? (
+														<div className="checkout-button">
+															<i
+																className="fa fa-spinner fa-spin"
+																style={{
+																	marginRight:
+																		"5px",
+																}}
+															></i>
+															Placing Order
+														</div>
+													) : (
+														<StripeCheckout
+															name="Nova's Pizza"
+															description={`Your total is $${cart.total}`}
+															amount={total * 100}
+															token={onToken}
+															stripeKey={
+																process.env
+																	.REACT_APP_PUBLISHABLE_KEY
+															}
+														>
+															<button
+																onClick={(
+																	e
+																) => {
+																	e.preventDefault();
+																}}
+																className={
+																	cart
+																		.products
+																		.length ===
+																	0
+																		? "checkout-button-disabled"
+																		: "checkout-button"
+																}
+															>
+																Continue
+																Checkout
+															</button>
+														</StripeCheckout>
+													)}
 												</div>
-											) : (
-												<StripeCheckout
-													name="Nova's Pizza"
-													description={`Your total is $${cart.total}`}
-													amount={total * 100}
-													token={onToken}
-													stripeKey={
-														process.env
-															.REACT_APP_PUBLISHABLE_KEY
-													}
-												>
-													<button
-														onClick={(e) => {
-															e.preventDefault();
-														}}
-														className={
-															cart.products
-																.length === 0
-																? "checkout-button-disabled"
-																: "checkout-button"
-														}
-													>
-														Continue Checkout
-													</button>
-												</StripeCheckout>
-											)}
-											{/* {paymentError !== "" ? (
+											</form>
+											{paymentError ? (
 												<div className="form-item">
 													<p
 														style={{
 															color: "red",
 															fontWeight: "bold",
+															textAlign: "center",
 														}}
 													>
 														{paymentError}
@@ -703,41 +606,12 @@ const Cart = () => {
 											) : (
 												""
 											)}
-											{orderState !== "" ? (
-												<div className="form-item">
-													<p
-														style={{
-															color: "red",
-															fontWeight: "bold",
-														}}
-													>
-														{orderState}
-													</p>
-												</div>
-											) : (
-												""
-											)} */}
 										</div>
-									</form>
-									{paymentError ? (
-										<div className="form-item">
-											<p
-												style={{
-													color: "red",
-													fontWeight: "bold",
-													textAlign: "center",
-												}}
-											>
-												{paymentError}
-											</p>
-										</div>
-									) : (
-										""
-									)}
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						</>
+					)}
 				</div>
 			</div>
 			<Footer />

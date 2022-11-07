@@ -96,7 +96,10 @@ const cartSlice = createSlice({
             state.time = '';
         },
         addPickUporDeliver: (state, action) => {
-            state.pickUporDeliver = '';
+            state.pickUporDeliver = action.payload;
+        },
+        removeAddPickuporDeliver: (state, action) => {
+            state.pickUporDeliver = ''
         }
     },
 });
@@ -118,5 +121,6 @@ export const {
     addDate,
     removeDate,
     addPickUporDeliver,
+    removeAddPickuporDeliver
 } = cartSlice.actions;
 export default cartSlice.reducer;
