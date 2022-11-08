@@ -29,13 +29,13 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 			pickUp: true,
 			deliver: true,
 		},
-		{
-			id: 2,
-			location: "Oakland",
-			address: "3400 Lakeshore Ave, Oakland, CA 94610, USA",
-			pickUp: false,
-			deliver: true,
-		},
+		// {
+		// 	id: 2,
+		// 	location: "Oakland",
+		// 	address: "3400 Lakeshore Ave, Oakland, CA 94610, USA",
+		// 	pickUp: false,
+		// 	deliver: true,
+		// },
 	];
 
 	const handleChange = (event) => {

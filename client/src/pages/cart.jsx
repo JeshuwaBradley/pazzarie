@@ -4,13 +4,9 @@ import Navbar from "../components/navbar";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	deleteProduct,
-	addDelivery,
-	deleteDelivery,
 	reset,
 	addCoupon,
 	removeCoupon,
-	addTip,
-	removeTip,
 } from "../redux/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
