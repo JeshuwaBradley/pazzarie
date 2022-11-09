@@ -335,6 +335,14 @@ const Cart = () => {
 									<div className="total-container">
 										<div className="total-container-inner">
 											<div className="total-container-text">
+												Discount
+											</div>
+											<div className="total-container-total">
+												${cart.discount.toFixed(2)}
+											</div>
+										</div>
+										<div className="total-container-inner">
+											<div className="total-container-text">
 												Subtotal
 											</div>
 											<div className="total-container-total">
