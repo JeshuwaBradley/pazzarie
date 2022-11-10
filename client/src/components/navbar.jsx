@@ -19,16 +19,16 @@ const Navbar = () => {
 		setWindowWidth(width);
 	};
 
-	// useEffect(() => {
-	// 	const d = new Date();
-	// 	let day = d.getDay();
-	// 	let time = d.getHours();
-	// 	if (day === 1 || (time >= 22 && time < 11)) {
-	// 		setShopOpen(false);
-	// 	} else {
-	// 		setShopOpen(true);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		const d = new Date();
+		let day = d.getDay();
+		let time = d.getHours();
+		if (day === 1 || (time >= 1 && time < 11)) {
+			setShopOpen(false);
+		} else {
+			setShopOpen(true);
+		}
+	}, []);
 
 	const quantity = useSelector((state) => state.cart.quantity);
 	if (width > 900) {
@@ -95,7 +95,7 @@ const Navbar = () => {
 									</span>
 								)}
 
-								<span>11:00AM - 11:00PM</span>
+								<span>11:00AM - 1:00AM</span>
 								{list ? (
 									<div className="nav-list-open">
 										<ul>
@@ -201,7 +201,7 @@ const Navbar = () => {
 						<span className="open-status closed">Closed</span>
 					)}
 					<span style={{ marginLeft: "10px", color: "white" }}>
-						11:00AM - 11:00PM
+						11:00AM - 1:00AM
 					</span>
 				</div>
 				<div className="navbar-top-container-mobile">
