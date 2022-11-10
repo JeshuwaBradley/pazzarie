@@ -23,7 +23,7 @@ const Navbar = () => {
 		const d = new Date();
 		let day = d.getDay();
 		let time = d.getHours();
-		if (day === 1 || (time >= 11 && time < 23)) {
+		if (day === 1 || (time >= 23 && time < 11)) {
 			setShopOpen(false);
 		} else {
 			setShopOpen(true);
