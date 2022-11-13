@@ -48,7 +48,7 @@ const CardSimple = ({ item }) => {
 	};
 
 	const handleChange = (e, option) => {
-		const checked = e.target.checked;
+		const checked = e.target?.checked;
 		if (checked) {
 			setPrice(price + option.price);
 			setExtras((prev) => [...prev, option]);
@@ -106,7 +106,12 @@ const CardSimple = ({ item }) => {
 				</div>
 				<div className="card-simple-desc-container">
 					<div className="card-front-title">
-						<p>{item.itemTitle}</p>
+						<p
+							style={{ cursor: "pointer" }}
+							onClick={() => setModalOpen(true)}
+						>
+							{item.itemTitle}
+						</p>
 					</div>
 					<div className="card-front-desc">
 						<p>{item?.itemDesc}</p>

@@ -8,7 +8,6 @@ const SaladCard = ({ item }) => {
 	const [size, setSize] = useState("");
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
-	const [crust, setCrust] = useState("Cheese Burnt");
 	const dispatch = useDispatch();
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
@@ -43,12 +42,8 @@ const SaladCard = ({ item }) => {
 		resetQuantity();
 	};
 
-	const handleCrust = (value) => {
-		setCrust(value);
-	};
-
 	const handleChange = (e, option) => {
-		const checked = e.target.checked;
+		const checked = e.target?.checked;
 		if (checked) {
 			setPrice(price + option.price);
 			setExtras((prev) => [...prev, option]);
@@ -106,7 +101,12 @@ const SaladCard = ({ item }) => {
 				</div>
 				<div className="card-simple-desc-container">
 					<div className="card-front-title">
-						<p>{item.itemTitle}</p>
+						<p
+							style={{ cursor: "pointer" }}
+							onClick={() => setModalOpen(true)}
+						>
+							{item.itemTitle}
+						</p>
 					</div>
 					<div className="card-front-desc">
 						<p>{item?.itemDesc}</p>

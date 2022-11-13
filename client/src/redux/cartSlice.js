@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
+        idNum: 0,
         pickUporDeliver: '',
         shop: '',
         date: '',
@@ -18,7 +19,12 @@ const cartSlice = createSlice({
     },
     reducers: {
         addProduct: (state, action) => {
-            state.products.push(action.payload);
+            let z = action.payload
+
+            z.itemId = state.idNum + 1;
+            state.products.push(z);
+            state.idNum++;
+
             state.quantity += 1;
             state.subtotal += action.payload.price * action.payload.quantity;
             state.salesTax = state.subtotal * 10.25 / 100
@@ -34,7 +40,7 @@ const cartSlice = createSlice({
             // state.total += action.payload.price * action.payload.quantity + state.tip + (action.payload.price * action.payload.quantity) * 10 / 100;
         },
         deleteProduct: (state, action) => {
-            const x = state.products.find(product => product._id === action.payload._id)
+            const x = state.products.find(product => product.itemId === action.payload.itemId)
             state.products.splice(state.products.indexOf(x), 1);
             state.quantity -= 1;
             state.subtotal -= action.payload.price * action.payload.quantity;

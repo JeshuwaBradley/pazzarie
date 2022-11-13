@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+// import axios from "axios";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
-import CardSimple from "../components/cardSimple";
-import PizzaCard from "../components/pizza-card";
-import SaladCard from "../components/salad-card";
-import { Link } from "react-router-dom";
+// import CardSimple from "../components/cardSimple";
+// import PizzaCard from "../components/pizza-card";
+// import SaladCard from "../components/salad-card";
+// import { Link } from "react-router-dom";
 
-const Menu = () => {
+const PizzaCard = lazy(() => import("../components/pizza-card"));
+const SaladCard = lazy(() => import("../components/salad-card"));
+const CardSimple = lazy(() => import("../components/cardSimple"));
+
+const Menu = ({ data }) => {
 	useEffect(() => {
 		document.title = "Menu | Nova's Pizza - Order Online";
 	}, []);
@@ -15,19 +19,19 @@ const Menu = () => {
 	const [appetizer, setAppetizer] = useState(false);
 	const [salads, setSalads] = useState(false);
 	const [drinks, setDrinks] = useState(false);
-	const [data, setData] = useState(null);
+	// const [data, setData] = useState(null);
 
 	const pizzaItems = [];
 	const appetizerItems = [];
 	const saladItems = [];
 	const drinkItems = [];
 
-	useEffect(() => {
-		axios
-			.get("/api/product/find")
-			.then((res) => setData(res.data))
-			.catch((err) => console.log(err));
-	}, []);
+	// useEffect(() => {
+	// 	axios
+	// 		.get("/api/product/find")
+	// 		.then((res) => setData(res.data))
+	// 		.catch((err) => console.log(err));
+	// }, []);
 
 	if (data) {
 		for (let i in data) {
@@ -113,10 +117,11 @@ const Menu = () => {
 						</li>
 					</ul>
 				</div>
-				<div className="menu-tabs">
-					{pizza ? (
-						<div className="tab" id="pizza-tab">
-							{/* <div className="tab-title">
+				<Suspense fallback={<div>Loading...</div>}>
+					<div className="menu-tabs">
+						{pizza ? (
+							<div className="tab" id="pizza-tab">
+								{/* <div className="tab-title">
 								<h2>Create Your Own Pizza</h2>
 								<div className="underline menu"></div>
 							</div>
@@ -140,109 +145,112 @@ const Menu = () => {
 									</div>
 								</div>
 							</div> */}
-							<div className="tab-title">
-								<h2>Traditional Pizzas</h2>
-								<div className="underline menu"></div>
+								<div className="tab-title">
+									<h2>Traditional Pizzas</h2>
+									<div className="underline menu"></div>
+								</div>
+								<div className="productList-wrapper bottom-margin">
+									{pizzaItems.length !== 0
+										? pizzaItems
+												.slice(0, 3)
+												.map((item, i) => {
+													return (
+														<PizzaCard
+															item={item}
+															key={i}
+														/>
+													);
+												})
+										: ""}
+								</div>
+								<div className="tab-title">
+									<h2>House Specialty</h2>
+									<div className="underline menu"></div>
+								</div>
+								<div className="productList-wrapper">
+									{pizzaItems.length !== 0
+										? pizzaItems.slice(3).map((item, i) => {
+												return (
+													<PizzaCard
+														item={item}
+														key={i}
+													/>
+												);
+										  })
+										: ""}
+								</div>
 							</div>
-							<div className="productList-wrapper bottom-margin">
-								{pizzaItems.length !== 0
-									? pizzaItems.slice(0, 3).map((item, i) => {
-											return (
-												<PizzaCard
-													item={item}
-													key={i}
-												/>
-											);
-									  })
-									: ""}
+						) : (
+							""
+						)}
+						{appetizer ? (
+							<div className="tab" id="appetizer-tab">
+								<div className="tab-title">
+									<h2>Appetizers and sides</h2>
+									<div className="underline"></div>
+								</div>
+								<div className="productList-wrapper">
+									{appetizerItems.length !== 0
+										? appetizerItems.map((item, i) => {
+												return (
+													<CardSimple
+														item={item}
+														key={i}
+													/>
+												);
+										  })
+										: ""}
+								</div>
 							</div>
-							<div className="tab-title">
-								<h2>House Specialty</h2>
-								<div className="underline menu"></div>
+						) : (
+							""
+						)}
+						{salads ? (
+							<div className="tab" id="salads-tab">
+								<div className="tab-title">
+									<h2>Salads</h2>
+									<div className="underline"></div>
+								</div>
+								<div className="productList-wrapper">
+									{saladItems.length !== 0
+										? saladItems.map((item, i) => {
+												return (
+													<SaladCard
+														item={item}
+														key={i}
+													/>
+												);
+										  })
+										: ""}
+								</div>
 							</div>
-							<div className="productList-wrapper">
-								{pizzaItems.length !== 0
-									? pizzaItems.slice(3).map((item, i) => {
-											return (
-												<PizzaCard
-													item={item}
-													key={i}
-												/>
-											);
-									  })
-									: ""}
+						) : (
+							""
+						)}
+						{drinks ? (
+							<div className="tab" id="drinks-tab">
+								<div className="tab-title">
+									<h2>Drinks and Desserts</h2>
+									<div className="underline"></div>
+								</div>
+								<div className="productList-wrapper">
+									{drinkItems.length !== 0
+										? drinkItems.map((item, i) => {
+												return (
+													<CardSimple
+														item={item}
+														key={i}
+													/>
+												);
+										  })
+										: ""}
+								</div>
 							</div>
-						</div>
-					) : (
-						""
-					)}
-					{appetizer ? (
-						<div className="tab" id="appetizer-tab">
-							<div className="tab-title">
-								<h2>Appetizers and sides</h2>
-								<div className="underline"></div>
-							</div>
-							<div className="productList-wrapper">
-								{appetizerItems.length !== 0
-									? appetizerItems.map((item, i) => {
-											return (
-												<CardSimple
-													item={item}
-													key={i}
-												/>
-											);
-									  })
-									: ""}
-							</div>
-						</div>
-					) : (
-						""
-					)}
-					{salads ? (
-						<div className="tab" id="salads-tab">
-							<div className="tab-title">
-								<h2>Salads</h2>
-								<div className="underline"></div>
-							</div>
-							<div className="productList-wrapper">
-								{saladItems.length !== 0
-									? saladItems.map((item, i) => {
-											return (
-												<SaladCard
-													item={item}
-													key={i}
-												/>
-											);
-									  })
-									: ""}
-							</div>
-						</div>
-					) : (
-						""
-					)}
-					{drinks ? (
-						<div className="tab" id="drinks-tab">
-							<div className="tab-title">
-								<h2>Drinks and Desserts</h2>
-								<div className="underline"></div>
-							</div>
-							<div className="productList-wrapper">
-								{drinkItems.length !== 0
-									? drinkItems.map((item, i) => {
-											return (
-												<CardSimple
-													item={item}
-													key={i}
-												/>
-											);
-									  })
-									: ""}
-							</div>
-						</div>
-					) : (
-						""
-					)}
-				</div>
+						) : (
+							""
+						)}
+					</div>
+				</Suspense>
 			</div>
 			<Footer />
 		</div>

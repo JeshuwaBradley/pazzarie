@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import {
   BrowserRouter,
   Routes,
@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Home from './pages/home';
 import Cart from './pages/cart';
 import Menu from './pages/menu';
+import axios from 'axios';
 
 const Admin = lazy(() => import('./pages/admin'))
 const Contact = lazy(() => import('./pages/contact'))
@@ -26,19 +27,28 @@ function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
   const [isShopAuthenticated, userShopHasAuthenticated] = useState(false);
 
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    axios
+      .get("/api/product/find")
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+
   return (
     <div className="App">
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <AppContext.Provider value={{ isAdminAuthenticated, userAdminHasAuthenticated, isShopAuthenticated, userShopHasAuthenticated }}>
             <Routes>
-              <Route index element={<Home />} />
+              <Route index element={<Home data={data} />} />
               <Route path='/cart' element={<Cart />} />
               <Route path='/menu/create-your-own' element={<CreateYourOwn />} />
               <Route path='/popup' element={<Popup />} />
               <Route path='/about-us' element={<About />} />
               <Route path='/locations' element={<Locations />} />
-              <Route path='/menu' element={<Menu />} />
+              <Route path='/menu' element={<Menu data={data} />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/privacy-policy' element={<Privacy />} />
               <Route path='/daily-deals' element={<DailyDeals />} />

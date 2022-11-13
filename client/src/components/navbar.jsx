@@ -19,16 +19,16 @@ const Navbar = () => {
 		setWindowWidth(width);
 	};
 
-	// useEffect(() => {
-	// 	const d = new Date();
-	// 	let day = d.getDay();
-	// 	let time = d.getHours();
-	// 	if (day === 1 || (time >= 1 && time < 11)) {
-	// 		setShopOpen(false);
-	// 	} else {
-	// 		setShopOpen(true);
-	// 	}
-	// }, []);
+	useEffect(() => {
+		const d = new Date();
+		let day = d.getDay();
+		let time = d.getHours();
+		if (day === 1 || (time >= 1 && time < 11)) {
+			setShopOpen(false);
+		} else {
+			setShopOpen(true);
+		}
+	}, []);
 
 	const quantity = useSelector((state) => state.cart.quantity);
 	if (width > 900) {
