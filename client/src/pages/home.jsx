@@ -1,20 +1,18 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import Navbar from "../components/navbar";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import PizzaCard from "../components/pizza-card";
 import Popup from "../components/popup";
-import HomeDeal from "../components/deal-home";
+import { Link } from "react-router-dom";
 
-// const PizzaCard = lazy(() => import("../components/pizza-card"));
+const PizzaCard = lazy(() => import("../components/pizza-card"));
+// const Popup = lazy(() => import("../components/popup"));
+const HomeDeal = lazy(() => import("../components/deal-home"));
 
-const Home = () => {
+const Home = ({ data }) => {
 	useEffect(() => {
 		document.title = "Nova's Pizza - Order the best pizza in town";
 	}, []);
-	const [data, setData] = useState(null);
 	const [showPopUp, setShowPopUp] = useState(false);
 
 	//time the popup for email marketing
@@ -30,16 +28,7 @@ const Home = () => {
 		popup = <Popup setShowPopUp={setShowPopUp} />;
 	}
 
-	//get products for the specials section on home page
-	useEffect(() => {
-		axios
-			.get("/api/product/find")
-			.then((res) => setData(res.data))
-			.catch((err) => console.log(err));
-	}, []);
-
 	const pizzaItems = [];
-
 	if (data) {
 		for (let i in data) {
 			if (data.hasOwnProperty(i)) {
@@ -79,27 +68,29 @@ const Home = () => {
 					<h2 className="productList-title">Today's Specials</h2>
 					<hr className="productList-hr" />
 				</div>
-				<div className="productList-container">
-					<div className="productList-wrapper">
-						{pizzaItems !== 0 &&
-							pizzaItems?.slice(0, 4).map((item, i) => {
-								return <PizzaCard item={item} key={i} />;
-							})}
+				<Suspense fallback={<div>Loading...</div>}>
+					<div className="productList-container">
+						<div className="productList-wrapper">
+							{pizzaItems !== 0 &&
+								pizzaItems?.slice(0, 4).map((item, i) => {
+									return <PizzaCard item={item} key={i} />;
+								})}
+						</div>
+						<Link to="/menu" className="productList-menu-link">
+							View Full Menu
+							<span>
+								<i
+									className="fa fa-external-link"
+									style={{
+										fontSize: "1.5em",
+										marginLeft: "10px",
+										color: "#e2241a",
+									}}
+								></i>
+							</span>
+						</Link>
 					</div>
-					<Link to="/menu" className="productList-menu-link">
-						View Full Menu
-						<span>
-							<i
-								className="fa fa-external-link"
-								style={{
-									fontSize: "1.5em",
-									marginLeft: "10px",
-									color: "#e2241a",
-								}}
-							></i>
-						</span>
-					</Link>
-				</div>
+				</Suspense>
 			</div>
 			{/* <Review /> */}
 			<Footer />

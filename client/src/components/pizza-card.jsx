@@ -46,14 +46,14 @@ const PizzaCard = ({ item }) => {
 
 	const handleCrust = (value) => {
 		setCrust(value);
-		const checked = value.target.checked;
+		const checked = value.target?.checked;
 		if (checked) {
 			setCrust(value.target.value);
 		}
 	};
 
 	const handleChange = (e, option) => {
-		const checked = e.target.checked;
+		const checked = e.target?.checked;
 		if (checked) {
 			setPrice(price + option.price);
 			setExtras((prev) => [...prev, option]);
@@ -108,7 +108,12 @@ const PizzaCard = ({ item }) => {
 				</div>
 				<div className="card-desc-container">
 					<div className="card-front-title">
-						<p>{item.itemTitle}</p>
+						<p
+							style={{ cursor: "pointer" }}
+							onClick={() => setModalOpen(true)}
+						>
+							{item.itemTitle}
+						</p>
 					</div>
 					<div className="card-front-desc">
 						<p>{item?.itemDesc}</p>
