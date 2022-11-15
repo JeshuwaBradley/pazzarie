@@ -135,10 +135,10 @@ body {
 }
 
 .nav-list-open {
-	width: 100%;
+	width: 10em;
 	position: absolute;
-	top: 26px;
-	right: 0;
+	top: 70px;
+	right: 110px;
 	background-color: #fff;
 	color: #000;
 	display: flex;
@@ -3442,10 +3442,12 @@ h2.large-title {
 }
 
 .deals .deal {
+	/* height: auto; */
 	height: 400px;
 	width: 350px;
 	border: 1px solid #ea4e45;
 	margin: 30px 20px;
+	/* padding: 0 30px; */
 	padding: 30px;
 	display: flex;
 	align-items: center;
