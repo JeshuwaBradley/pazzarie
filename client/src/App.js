@@ -20,7 +20,6 @@ const Popup = lazy(() => import('./components/popup'))
 const DailyDeals = lazy(() => import('./pages/daily-deals'))
 const PageNotFound = lazy(() => import('./pages/404-page'))
 const Shop = lazy(() => import('./pages/shop'))
-const CreateYourOwn = lazy(() => import('./pages/create-your-own'))
 const Unsubscribe = lazy(() => import('./pages/unsubscribe'))
 
 function App() {
@@ -44,7 +43,6 @@ function App() {
             <Routes>
               <Route index element={<Home data={data} />} />
               <Route path='/cart' element={<Cart />} />
-              <Route path='/menu/create-your-own' element={<CreateYourOwn />} />
               <Route path='/popup' element={<Popup />} />
               <Route path='/about-us' element={<About />} />
               <Route path='/locations' element={<Locations />} />
