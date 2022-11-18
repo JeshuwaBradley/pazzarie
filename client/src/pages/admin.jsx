@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import Topbar from "../components/admin-topbar";
 import Navbar from "../components/navbar";
 
 const OrderItems = ({ currentOrderItems, handleRefresh }) => {
@@ -238,8 +237,7 @@ const Admin = () => {
 
 	return (
 		<div className="admin">
-			{/* <Navbar /> */}
-			<Topbar />
+			<Navbar />
 			<div className="admin-main-one">
 				<div className="numbers-container">
 					<div className="numbers-container-inner white">
