@@ -287,7 +287,7 @@ const SaladCard = ({ item }) => {
 							<p>{quantity}</p>
 							<span onClick={handleDecrease}>-</span>
 						</div>
-						<div className="detail-item messsage-area">
+						{/* <div className="detail-item messsage-area">
 							<h3>Additionally:</h3>
 							<form>
 								<textarea
@@ -297,7 +297,7 @@ const SaladCard = ({ item }) => {
 									rows="3"
 								></textarea>
 							</form>
-						</div>
+						</div> */}
 						<div className="detail-item">
 							<p className="detail-price">$ {price.toFixed(2)}</p>
 						</div>

@@ -32,22 +32,8 @@ const Hero = () => {
 
 	return (
 		<div className="hero-container">
-			<div>
-				<video
-					playsInline
-					autoPlay
-					muted
-					loop
-					id="bgvideo"
-					width="x"
-					height="y"
-				>
-					<source
-						src="https://player.vimeo.com/external/479813000.sd.mp4?s=a2312b396bb4384593e8f2e1d5a8b891ab23f4fd&profile_id=139&oauth2_token_id=57447761"
-						type="video/mp4"
-					/>
-					'Your browser does not support video'
-				</video>
+			<div className="hero-image">
+				<img src="img/hero.webp" alt="" />
 			</div>
 			<div
 				className="hero-wrapper carousel slide"
