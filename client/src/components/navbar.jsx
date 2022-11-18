@@ -7,6 +7,7 @@ const Navbar = () => {
 	const [open, setOpen] = useState(false);
 	const [shopOpen, setShopOpen] = useState(false);
 	const [list, setList] = useState(false);
+	const [early, setEarly] = useState(false);
 	useEffect(() => {
 		updateDimensions();
 
@@ -23,6 +24,11 @@ const Navbar = () => {
 		const d = new Date();
 		let day = d.getDay();
 		let time = d.getHours();
+		if (day === 0 || day === 2 || day === 3 || day === 4) {
+			setEarly(false);
+		} else if (day === 5 || day === 6) {
+			setEarly(true);
+		}
 		if (day === 1 || (time >= 1 && time < 16)) {
 			setShopOpen(false);
 		} else {
@@ -94,8 +100,11 @@ const Navbar = () => {
 										Closed
 									</span>
 								)}
-
-								<span>4:00PM - 1:00AM</span>
+								{early ? (
+									<span>11:00AM - 1:00AM</span>
+								) : (
+									<span>4:00PM - 1:00AM</span>
+								)}
 								{list ? (
 									<div className="nav-list-open">
 										<ul>
@@ -184,9 +193,15 @@ const Navbar = () => {
 					) : (
 						<span className="open-status closed">Closed</span>
 					)}
-					<span style={{ marginLeft: "10px", color: "white" }}>
-						4:00PM - 1:00AM
-					</span>
+					{early ? (
+						<span style={{ marginLeft: "10px", color: "white" }}>
+							11:00AM - 1:00AM
+						</span>
+					) : (
+						<span style={{ marginLeft: "10px", color: "white" }}>
+							4:00PM - 1:00AM
+						</span>
+					)}
 				</div>
 				<div className="navbar-top-container-mobile">
 					<div className="mobile-left">
