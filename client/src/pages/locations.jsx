@@ -9,6 +9,45 @@ const Locations = () => {
 	return (
 		<div>
 			<Navbar />
+			<div className="locations">
+				<div className="locations-inner">
+					<div className="location">
+						<h2>
+							<i
+								className="fa fa-map-marker"
+								style={{ color: "red" }}
+							></i>{" "}
+							Berkeley, California
+						</h2>
+						{/* <div className="location-name">Berkeley, California</div> */}
+						<div className="location-address">
+							1704, University Avenue, Berkeley, California 94703,
+							USA
+						</div>
+						<div className="location-deliver">Pickup Available</div>
+						<div className="location-deliver">
+							Delivery Available
+						</div>
+					</div>
+					<div className="location">
+						<h2>
+							<i
+								className="fa fa-map-marker"
+								style={{ color: "red" }}
+							></i>{" "}
+							Oakland, California
+						</h2>
+						{/* <div className="location-name">Oakland, California</div> */}
+						<div className="location-address">
+							1438 Broadway, Oakland, California 94612, USA
+						</div>
+						{/* <div className="location-deliver">Pickup Available</div> */}
+						<div className="location-deliver">
+							Delivery Available
+						</div>
+					</div>
+				</div>
+			</div>
 			<Footer />
 		</div>
 	);

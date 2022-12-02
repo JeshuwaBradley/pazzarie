@@ -3111,3 +3111,39 @@ h2.large-title {
 		padding-top: 0;
 	}
 }
+
+/* ---------------------location--------------- */
+.locations {
+	height: 80vh;
+	padding: 3rem 2rem;
+}
+
+.locations-inner {
+	display: flex;
+	flex-direction: row;
+}
+
+.locations .location {
+	flex: 1;
+	padding: 2rem;
+	border: 5px dotted red;
+	/* border-style: dotted */
+	margin: 1rem;
+}
+.location > * {
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 480px) {
+	.locations {
+		padding: 0;
+	}
+	.locations-inner {
+		flex-direction: column;
+		padding: 1rem 0;
+	}
+	.locations .location {
+		padding: 1rem 1rem;
+		border: 3px dotted red;
+	}
+}
