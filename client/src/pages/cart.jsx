@@ -146,6 +146,30 @@ const Cart = () => {
 		setNotes(notes);
 	};
 
+	const [open, setOpen] = useState(false);
+	const [openError, setOpenError] = useState(false);
+
+	useEffect(() => {
+		const d = new Date();
+		let day = d.getDay();
+		let time = d.getHours();
+		if (day === 1) {
+			setOpen(false);
+		} else if (day === 2 || day === 3 || day === 4 || day === 0) {
+			if (time >= 1 && time < 16) {
+				setOpen(false);
+			} else {
+				setOpen(true);
+			}
+		} else if (day === 5 || day === 6) {
+			if (time >= 1 && time < 11) {
+				setOpen(false);
+			} else {
+				setOpen(true);
+			}
+		}
+	}, []);
+
 	return (
 		<div>
 			<Navbar />
@@ -532,68 +556,108 @@ const Cart = () => {
 														</label>
 													</div>
 												</div>
-												<div className="form-item">
-													{button === false ? (
-														<button
-															className="checkout-button"
-															onClick={(e) => {
-																e.preventDefault();
-																setInputError(
-																	true
-																);
-															}}
-														>
-															{/* <i
-														className="fa fa-spinner fa-spin"
-														style={{
-															marginRight: "5px",
-														}}
-													></i> */}
-															Continue Checkout
-														</button>
-													) : loading ? (
-														<div className="checkout-button">
-															<i
-																className="fa fa-spinner fa-spin"
-																style={{
-																	marginRight:
-																		"5px",
-																}}
-															></i>
-															Placing Order
-														</div>
-													) : (
-														<StripeCheckout
-															name="Nova's Pizza"
-															description={`Your total is $${cart.total}`}
-															amount={total * 100}
-															token={onToken}
-															stripeKey={
-																process.env
-																	.REACT_APP_PUBLISHABLE_KEY
-															}
-														>
+												{open === true ? (
+													<div className="form-item">
+														{button === false ? (
 															<button
+																className="checkout-button"
 																onClick={(
 																	e
 																) => {
 																	e.preventDefault();
+																	setInputError(
+																		true
+																	);
 																}}
-																className={
-																	cart
-																		.products
-																		.length ===
-																	0
-																		? "checkout-button-disabled"
-																		: "checkout-button"
-																}
 															>
 																Continue
 																Checkout
 															</button>
-														</StripeCheckout>
-													)}
-												</div>
+														) : loading ? (
+															<div className="checkout-button">
+																<i
+																	className="fa fa-spinner fa-spin"
+																	style={{
+																		marginRight:
+																			"5px",
+																	}}
+																></i>
+																Placing Order
+															</div>
+														) : (
+															<StripeCheckout
+																name="Nova's Pizza"
+																description={`Your total is $${cart.total}`}
+																amount={
+																	total * 100
+																}
+																token={onToken}
+																stripeKey={
+																	process.env
+																		.REACT_APP_PUBLISHABLE_KEY
+																}
+															>
+																<button
+																	onClick={(
+																		e
+																	) => {
+																		e.preventDefault();
+																	}}
+																	className={
+																		cart
+																			.products
+																			.length ===
+																		0
+																			? "checkout-button-disabled"
+																			: "checkout-button"
+																	}
+																>
+																	Continue
+																	Checkout
+																</button>
+															</StripeCheckout>
+														)}
+													</div>
+												) : (
+													<>
+														<div
+															className="form-item"
+															style={{
+																justifyContent:
+																	"center",
+															}}
+														>
+															<button
+																className="checkout-button"
+																onClick={(
+																	e
+																) => {
+																	e.preventDefault();
+																	setOpenError(
+																		true
+																	);
+																}}
+															>
+																Continue
+																Checkout
+															</button>
+														</div>
+														{openError === true ? (
+															<div className="form-item">
+																<p
+																	style={{
+																		color: "red",
+																	}}
+																>
+																	Shops are
+																	closed
+																</p>
+															</div>
+														) : (
+															""
+														)}
+													</>
+												)}
 											</form>
 											{paymentError ? (
 												<div className="form-item">
