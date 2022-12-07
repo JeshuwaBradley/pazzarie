@@ -24,33 +24,33 @@ const Navbar = () => {
 		const d = new Date();
 		let day = d.getDay();
 		let time = d.getHours();
-		// if (day === 0 || day === 2 || day === 3 || day === 4) {
-		// 	setEarly(false);
-		// } else if (day === 5 || day === 6) {
-		// 	setEarly(true);
-		// }
-		// if (day === 1 || (time >= 1 && time < 16)) {
-		// 	setShopOpen(false);
-		// } else {
-		// 	setShopOpen(true);
-		// }
-		if (day === 1) {
-			setOpen(false);
-		} else if (day === 2 || day === 3 || day === 4 || day === 0) {
+		if (day === 0 || day === 2 || day === 3 || day === 4) {
 			setEarly(false);
-			if (time >= 1 && time < 16) {
-				setOpen(false);
-			} else {
-				setOpen(true);
-			}
 		} else if (day === 5 || day === 6) {
 			setEarly(true);
-			if (time >= 1 && time < 11) {
-				setOpen(false);
-			} else {
-				setOpen(true);
-			}
 		}
+		if (day === 1 || (time >= 1 && time < 16)) {
+			setShopOpen(false);
+		} else {
+			setShopOpen(true);
+		}
+		// if (day === 1) {
+		// 	setOpen(false);
+		// } else if (day === 2 || day === 3 || day === 4 || day === 0) {
+		// 	setEarly(false);
+		// 	if (time >= 1 && time < 16) {
+		// 		setOpen(false);
+		// 	} else {
+		// 		setOpen(true);
+		// 	}
+		// } else if (day === 5 || day === 6) {
+		// 	setEarly(true);
+		// 	if (time >= 1 && time < 11) {
+		// 		setOpen(false);
+		// 	} else {
+		// 		setOpen(true);
+		// 	}
+		// }
 	}, []);
 
 	const quantity = useSelector((state) => state.cart.quantity);
