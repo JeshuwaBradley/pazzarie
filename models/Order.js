@@ -25,7 +25,7 @@ const OrderSchema = new mongoose.Schema(
                     itemName: {
                         type: String,
                         required: true,
-                        maxlength: 60,
+                        // maxlength: 60,
                     },
                     extras: {
                         type: [
@@ -37,7 +37,6 @@ const OrderSchema = new mongoose.Schema(
                     },
                     size: {
                         type: String,
-                        required: true,
                         maxlength: 60,
                     },
                     crust: {

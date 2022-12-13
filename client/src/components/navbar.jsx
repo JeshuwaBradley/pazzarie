@@ -24,33 +24,33 @@ const Navbar = () => {
 		const d = new Date();
 		let day = d.getDay();
 		let time = d.getHours();
-		if (day === 0 || day === 2 || day === 3 || day === 4) {
-			setEarly(false);
-		} else if (day === 5 || day === 6) {
-			setEarly(true);
-		}
-		if (day === 1 || (time >= 1 && time < 16)) {
-			setShopOpen(false);
-		} else {
-			setShopOpen(true);
-		}
-		// if (day === 1) {
-		// 	setOpen(false);
-		// } else if (day === 2 || day === 3 || day === 4 || day === 0) {
+		// if (day === 0 || day === 2 || day === 3 || day === 4) {
 		// 	setEarly(false);
-		// 	if (time >= 1 && time < 16) {
-		// 		setOpen(false);
-		// 	} else {
-		// 		setOpen(true);
-		// 	}
 		// } else if (day === 5 || day === 6) {
 		// 	setEarly(true);
-		// 	if (time >= 1 && time < 11) {
-		// 		setOpen(false);
-		// 	} else {
-		// 		setOpen(true);
-		// 	}
 		// }
+		// if (day === 1 || (time >= 1 && time < 16)) {
+		// 	setShopOpen(false);
+		// } else {
+		// 	setShopOpen(true);
+		// }
+		if (day === 1) {
+			setShopOpen(false);
+		} else if (day === 2 || day === 3 || day === 4 || day === 0) {
+			setEarly(false);
+			if (time >= 1 && time < 16) {
+				setShopOpen(false);
+			} else {
+				setShopOpen(true);
+			}
+		} else if (day === 5 || day === 6) {
+			setEarly(true);
+			if (time >= 1 && time < 11) {
+				setShopOpen(false);
+			} else {
+				setShopOpen(true);
+			}
+		}
 	}, []);
 
 	const quantity = useSelector((state) => state.cart.quantity);
@@ -73,10 +73,8 @@ const Navbar = () => {
 									<Link to="/menu" title="Menu">
 										<li className="listItem">Menu</li>
 									</Link>
-									<Link to="/daily-deals" title="Daily Deals">
-										<li className="listItem">
-											Deal of the day
-										</li>
+									<Link to="/promotions" title="Promotions">
+										<li className="listItem">Promotions</li>
 									</Link>
 									<Link to="/contact" title="Contact">
 										<li className="listItem">Contact</li>
@@ -270,10 +268,8 @@ const Navbar = () => {
 						<Link to="/menu" className="mobile-nav-item">
 							<div className="mobile-nav-item">Menu</div>
 						</Link>
-						<Link to="/daily-deals" className="mobile-nav-item">
-							<div className="mobile-nav-item">
-								Deals of the Day
-							</div>
+						<Link to="/promotions" className="mobile-nav-item">
+							<div className="mobile-nav-item">Promotions</div>
 						</Link>
 						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>

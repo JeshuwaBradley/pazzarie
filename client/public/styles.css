@@ -1397,6 +1397,10 @@ body {
 .cart-name {
 	font-weight: 500;
 	font-size: 18px;
+	/* white-space: nowrap; */
+	/* width: 100%; */
+	/* overflow: hidden; */
+	/* text-overflow: ellipsis; */
 }
 
 .cart-total {
@@ -3145,5 +3149,231 @@ h2.large-title {
 	.locations .location {
 		padding: 1rem 1rem;
 		border: 3px dotted red;
+	}
+}
+
+/* ---------------------- Promotion Page ---------------------- */
+.promotion-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 5em 0;
+}
+.promotion-deal {
+	margin: 1em 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	/* border: 1px solid black; */
+}
+.promotion-select {
+	/* padding: 10px; */
+	width: 100%;
+	text-align: center;
+	margin-bottom: 5px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.promotion-button {
+	height: 3em;
+	width: 80vw;
+	text-align: center;
+	margin-bottom: 5px;
+	background-color: #e2241a;
+	color: white;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.promotion-deal-item {
+	width: 250px;
+	border: 1px solid teal;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+}
+.promotion-deal-item-image img {
+	height: 125px;
+	width: 250px;
+}
+.promotion-deal-item-content {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.item-promotion-deal-item-title {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.2em 0;
+}
+
+.item-promotion-deal-item-title h3 {
+	font-size: 20px;
+	text-align: left;
+}
+
+.promotion-deal-item-button {
+	background-color: #e2241a;
+	color: white;
+	cursor: pointer;
+	padding: 0.5em 0;
+	/* width: 100%; */
+}
+.promotion-deal-item-button.disabled {
+	background-color: #3a3a3a;
+}
+
+.promoionDeal-extras {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	height: 3em;
+}
+.promoionDeal-extras .promotionDeal-extra {
+	margin: 10px;
+}
+.promotionDeal-extra label {
+	margin-left: 10px;
+	font-size: 20px;
+}
+.promotionDealTwo-button {
+	background-color: #e2241a;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	color: white;
+}
+
+@media screen and (max-width: 480px) {
+	.promotion-container {
+		padding: 1em 0;
+	}
+	.promotion-deal {
+		margin: 1em 0;
+	}
+	.promotion-deal-item {
+		display: flex;
+		flex-direction: row;
+		height: 100px;
+		width: 18em;
+		padding: 0;
+	}
+	.item-promotion-deal-item-title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.promotion-deal-item-image img {
+		height: 100px;
+		width: 100px;
+	}
+	.item-promotion-deal-item-title h3 {
+		font-size: 17px;
+	}
+	.promotion-deal-item-button {
+		/* width: 90%; */
+		margin: 5px;
+		padding: 0.5em 0;
+	}
+	.promotion-button {
+		width: 18em;
+	}
+	.promoionDeal-extras {
+		padding: 10px 0;
+		height: auto;
+		flex-direction: column;
+	}
+	.promotionDeal-extra label {
+		font-size: 18px;
+	}
+}
+
+/*------------------- PromotionDealTwo-------------- */
+.promotionDeal {
+	height: 15em;
+	width: 25em;
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+}
+
+.promotionDeal-main {
+	height: 100%;
+	background: linear-gradient(
+		109.6deg,
+		rgba(0, 0, 0, 0.93) 11.2%,
+		rgb(63, 61, 61) 78.9%
+	);
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 1em;
+}
+
+.promotionDeal-main.large {
+	width: 80vw;
+	height: 15em;
+}
+
+.promotionDeal-main .design {
+	font-family: "Festive", cursive;
+	color: gold;
+	font-size: 30px;
+}
+.promotionDeal-main.large .design {
+	font-size: 40px;
+}
+.promotionDeal-main .topic {
+	border: 2px solid gold;
+	padding: 0.5em;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 18px;
+}
+.promotionDeal-main.large .topic {
+	font-size: 25px;
+}
+
+.promotionDealTwo-secondary .promotionDealTwo-button {
+	height: 2em;
+	background-color: teal;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.promotion-selection {
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+@media screen and (max-width: 480px) {
+	.promotionDeal-main.large {
+		height: 15em;
+		width: 80vw;
+	}
+	.promotionDeal-main.large .design {
+		font-size: 30px;
+	}
+	.promotionDeal-main.large .topic {
+		font-size: 18px;
 	}
 }
