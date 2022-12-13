@@ -1,6 +1,10 @@
 import React from "react";
 
 const CartItem = ({ product, handleDelete, i }) => {
+	let string = product.itemTitle;
+	if (string.length > 15) {
+		string = string.substring(0, 15) + "...";
+	}
 	return (
 		<div className="cart-row" key={i}>
 			<div className="cart-column">
@@ -14,7 +18,7 @@ const CartItem = ({ product, handleDelete, i }) => {
 				/>
 			</div>
 			<div className="cart-column">
-				<span className="cart-name">{product.itemTitle}</span>
+				<span className="cart-name">{string}</span>
 			</div>
 			<div className="cart-column">
 				<div className="cart-extras">

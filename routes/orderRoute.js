@@ -1895,7 +1895,7 @@ router.put("/status/:id", async (req, res) => {
 router.get("/find-shop/:id", async (req, res) => {
   let query = { shop: req.params.id }
   try {
-    const orders = await Order.find(query).sort({ createdAt: -1 })
+    const orders = await Order.find(query).sort({ createdAt: -1 }).limit(20)
     res.status(200).json(orders)
   } catch (error) {
     console.log(error)

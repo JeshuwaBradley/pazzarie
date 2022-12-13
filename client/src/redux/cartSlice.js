@@ -4,6 +4,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         idNum: 0,
+        promotion: false,
         pickUporDeliver: '',
         shop: '',
         date: '',
@@ -106,6 +107,12 @@ const cartSlice = createSlice({
         },
         removeAddPickuporDeliver: (state, action) => {
             state.pickUporDeliver = ''
+        },
+        addPromotion: (state, action) => {
+            state.promotion = true
+        },
+        removePromotion: (state, action) => {
+            state.promotion = false
         }
     },
 });
@@ -127,6 +134,8 @@ export const {
     addDate,
     removeDate,
     addPickUporDeliver,
-    removeAddPickuporDeliver
+    removeAddPickuporDeliver,
+    addPromotion,
+    removePromotion
 } = cartSlice.actions;
 export default cartSlice.reducer;

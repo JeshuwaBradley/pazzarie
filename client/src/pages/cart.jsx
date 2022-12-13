@@ -31,6 +31,7 @@ const Cart = () => {
 	const [button, setButton] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [inputError, setInputError] = useState(false);
+	const [promotionError, setPromotionError] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -70,21 +71,25 @@ const Cart = () => {
 	};
 
 	const handleCouponCode = (e) => {
-		let code = e.target.value;
-		code = code.toString().toUpperCase();
-		if (cart.discount === 0) {
-			if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
-				dispatch(addCoupon(10));
+		if (cart.promotion === true) {
+			setPromotionError(true);
+		} else {
+			let code = e.target.value;
+			code = code.toString().toUpperCase();
+			if (cart.discount === 0) {
+				if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
+					dispatch(addCoupon(10));
+				}
+				if (code === "15DISCOUNT") {
+					dispatch(addCoupon(15));
+				}
+				if (code === "20DISCOUNT") {
+					dispatch(addCoupon(20));
+				}
 			}
-			if (code === "15DISCOUNT") {
-				dispatch(addCoupon(15));
+			if (cart.discount !== 0 && code !== "NOVASPIZZA") {
+				dispatch(removeCoupon());
 			}
-			if (code === "20DISCOUNT") {
-				dispatch(addCoupon(20));
-			}
-		}
-		if (cart.discount !== 0 && code !== "NOVASPIZZA") {
-			dispatch(removeCoupon());
 		}
 	};
 
@@ -530,6 +535,20 @@ const Cart = () => {
 														/>
 													</div>
 												</div>
+												{promotionError ? (
+													<div className="form-item">
+														<div className="form-label"></div>
+														<div
+															className="form-input"
+															style={{
+																color: "red",
+															}}
+														>
+															Cannot use coupon
+															code
+														</div>
+													</div>
+												) : null}
 												<PickUpDeliver
 													inputs={inputs}
 													setInputs={setInputs}
