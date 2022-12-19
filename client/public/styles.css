@@ -3377,3 +3377,18 @@ h2.large-title {
 		font-size: 18px;
 	}
 }
+
+.open-close-container {
+	padding: 0 3rem;
+	margin-bottom: 3rem;
+}
+
+.open-close-container h3 {
+	margin-bottom: 1rem;
+}
+
+.open-close-button {
+	padding: 10px;
+	background-color: teal;
+	color: white;
+}

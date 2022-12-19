@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Navbar from "../components/navbar";
+import OpenClose from "../components/open-close";
 
 const OrderItems = ({ currentOrderItems, handleRefresh }) => {
 	const handleDelete = (e) => {
@@ -401,6 +402,7 @@ const Admin = () => {
 					</div>
 				</div>
 			</div>
+			<OpenClose />
 		</div>
 	);
 };

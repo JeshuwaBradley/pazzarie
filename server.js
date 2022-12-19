@@ -10,6 +10,7 @@ const stripeRoute = require("./routes/stripe");
 const contactRoute = require("./routes/contact");
 const distanceRoute = require("./routes/distanceRoute");
 const emailRoute = require('./routes/emailRoute');
+const openRoute = require('./routes/open');
 const cors = require("cors");
 const path = require("path")
 
@@ -39,7 +40,9 @@ app.use("/api/checkout", stripeRoute);
 app.use("/api/contact", contactRoute);
 app.use("/api/distance", distanceRoute)
 app.use("/api/email", emailRoute);
+app.use('/api/open', openRoute);
 
+// app.get('/api/open', console.log(openRoute))
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
