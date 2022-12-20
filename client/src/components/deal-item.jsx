@@ -7,7 +7,6 @@ const PromotionDealItem = ({
 	itemSelected,
 }) => {
 	const [selected, setSelected] = useState(false);
-	console.log(itemSelected, selected);
 
 	return (
 		<>

@@ -17,12 +17,18 @@ const PromotionalDealThree = ({ data }) => {
 	let itemTitle;
 
 	const handleCart = () => {
-		itemTitle =
-			`One Large ${selectedItem.item["itemTitle"]} & One medium cheese Bread & 12 BBQ Wings`.toLowerCase();
-		dispatch(addPromotion());
-		dispatch(addProduct({ itemTitle, price, extras, quantity, imgSrc }));
-		alert("Product added to cart");
-		setOpen(false);
+		if (selectedItem) {
+			itemTitle =
+				`One Large ${selectedItem.item["itemTitle"]} & One medium cheese Bread & 12 BBQ Wings`.toLowerCase();
+			dispatch(addPromotion());
+			dispatch(
+				addProduct({ itemTitle, price, extras, quantity, imgSrc })
+			);
+			alert("Product added to cart");
+			setOpen(false);
+		} else {
+			alert("Select any one pizza before clicking add to cart");
+		}
 	};
 
 	const addToSelect = (item) => {

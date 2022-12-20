@@ -7,6 +7,9 @@ body {
 	font-family: "Open Sans", HelveticaNeue-Light, "Helvetica Neue Light",
 		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	background-color: #f5ebdc;
+	background-image: url("img/background-design.webp");
+	background-size: 400px;
+	background-repeat: repeat;
 	width: 100%;
 }
 
@@ -19,6 +22,7 @@ body {
 
 .navbar {
 	background-color: #e2241a;
+	/* background-color: #0c3d42 ; */
 	top: 0;
 	z-index: 999;
 }
@@ -617,11 +621,21 @@ body {
 .card-front-button span {
 	margin-left: 5px;
 }
+.card-front-title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	/* justify-content: center; */
+	margin: 10px 0;
+}
+.card-front-title img {
+	margin-right: 5px;
+}
 .card-front-title p {
 	font-size: 19px;
 	color: #000;
 	font-weight: 600;
-	margin: 10px 0;
+	margin: 10px 0 0 0;
 	text-transform: uppercase;
 }
 .card-front-desc p {
@@ -686,7 +700,7 @@ body {
 	}
 	.card-desc-container {
 		width: 90%;
-		height: 240px;
+		height: 250px;
 		max-height: none;
 	}
 	.card-cart-container-main {
@@ -1152,7 +1166,9 @@ body {
 
 /* Menu Page  */
 .menu-main {
-	background-color: #f5ebdc;
+	/* background-color: #f5ebdc; */
+	/* background-image: url("img/background-design.png");
+	background-repeat: repeat; */
 	overflow: auto;
 }
 
@@ -1162,7 +1178,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: url("https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dGFibGV8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60");
+	background-image: url("https://images.unsplash.com/photo-1545735089-fe9e1e4f4569?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1233&q=80");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -2790,13 +2806,14 @@ h2.large-title {
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	background-color: #fff;
+	/* background-color: #fff; */
 }
 
 .deals .deal {
 	height: 400px;
 	width: 350px;
 	border: 1px solid #ea4e45;
+	background-color: #fff;
 	margin: 30px 20px;
 	padding: 30px;
 	display: flex;
@@ -2945,7 +2962,8 @@ h2.large-title {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	background-image: url("img/georgia-z-JG5lgvc57qE-unsplash.webp");
+	/* background-image: url("img/georgia-z-JG5lgvc57qE-unsplash.webp"); */
+	background-image: url("https://images.unsplash.com/photo-1545735089-fe9e1e4f4569?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1233&q=80");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: 1% 5%;
@@ -3118,7 +3136,7 @@ h2.large-title {
 
 /* ---------------------location--------------- */
 .locations {
-	height: 80vh;
+	height: auto;
 	padding: 3rem 2rem;
 }
 
@@ -3230,6 +3248,7 @@ h2.large-title {
 	color: white;
 	cursor: pointer;
 	padding: 0.5em 0;
+	cursor: pointer;
 	/* width: 100%; */
 }
 .promotion-deal-item-button.disabled {
@@ -3257,6 +3276,7 @@ h2.large-title {
 	justify-content: center;
 	padding: 10px;
 	color: white;
+	cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
@@ -3326,6 +3346,7 @@ h2.large-title {
 	justify-content: center;
 	flex-direction: column;
 	padding: 1em;
+	cursor: pointer;
 }
 
 .promotionDeal-main.large {

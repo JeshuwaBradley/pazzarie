@@ -9,6 +9,12 @@ const Promotion = ({ data }) => {
 	return (
 		<div>
 			<Navbar />
+			<div className="menu-hero">
+				<div className="menu-hero-title">
+					<div className="menu-hero-title-bgc"></div>
+					<h1>Promotions</h1>
+				</div>
+			</div>
 			<div className="promotion-container">
 				<PromotionDeal data={data} />
 				<PromotionalDealThree data={data} />

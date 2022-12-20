@@ -9,6 +9,12 @@ const Locations = () => {
 	return (
 		<div>
 			<Navbar />
+			<div className="menu-hero">
+				<div className="menu-hero-title">
+					<div className="menu-hero-title-bgc"></div>
+					<h1>Locations</h1>
+				</div>
+			</div>
 			<div className="locations">
 				<div className="locations-inner">
 					<div className="location">
