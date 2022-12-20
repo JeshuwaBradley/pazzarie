@@ -17,14 +17,19 @@ const PromotionDeal = ({ data }) => {
 	let itemTitle;
 
 	const handleCart = () => {
-		itemTitle = `One Large ${selectedItem.item["itemTitle"]} ${
-			extrasA !== "" ? "with " + extrasA : ""
-		} & One Large cheese Bread & 6 BBQ Wings`.toLowerCase();
-		console.log(itemTitle);
-		dispatch(addPromotion());
-		dispatch(addProduct({ itemTitle, price, extras, quantity, imgSrc }));
-		alert("Product added to cart");
-		setOpen(false);
+		if (selectedItem) {
+			itemTitle = `One Large ${selectedItem.item["itemTitle"]} ${
+				extrasA !== "" ? "with " + extrasA : ""
+			} & One Large cheese Bread & 6 BBQ Wings`.toLowerCase();
+			dispatch(addPromotion());
+			dispatch(
+				addProduct({ itemTitle, price, extras, quantity, imgSrc })
+			);
+			alert("Product added to cart");
+			setOpen(false);
+		} else {
+			alert("Select any one pizza before clicking add to cart");
+		}
 	};
 
 	const addToSelect = (item) => {

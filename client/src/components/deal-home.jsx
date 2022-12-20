@@ -6,8 +6,8 @@ const HomeDeal = () => {
 		<div className="homeDeal">
 			<div className="homeDeal-inner">
 				<h1>Want to see some</h1>
-				<h1 className="exclusive">Exlusive Deals?</h1>
-				<Link to="/daily-deals" className="homeDeal-link">
+				<h1 className="exclusive">Exlusive Promotions?</h1>
+				<Link to="/promotions" className="homeDeal-link">
 					<i
 						className="fa fa-external-link"
 						style={{
@@ -16,7 +16,7 @@ const HomeDeal = () => {
 							color: "#e2241a",
 						}}
 					></i>
-					Deals{" "}
+					Promotions{" "}
 				</Link>
 			</div>
 		</div>

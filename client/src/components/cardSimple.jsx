@@ -106,6 +106,14 @@ const CardSimple = ({ item }) => {
 				</div>
 				<div className="card-simple-desc-container">
 					<div className="card-front-title">
+						<img
+							src={`img/${
+								Math.floor(Math.random() * 5) + 1
+							}.webp`}
+							height={30}
+							width={30}
+							alt=""
+						/>
 						<p
 							style={{ cursor: "pointer" }}
 							onClick={() => setModalOpen(true)}

@@ -11,6 +11,11 @@ const PizzaCard = ({ item }) => {
 	const [crust, setCrust] = useState("classic-pan-tossed");
 	const dispatch = useDispatch();
 
+	let string = item.itemDesc;
+	if (string.length > 90) {
+		string = string.substring(0, 90) + "...";
+	}
+
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
 			setPrice(item.itemPrices[1].price);
@@ -108,6 +113,14 @@ const PizzaCard = ({ item }) => {
 				</div>
 				<div className="card-desc-container">
 					<div className="card-front-title">
+						<img
+							src={`img/${
+								Math.floor(Math.random() * 5) + 1
+							}.webp`}
+							height={30}
+							width={30}
+							alt=""
+						/>
 						<p
 							style={{ cursor: "pointer" }}
 							onClick={() => setModalOpen(true)}
@@ -116,7 +129,7 @@ const PizzaCard = ({ item }) => {
 						</p>
 					</div>
 					<div className="card-front-desc">
-						<p>{item?.itemDesc}</p>
+						<p>{string}</p>
 					</div>
 					<div className="card-cart-container-main">
 						<div className="card-cart-container">
