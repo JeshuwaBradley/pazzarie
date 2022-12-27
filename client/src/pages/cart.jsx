@@ -151,40 +151,40 @@ const Cart = () => {
 		setNotes(notes);
 	};
 
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	const [openError, setOpenError] = useState(false);
 
 	let serverOpenS;
-	// useEffect(() => {
-	// 	const d = new Date();
-	// 	let day = d.getDay();
-	// 	let time = d.getHours();
-	// 	axios.get("/api/open").then((res) => {
-	// 		serverOpenS = res.data["open"];
-	// 		console.log(serverOpenS);
-	// 		if (serverOpenS) {
-	// 			console.log("server shop open");
-	// 			if (day === 1) {
-	// 				setOpen(false);
-	// 			} else if (day === 2 || day === 3 || day === 4 || day === 0) {
-	// 				if (time >= 1 && time < 16) {
-	// 					setOpen(false);
-	// 				} else {
-	// 					setOpen(true);
-	// 				}
-	// 			} else if (day === 5 || day === 6) {
-	// 				if (time >= 1 && time < 11) {
-	// 					setOpen(false);
-	// 				} else {
-	// 					setOpen(true);
-	// 				}
-	// 			}
-	// 		} else if (!serverOpenS) {
-	// 			console.log("server shop close");
-	// 			setOpen(false);
-	// 		}
-	// 	});
-	// }, []);
+	useEffect(() => {
+		const d = new Date();
+		let day = d.getDay();
+		let time = d.getHours();
+		axios.get("/api/open").then((res) => {
+			serverOpenS = res.data["open"];
+			console.log(serverOpenS);
+			if (serverOpenS) {
+				console.log("server shop open");
+				if (day === 1) {
+					setOpen(false);
+				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
+					if (time >= 1 && time < 16) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				} else if (day === 5 || day === 6) {
+					if (time >= 1 && time < 11) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				}
+			} else if (!serverOpenS) {
+				console.log("server shop close");
+				setOpen(false);
+			}
+		});
+	}, []);
 
 	return (
 		<div>
