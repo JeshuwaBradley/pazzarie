@@ -28,6 +28,7 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 			address: "1706 University Ave, Berkeley, CA 94703, USA",
 			pickUp: true,
 			deliver: true,
+			distance: 5632.7,
 		},
 		{
 			id: 2,
@@ -35,6 +36,7 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 			address: "1438 Broadway, Oakland, CA 94612, USA",
 			pickUp: false,
 			deliver: true,
+			distance: 9656.06,
 		},
 	];
 
@@ -197,7 +199,7 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 				.then((response) => {
 					let distance =
 						response.data.rows[0].elements[0].distance.value;
-					if (distance > 5632.7) {
+					if (distance > shops[selectedLocation - 1].distance) {
 						setConfirm(false);
 						setError(true);
 						handleRemoverDeliver();

@@ -11,6 +11,7 @@ import Cart from './pages/cart';
 import Menu from './pages/menu';
 import axios from 'axios';
 import Promotion from './pages/promotion';
+import ReactGA from 'react-ga';
 
 const Admin = lazy(() => import('./pages/admin'))
 const Contact = lazy(() => import('./pages/contact'))
@@ -35,6 +36,8 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  const TRACKING_ID = "AW-11036011591"; // OUR_TRACKING_ID
+  ReactGA.initialize(TRACKING_ID);
 
   return (
     <div className="App">
