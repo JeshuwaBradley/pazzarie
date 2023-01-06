@@ -93,6 +93,10 @@ const OrderSchema = new mongoose.Schema(
         discount: {
             type: Number,
         },
+        discountCode: {
+            type: String,
+            maxlength: 60,
+        },
         total: {
             type: Number,
             required: true,

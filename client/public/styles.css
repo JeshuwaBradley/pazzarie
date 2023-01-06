@@ -7,7 +7,7 @@ body {
 	font-family: "Open Sans", HelveticaNeue-Light, "Helvetica Neue Light",
 		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	background-color: #f5ebdc;
-	background-image: url("img/background-design.webp");
+	/* background-image: url("img/background-design.webp"); */
 	background-size: 400px;
 	background-repeat: repeat;
 	width: 100%;
@@ -1178,7 +1178,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-image: url("https://images.unsplash.com/photo-1545735089-fe9e1e4f4569?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1233&q=80");
+	background-image: url("img/hero.webp");
+	/* background-image: url("https://images.unsplash.com/photo-1550684376-efcbd6e3f031?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"); */
 	background-repeat: no-repeat;
 	background-size: cover;
 }

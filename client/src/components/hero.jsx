@@ -33,7 +33,7 @@ const Hero = () => {
 	return (
 		<div className="hero-container">
 			<div className="hero-image">
-				<img src="img/hero1.webp" width="100%" heigth="100%" alt="" />
+				<img src="img/hero.webp" width="100%" heigth="100%" alt="" />
 			</div>
 			<div
 				className="hero-wrapper carousel slide"

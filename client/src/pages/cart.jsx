@@ -23,7 +23,7 @@ const Cart = () => {
 	const navigate = useNavigate();
 	const cart = useSelector((state) => state.cart);
 
-	const [promote, setPromote] = useState(true);
+	const [promote, setPromote] = useState(false);
 	const [inputs, setInputs] = useState({});
 	const [notes, setNotes] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -32,6 +32,7 @@ const Cart = () => {
 	const [success, setSuccess] = useState(false);
 	const [inputError, setInputError] = useState(false);
 	const [promotionError, setPromotionError] = useState(false);
+	const [discountCode, setDiscountCode] = useState("");
 
 	const dispatch = useDispatch();
 
@@ -79,16 +80,24 @@ const Cart = () => {
 			if (cart.discount === 0) {
 				if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
 					dispatch(addCoupon(10));
+					setDiscountCode(code);
 				}
 				if (code === "15DISCOUNT") {
 					dispatch(addCoupon(15));
+					setDiscountCode(code);
 				}
-				if (code === "20DISCOUNT") {
+				if (
+					code === "20DISCOUNT" ||
+					code === "NEWYEAR" ||
+					code === "UCBERKELEY"
+				) {
 					dispatch(addCoupon(20));
+					setDiscountCode(code);
 				}
 			}
 			if (cart.discount !== 0 && code !== "NOVASPIZZA") {
 				dispatch(removeCoupon());
+				setDiscountCode("");
 			}
 		}
 	};
@@ -110,6 +119,7 @@ const Cart = () => {
 				orderItems: orderItems,
 				tip: cart.tip,
 				discount: cart.discount,
+				discountCode: discountCode,
 				total: total,
 			};
 			axios
@@ -271,8 +281,8 @@ const Cart = () => {
 									<p>Order has been placed</p>
 									{cart.pickUporDeliver === "deliver" ? (
 										<p>
-											Your order will be delivered in 15
-											minutes to the given
+											Your order will be delivered in 30 -
+											45 minutes.
 										</p>
 									) : (
 										<p>
