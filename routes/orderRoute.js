@@ -4,8 +4,7 @@ const nodemailer = require("nodemailer")
 
 //create 
 
-const sendMail = async (data) => {
-  console.log(data)
+const sendMail = async (data, saved) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com", //replace with your email provider
     port: 587,
@@ -53,8 +52,8 @@ const sendMail = async (data) => {
       <td class="pad">
         <ul start="1"
           style="margin: 0; padding: 0; margin-left: 20px; list-style-type: revert; color: #000000; font-size: 14px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-weight: 400; line-height: 120%; text-align: left; direction: ltr; letter-spacing: 0px;">
-          <li style="margin-bottom: 0px;">${item['size']}</li>
-          <li style="margin-bottom: 0px;">${item['crust']}
+          <li style="margin-bottom: 0px;">${item['size'] ? item['size'] : ''}</li>
+          <li style="margin-bottom: 0px;">${item['crust'] ? item['crust'] : ''}
           </li>
           <li>${getExtras(item)}</li>
         </ul>
@@ -90,11 +89,14 @@ const sendMail = async (data) => {
     return shops[data['shop'] - 1]
   }
 
+  let createdDate = saved.createdAt.toUTCString();
+  createdDate = createdDate.split(' ').slice(0, 5).join(' ');
+
   let mail = {
     from: 'jeshuwabradley@gmail.com',
     to: getEmail(),
     cc: 'novaspizza.promo@gmail.com',
-    subject: "New Order - Nova's Pizza",
+    subject: `New Order - Nova's Pizza `,
     html: `
     <!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -276,6 +278,48 @@ const sendMail = async (data) => {
                   </tr>
                 </tbody>
               </table>
+              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-3"
+						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+						<tbody>
+							<tr>
+								<td>
+									<table align="center" border="0" cellpadding="0" cellspacing="0"
+										class="row-content stack" role="presentation"
+										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; border-radius: 0; width: 480px;"
+										width="480">
+										<tbody>
+											<tr>
+												<td class="column column-1"
+													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
+													width="100%">
+													<table border="0" cellpadding="0" cellspacing="0"
+														class="paragraph_block block-1" role="presentation"
+														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+														width="100%">
+														<tr>
+															<td class="pad"
+																style="padding-top:10px;padding-right:10px;padding-bottom:40px;padding-left:10px;">
+																<div
+																	style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:center;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+																	<p style="margin: 0; margin-bottom: 16px;"><span
+																			style="font-family: inherit; background-color: transparent;">Order:
+																		</span><strong
+																			style="font-family: inherit; background-color: transparent;">#${saved['_id']}</strong></p>
+																	<p style="margin: 0; margin-bottom: 16px;">Order
+																		placed: <strong>${createdDate}</strong>
+																	</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
               <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-4"
                 role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                 <tbody>
@@ -323,7 +367,7 @@ const sendMail = async (data) => {
                                       <p style="margin: 0;"><a href="tel:${data['mobile']}"
                                           rel="noopener noreferrer"
                                           style="text-decoration: underline; color: #0068a5;"
-                                          target="_blank">${data['mobile']}</a></p>
+                                          target="_blank">${data['mobile'] ? data['mobile'] : ''}</a></p>
                                     </div>
                                   </td>
                                 </tr>
@@ -784,7 +828,7 @@ router.post('/', async (req, res) => {
   try {
     const saved = await newOrder.save();
     res.status(200).json(saved);
-    sendMail(req.body)
+    sendMail(req.body, saved)
   } catch (error) {
     res.status(500).json(error);
   }
