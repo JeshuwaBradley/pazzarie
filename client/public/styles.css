@@ -765,7 +765,7 @@ body {
 	grid-template-columns: repeat(2, 1fr);
 	display: flex;
 	flex-direction: column;
-	max-height: 550px;
+	max-height: 670px;
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
@@ -812,19 +812,11 @@ body {
 	height: auto;
 	width: 100%;
 }
-
-#scroll-to-bottom {
-	overflow-anchor: none;
-}
-#anchor {
-	overflow-anchor: auto;
-	height: 1px;
-}
 .upselling-container-title {
-	/* padding-left: 30px; */
-	/* padding: 10px; */
+	font-weight: 500;
+	font-size: 18px;
 	margin-bottom: 20px;
-	margin-left: 20px;
+	/* margin-left: 20px; */
 }
 
 .upselling-container-inner {
@@ -992,9 +984,6 @@ body {
 		margin-top: -300px;
 		margin-left: -45vw;
 	}
-	.modal-content {
-		/* padding: 10px 0; */
-	}
 	.modal-main-container {
 		display: flex;
 		flex-direction: column;
@@ -1003,9 +992,11 @@ body {
 		height: 200px;
 		padding: 10px 0 0 0;
 	}
-	.modal-right,
+	.modal-right {
+		padding: 10px 20px;
+	}
 	.modal-left {
-		padding: 25px 20px;
+		padding: 25px 10px;
 	}
 	.upselling-container {
 		height: 3em;
@@ -3466,8 +3457,9 @@ h2.large-title {
 
 /*------------------------- Upselling Item -------------------- */
 .upselling-item {
-	height: 15em;
-	width: 10em;
+	height: 18em;
+	width: 13em;
+	margin-bottom: 20px;
 	border-radius: 5px;
 	margin: 5px;
 	background-color: #fff;
@@ -3476,6 +3468,19 @@ h2.large-title {
 	box-sizing: border-box;
 }
 
+.upselling-item-name {
+	font-size: 18px;
+	font-weight: 700;
+}
+.upselling-item-size-select select {
+	border: 0;
+	font-weight: bold;
+}
+.upselling-item-price {
+	font-weight: bold;
+}
+.upselling-item-size-select option {
+}
 .upselling-item-image {
 	height: 50%;
 	background-repeat: no-repeat;
@@ -3508,4 +3513,18 @@ h2.large-title {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+	.upselling-item {
+		height: 18em;
+		width: 13em;
+		margin-bottom: 20px;
+	}
+	.upselling-item-name {
+		font: 18px;
+	}
+	.upselling-item-button button {
+		font-size: 18px;
+	}
 }

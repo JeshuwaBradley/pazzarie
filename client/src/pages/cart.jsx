@@ -691,6 +691,9 @@ const Cart = () => {
 																	setOpenError(
 																		true
 																	);
+																	alert(
+																		"Shops are closed."
+																	);
 																}}
 															>
 																Continue
