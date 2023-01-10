@@ -194,174 +194,202 @@ const CardSimple = ({ item, data }) => {
 						: "modal-content"
 				}`}
 			>
+				<div ref={messagesEndRef} />
+				{addedToCart && item?.upsellingItems ? (
+					<span
+						className="modal-close go-back"
+						onClick={(e) => {
+							setAddedToCart(false);
+						}}
+					>
+						<i className="fa fa-arrow-left" aria-hidden="true"></i>{" "}
+						Go Back
+					</span>
+				) : null}
 				<i
 					className="modal-close fa fa-times fa-lg"
-					onClick={handleClose}
+					onClick={(e) => {
+						setAddedToCart(false);
+						handleClose();
+					}}
 				></i>
-				<div className="modal-main-container">
-					<div className="modal-left">
-						<img
-							loading="lazy"
-							className="modal-img"
-							alt={item.itemTitle}
-							// src={`/img/${item.imgSrc}`}
-							src={
-								`${item.imgSrc}`.slice(0, 5) === "https"
-									? `${item.imgSrc}`
-									: `/img/${item.imgSrc}`
-							}
-						/>
-						{/* <img className="modal-img" src={item.imgSrc} alt="" /> */}
-					</div>
+				{addedToCart && item?.upsellingItems ? (
+					<>
+						<UpsellingContainer item={item} data={data} />
+					</>
+				) : (
+					<div className="modal-main-container">
+						<div className="modal-left">
+							<img
+								loading="lazy"
+								className="modal-img"
+								alt={item.itemTitle}
+								// src={`/img/${item.imgSrc}`}
+								src={
+									`${item.imgSrc}`.slice(0, 5) === "https"
+										? `${item.imgSrc}`
+										: `/img/${item.imgSrc}`
+								}
+							/>
+							{/* <img className="modal-img" src={item.imgSrc} alt="" /> */}
+						</div>
 
-					<div className="modal-right">
-						<div className="detail">
-							<div className="detail-item">
-								<h2 className="detail-title">
-									{item.itemTitle}
-								</h2>
-
-								<p className="detail-description">
-									{item.itemDesc}
-								</p>
-							</div>
-							{item?.itemPrices !== 0 ? (
+						<div className="modal-right">
+							<div className="detail">
 								<div className="detail-item">
-									<h3>Choose the size</h3>
-									<form
-										onChange={(e) =>
-											handleSize(e.target.value)
+									<h2 className="detail-title">
+										{item.itemTitle}
+									</h2>
+
+									<p className="detail-description">
+										{item.itemDesc}
+									</p>
+								</div>
+								{item?.itemPrices !== 0 ? (
+									<div className="detail-item">
+										<h3>Choose the size</h3>
+										<form
+											onChange={(e) =>
+												handleSize(e.target.value)
+											}
+										>
+											{item?.itemPrices.length === 1
+												? item?.itemPrices.map(
+														(size, i) => {
+															return (
+																<div key={i}>
+																	<input
+																		type="radio"
+																		name="size"
+																		id={
+																			size?.text
+																		}
+																		value={
+																			i
+																		}
+																		defaultChecked
+																	/>
+																	<label
+																		htmlFor={
+																			size?.text
+																		}
+																	>
+																		{
+																			size?.text
+																		}
+																	</label>
+																</div>
+															);
+														}
+												  )
+												: item?.itemPrices.map(
+														(size, i) => {
+															return (
+																<div key={i}>
+																	<input
+																		type="radio"
+																		name="size"
+																		id={
+																			size?.text
+																		}
+																		value={
+																			i
+																		}
+																	/>
+																	<label
+																		htmlFor={
+																			size?.text
+																		}
+																	>
+																		{
+																			size?.text
+																		}
+																	</label>
+																</div>
+															);
+														}
+												  )}
+										</form>
+									</div>
+								) : (
+									""
+								)}
+								{item?.extraOptions.length !== 0 ? (
+									<div className="detail-item">
+										<h3>Choose additional ingredients</h3>
+										<form>
+											{item?.extraOptions.length !== 0
+												? item.extraOptions.map(
+														(option, i) => {
+															return (
+																<div key={i}>
+																	<input
+																		type="checkbox"
+																		id={
+																			option?.text
+																		}
+																		name={
+																			option?.text
+																		}
+																		value={
+																			option?.text
+																		}
+																		onChange={(
+																			e
+																		) =>
+																			handleChange(
+																				e,
+																				option
+																			)
+																		}
+																	/>
+																	<label
+																		htmlFor={
+																			option?.text
+																		}
+																	>
+																		{
+																			option?.text
+																		}
+																	</label>
+																</div>
+															);
+														}
+												  )
+												: ""}
+										</form>
+									</div>
+								) : (
+									""
+								)}
+								<div className="detail-item quantity-box">
+									<span onClick={handleIncrease}>+</span>
+									<p>{quantity}</p>
+									<span onClick={handleDecrease}>-</span>
+								</div>
+								<div className="detail-item">
+									<p className="detail-price">
+										$ {price.toFixed(2)}
+									</p>
+								</div>
+								<div
+									className="detail-item"
+									onClick={handleCart}
+								>
+									<p
+										className={
+											size == null
+												? "detail-bagBtn-disabled"
+												: "detail-bagBtn"
 										}
 									>
-										{item?.itemPrices.length === 1
-											? item?.itemPrices.map(
-													(size, i) => {
-														return (
-															<div key={i}>
-																<input
-																	type="radio"
-																	name="size"
-																	id={
-																		size?.text
-																	}
-																	value={i}
-																	defaultChecked
-																/>
-																<label
-																	htmlFor={
-																		size?.text
-																	}
-																>
-																	{size?.text}
-																</label>
-															</div>
-														);
-													}
-											  )
-											: item?.itemPrices.map(
-													(size, i) => {
-														return (
-															<div key={i}>
-																<input
-																	type="radio"
-																	name="size"
-																	id={
-																		size?.text
-																	}
-																	value={i}
-																/>
-																<label
-																	htmlFor={
-																		size?.text
-																	}
-																>
-																	{size?.text}
-																</label>
-															</div>
-														);
-													}
-											  )}
-									</form>
+										Add to Cart
+									</p>
 								</div>
-							) : (
-								""
-							)}
-							{item?.extraOptions.length !== 0 ? (
-								<div className="detail-item">
-									<h3>Choose additional ingredients</h3>
-									<form>
-										{item?.extraOptions.length !== 0
-											? item.extraOptions.map(
-													(option, i) => {
-														return (
-															<div key={i}>
-																<input
-																	type="checkbox"
-																	id={
-																		option?.text
-																	}
-																	name={
-																		option?.text
-																	}
-																	value={
-																		option?.text
-																	}
-																	onChange={(
-																		e
-																	) =>
-																		handleChange(
-																			e,
-																			option
-																		)
-																	}
-																/>
-																<label
-																	htmlFor={
-																		option?.text
-																	}
-																>
-																	{
-																		option?.text
-																	}
-																</label>
-															</div>
-														);
-													}
-											  )
-											: ""}
-									</form>
-								</div>
-							) : (
-								""
-							)}
-							<div className="detail-item quantity-box">
-								<span onClick={handleIncrease}>+</span>
-								<p>{quantity}</p>
-								<span onClick={handleDecrease}>-</span>
-							</div>
-							<div className="detail-item">
-								<p className="detail-price">
-									$ {price.toFixed(2)}
-								</p>
-							</div>
-							<div className="detail-item" onClick={handleCart}>
-								<p
-									className={
-										size == null
-											? "detail-bagBtn-disabled"
-											: "detail-bagBtn"
-									}
-								>
-									Add to Cart
-								</p>
 							</div>
 						</div>
 					</div>
-				</div>
-				{addedToCart ? (
-					<UpsellingContainer item={item} data={data} />
-				) : null}
-				<div ref={messagesEndRef} />
+				)}
 			</div>
 		</>
 	);
