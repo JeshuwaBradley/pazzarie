@@ -35,8 +35,9 @@ const UpsellingItem = ({ item }) => {
 			></div>
 			<div className="upselling-content-div">
 				<div className="upselling-item-name">{item.itemTitle}</div>
-				<div className="upselling-item-size">
-					<label htmlFor="upselling-item-size">Size</label>
+				<div className="upselling-item-price">$ {price.toFixed(2)}</div>
+				<div className="upselling-item-size-select">
+					<label htmlFor="upselling-item-size-label">Size</label>
 					<select
 						name="size"
 						id="upselling-item-size"
