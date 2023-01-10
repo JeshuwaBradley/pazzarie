@@ -50,7 +50,8 @@ const cartSlice = createSlice({
             // state.total += action.payload.price * action.payload.quantity + state.tip + (action.payload.price * action.payload.quantity) * 10 / 100;
         },
         deleteProduct: (state, action) => {
-            const x = state.products.find(product => product.itemId === action.payload.itemId)
+            const x = state.products.find(product => product.itemId === action.payload.itemId);
+            console.log(action.payload)
             state.products.splice(state.products.indexOf(x), 1);
             state.quantity -= 1;
             if (state.quantity === 0) {
@@ -68,6 +69,12 @@ const cartSlice = createSlice({
                 state.subtotal -= state.discount;
                 state.salesTax = state.subtotal * 10.25 / 100;
                 state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
+            }
+            if (state.upselling && action.payload.upsaleItem) {
+                state.upselling = false;
+                state.subtotal += state.discount
+                state.salesTax = state.subtotal * 10.25 / 100;
+                state.discount = 0;
             }
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
             // state.total -= action.payload.price * action.payload.quantity + (action.payload.price * action.payload.quantity) * 10 / 100;
