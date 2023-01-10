@@ -760,17 +760,20 @@ body {
 	padding: 10px 5px;
 	position: fixed;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	max-height: 650px;
+	display: flex;
+	flex-direction: column;
+	max-height: 550px;
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
 	opacity: 0;
 	transform: translateY(-100px);
 	transition: all 225ms ease-in-out;
+	box-sizing: border-box;
+	overflow: scroll;
 }
 
 .modal-content-show {
@@ -783,7 +786,10 @@ body {
 	margin-top: -270px;
 	margin-left: -480px;
 }
-
+.modal-main-container {
+	display: grid;
+	grid-template-columns: repeat(2, 2fr);
+}
 .modal-left {
 	display: flex;
 	align-items: center;
@@ -796,7 +802,37 @@ body {
 	align-items: center;
 	justify-content: center;
 	padding: 20px;
-	height: 100%;
+	height: 500px;
+}
+
+.upselling-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height: auto;
+	width: 100%;
+}
+
+#scroll-to-bottom {
+	overflow-anchor: none;
+}
+#anchor {
+	overflow-anchor: auto;
+	height: 1px;
+}
+.upselling-container-title {
+	/* padding-left: 30px; */
+	/* padding: 10px; */
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+
+.upselling-container-inner {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-bottom: 10px;
 }
 
 .modal-left img {
@@ -939,7 +975,8 @@ body {
 		right: 10px;
 	}
 	.modal-content {
-		grid-template-columns: repeat(1, 1fr) !important;
+		display: flex;
+		flex-direction: column;
 		height: 88vh;
 		width: 90vw;
 		max-width: 90vw;
@@ -956,14 +993,26 @@ body {
 		margin-left: -45vw;
 	}
 	.modal-content {
-		padding: 10px 0;
+		/* padding: 10px 0; */
+	}
+	.modal-main-container {
+		display: flex;
+		flex-direction: column;
 	}
 	.modal-left {
 		height: 200px;
+		padding: 10px 0 0 0;
 	}
 	.modal-right,
 	.modal-left {
 		padding: 25px 20px;
+	}
+	.upselling-container {
+		height: 3em;
+		flex-direction: row;
+	}
+	.upselling-container-inner {
+		margin-bottom: 10px;
 	}
 	.detail {
 		height: 100%;
@@ -3413,4 +3462,50 @@ h2.large-title {
 	padding: 10px;
 	background-color: teal;
 	color: white;
+}
+
+/*------------------------- Upselling Item -------------------- */
+.upselling-item {
+	height: 15em;
+	width: 10em;
+	border-radius: 5px;
+	margin: 5px;
+	background-color: #fff;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+		rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	box-sizing: border-box;
+}
+
+.upselling-item-image {
+	height: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-color: #cccccc;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.upselling-content-div {
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding: 5px;
+}
+
+.upselling-item-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.upselling-item-button button {
+	padding: 5px;
+	width: 100%;
+	color: white;
+	background-color: teal;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
 }

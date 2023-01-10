@@ -73,7 +73,13 @@ const Home = ({ data }) => {
 						<div className="productList-wrapper">
 							{pizzaItems !== 0 &&
 								pizzaItems?.slice(0, 4).map((item, i) => {
-									return <PizzaCard item={item} key={i} />;
+									return (
+										<PizzaCard
+											item={item}
+											key={i}
+											data={data}
+										/>
+									);
 								})}
 						</div>
 						<Link to="/menu" className="productList-menu-link">

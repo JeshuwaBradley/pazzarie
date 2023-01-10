@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartSlice";
+import UpsellingContainer from "./upselling-container";
 
-const PizzaCard = ({ item }) => {
+const PizzaCard = ({ item, data }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [size, setSize] = useState("");
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
+	const [addedToCart, setAddedToCart] = useState(false);
 	const dispatch = useDispatch();
 
 	let string = item.itemDesc;
@@ -78,9 +80,19 @@ const PizzaCard = ({ item }) => {
 		}
 	};
 
+	const messagesEndRef = useRef(null);
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [addedToCart]);
+
 	const handleCart = () => {
 		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
-		handleClose();
+		setAddedToCart(true);
 		alert("Product added to cart");
 	};
 
@@ -113,14 +125,6 @@ const PizzaCard = ({ item }) => {
 				</div>
 				<div className="card-desc-container">
 					<div className="card-front-title">
-						{/* <img
-							src={`img/${
-								Math.floor(Math.random() * 5) + 1
-							}.webp`}
-							height={30}
-							width={30}
-							alt=""
-						/> */}
 						<p
 							style={{ cursor: "pointer" }}
 							onClick={() => setModalOpen(true)}
@@ -207,146 +211,174 @@ const PizzaCard = ({ item }) => {
 						? "modal-content modal-content-show"
 						: "modal-content"
 				}`}
+				id="scroll-to-bottom"
 			>
 				<i
 					className="modal-close fa fa-times fa-lg"
 					onClick={handleClose}
 				></i>
+				<div className="modal-main-container">
+					<div className="modal-left">
+						<img
+							loading="lazy"
+							className="modal-img"
+							alt={item.itemTitle}
+							// src={`/img/${item.imgSrc}`}
+							src={
+								`${item.imgSrc}`.slice(0, 5) === "https"
+									? `${item.imgSrc}`
+									: `/img/${item.imgSrc}`
+							}
+						/>
+						{/* <img className="modal-img" src={item.imgSrc} alt="" /> */}
+					</div>
 
-				<div className="modal-left">
-					<img
-						loading="lazy"
-						className="modal-img"
-						alt={item.itemTitle}
-						// src={`/img/${item.imgSrc}`}
-						src={
-							`${item.imgSrc}`.slice(0, 5) === "https"
-								? `${item.imgSrc}`
-								: `/img/${item.imgSrc}`
-						}
-					/>
-					{/* <img className="modal-img" src={item.imgSrc} alt="" /> */}
-				</div>
-
-				<div className="modal-right">
-					<div className="detail">
-						<div className="detail-item">
-							<h2 className="detail-title">{item.itemTitle}</h2>
-
-							<p className="detail-description">
-								{item.itemDesc}
-							</p>
-						</div>
-						<div className="detail-item">
-							<h3>Choose the crust</h3>
-							<form onChange={(e) => handleCrust(e.target.value)}>
-								<div>
-									<input
-										type="radio"
-										name="size"
-										id="classic-pan-tossed"
-										value="classic-pan-tossed"
-									/>
-									<label htmlFor="classic-pan-tossed">
-										Classic Pan Tossed
-									</label>
-								</div>
-								<div>
-									<input
-										type="radio"
-										name="size"
-										id="thin-crust"
-										value="thin-crust"
-									/>
-									<label htmlFor="thin-crust">
-										Thin Crust
-									</label>
-								</div>
-							</form>
-						</div>
-						{item?.itemPrices !== 0 ? (
+					<div className="modal-right">
+						<div className="detail">
 							<div className="detail-item">
-								<h3>Choose the size</h3>
+								<h2 className="detail-title">
+									{item.itemTitle}
+								</h2>
+
+								<p className="detail-description">
+									{item.itemDesc}
+								</p>
+							</div>
+							<div className="detail-item">
+								<h3>Choose the crust</h3>
 								<form
-									onChange={(e) => handleSize(e.target.value)}
+									onChange={(e) =>
+										handleCrust(e.target.value)
+									}
 								>
-									{item?.itemPrices.map((size, i) => {
-										return (
-											<div key={i}>
-												<input
-													type="radio"
-													name="size"
-													id={size?.text}
-													value={i}
-												/>
-												<label htmlFor={size?.text}>
-													{size?.text}
-												</label>
-											</div>
-										);
-									})}
+									<div>
+										<input
+											type="radio"
+											name="size"
+											id="classic-pan-tossed"
+											value="classic-pan-tossed"
+										/>
+										<label htmlFor="classic-pan-tossed">
+											Classic Pan Tossed
+										</label>
+									</div>
+									<div>
+										<input
+											type="radio"
+											name="size"
+											id="thin-crust"
+											value="thin-crust"
+										/>
+										<label htmlFor="thin-crust">
+											Thin Crust
+										</label>
+									</div>
 								</form>
 							</div>
-						) : (
-							""
-						)}
-						{item?.extraOptions.length !== 0 ? (
+							{item?.itemPrices !== 0 ? (
+								<div className="detail-item">
+									<h3>Choose the size</h3>
+									<form
+										onChange={(e) =>
+											handleSize(e.target.value)
+										}
+									>
+										{item?.itemPrices.map((size, i) => {
+											return (
+												<div key={i}>
+													<input
+														type="radio"
+														name="size"
+														id={size?.text}
+														value={i}
+													/>
+													<label htmlFor={size?.text}>
+														{size?.text}
+													</label>
+												</div>
+											);
+										})}
+									</form>
+								</div>
+							) : (
+								""
+							)}
+							{item?.extraOptions.length !== 0 ? (
+								<div className="detail-item">
+									<h3>Choose additional ingredients</h3>
+									<form>
+										{item?.extraOptions.length !== 0
+											? item.extraOptions.map(
+													(option, i) => {
+														return (
+															<div key={i}>
+																<input
+																	type="checkbox"
+																	id={
+																		option?.text
+																	}
+																	name={
+																		option?.text
+																	}
+																	value={
+																		option?.text
+																	}
+																	onChange={(
+																		e
+																	) =>
+																		handleChange(
+																			e,
+																			option
+																		)
+																	}
+																/>
+																<label
+																	htmlFor={
+																		option?.text
+																	}
+																>
+																	{
+																		option?.text
+																	}
+																</label>
+															</div>
+														);
+													}
+											  )
+											: ""}
+									</form>
+								</div>
+							) : (
+								""
+							)}
+							<div className="detail-item quantity-box">
+								<span onClick={handleIncrease}>+</span>
+								<p>{quantity}</p>
+								<span onClick={handleDecrease}>-</span>
+							</div>
 							<div className="detail-item">
-								<h3>Choose additional ingredients</h3>
-								<form>
-									{item?.extraOptions.length !== 0
-										? item.extraOptions.map((option, i) => {
-												return (
-													<div key={i}>
-														<input
-															type="checkbox"
-															id={option?.text}
-															name={option?.text}
-															value={option?.text}
-															onChange={(e) =>
-																handleChange(
-																	e,
-																	option
-																)
-															}
-														/>
-														<label
-															htmlFor={
-																option?.text
-															}
-														>
-															{option?.text}
-														</label>
-													</div>
-												);
-										  })
-										: ""}
-								</form>
+								<p className="detail-price">
+									$ {price.toFixed(2)}
+								</p>
 							</div>
-						) : (
-							""
-						)}
-						<div className="detail-item quantity-box">
-							<span onClick={handleIncrease}>+</span>
-							<p>{quantity}</p>
-							<span onClick={handleDecrease}>-</span>
-						</div>
-						<div className="detail-item">
-							<p className="detail-price">$ {price.toFixed(2)}</p>
-						</div>
-						<div className="detail-item" onClick={handleCart}>
-							<p
-								className={
-									size == null
-										? "detail-bagBtn-disabled"
-										: "detail-bagBtn"
-								}
-							>
-								Add to Cart
-							</p>
+							<div className="detail-item" onClick={handleCart}>
+								<p
+									className={
+										size == null
+											? "detail-bagBtn-disabled"
+											: "detail-bagBtn"
+									}
+								>
+									Add to Cart
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
+				{addedToCart ? (
+					<UpsellingContainer item={item} data={data} />
+				) : null}
+				<div ref={messagesEndRef} />
 			</div>
 		</>
 	);

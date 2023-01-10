@@ -5,6 +5,7 @@ const cartSlice = createSlice({
     initialState: {
         idNum: 0,
         promotion: false,
+        upselling: false,
         pickUporDeliver: '',
         shop: '',
         date: '',
@@ -16,6 +17,7 @@ const cartSlice = createSlice({
         subtotal: 0,
         total: 0,
         discount: 0,
+        discountCode: '',
         tip: 0,
     },
     reducers: {
@@ -31,11 +33,18 @@ const cartSlice = createSlice({
             state.salesTax = state.subtotal * 10.25 / 100
             if (state.discount !== 0) {
                 state.subtotal += state.discount
+                state.salesTax = state.subtotal * 10.25 / 100;
                 state.discount = 0;
             }
             if (state.tip !== 0) {
                 state.total -= state.tip;
                 state.tip = 0;
+            }
+            if (state.upselling) {
+                state.discount = (state.subtotal) * 15 / 100;
+                state.subtotal -= state.discount;
+                state.salesTax = state.subtotal * 10.25 / 100;
+                state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
             }
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
             // state.total += action.payload.price * action.payload.quantity + state.tip + (action.payload.price * action.payload.quantity) * 10 / 100;
@@ -44,8 +53,22 @@ const cartSlice = createSlice({
             const x = state.products.find(product => product.itemId === action.payload.itemId)
             state.products.splice(state.products.indexOf(x), 1);
             state.quantity -= 1;
+            if (state.quantity === 0) {
+                state.upselling = false;
+            }
             state.subtotal -= action.payload.price * action.payload.quantity;
             state.salesTax = state.subtotal * 10.25 / 100;
+            if (state.discount !== 0) {
+                state.subtotal += state.discount
+                state.salesTax = state.subtotal * 10.25 / 100;
+                state.discount = 0;
+            }
+            if (state.upselling) {
+                state.discount = (state.subtotal) * 15 / 100;
+                state.subtotal -= state.discount;
+                state.salesTax = state.subtotal * 10.25 / 100;
+                state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
+            }
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
             // state.total -= action.payload.price * action.payload.quantity + (action.payload.price * action.payload.quantity) * 10 / 100;
         },
@@ -113,6 +136,20 @@ const cartSlice = createSlice({
         },
         removePromotion: (state, action) => {
             state.promotion = false
+        },
+        addUpselling: (state, action) => {
+            state.upselling = true;
+            state.discountCode = 'upselling'
+        },
+        removeUpselling: (state, action) => {
+            state.upselling = false;
+            state.discountCode = '';
+        },
+        addDiscountCode: (state, action) => {
+            state.discountCode = action.payload;
+        },
+        removeDiscountCode: (state, action) => {
+            state.discountCode = '';
         }
     },
 });
@@ -136,6 +173,6 @@ export const {
     addPickUporDeliver,
     removeAddPickuporDeliver,
     addPromotion,
-    removePromotion
+    removePromotion, addUpselling, removeUpselling, addDiscountCode, removeDiscountCode
 } = cartSlice.actions;
 export default cartSlice.reducer;

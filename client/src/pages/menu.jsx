@@ -121,6 +121,7 @@ const Menu = ({ data }) => {
 														<PizzaCard
 															item={item}
 															key={i}
+															data={data}
 														/>
 													);
 												})
@@ -137,6 +138,7 @@ const Menu = ({ data }) => {
 													<PizzaCard
 														item={item}
 														key={i}
+														data={data}
 													/>
 												);
 										  })
@@ -159,6 +161,7 @@ const Menu = ({ data }) => {
 													<CardSimple
 														item={item}
 														key={i}
+														data={data}
 													/>
 												);
 										  })
@@ -181,6 +184,7 @@ const Menu = ({ data }) => {
 													<SaladCard
 														item={item}
 														key={i}
+														data={data}
 													/>
 												);
 										  })
@@ -203,6 +207,7 @@ const Menu = ({ data }) => {
 													<CardSimple
 														item={item}
 														key={i}
+														data={data}
 													/>
 												);
 										  })

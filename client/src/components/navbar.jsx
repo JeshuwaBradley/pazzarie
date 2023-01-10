@@ -31,7 +31,12 @@ const Navbar = () => {
 
 			if (serverOpen) {
 				if (day === 1) {
-					setShopOpen(false);
+					if (time < 1) {
+						setShopOpen(true);
+					} else {
+						setShopOpen(false);
+					}
+					console.log("monday");
 				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
 					setEarly(false);
 					if (time >= 1 && time < 16) {
