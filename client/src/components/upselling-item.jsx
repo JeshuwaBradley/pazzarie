@@ -9,7 +9,12 @@ const UpsellingItem = ({ item }) => {
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
+	const [upsaleItem, setUpsaleItem] = useState(true);
 
+	const handleUpsellSize = (sizeIndex) => {
+		setSize(item.itemPrices[sizeIndex].text);
+		setPrice(item.itemPrices[sizeIndex].price);
+	};
 	useEffect(() => {
 		if (item?.itemPrices.length > 1) {
 			setPrice(item.itemPrices[1].price);
@@ -22,7 +27,17 @@ const UpsellingItem = ({ item }) => {
 
 	const handleCart = () => {
 		dispatch(addUpselling());
-		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
+		dispatch(
+			addProduct({
+				...item,
+				extras,
+				price,
+				quantity,
+				size,
+				crust,
+				upsaleItem,
+			})
+		);
 		alert("Product added to cart");
 	};
 	return (
@@ -42,6 +57,7 @@ const UpsellingItem = ({ item }) => {
 						name="size"
 						id="upselling-item-size"
 						defaultValue={1}
+						onChange={(e) => handleUpsellSize(e.target.value)}
 					>
 						{item?.itemPrices.map((size, i) => {
 							if (i === 1) {

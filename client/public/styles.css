@@ -765,7 +765,7 @@ body {
 	grid-template-columns: repeat(2, 1fr);
 	display: flex;
 	flex-direction: column;
-	max-height: 670px;
+	max-height: 575px;
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
@@ -806,17 +806,21 @@ body {
 }
 
 .upselling-container {
+	padding-top: 40px;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	height: auto;
 	width: 100%;
+	transform: translateY(0);
 }
 .upselling-container-title {
 	font-weight: 500;
 	font-size: 18px;
 	margin-bottom: 20px;
-	/* margin-left: 20px; */
+	margin-left: 10px;
+	margin-top: 10px;
+	color: black;
 }
 
 .upselling-container-inner {
@@ -841,6 +845,12 @@ body {
 	cursor: pointer;
 	transition: all 250ms ease-in-out;
 	z-index: 3;
+}
+
+.modal-close.go-back {
+	left: 20px;
+	font-weight: 600;
+	text-decoration: underline;
 }
 
 .modal-close:hover {
@@ -3458,7 +3468,7 @@ h2.large-title {
 /*------------------------- Upselling Item -------------------- */
 .upselling-item {
 	height: 18em;
-	width: 13em;
+	width: 15em;
 	margin-bottom: 20px;
 	border-radius: 5px;
 	margin: 5px;
@@ -3497,6 +3507,7 @@ h2.large-title {
 	flex-direction: column;
 	justify-content: space-evenly;
 	padding: 5px;
+	color: black;
 }
 
 .upselling-item-button {
