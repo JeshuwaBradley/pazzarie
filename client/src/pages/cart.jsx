@@ -7,6 +7,8 @@ import {
 	reset,
 	addCoupon,
 	removeCoupon,
+	addDiscountCode,
+	removeDiscountCode,
 } from "../redux/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -74,16 +76,20 @@ const Cart = () => {
 	const handleCouponCode = (e) => {
 		if (cart.promotion === true) {
 			setPromotionError(true);
+		} else if (cart.upselling === true) {
+			setPromotionError(true);
 		} else {
 			let code = e.target.value;
 			code = code.toString().toUpperCase();
 			if (cart.discount === 0) {
 				if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
 					dispatch(addCoupon(10));
+					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
 				}
 				if (code === "15DISCOUNT") {
 					dispatch(addCoupon(15));
+					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
 				}
 				if (
@@ -92,12 +98,14 @@ const Cart = () => {
 					code === "UCBERKELEY"
 				) {
 					dispatch(addCoupon(20));
+					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
 				}
 			}
 			if (cart.discount !== 0 && code !== "NOVASPIZZA") {
 				dispatch(removeCoupon());
 				setDiscountCode("");
+				dispatch(removeDiscountCode());
 			}
 		}
 	};
@@ -119,7 +127,7 @@ const Cart = () => {
 				orderItems: orderItems,
 				tip: cart.tip,
 				discount: cart.discount,
-				discountCode: discountCode,
+				discountCode: cart.discountCode,
 				total: total,
 			};
 			axios
@@ -175,11 +183,18 @@ const Cart = () => {
 			if (serverOpenS) {
 				console.log("server shop open");
 				if (day === 1) {
-					setOpen(false);
+					if (time < 1) {
+						setOpen(true);
+					} else {
+						setOpen(false);
+					}
+					console.log("monday");
 				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
 					if (time >= 1 && time < 16) {
+						console.log("time exeeded");
 						setOpen(false);
 					} else {
+						console.log("false");
 						setOpen(true);
 					}
 				} else if (day === 5 || day === 6) {
