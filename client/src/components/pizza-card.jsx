@@ -10,7 +10,7 @@ const PizzaCard = ({ item, data }) => {
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
-	const [addedToCart, setAddedToCart] = useState(false);
+	const [addedToCart, setAddedToCart] = useState(true);
 	const dispatch = useDispatch();
 
 	let string = item.itemDesc;
@@ -232,9 +232,9 @@ const PizzaCard = ({ item, data }) => {
 						handleClose();
 					}}
 				></i>
-				{addedToCart && item?.upsellingItems ? (
+				{addedToCart ? (
 					<>
-						<UpsellingContainer item={item} data={data} />
+						<UpsellingContainer data={data} />
 					</>
 				) : (
 					<div className="modal-main-container">

@@ -11,8 +11,9 @@ const contactRoute = require("./routes/contact");
 const distanceRoute = require("./routes/distanceRoute");
 const emailRoute = require('./routes/emailRoute');
 const openRoute = require('./routes/open');
+const discountRoute = require('./routes/discountRoute');
 const cors = require("cors");
-const path = require("path")
+const path = require("path");
 
 
 const app = express();
@@ -41,6 +42,7 @@ app.use("/api/contact", contactRoute);
 app.use("/api/distance", distanceRoute)
 app.use("/api/email", emailRoute);
 app.use('/api/open', openRoute);
+app.use('/api/discount', discountRoute);
 
 // app.get('/api/open', console.log(openRoute))
 app.get("*", (req, res) => {

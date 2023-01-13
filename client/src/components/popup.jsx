@@ -15,7 +15,6 @@ const Popup = ({ setShowPopUp }) => {
 		axios
 			.post("/api/email/", { ...inputs })
 			.then((response) => {
-				console.log(response);
 				setShow(true);
 			})
 			.catch((error) => {
@@ -24,7 +23,7 @@ const Popup = ({ setShowPopUp }) => {
 	};
 
 	const handleCopy = () => {
-		let copyText = "20DISCOUNT";
+		let copyText = "NOVASPIZZA";
 		navigator.clipboard.writeText(copyText);
 		setCopied(true);
 		setTimeout(() => {
@@ -39,8 +38,8 @@ const Popup = ({ setShowPopUp }) => {
 						<i className="fa fa-close"></i>
 					</div>
 				</div>
-				<h1 className="title">Get 20% OFF</h1>
-				<p>Enter your email to get the 20% OFF discount code</p>
+				<h1 className="title">Get 10% OFF</h1>
+				<p>Enter your email to get the 10% OFF discount code</p>
 				{show === false ? (
 					<div className="popup-form">
 						<input
@@ -59,7 +58,7 @@ const Popup = ({ setShowPopUp }) => {
 						<input
 							type="text"
 							id="coupon-value"
-							value="20DISCOUNT"
+							value="NOVASPIZZA"
 							style={{
 								textAlign: "center",
 								borderColor: copied ? "green" : "red",

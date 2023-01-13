@@ -20,6 +20,7 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 	const [mode, setMode] = useState("");
 	const [error, setError] = useState(false);
 	const [confirm, setConfirm] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const shops = [
 		{
@@ -182,7 +183,10 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 			country: a,
 		};
 		setInputs((values) => ({ ...values, ...g }));
-		setTimeout(() => setAddressSet(true), 1000);
+		setTimeout(() => {
+			setAddressSet(true);
+			setLoading(true);
+		}, 500);
 	};
 
 	const handleDeliveryFee = () => {
@@ -200,10 +204,12 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 					let distance =
 						response.data.rows[0].elements[0].distance.value;
 					if (distance > shops[selectedLocation - 1].distance) {
+						setLoading(false);
 						setConfirm(false);
 						setError(true);
 						handleRemoverDeliver();
 					} else {
+						setLoading(false);
 						setError(false);
 						setConfirm(true);
 						dispatch(addDelivery(calcDeliveryFee(distance)));
@@ -444,6 +450,33 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 								}}
 							>
 								Delivery Available
+							</p>
+						</div>
+					) : (
+						""
+					)}
+					{loading ? (
+						<div
+							className="form-item"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+							}}
+						>
+							<p
+								style={{
+									color: "green",
+									fontWeight: "bold",
+								}}
+							>
+								<i
+									className="fa fa-spinner fa-spin"
+									style={{
+										marginRight: "5px",
+									}}
+								></i>
+								Checking Address
 							</p>
 						</div>
 					) : (
