@@ -42,7 +42,6 @@ const Cart = ({ discountCodes }) => {
 	const total = cart.total.toFixed(2);
 	const orderItems = [];
 	cart.products.forEach((product) => {
-		console.log(cart.discountCode, cart.discount);
 		let itemName = product.itemTitle;
 		let size = product.size;
 		let quantity = product.quantity;
