@@ -10,7 +10,7 @@ const PizzaCard = ({ item, data }) => {
 	const [quantity, setQuantity] = useState(1);
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
-	const [addedToCart, setAddedToCart] = useState(true);
+	const [addedToCart, setAddedToCart] = useState(false);
 	const dispatch = useDispatch();
 
 	let string = item.itemDesc;
