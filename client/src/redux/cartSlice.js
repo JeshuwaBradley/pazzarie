@@ -35,6 +35,7 @@ const cartSlice = createSlice({
                 state.subtotal += state.discount
                 state.salesTax = state.subtotal * 10.25 / 100;
                 state.discount = 0;
+                state.discountCode = '';
             }
             if (state.tip !== 0) {
                 state.total -= state.tip;
@@ -100,11 +101,22 @@ const cartSlice = createSlice({
             state.total = state.subtotal + state.tip + state.deliveryCharges + state.salesTax;
         },
         reset: (state) => {
+            state.idNum = 0;
+            state.promotion = false;
+            state.upselling = false;
+            state.pickUporDeliver = '';
+            state.shop = '';
+            state.date = '';
+            state.time = '';
             state.products = [];
             state.quantity = 0;
             state.salesTax = 0;
             state.subtotal = 0;
             state.total = 0;
+            state.deliveryCharges = 0;
+            state.discount = 0;
+            state.discountCode = '';
+            state.tip = 0;
         },
         addTip: (state, action) => {
             state.tip = action.payload;

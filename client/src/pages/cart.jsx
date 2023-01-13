@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +16,10 @@ import axios from "axios";
 import StripeCheckout from "react-stripe-checkout";
 import TippingContainer from "../components/tipping-container";
 import CartItem from "../components/cart-item";
-import PickUpDeliver from "../components/pickup-deliver";
+// import PickUpDeliver from "../components/pickup-deliver";
+const PickUpDeliver = lazy(() => import("../components/pickup-deliver"));
 
-const Cart = () => {
+const Cart = ({ discountCodes }) => {
 	useEffect(() => {
 		document.title = "Cart Page | Nova's Pizza";
 	}, []);
@@ -41,6 +42,7 @@ const Cart = () => {
 	const total = cart.total.toFixed(2);
 	const orderItems = [];
 	cart.products.forEach((product) => {
+		console.log(cart.discountCode, cart.discount);
 		let itemName = product.itemTitle;
 		let size = product.size;
 		let quantity = product.quantity;
@@ -80,7 +82,14 @@ const Cart = () => {
 			setPromotionError(true);
 		} else {
 			let code = e.target.value;
-			code = code.toString().toUpperCase();
+			code = code.toString().trim().toUpperCase();
+			discountCodes?.map((item) => {
+				if (cart.discount === 0 && item.code === code) {
+					dispatch(addCoupon(item.percent));
+					dispatch(addDiscountCode(code));
+					setDiscountCode(code);
+				}
+			});
 			if (cart.discount === 0) {
 				if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
 					dispatch(addCoupon(10));
@@ -585,12 +594,18 @@ const Cart = () => {
 														</div>
 													</div>
 												) : null}
-												<PickUpDeliver
-													inputs={inputs}
-													setInputs={setInputs}
-													setButton={setButton}
-													inputError={inputError}
-												/>
+												<Suspense
+													fallback={
+														<div>Loading...</div>
+													}
+												>
+													<PickUpDeliver
+														inputs={inputs}
+														setInputs={setInputs}
+														setButton={setButton}
+														inputError={inputError}
+													/>
+												</Suspense>
 												<div className="form-item">
 													<div className="promotional-checkbox">
 														<input

@@ -29,12 +29,21 @@ function App() {
   const [isShopAuthenticated, userShopHasAuthenticated] = useState(false);
 
   const [data, setData] = useState(null);
+  const [discountCodes, setDiscountCodes] = useState(null);
   useEffect(() => {
     axios
       .get("/api/product/find")
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    axios
+      .get('/api/discount/find')
+      .then((res) => { setDiscountCodes(res.data); console.log(res.data) })
+      .catch((err) => console.log(err));
+    console.log(discountCodes);
+  }, [])
 
   const TRACKING_ID = "AW-11036011591"; // OUR_TRACKING_ID
   ReactGA.initialize(TRACKING_ID);
@@ -46,7 +55,7 @@ function App() {
           <AppContext.Provider value={{ isAdminAuthenticated, userAdminHasAuthenticated, isShopAuthenticated, userShopHasAuthenticated }}>
             <Routes>
               <Route index element={<Home data={data} />} />
-              <Route path='/cart' element={<Cart />} />
+              <Route path='/cart' element={<Cart discountCodes={discountCodes} />} />
               <Route path='/popup' element={<Popup />} />
               <Route path='/about-us' element={<About />} />
               <Route path='/locations' element={<Locations />} />
