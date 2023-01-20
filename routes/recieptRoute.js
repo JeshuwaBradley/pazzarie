@@ -121,7 +121,6 @@ const sendMail = async ({ data }) => {
     let mail = {
         from: 'jeshuwabradley@gmail.com',
         to: getEmail(),
-        cc: 'novaspizza.promo@gmail.com',
         subject: "Nova's  Pizza - Order Confirmation",
         html: `<!DOCTYPE html>
 
