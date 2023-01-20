@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartSlice";
 import UpsellingContainer from "./upselling-container";
+import ReactGA from "react-ga";
 
 const PizzaCard = ({ item, data }) => {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -49,10 +50,18 @@ const PizzaCard = ({ item, data }) => {
 		setPrice(item.itemPrices[sizeIndex].price);
 		resetExtras();
 		resetQuantity();
+		ReactGA.event({
+			category: "select",
+			action: `Changed ${item.itemTitle} size to ${item.itemPrices[sizeIndex].text}`,
+		});
 	};
 
 	const handleCrust = (value) => {
 		setCrust(value);
+		ReactGA.event({
+			category: "select",
+			action: `Changed ${item.itemTitle} crust to ${value}`,
+		});
 		const checked = value.target?.checked;
 		if (checked) {
 			setCrust(value.target.value);
@@ -72,11 +81,19 @@ const PizzaCard = ({ item, data }) => {
 
 	const handleIncrease = () => {
 		setQuantity(quantity + 1);
+		ReactGA.event({
+			category: "button",
+			action: `Increased the quantity to ${quantity + 1}`,
+		});
 	};
 
 	const handleDecrease = () => {
 		if (quantity > 1) {
 			setQuantity(quantity - 1);
+			ReactGA.event({
+				category: "button",
+				action: `Decreased the quantity to ${quantity - 1}`,
+			});
 		}
 	};
 
@@ -93,6 +110,10 @@ const PizzaCard = ({ item, data }) => {
 	const handleCart = () => {
 		dispatch(addProduct({ ...item, extras, price, quantity, size, crust }));
 		setAddedToCart(true);
+		ReactGA.event({
+			category: "Button",
+			action: `Added ${item.itemTitle}  to cart`,
+		});
 		alert("Product added to cart");
 	};
 

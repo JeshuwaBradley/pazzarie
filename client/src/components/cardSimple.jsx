@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/cartSlice";
 import UpsellingContainer from "./upselling-container";
+import ReactGA from "react-ga";
 
 const CardSimple = ({ item, data }) => {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -43,6 +44,10 @@ const CardSimple = ({ item, data }) => {
 		setPrice(item.itemPrices[sizeIndex].price);
 		resetExtras();
 		resetQuantity();
+		ReactGA.event({
+			category: "select",
+			action: `Changed ${item.itemTitle} size to ${item.itemPrices[sizeIndex].text}`,
+		});
 	};
 
 	const handleCrust = (value) => {
@@ -62,11 +67,19 @@ const CardSimple = ({ item, data }) => {
 
 	const handleIncrease = () => {
 		setQuantity(quantity + 1);
+		ReactGA.event({
+			category: "button",
+			action: `Increased the quantity to ${quantity + 1}`,
+		});
 	};
 
 	const handleDecrease = () => {
 		if (quantity > 1) {
 			setQuantity(quantity - 1);
+			ReactGA.event({
+				category: "button",
+				action: `Decreased the quantity to ${quantity - 1}`,
+			});
 		}
 	};
 	const messagesEndRef = useRef(null);
@@ -82,6 +95,10 @@ const CardSimple = ({ item, data }) => {
 	const handleCart = () => {
 		dispatch(addProduct({ ...item, extras, price, quantity, size }));
 		setAddedToCart(true);
+		ReactGA.event({
+			category: "Button",
+			action: `Added ${item.itemTitle}  to cart`,
+		});
 		alert("Product added to cart");
 	};
 

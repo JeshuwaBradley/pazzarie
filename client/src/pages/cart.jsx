@@ -36,6 +36,8 @@ const Cart = ({ discountCodes }) => {
 	const [inputError, setInputError] = useState(false);
 	const [promotionError, setPromotionError] = useState(false);
 	const [discountCode, setDiscountCode] = useState("");
+	const [orderDeliver, setOrderDeliver] = useState(false);
+	const [limitError, setLimitError] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -84,18 +86,36 @@ const Cart = ({ discountCodes }) => {
 			code = code.toString().trim().toUpperCase();
 			discountCodes?.map((item) => {
 				if (cart.discount === 0 && item.code === code) {
-					dispatch(addCoupon(item.percent));
-					dispatch(addDiscountCode(code));
-					setDiscountCode(code);
+					if (item?.limit) {
+						if (cart.total >= item.limit) {
+							setPromotionError(false);
+							setLimitError(false);
+							dispatch(addCoupon(item.percent));
+							dispatch(addDiscountCode(code));
+							setDiscountCode(code);
+						} else {
+							setLimitError(true);
+						}
+					} else {
+						setPromotionError(false);
+						setLimitError(false);
+						dispatch(addCoupon(item.percent));
+						dispatch(addDiscountCode(code));
+						setDiscountCode(code);
+					}
 				}
 			});
 			if (cart.discount === 0) {
 				if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
+					setPromotionError(false);
+					setLimitError(false);
 					dispatch(addCoupon(10));
 					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
 				}
 				if (code === "15DISCOUNT") {
+					setPromotionError(false);
+					setLimitError(false);
 					dispatch(addCoupon(15));
 					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
@@ -105,6 +125,8 @@ const Cart = ({ discountCodes }) => {
 					code === "NEWYEAR" ||
 					code === "UCBERKELEY"
 				) {
+					setPromotionError(false);
+					setLimitError(false);
 					dispatch(addCoupon(20));
 					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
@@ -124,6 +146,20 @@ const Cart = ({ discountCodes }) => {
 		setStripeToken(token);
 	};
 
+	const sendReciept = async (data) => {
+		await axios
+			.post("/api/receipt/", { ...data })
+			.then((res) => {
+				console.log(res);
+				setSuccess(true);
+				dispatch(reset());
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	useEffect(() => {
 		const handleOrder = async (e) => {
 			let x = {
@@ -138,14 +174,23 @@ const Cart = ({ discountCodes }) => {
 				discountCode: cart.discountCode,
 				total: total,
 			};
-			axios
+			await axios
 				.post("/api/order/", { ...x })
 				.then((response) => {
 					if (response.status === 200) {
-						setSuccess(true);
-						dispatch(reset());
+						if (response.data.email) {
+							sendReciept(response);
+						} else {
+							setSuccess(true);
+							dispatch(reset());
+							setLoading(false);
+						}
+						if (response.data.deliver === "pickup") {
+							setOrderDeliver(false);
+						} else {
+							setOrderDeliver(true);
+						}
 						setLoading(false);
-						// navigate(`/`);
 					}
 				})
 				.catch((error) => {
@@ -302,7 +347,7 @@ const Cart = ({ discountCodes }) => {
 									}}
 								>
 									<p>Order has been placed</p>
-									{cart.pickUporDeliver === "deliver" ? (
+									{orderDeliver === true ? (
 										<p>
 											Your order will be delivered in 30 -
 											45 minutes.
@@ -579,6 +624,20 @@ const Cart = ({ discountCodes }) => {
 														/>
 													</div>
 												</div>
+												{limitError ? (
+													<div className="form-item">
+														<div className="form-label"></div>
+														<div
+															className="form-input"
+															style={{
+																color: "red",
+															}}
+														>
+															Cart total is below
+															the coupon limit
+														</div>
+													</div>
+												) : null}
 												{promotionError ? (
 													<div className="form-item">
 														<div className="form-label"></div>

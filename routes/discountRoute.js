@@ -21,7 +21,8 @@ router.get('/find', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const code = createCode();
-    const newCode = new DiscountCode({ code: code })
+    const percent = req.body;
+    const newCode = new DiscountCode({ code: code, ...percent })
     console.log(newCode);
     try {
         const saved = await newCode.save();
