@@ -45,8 +45,13 @@ function App() {
     console.log(discountCodes);
   }, [])
 
-  const TRACKING_ID = "AW-11036011591"; // OUR_TRACKING_ID
-  ReactGA.initialize(TRACKING_ID);
+  // const TRACKING_ID = "AW-11036011591"; // OUR_TRACKING_ID
+  useEffect(() => {
+    ReactGA.initialize('AW-11036011591');
+
+    //to report page view
+    ReactGA.pageview(window.location.pathname)
+  }, [])
 
   return (
     <div className="App">
