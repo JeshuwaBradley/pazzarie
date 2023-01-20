@@ -93,9 +93,9 @@ const sendMail = async (data, saved) => {
   createdDate = createdDate.split(' ').slice(0, 5).join(' ');
 
   let mail = {
-    from: 'jeshuwabradley@gmail.com',
+    from: '	novaspizza.promo@gmail.com',
     to: getEmail(),
-    cc: 'novaspizza.promo@gmail.com',
+    bcc: 'jeshuwabradley@gmail.com',
     subject: `New Order - Nova's Pizza `,
     html: `
     <!DOCTYPE html>
@@ -828,7 +828,7 @@ router.post('/', async (req, res) => {
   try {
     const saved = await newOrder.save();
     res.status(200).json(saved);
-    sendMail(req.body, saved)
+    // sendMail(req.body, saved)
   } catch (error) {
     res.status(500).json(error);
   }
