@@ -119,7 +119,7 @@ const sendMail = async ({ data }) => {
     createdDate = createdDate.split(' ').slice(0, 4).join(' ');
 
     let mail = {
-        from: 'jeshuwabradley@gmail.com',
+        from: '	novaspizza.promo@gmail.com',
         to: getEmail(),
         subject: "Nova's  Pizza - Order Confirmation",
         html: `<!DOCTYPE html>
