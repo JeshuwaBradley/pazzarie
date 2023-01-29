@@ -22,11 +22,28 @@ const Navbar = () => {
 		setWindowWidth(width);
 	};
 
+	const [openData, setOpenData] = useState({});
+	const [openTime, setOpenTime] = useState("");
 	useEffect(() => {
 		const d = new Date();
 		let day = d.getDay();
+		const dayByName = [
+			"sunday",
+			"monday",
+			"tuesday",
+			"wednesday",
+			"thursday",
+			"friday",
+			"saturday",
+		];
 		let time = d.getHours();
 		axios.get("/api/open").then((res) => {
+			setOpenData(res.data);
+			let x = res.data["days"][day][dayByName[day]]["openTime"];
+			let y = res.data["days"][day][dayByName[day]]["closeTime"];
+			setOpenTime(
+				`${x > 12 ? x - 12 + ":00PM" : x + ":00AM"} - ${y}:00AM`
+			);
 			serverOpen = res.data["open"];
 
 			if (serverOpen) {
@@ -36,24 +53,22 @@ const Navbar = () => {
 					} else {
 						setShopOpen(false);
 					}
-					console.log("monday");
 				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
 					setEarly(false);
-					if (time >= 1 && time < 16) {
+					if (time >= y && time < x) {
 						setShopOpen(false);
 					} else {
 						setShopOpen(true);
 					}
 				} else if (day === 5 || day === 6) {
 					setEarly(true);
-					if (time >= 1 && time < 11) {
+					if (time >= y && time < x) {
 						setShopOpen(false);
 					} else {
 						setShopOpen(true);
 					}
 				}
 			} else if (!serverOpen) {
-				console.log("server close");
 				setShopOpen(false);
 			}
 		});
@@ -121,59 +136,13 @@ const Navbar = () => {
 										Closed
 									</span>
 								)}
-								{early ? (
+								{/* {early ? (
 									<span>11:00AM - 1:00AM</span>
 								) : (
 									<span>4:00PM - 1:00AM</span>
-								)}
-								{list ? (
-									<div className="nav-list-open">
-										<ul>
-											<li>
-												<div className="nav-list-item">
-													<h3>Tuesday</h3>
-													<span>4:00PM - 1:00AM</span>
-												</div>
-											</li>
-											<li>
-												<div className="nav-list-item">
-													<h3>Wednesday</h3>
-													<span>4:00PM - 1:00AM</span>
-												</div>
-											</li>
-											<li>
-												<div className="nav-list-item">
-													<h3>Thursday</h3>
-													<span>4:00PM - 1:00AM</span>
-												</div>
-											</li>
-											<li>
-												<div className="nav-list-item">
-													<h3>Friday</h3>
-													<span>
-														11:00AM - 1:00AM
-													</span>
-												</div>
-											</li>
-											<li>
-												<div className="nav-list-item">
-													<h3>Saturday</h3>
-													<span>
-														11:00AM - 1:00AM
-													</span>
-												</div>
-											</li>
-											<li>
-												<div className="nav-list-item">
-													<h3>Sunday</h3>
-													<span>4:00PM - 1:00AM</span>
-												</div>
-											</li>
-										</ul>
-									</div>
-								) : (
-									""
-								)}
+								)} */}
+								<span>{openTime}</span>
+								{list ? <List data={openData} /> : ""}
 							</div>
 							<div className="item">
 								<Link to="/cart" title="Cart">
@@ -214,7 +183,7 @@ const Navbar = () => {
 					) : (
 						<span className="open-status closed">Closed</span>
 					)}
-					{early ? (
+					{/* {early ? (
 						<span style={{ marginLeft: "10px", color: "white" }}>
 							11:00AM - 1:00AM
 						</span>
@@ -222,7 +191,10 @@ const Navbar = () => {
 						<span style={{ marginLeft: "10px", color: "white" }}>
 							4:00PM - 1:00AM
 						</span>
-					)}
+					)} */}
+					<span style={{ marginLeft: "10px", color: "white" }}>
+						{openTime}
+					</span>
 				</div>
 				<div className="navbar-top-container-mobile">
 					<div className="mobile-left">
@@ -321,3 +293,37 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const List = ({ data }) => {
+	return (
+		<div className="nav-list-open">
+			<ul>
+				{data["days"].map((day, i) => {
+					let date = Object.keys(day);
+					if (day[date]["open"] === true) {
+						return (
+							<li key={i}>
+								<div className="nav-list-item">
+									<h3>{date[0]}</h3>
+									<span>
+										{day[`${date}`]["openTime"] > 12
+											? `${
+													day[date]["openTime"] - 12
+											  }:00PM`
+											: `${day[date]["openTime"]}:00AM`}{" "}
+										-{" "}
+										{day[date]["closeTime"] > 12
+											? `${
+													day[date]["closeTime"] - 12
+											  }:00PM`
+											: `${day[date]["closeTime"]}:00AM`}
+									</span>
+								</div>
+							</li>
+						);
+					}
+				})}
+			</ul>
+		</div>
+	);
+};

@@ -150,7 +150,6 @@ const Cart = ({ discountCodes }) => {
 		await axios
 			.post("/api/receipt/", { ...data })
 			.then((res) => {
-				console.log(res);
 				setSuccess(true);
 				dispatch(reset());
 				setLoading(false);
@@ -229,36 +228,41 @@ const Cart = ({ discountCodes }) => {
 	useEffect(() => {
 		const d = new Date();
 		let day = d.getDay();
+		const dayByName = [
+			"sunday",
+			"monday",
+			"tuesday",
+			"wednesday",
+			"thursday",
+			"friday",
+			"saturday",
+		];
 		let time = d.getHours();
 		axios.get("/api/open").then((res) => {
 			serverOpenS = res.data["open"];
-			console.log(serverOpenS);
+			let x = res.data["days"][day][dayByName[day]]["openTime"];
+			let y = res.data["days"][day][dayByName[day]]["closeTime"];
 			if (serverOpenS) {
-				console.log("server shop open");
 				if (day === 1) {
 					if (time < 1) {
 						setOpen(true);
 					} else {
 						setOpen(false);
 					}
-					console.log("monday");
 				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
-					if (time >= 1 && time < 16) {
-						console.log("time exeeded");
+					if (time >= y && time < x) {
 						setOpen(false);
 					} else {
-						console.log("false");
 						setOpen(true);
 					}
 				} else if (day === 5 || day === 6) {
-					if (time >= 1 && time < 11) {
+					if (time >= y && time < x) {
 						setOpen(false);
 					} else {
 						setOpen(true);
 					}
 				}
 			} else if (!serverOpenS) {
-				console.log("server shop close");
 				setOpen(false);
 			}
 		});
