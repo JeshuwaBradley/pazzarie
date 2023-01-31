@@ -828,7 +828,7 @@ router.post('/', async (req, res) => {
   try {
     const saved = await newOrder.save();
     res.status(200).json(saved);
-    // sendMail(req.body, saved)
+    sendMail(req.body, saved)
   } catch (error) {
     res.status(500).json(error);
   }
