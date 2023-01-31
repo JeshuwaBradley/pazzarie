@@ -53,16 +53,23 @@ const Navbar = () => {
 					} else {
 						setShopOpen(false);
 					}
-				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
+				} else if (day === 2) {
 					setEarly(false);
-					if (time >= y && time < x) {
+					if (time < 16) {
+						setShopOpen(false);
+					} else {
+						setShopOpen(true);
+					}
+				} else if (day === 3 || day === 4 || day === 0) {
+					setEarly(false);
+					if (time >= 1 && time < 16) {
 						setShopOpen(false);
 					} else {
 						setShopOpen(true);
 					}
 				} else if (day === 5 || day === 6) {
 					setEarly(true);
-					if (time >= y && time < x) {
+					if (time >= 1 && time < 11) {
 						setShopOpen(false);
 					} else {
 						setShopOpen(true);

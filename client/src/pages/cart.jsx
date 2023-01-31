@@ -238,10 +238,9 @@ const Cart = ({ discountCodes }) => {
 			"saturday",
 		];
 		let time = d.getHours();
+		console.log(time);
 		axios.get("/api/open").then((res) => {
 			serverOpenS = res.data["open"];
-			let x = res.data["days"][day][dayByName[day]]["openTime"];
-			let y = res.data["days"][day][dayByName[day]]["closeTime"];
 			if (serverOpenS) {
 				if (day === 1) {
 					if (time < 1) {
@@ -249,14 +248,20 @@ const Cart = ({ discountCodes }) => {
 					} else {
 						setOpen(false);
 					}
-				} else if (day === 2 || day === 3 || day === 4 || day === 0) {
-					if (time >= y && time < x) {
+				} else if (day === 2) {
+					if (time < 16) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				} else if (day === 3 || day === 4 || day === 0) {
+					if (time >= 1 && time < 16) {
 						setOpen(false);
 					} else {
 						setOpen(true);
 					}
 				} else if (day === 5 || day === 6) {
-					if (time >= y && time < x) {
+					if (time >= 1 && time < 11) {
 						setOpen(false);
 					} else {
 						setOpen(true);
