@@ -52,6 +52,7 @@ const Cart = ({ discountCodes }) => {
 			(product.price * product.quantity).toFixed(2) || product.itemTotal;
 		let extras = [];
 		let crust = product.crust;
+		let specialNotes = product.specialNotes;
 		product.extras.map((item) => {
 			extras.push(item.text);
 		});
@@ -59,6 +60,7 @@ const Cart = ({ discountCodes }) => {
 			itemName: itemName,
 			size: size,
 			crust: crust,
+			specialNotes: specialNotes,
 			quantity: quantity,
 			itemPrice: itemPrice,
 			itemTotal: itemTotal,
@@ -106,28 +108,10 @@ const Cart = ({ discountCodes }) => {
 				}
 			});
 			if (cart.discount === 0) {
-				if (code === "NOVASPIZZA" || code === "NOVASGIFT") {
+				if (code === "NOVASPIZZA") {
 					setPromotionError(false);
 					setLimitError(false);
 					dispatch(addCoupon(10));
-					dispatch(addDiscountCode(code));
-					setDiscountCode(code);
-				}
-				if (code === "15DISCOUNT") {
-					setPromotionError(false);
-					setLimitError(false);
-					dispatch(addCoupon(15));
-					dispatch(addDiscountCode(code));
-					setDiscountCode(code);
-				}
-				if (
-					code === "20DISCOUNT" ||
-					code === "NEWYEAR" ||
-					code === "UCBERKELEY"
-				) {
-					setPromotionError(false);
-					setLimitError(false);
-					dispatch(addCoupon(20));
 					dispatch(addDiscountCode(code));
 					setDiscountCode(code);
 				}
@@ -254,7 +238,13 @@ const Cart = ({ discountCodes }) => {
 					} else {
 						setOpen(true);
 					}
-				} else if (day === 3 || day === 4 || day === 0) {
+				} else if (day === 0) {
+					if (time >= 1 && time < 13) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				} else if (day === 3 || day === 4) {
 					if (time >= 1 && time < 16) {
 						setOpen(false);
 					} else {
@@ -616,14 +606,14 @@ const Cart = ({ discountCodes }) => {
 												</div>
 												<div className="form-item">
 													<div className="form-label">
-														<label htmlFor="mobile">
+														<label htmlFor="couponCode">
 															Coupon Code:
 														</label>
 													</div>
 													<div className="form-input">
 														<input
 															type="text"
-															name="mobile"
+															name="couponCode"
 															placeholder="Coupon Code"
 															onChange={(e) =>
 																handleCouponCode(

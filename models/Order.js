@@ -47,6 +47,10 @@ const OrderSchema = new mongoose.Schema(
                         type: Number,
                         required: true,
                     },
+                    specialNotes: {
+                        type: String,
+                        maxlength: 200,
+                    },
                     itemPrice: {
                         type: Number,
                         required: true,

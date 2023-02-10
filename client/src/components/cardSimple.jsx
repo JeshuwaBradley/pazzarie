@@ -4,7 +4,7 @@ import { addProduct } from "../redux/cartSlice";
 import UpsellingContainer from "./upselling-container";
 import ReactGA from "react-ga";
 
-const CardSimple = ({ item, data }) => {
+const CardSimple = ({ item, data, sp = false }) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [size, setSize] = useState("");
@@ -65,6 +65,12 @@ const CardSimple = ({ item, data }) => {
 		}
 	};
 
+	const [specialNotes, setSpecialNotes] = useState("");
+
+	const handleSpecialNotes = (notes) => {
+		setSpecialNotes(notes);
+	};
+
 	const handleIncrease = () => {
 		setQuantity(quantity + 1);
 		ReactGA.event({
@@ -93,7 +99,9 @@ const CardSimple = ({ item, data }) => {
 	}, [addedToCart]);
 
 	const handleCart = () => {
-		dispatch(addProduct({ ...item, extras, price, quantity, size }));
+		dispatch(
+			addProduct({ ...item, extras, price, specialNotes, quantity, size })
+		);
 		setAddedToCart(true);
 		ReactGA.event({
 			category: "Button",
@@ -375,6 +383,26 @@ const CardSimple = ({ item, data }) => {
 												  )
 												: ""}
 										</form>
+									</div>
+								) : (
+									""
+								)}
+								{sp === true ? (
+									<div className="detail-item">
+										<label htmlFor="" className="">
+											Notes for kitchen
+										</label>
+										<textarea
+											name=""
+											id=""
+											cols="30"
+											rows="2"
+											onChange={(e) =>
+												handleSpecialNotes(
+													e.target.value
+												)
+											}
+										></textarea>
 									</div>
 								) : (
 									""

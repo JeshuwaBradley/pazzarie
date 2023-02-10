@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import PromotionDeal from "../components/promotion-deal";
 import PromotionDealTwo from "../components/promotionDealTwo";
 import PromotionalDealThree from "../components/PromotionalDealThree";
+import PromotionDealFour from "../components/promotionDealFour";
 
 const Promotion = ({ data }) => {
 	return (
@@ -16,6 +17,7 @@ const Promotion = ({ data }) => {
 				</div>
 			</div>
 			<div className="promotion-container">
+				<PromotionDealFour data={data} />
 				<PromotionDeal data={data} />
 				<PromotionalDealThree data={data} />
 				<PromotionDealTwo />

@@ -60,6 +60,12 @@ const SaladCard = ({ item, data }) => {
 		}
 	};
 
+	const [specialNotes, setSpecialNotes] = useState("");
+
+	const handleSpecialNotes = (notes) => {
+		setSpecialNotes(notes);
+	};
+
 	const handleIncrease = () => {
 		setQuantity(quantity + 1);
 		ReactGA.event({
@@ -89,7 +95,9 @@ const SaladCard = ({ item, data }) => {
 	}, [addedToCart]);
 
 	const handleCart = () => {
-		dispatch(addProduct({ ...item, extras, price, quantity, size }));
+		dispatch(
+			addProduct({ ...item, extras, price, quantity, size, specialNotes })
+		);
 		setAddedToCart(true);
 		ReactGA.event({
 			category: "Button",
@@ -375,6 +383,21 @@ const SaladCard = ({ item, data }) => {
 								) : (
 									""
 								)}
+
+								<div className="detail-item">
+									<label htmlFor="" className="">
+										Notes for kitchen
+									</label>
+									<textarea
+										name=""
+										id=""
+										cols="30"
+										rows="2"
+										onChange={(e) =>
+											handleSpecialNotes(e.target.value)
+										}
+									></textarea>
+								</div>
 								<div className="detail-item quantity-box">
 									<span onClick={handleIncrease}>+</span>
 									<p>{quantity}</p>
