@@ -26,7 +26,7 @@ const PromotionDeal = ({ data }) => {
 				addProduct({ itemTitle, price, extras, quantity, imgSrc })
 			);
 			alert("Product added to cart");
-			setOpen(false);
+			close();
 		} else {
 			alert("Select any one pizza before clicking add to cart");
 		}
@@ -46,6 +46,12 @@ const PromotionDeal = ({ data }) => {
 		extrasA += `${e.target.value} `;
 	};
 
+	const close = () => {
+		setSelectedItem(null);
+		setItemSelected(false);
+		setOpen(false);
+	};
+
 	return (
 		<>
 			{open ? (
@@ -53,9 +59,9 @@ const PromotionDeal = ({ data }) => {
 					<div className="promotion-deal large">
 						<div
 							className="promotionDeal-main large"
-							onClick={() => setOpen(false)}
+							onClick={() => close()}
 						>
-							<p className="design">Seasonal Treating</p>
+							<p className="design">Special Promotion</p>
 							<p className="topic">
 								Get a large traditional two topping Pizza, one
 								large Cheese Bread, and six pieces of BBQ wings
@@ -135,7 +141,7 @@ const PromotionDeal = ({ data }) => {
 						onClick={() => setOpen(true)}
 					>
 						<div className="promotionDeal-main">
-							<p className="design">Seasonal Treating</p>
+							<p className="design">Special Promotion</p>
 							<p className="topic">
 								Get a large traditional two topping Pizza, one
 								large Cheese Bread, and six pieces of bbq wings

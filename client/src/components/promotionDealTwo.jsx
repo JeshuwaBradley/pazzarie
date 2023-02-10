@@ -12,12 +12,13 @@ const PromotionDealTwo = () => {
 	const addToCart = () => {
 		dispatch(addPromotion());
 		dispatch(addProduct({ quantity, price, itemTitle, extras, imgSrc }));
+		dispatch(addPromotion());
 		alert("Item added to cart");
 	};
 	return (
 		<div className="promotionDeal">
 			<div className="promotionDeal-main">
-				<p className="design">Seasonal Treating</p>
+				<p className="design">Special Promotion</p>
 				<p className="topic">
 					Get Two Large Cheese Bread and 12 Chicken wings for $40
 				</p>

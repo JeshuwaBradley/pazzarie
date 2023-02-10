@@ -25,7 +25,7 @@ const PromotionDealItem = ({
 							<div
 								className="promotion-deal-item-button"
 								onClick={() => {
-									removeFromSelect();
+									removeFromSelect({ item });
 									setSelected(false);
 								}}
 							>

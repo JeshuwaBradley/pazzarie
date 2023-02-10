@@ -765,7 +765,7 @@ body {
 	grid-template-columns: repeat(2, 1fr);
 	display: flex;
 	flex-direction: column;
-	max-height: 575px;
+	max-height: 580px;
 	max-width: 960px;
 	background-color: #edf7f6;
 	visibility: hidden;
@@ -802,7 +802,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	padding: 20px;
-	height: 500px;
+	height: 510px;
 }
 
 .upselling-container {
@@ -859,7 +859,7 @@ body {
 
 .detail {
 	color: #000 !important;
-	height: 95%;
+	height: 100%;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -872,6 +872,12 @@ body {
 	align-items: flex-start;
 	justify-content: center;
 	flex-direction: column;
+	margin-bottom: 5px;
+}
+
+.detail-item textarea {
+	width: 25em;
+	height: 50px;
 }
 
 .detail-item div {
@@ -1017,6 +1023,11 @@ body {
 	}
 	.detail {
 		height: 100%;
+	}
+
+	.detail-item textarea {
+		width: 18em;
+		height: 50px;
 	}
 }
 
@@ -3300,6 +3311,7 @@ h2.large-title {
 	cursor: pointer;
 	padding: 0.5em 0;
 	cursor: pointer;
+	text-align: center;
 	/* width: 100%; */
 }
 .promotion-deal-item-button.disabled {
@@ -3406,7 +3418,7 @@ h2.large-title {
 }
 
 .promotionDeal-main .design {
-	font-family: "Festive", cursive;
+	/* font-family: ", cursive; */
 	color: gold;
 	font-size: 30px;
 }
@@ -3537,5 +3549,109 @@ h2.large-title {
 	}
 	.upselling-item-button button {
 		font-size: 18px;
+	}
+}
+
+/* Pre order  */
+.preorder-container {
+	padding: 10px;
+	border: 1px solid black;
+	margin: 10px;
+	width: 10em;
+}
+
+.preorder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 30px 10px;
+}
+
+.form form {
+	width: 70vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 50px 0 0 0;
+}
+
+.form-item-preorder {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	margin: 20px 0 5px 0;
+}
+.form-item-preorder .form-label {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-right: 10px;
+}
+.form-item-preorder-button {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+.form-item-preorder-button button {
+	margin-top: 10px;
+	letter-spacing: 1px;
+	padding: 15px;
+	font-size: 18px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	background-color: #e2241a;
+	color: #fff;
+	cursor: pointer;
+}
+
+.form-item-preorder input {
+	font-size: 18px;
+	font-weight: 500;
+	/* width: 100px; */
+	padding: 5px 10px;
+}
+
+.form-item-preorder textarea {
+	width: 30em;
+	height: 50px;
+}
+
+.preorder-title {
+	font-size: 1rem;
+	color: red;
+	text-decoration: underline;
+	margin-bottom: 20px;
+}
+
+.form-item-preorder.error {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media screen and (max-width: 1024px) {
+	.form-item-preorder {
+		flex-direction: column;
+	}
+	.form-item-preorder .form-label {
+		justify-content: start;
+	}
+	.form-item-preorder .form-input {
+		width: 100%;
+	}
+	.form-input input {
+		width: 100%;
+	}
+	.form-input select {
+		width: 100%;
+	}
+	.form-item-preorder textarea {
+		width: 18em;
+		height: 50px;
 	}
 }

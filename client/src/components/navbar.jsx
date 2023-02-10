@@ -60,6 +60,13 @@ const Navbar = () => {
 					} else {
 						setShopOpen(true);
 					}
+				} else if (day === 0) {
+					setEarly(false);
+					if (time >= 1 && time < 13) {
+						setShopOpen(false);
+					} else {
+						setShopOpen(true);
+					}
 				} else if (day === 3 || day === 4 || day === 0) {
 					setEarly(false);
 					if (time >= 1 && time < 16) {
@@ -119,17 +126,17 @@ const Navbar = () => {
 							/>
 						</div>
 						<div className="right">
-							{/* <div className="item">
-								<a
-									href="tel:5108419378"
+							<div className="item">
+								<Link
+									to="/preorder"
 									style={{
 										textDecoration: "none",
 										color: "white",
 									}}
 								>
-									(510) 841-9378
-								</a>
-							</div> */}
+									Pre-Order
+								</Link>
+							</div>
 							<div
 								className="item"
 								onClick={() => setList(!list)}
@@ -143,12 +150,12 @@ const Navbar = () => {
 										Closed
 									</span>
 								)}
-								{/* {early ? (
+								{early ? (
 									<span>11:00AM - 1:00AM</span>
 								) : (
 									<span>4:00PM - 1:00AM</span>
-								)} */}
-								<span>{openTime}</span>
+								)}
+								{/* <span>{openTime}</span> */}
 								{list ? <List data={openData} /> : ""}
 							</div>
 							<div className="item">
@@ -258,6 +265,9 @@ const Navbar = () => {
 						</Link>
 						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
+						</Link>
+						<Link to="/preorder" className="mobile-nav-item">
+							<div className="mobile-nav-item">Pre-Order</div>
 						</Link>
 						{/* <Link to="/cart" className="mobile-nav-item">
 							<div className="">

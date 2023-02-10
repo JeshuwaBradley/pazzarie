@@ -56,6 +56,7 @@ const sendMail = async (data, saved) => {
           <li style="margin-bottom: 0px;">${item['crust'] ? item['crust'] : ''}
           </li>
           <li>${getExtras(item)}</li>
+          <li>${item['specialNotes']}</li>
         </ul>
       </td>
     </tr>
@@ -86,6 +87,7 @@ const sendMail = async (data, saved) => {
 
   const getEmail = () => {
     const shops = ['1706university@gmail.com', 'hs211094@gmail.com']
+    // const shops = ['jeshuwabradley@gmail.com']
     return shops[data['shop'] - 1]
   }
 

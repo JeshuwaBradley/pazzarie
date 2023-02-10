@@ -25,7 +25,7 @@ const PromotionalDealThree = ({ data }) => {
 				addProduct({ itemTitle, price, extras, quantity, imgSrc })
 			);
 			alert("Product added to cart");
-			setOpen(false);
+			close();
 		} else {
 			alert("Select any one pizza before clicking add to cart");
 		}
@@ -41,6 +41,12 @@ const PromotionalDealThree = ({ data }) => {
 		setItemSelected(false);
 	};
 
+	const close = () => {
+		setSelectedItem(null);
+		setItemSelected(false);
+		setOpen(false);
+	};
+
 	return (
 		<>
 			{open ? (
@@ -48,9 +54,9 @@ const PromotionalDealThree = ({ data }) => {
 					<div className="promotion-deal">
 						<div
 							className="promotionDeal-main large"
-							onClick={() => setOpen(false)}
+							onClick={() => close()}
 						>
-							<p className="design">Seasonal Treating</p>
+							<p className="design">Special Promotion</p>
 							<p className="topic">
 								Get 1 Large Specialty Pizza, 12 Peices of BBQ
 								Wings and 1 Medium Cheese Bread for $45.
@@ -95,7 +101,7 @@ const PromotionalDealThree = ({ data }) => {
 						onClick={() => setOpen(true)}
 					>
 						<div className="promotionDeal-main">
-							<p className="design">Seasonal Treating</p>
+							<p className="design">Special Promotion</p>
 							<p className="topic">
 								Get 1 Large Specialty Pizza, 12 Peices of BBQ
 								Wings and 1 Medium Cheese Bread for $45.

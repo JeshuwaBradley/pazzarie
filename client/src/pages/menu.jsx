@@ -162,6 +162,7 @@ const Menu = ({ data }) => {
 														item={item}
 														key={i}
 														data={data}
+														sp={true}
 													/>
 												);
 										  })

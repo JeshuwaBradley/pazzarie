@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
             {
                 sunday: {
                     open: true,
-                    openTime: 11,
+                    openTime: 13,
                     closeTime: 1
                 }
             },
