@@ -3568,8 +3568,8 @@ h2.large-title {
 	padding: 30px 10px;
 }
 
-.form form {
-	width: 70vw;
+.preorder-form form {
+	/* width: 70vw; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
