@@ -193,7 +193,7 @@ const Preorder = ({ data }) => {
 							""
 						)}
 					</>
-					<div className="form">
+					<div className="preorder-form">
 						<form action="">
 							<div className="preorder-title">
 								<h2>Pre-order Form</h2>
