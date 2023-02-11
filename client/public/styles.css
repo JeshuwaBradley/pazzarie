@@ -282,7 +282,7 @@ body {
 }
 
 .order-online-btn {
-	width: 30%;
+	width: 40%;
 	font-size: 40px;
 	display: flex;
 	align-items: center;
@@ -345,7 +345,7 @@ body {
 .hero-text h2 {
 	font-size: 62px;
 	font-weight: 600;
-	line-height: 60px;
+	/* line-height: 60px; */
 	text-transform: uppercase;
 	text-align: center;
 }
@@ -475,10 +475,13 @@ body {
 	}
 
 	.new-tag {
-		width: 40px;
-		height: 40px;
+		width: 50px;
+		height: 50px;
 		margin-bottom: 5px;
 		margin-right: 5px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.new-tag h2 {
@@ -496,7 +499,7 @@ body {
 	.hero-text .special-tag-trns {
 		background-color: transparent;
 		width: auto;
-		top: -60%;
+		top: -45%;
 	}
 
 	.special-tag h3 {
@@ -507,7 +510,7 @@ body {
 	.hero-text h2 {
 		font-size: 28px;
 		font-weight: 600;
-		line-height: 30px;
+		/* line-height: 30px; */
 	}
 
 	.hero-text .text {
@@ -548,6 +551,7 @@ body {
 	.large-text {
 		font-size: 45px;
 		font-weight: 700;
+		text-align: center;
 		padding-right: 5px;
 		padding-left: 5px;
 	}
