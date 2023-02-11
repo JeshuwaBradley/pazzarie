@@ -42,6 +42,21 @@ const Hero = () => {
 			>
 				<div className="hero-imageContainer carousel">
 					<div className="hero-text carousel-item carousel-item-visible">
+						<div className="special-tag special-tag-clr">
+							<h2 className="third-h2">$70</h2>
+							<h3>only</h3>
+						</div>
+						<div className="text third-text">
+							<div className="large-text">Super Ball</div>
+							<div className="small-text small-text-2">
+								promotion
+							</div>
+						</div>
+						<Link to="/promotions">
+							<div className="order-online-btn">Order Online</div>
+						</Link>
+					</div>
+					<div className="hero-text carousel-item">
 						<h2 className="second-h2">Discover what's new!</h2>
 						<div className="text second-text">
 							<div className="small-text small-text-1">and</div>
@@ -57,36 +72,23 @@ const Hero = () => {
 						</Link>
 					</div>
 					<div className="hero-text carousel-item">
-						<div className="special-tag special-tag-clr">
-							<h2 className="third-h2">$ 16</h2>
-							<h3>only</h3>
-						</div>
-						<div className="text third-text">
-							<div className="large-text">original italy</div>
-							<div className="small-text small-text-2">
-								pizza lovers set
-							</div>
-						</div>
-						<Link to="/menu">
-							<div className="order-online-btn">Order Online</div>
-						</Link>
-					</div>
-					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-trns">
 							<div className="new-tag">
-								<h2>new!</h2>
+								<h2>coming soon</h2>
 							</div>
 							<h2 className="third-h2">limited time offer!</h2>
 						</div>
 						<div className="text fourth-text">
-							<div className="large-text">supreme bbq</div>
+							<div className="large-text">
+								heart shaped pizzas
+							</div>
 							<div className="small-text small-text-2">
-								chicken
+								Feb 14 & 15
 							</div>
 						</div>
-						<Link to="/menu">
+						{/* <Link to="/menu">
 							<div className="order-online-btn">Order Online</div>
-						</Link>
+						</Link> */}
 					</div>
 				</div>
 			</div>
