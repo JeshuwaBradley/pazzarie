@@ -47,7 +47,7 @@ const Hero = () => {
 							<h3>only</h3>
 						</div>
 						<div className="text third-text">
-							<div className="large-text">Super Ball</div>
+							<div className="large-text">Super Bowl</div>
 							<div className="small-text small-text-2">
 								promotion
 							</div>
