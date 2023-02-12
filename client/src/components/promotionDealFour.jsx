@@ -85,7 +85,7 @@ const PromotionDealFour = ({ data }) => {
 							className="promotionDeal-main large"
 							onClick={() => close()}
 						>
-							<p className="design">Super Ball Promotion</p>
+							<p className="design">Super Bowl Promotion</p>
 							<p className="topic">
 								Get 2 large Speciality Pizzas, one large Cheese
 								Bread, and 18 pieces of BBQ wings for $70.
@@ -169,7 +169,7 @@ const PromotionDealFour = ({ data }) => {
 						onClick={() => setOpen(true)}
 					>
 						<div className="promotionDeal-main">
-							<p className="design">Super Ball Promotion</p>
+							<p className="design">Super Bowl Promotion</p>
 							<p className="topic">
 								Get 2 large Speciality Pizzas, one large Cheese
 								Bread, and 18 pieces of BBQ wings for $70.
