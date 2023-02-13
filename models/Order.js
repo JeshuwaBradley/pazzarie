@@ -51,6 +51,9 @@ const OrderSchema = new mongoose.Schema(
                         type: String,
                         maxlength: 200,
                     },
+                    shape: {
+                        type: String,
+                    },
                     itemPrice: {
                         type: Number,
                         required: true,

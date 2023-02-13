@@ -155,6 +155,10 @@ const Modal = ({ order, setOpen }) => {
 									{item.specialNotes}
 								</span>
 							</div>
+							<div>
+								Shape:{" "}
+								<span className="bold">{item.shape}</span>
+							</div>
 						</div>
 					))}
 				</div>

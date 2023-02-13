@@ -2,38 +2,38 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
-	const slides = document.getElementsByClassName("carousel-item");
-	let position = 0;
+	// const slides = document.getElementsByClassName("carousel-item");
+	// let position = 0;
 
-	function hideAllSlides() {
-		for (const slide of slides) {
-			slide.classList.remove("carousel-item-visible");
-			slide.classList.add("carousel-item-hidden");
-		}
-	}
+	// function hideAllSlides() {
+	// 	for (const slide of slides) {
+	// 		slide.classList.remove("carousel-item-visible");
+	// 		slide.classList.add("carousel-item-hidden");
+	// 	}
+	// }
 
-	const handleMoveToNextSlide = function () {
-		hideAllSlides();
-		if (position === 0) {
-			position++;
-		} else if (position === 1) {
-			position++;
-		} else if (position === 2) {
-			position = 0;
-		}
-		slides[position].classList?.add("carousel-item-visible");
-	};
-	(function loop() {
-		setTimeout(function () {
-			handleMoveToNextSlide();
-			loop();
-		}, 10000);
-	})();
+	// const handleMoveToNextSlide = function () {
+	// 	hideAllSlides();
+	// 	if (position === 0) {
+	// 		position++;
+	// 	} else if (position === 1) {
+	// 		position++;
+	// 	} else if (position === 2) {
+	// 		position = 0;
+	// 	}
+	// 	slides[position].classList?.add("carousel-item-visible");
+	// };
+	// (function loop() {
+	// 	setTimeout(function () {
+	// 		handleMoveToNextSlide();
+	// 		loop();
+	// 	}, 10000);
+	// })();
 
 	return (
 		<div className="hero-container">
 			<div className="hero-image">
-				<img src="img/hero.webp" width="100%" heigth="100%" alt="" />
+				<img src="img/hero.png" width="100%" heigth="100%" alt="" />
 			</div>
 			<div
 				className="hero-wrapper carousel slide"
@@ -41,7 +41,7 @@ const Hero = () => {
 				data-ride="carousel"
 			>
 				<div className="hero-imageContainer carousel">
-					<div className="hero-text carousel-item carousel-item-visible">
+					{/* <div className="hero-text carousel-item carousel-item-visible">
 						<div className="special-tag special-tag-clr">
 							<h2 className="third-h2">$70</h2>
 							<h3>only</h3>
@@ -86,10 +86,10 @@ const Hero = () => {
 								Feb 14 & 15
 							</div>
 						</div>
-						{/* <Link to="/menu">
+						 <Link to="/menu">
 							<div className="order-online-btn">Order Online</div>
-						</Link> */}
-					</div>
+						</Link>
+					</div> */}
 				</div>
 			</div>
 		</div>
