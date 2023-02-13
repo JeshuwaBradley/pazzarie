@@ -53,6 +53,7 @@ const Cart = ({ discountCodes }) => {
 		let extras = [];
 		let crust = product.crust;
 		let specialNotes = product.specialNotes;
+		let shape = product.shape;
 		product.extras.map((item) => {
 			extras.push(item.text);
 		});
@@ -61,6 +62,7 @@ const Cart = ({ discountCodes }) => {
 			size: size,
 			crust: crust,
 			specialNotes: specialNotes,
+			shape: shape,
 			quantity: quantity,
 			itemPrice: itemPrice,
 			itemTotal: itemTotal,
