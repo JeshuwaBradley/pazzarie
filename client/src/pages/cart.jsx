@@ -207,63 +207,63 @@ const Cart = ({ discountCodes }) => {
 		setNotes(notes);
 	};
 
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	const [openError, setOpenError] = useState(false);
 
 	let serverOpenS;
-	// useEffect(() => {
-	// 	const d = new Date();
-	// 	let day = d.getDay();
-	// 	const dayByName = [
-	// 		"sunday",
-	// 		"monday",
-	// 		"tuesday",
-	// 		"wednesday",
-	// 		"thursday",
-	// 		"friday",
-	// 		"saturday",
-	// 	];
-	// 	let time = d.getHours();
-	// 	console.log(time);
-	// 	axios.get("/api/open").then((res) => {
-	// 		serverOpenS = res.data["open"];
-	// 		if (serverOpenS) {
-	// 			if (day === 1) {
-	// 				if (time < 1) {
-	// 					setOpen(true);
-	// 				} else {
-	// 					setOpen(false);
-	// 				}
-	// 			} else if (day === 2) {
-	// 				if (time < 16) {
-	// 					setOpen(false);
-	// 				} else {
-	// 					setOpen(true);
-	// 				}
-	// 			} else if (day === 0) {
-	// 				if (time >= 1 && time < 13) {
-	// 					setOpen(false);
-	// 				} else {
-	// 					setOpen(true);
-	// 				}
-	// 			} else if (day === 3 || day === 4) {
-	// 				if (time >= 1 && time < 16) {
-	// 					setOpen(false);
-	// 				} else {
-	// 					setOpen(true);
-	// 				}
-	// 			} else if (day === 5 || day === 6) {
-	// 				if (time >= 1 && time < 11) {
-	// 					setOpen(false);
-	// 				} else {
-	// 					setOpen(true);
-	// 				}
-	// 			}
-	// 		} else if (!serverOpenS) {
-	// 			setOpen(false);
-	// 		}
-	// 	});
-	// }, []);
+	useEffect(() => {
+		const d = new Date();
+		let day = d.getDay();
+		const dayByName = [
+			"sunday",
+			"monday",
+			"tuesday",
+			"wednesday",
+			"thursday",
+			"friday",
+			"saturday",
+		];
+		let time = d.getHours();
+		console.log(time);
+		axios.get("/api/open").then((res) => {
+			serverOpenS = res.data["open"];
+			if (serverOpenS) {
+				if (day === 1) {
+					if (time < 1) {
+						setOpen(true);
+					} else {
+						setOpen(false);
+					}
+				} else if (day === 2) {
+					if (time < 16) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				} else if (day === 0) {
+					if (time >= 1 && time < 13) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				} else if (day === 3 || day === 4) {
+					if (time >= 1 && time < 16) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				} else if (day === 5 || day === 6) {
+					if (time >= 1 && time < 11) {
+						setOpen(false);
+					} else {
+						setOpen(true);
+					}
+				}
+			} else if (!serverOpenS) {
+				setOpen(false);
+			}
+		});
+	}, []);
 
 	return (
 		<div>
