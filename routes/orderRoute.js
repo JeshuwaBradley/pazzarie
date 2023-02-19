@@ -57,7 +57,6 @@ const sendMail = async (data, saved) => {
           </li>
           <li>${getExtras(item)}</li>
           <li>${item['specialNotes'] ? item['specialNotes'] : ''}</li>
-          <li>${item['shape'] ? item['shape'] : ''}</li>
         </ul>
       </td>
     </tr>
