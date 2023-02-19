@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import axios from "axios";
@@ -36,6 +36,9 @@ const PreOrderContainer = ({ item, addItem, removeItem }) => {
 };
 
 const Preorder = ({ data }) => {
+	useEffect(() => {
+		document.title = "Pre-Order | Nova's Pizza";
+	}, []);
 	const [selectedItems, setSelectedItems] = useState([]);
 
 	const addItem = (item) => {

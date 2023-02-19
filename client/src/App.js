@@ -25,6 +25,12 @@ const Shop = lazy(() => import('./pages/shop'))
 const Unsubscribe = lazy(() => import('./pages/unsubscribe'))
 const Preorder = lazy(() => import('./pages/preorder'))
 
+
+// ReactGA.initialize('G-4LYR5NJ1M2');
+
+//this is the current one
+ReactGA.initialize('G-7YRLX8GP7B');
+
 function App() {
   const [isAdminAuthenticated, userAdminHasAuthenticated] = useState(false);
   const [isShopAuthenticated, userShopHasAuthenticated] = useState(false);
@@ -45,14 +51,10 @@ function App() {
       .catch((err) => console.log(err));
     console.log(discountCodes);
   }, [])
-
   // const TRACKING_ID = "AW-11036011591"; // OUR_TRACKING_ID
   useEffect(() => {
-    ReactGA.initialize('AW-11036011591');
-
-    //to report page view
-    ReactGA.pageview(window.location.pathname)
-  }, [])
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <div className="App">

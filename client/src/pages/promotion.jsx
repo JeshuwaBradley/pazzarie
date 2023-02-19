@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import PromotionDeal from "../components/promotion-deal";
@@ -7,6 +7,9 @@ import PromotionalDealThree from "../components/PromotionalDealThree";
 import PromotionDealFour from "../components/promotionDealFour";
 
 const Promotion = ({ data }) => {
+	useEffect(() => {
+		document.title = "Promotions | Nova's Pizza";
+	}, []);
 	return (
 		<div>
 			<Navbar />

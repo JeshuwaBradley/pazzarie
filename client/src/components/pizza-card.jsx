@@ -12,7 +12,6 @@ const PizzaCard = ({ item, data }) => {
 	const [extras, setExtras] = useState([]);
 	const [crust, setCrust] = useState("classic-pan-tossed");
 	const [addedToCart, setAddedToCart] = useState(false);
-	const [shape, setShape] = useState("");
 	const dispatch = useDispatch();
 
 	let string = item.itemDesc;
@@ -51,7 +50,6 @@ const PizzaCard = ({ item, data }) => {
 		setPrice(item.itemPrices[sizeIndex].price);
 		resetExtras();
 		resetQuantity();
-		setShape("");
 		ReactGA.event({
 			category: "select",
 			action: `Changed ${item.itemTitle} size to ${item.itemPrices[sizeIndex].text}`,
@@ -85,14 +83,6 @@ const PizzaCard = ({ item, data }) => {
 
 	const handleSpecialNotes = (notes) => {
 		setSpecialNotes(notes);
-	};
-
-	const handleShape = (value) => {
-		setShape(value);
-		// const checked = value.target?.checked;
-		// if (checked) {
-		// 	setShape("heart-shaped");
-		// }
 	};
 
 	const handleIncrease = () => {
@@ -133,7 +123,6 @@ const PizzaCard = ({ item, data }) => {
 				size,
 				crust,
 				specialNotes,
-				shape,
 			})
 		);
 		setAddedToCart(true);
@@ -237,30 +226,6 @@ const PizzaCard = ({ item, data }) => {
 								</select>
 							</div>
 						</div>
-						{/* {size === "15'(Large)" ? (
-							<div className="cart-cart-container">
-								<div className="card-front-size">
-									<label htmlFor="size">Shape</label>
-									<select
-										id="crust"
-										className="select"
-										defaultValue={"Round Shape"}
-										onChange={(e) =>
-											handleCrust(e.target.value)
-										}
-									>
-										<option value="Round Shape">
-											Round Shape
-										</option>
-										<option value="Heart Shape">
-											Heart Shape
-										</option>
-									</select>
-								</div>
-							</div>
-						) : (
-							""
-						)} */}
 						<div className="card-cart-container">
 							<div className="card-front-add-button">
 								<button onClick={handleCart}>
@@ -440,41 +405,6 @@ const PizzaCard = ({ item, data }) => {
 														}
 												  )
 												: ""}
-										</form>
-									</div>
-								) : (
-									""
-								)}
-								{size === "15'(Large)" ? (
-									<div className="detail-item">
-										<h3>Choose the shape</h3>
-										<form
-											onChange={(e) =>
-												handleShape(e.target.value)
-											}
-										>
-											<div>
-												<input
-													type="radio"
-													name="shape"
-													id="heart-shaped"
-													value="heart-shaped"
-												/>
-												<label htmlFor="heart-shaped">
-													Heart Shaped Pizza
-												</label>
-											</div>
-											<div>
-												<input
-													type="radio"
-													name="shape"
-													id="round-shaped"
-													value="round-shaped"
-												/>
-												<label htmlFor="round-shaped">
-													Round Shaped Pizza
-												</label>
-											</div>
 										</form>
 									</div>
 								) : (
