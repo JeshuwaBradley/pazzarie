@@ -86,8 +86,8 @@ const sendMail = async (data, saved) => {
   })
 
   const getEmail = () => {
-    // const shops = ['1706university@gmail.com', 'hs211094@gmail.com']
-    const shops = ['jeshuwabradley@gmail.com']
+    const shops = ['1706university@gmail.com', 'hs211094@gmail.com']
+    // const shops = ['jeshuwabradley@gmail.com']
     return shops[data['shop'] - 1]
   }
 
