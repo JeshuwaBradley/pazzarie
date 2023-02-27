@@ -23,7 +23,6 @@ const DailyDeals = lazy(() => import('./pages/daily-deals'))
 const PageNotFound = lazy(() => import('./pages/404-page'))
 const Shop = lazy(() => import('./pages/shop'))
 const Unsubscribe = lazy(() => import('./pages/unsubscribe'))
-const Preorder = lazy(() => import('./pages/preorder'))
 
 
 // ReactGA.initialize('G-4LYR5NJ1M2');
@@ -47,9 +46,8 @@ function App() {
   useEffect(() => {
     axios
       .get('/api/discount/find')
-      .then((res) => { setDiscountCodes(res.data); console.log(res.data) })
+      .then((res) => { setDiscountCodes(res.data) })
       .catch((err) => console.log(err));
-    console.log(discountCodes);
   }, [])
   // const TRACKING_ID = "AW-11036011591"; // OUR_TRACKING_ID
   useEffect(() => {
@@ -75,7 +73,6 @@ function App() {
               <Route path='/admin' element={<Admin />} />
               <Route path='/unsubscribe/:id' element={<Unsubscribe />} />
               <Route path='/promotions' element={<Promotion data={data} />} />
-              <Route path='/preorder' element={<Preorder data={data} />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </AppContext.Provider>

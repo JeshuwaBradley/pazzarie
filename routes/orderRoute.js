@@ -91,6 +91,14 @@ const sendMail = async (data, saved) => {
     return shops[data['shop'] - 1]
   }
 
+  const getTitle = () => {
+    if (data['preOrderTime'] !== '' || data['preOrderDate'] !== '') {
+      return "Pre-Order - Nova's Pizza"
+    } else {
+      return "New Order - Nova's Pizza"
+    }
+  }
+
   let createdDate = saved.createdAt.toUTCString();
   createdDate = createdDate.split(' ').slice(0, 5).join(' ');
 
@@ -98,7 +106,7 @@ const sendMail = async (data, saved) => {
     from: '	novaspizza.promo@gmail.com',
     to: getEmail(),
     bcc: 'jeshuwabradley@gmail.com',
-    subject: `New Order - Nova's Pizza `,
+    subject: getTitle(),
     html: `
     <!DOCTYPE html>
     <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -309,6 +317,12 @@ const sendMail = async (data, saved) => {
 																			style="font-family: inherit; background-color: transparent;">#${saved['_id']}</strong></p>
 																	<p style="margin: 0; margin-bottom: 16px;">Order
 																		placed: <strong>${createdDate}</strong>
+																	</p>
+                                  <p style="margin: 0; margin-bottom: 16px;">Pre-Order Date
+																		: <strong>${data['preOrderDate']}</strong>
+																	</p>
+                                  <p style="margin: 0; margin-bottom: 16px;">Pre-Order Time
+																		: <strong>${data['preOrderTime']}</strong>
 																	</p>
 																</div>
 															</td>

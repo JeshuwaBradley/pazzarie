@@ -103,25 +103,38 @@ const sendMail = async ({ data }) => {
     const shopAddress1 = '1706 University Ave, ';
     const shopAddress2 = 'Berkeley, CA 94703, USA'
     const calculateEstimatedTime = () => {
-        let date = new Date(data['createdAt'])
-        if (data['deliver'] === 'deliver') {
-            let newDateObj1 = new Date(date.getTime() + 30 * 60000).toLocaleTimeString();
-            let newDateObj2 = new Date(date.getTime() + 50 * 60000).toLocaleTimeString();
-            return `${newDateObj1} - ${newDateObj2}`
-        } else if (data['deliver'] === 'pickup') {
-            let newDateObj1 = new Date(date.getTime() + 15 * 60000).toLocaleTimeString();
-            let newDateObj2 = new Date(date.getTime() + 25 * 60000).toLocaleTimeString();
-            return `${newDateObj1} - ${newDateObj2}`
+        if (data['preOrderTime'] !== '') {
+            return `${data['preOrderTime']} / ${data['preOrderDate']}`
+        } else {
+            let date = new Date(data['createdAt'])
+            if (data['deliver'] === 'deliver') {
+                let newDateObj1 = new Date(date.getTime() + 30 * 60000).toLocaleTimeString();
+                let newDateObj2 = new Date(date.getTime() + 50 * 60000).toLocaleTimeString();
+                return `${newDateObj1} - ${newDateObj2}`
+            } else if (data['deliver'] === 'pickup') {
+                let newDateObj1 = new Date(date.getTime() + 15 * 60000).toLocaleTimeString();
+                let newDateObj2 = new Date(date.getTime() + 25 * 60000).toLocaleTimeString();
+                return `${newDateObj1} - ${newDateObj2}`
+            }
         }
         // return `date`
     }
     let createdDate = new Date(data['createdAt']).toUTCString();
     createdDate = createdDate.split(' ').slice(0, 4).join(' ');
 
+
+    const getTitle = () => {
+        if (data['preOrderTime'] !== '' || data['preOrderDate'] !== '') {
+            return "Nova's  Pizza - Pre-Order Confirmation"
+        } else {
+            return "Nova's  Pizza - Order Confirmation"
+        }
+    }
+
     let mail = {
         from: '	novaspizza.promo@gmail.com',
         to: getEmail(),
-        subject: "Nova's  Pizza - Order Confirmation",
+        subject: getTitle(),
         html: `<!DOCTYPE html>
 
         <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
