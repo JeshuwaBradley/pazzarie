@@ -28,6 +28,7 @@ const Cart = ({ discountCodes }) => {
 
 	const [promote, setPromote] = useState(false);
 	const [inputs, setInputs] = useState({});
+	const [customer, setCustomer] = useState("");
 	const [notes, setNotes] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [paymentError, setPaymentError] = useState("");
@@ -38,6 +39,9 @@ const Cart = ({ discountCodes }) => {
 	const [discountCode, setDiscountCode] = useState("");
 	const [orderDeliver, setOrderDeliver] = useState(false);
 	const [limitError, setLimitError] = useState(false);
+	const [selectedDay, setSelectedDay] = useState("");
+	const [preOrderTime, setPreOrderTime] = useState("early");
+	const [selectedTime, setSelectedTime] = useState("");
 
 	const dispatch = useDispatch();
 
@@ -147,6 +151,7 @@ const Cart = ({ discountCodes }) => {
 		const handleOrder = async (e) => {
 			let x = {
 				...inputs,
+				customer: customer,
 				shop: Number(cart.shop),
 				deliver: cart.pickUporDeliver,
 				notes: notes,
@@ -155,6 +160,8 @@ const Cart = ({ discountCodes }) => {
 				tip: cart.tip,
 				discount: cart.discount,
 				discountCode: cart.discountCode,
+				preOrderDate: selectedDay,
+				preOrderTime: selectedTime,
 				total: total,
 			};
 			await axios
@@ -205,6 +212,133 @@ const Cart = ({ discountCodes }) => {
 		setNotes(notes);
 	};
 
+	const days = [
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+		"Sunday",
+	];
+
+	const early = [
+		"11:15 a.m",
+		"11:30 a.m",
+		"11:45 a.m",
+		"12:00 p.m",
+		"12:15 p.m",
+		"12:30 p.m",
+		"12:45 p.m",
+		"01:00 p.m",
+		"01:15 p.m",
+		"01:30 p.m",
+		"01:45 p.m",
+		"02:00 p.m",
+		"02:15 p.m",
+		"02:30 p.m",
+		"02:45 p.m",
+		"03:00 p.m",
+		"03:15 p.m",
+		"03:30 p.m",
+		"03:45 p.m",
+		"04:00 p.m",
+		"04:15 p.m",
+		"04:30 p.m",
+		"04:45 p.m",
+		"05:00 p.m",
+		"05:15 p.m",
+		"05:30 p.m",
+		"05:45 p.m",
+		"06:00 p.m",
+		"06:15 p.m",
+		"06:30 p.m",
+		"06:45 p.m",
+		"07:00 p.m",
+		"07:15 p.m",
+		"07:30 p.m",
+		"07:45 p.m",
+		"08:00 p.m",
+		"08:15 p.m",
+		"08:30 p.m",
+		"08:45 p.m",
+		"09:00 p.m",
+		"09:15 p.m",
+		"09:30 p.m",
+		"09:45 p.m",
+		"10:00 p.m",
+		"10:15 p.m",
+		"10:30 p.m",
+		"10:45 p.m",
+		"11:00 p.m",
+		"11:15 p.m",
+		"11:30 p.m",
+		"11:45 p.m",
+		"12:00 a.m",
+		"12:15 a.m",
+		"12:30 a.m",
+		"12:45 a.m",
+	];
+
+	const late = [
+		"04:15 p.m",
+		"04:30 p.m",
+		"04:45 p.m",
+		"05:00 p.m",
+		"05:15 p.m",
+		"05:30 p.m",
+		"05:45 p.m",
+		"06:00 p.m",
+		"06:15 p.m",
+		"06:30 p.m",
+		"06:45 p.m",
+		"07:00 p.m",
+		"07:15 p.m",
+		"07:30 p.m",
+		"07:45 p.m",
+		"08:00 p.m",
+		"08:15 p.m",
+		"08:30 p.m",
+		"08:45 p.m",
+		"09:00 p.m",
+		"09:15 p.m",
+		"09:30 p.m",
+		"09:45 p.m",
+		"10:00 p.m",
+		"10:15 p.m",
+		"10:30 p.m",
+		"10:45 p.m",
+		"11:00 p.m",
+		"11:15 p.m",
+		"11:30 p.m",
+		"11:45 p.m",
+		"12:00 a.m",
+		"12:15 a.m",
+		"12:30 a.m",
+		"12:45 a.m",
+	];
+
+	const handlePreOrderDays = (e) => {
+		setSelectedDay(e.target.value);
+		if (
+			e.target.value === "Tuesday" ||
+			e.target.value === "Wednesday" ||
+			e.target.value === "Thursday" ||
+			e.target.value === "Sunday"
+		) {
+			setPreOrderTime("late");
+		} else {
+			setPreOrderTime("early");
+		}
+	};
+
+	const handlePreOrderTime = (e) => {
+		setSelectedTime(e.target.value);
+	};
+
+	const handleCustomer = (e) => {
+		setCustomer(e.target.value);
+	};
+
 	const [open, setOpen] = useState(false);
 	const [openError, setOpenError] = useState(false);
 
@@ -222,7 +356,6 @@ const Cart = ({ discountCodes }) => {
 			"saturday",
 		];
 		let time = d.getHours();
-		console.log(time);
 		axios.get("/api/open").then((res) => {
 			serverOpenS = res.data["open"];
 			if (serverOpenS) {
@@ -532,7 +665,9 @@ const Cart = ({ discountCodes }) => {
 															}
 															placeholder="John Doe (Required)"
 															onChange={(e) =>
-																handleChange(e)
+																handleCustomer(
+																	e
+																)
 															}
 														/>
 														{inputError ? (
@@ -651,6 +786,139 @@ const Cart = ({ discountCodes }) => {
 														</div>
 													</div>
 												) : null}
+
+												<div className="form-item">
+													<div className="form-label">
+														<label htmlFor="address">
+															Pre-Order Date:
+														</label>
+													</div>
+													<div className="form-input">
+														<select
+															name="location"
+															style={
+																inputError &&
+																open === false
+																	? {
+																			borderColor:
+																				"red",
+																	  }
+																	: null
+															}
+															onChange={(e) =>
+																handlePreOrderDays(
+																	e
+																)
+															}
+														>
+															<option value="">
+																-Select-
+															</option>
+															{days?.map(
+																(day, i) => (
+																	<option
+																		key={i}
+																		value={
+																			day
+																		}
+																	>
+																		{day}
+																	</option>
+																)
+															)}
+														</select>
+														{inputError &&
+														open === false ? (
+															<small>
+																Required
+															</small>
+														) : null}
+													</div>
+												</div>
+												{selectedDay !== "" ? (
+													<div className="form-item">
+														<div className="form-label">
+															<label htmlFor="address">
+																Pre-Order Time:
+															</label>
+														</div>
+														<div className="form-input">
+															<select
+																name="location"
+																style={
+																	inputError &&
+																	open ===
+																		false
+																		? {
+																				borderColor:
+																					"red",
+																		  }
+																		: null
+																}
+																onChange={(e) =>
+																	handlePreOrderTime(
+																		e
+																	)
+																}
+															>
+																<option value="">
+																	-Select
+																</option>
+																{preOrderTime ===
+																"early"
+																	? early?.map(
+																			(
+																				time,
+																				i
+																			) => (
+																				<option
+																					key={
+																						i
+																					}
+																					value={
+																						time
+																					}
+																				>
+																					{
+																						time
+																					}
+																				</option>
+																			)
+																	  )
+																	: preOrderTime ===
+																	  "late"
+																	? late?.map(
+																			(
+																				time,
+																				i
+																			) => (
+																				<option
+																					key={
+																						i
+																					}
+																					value={
+																						time
+																					}
+																				>
+																					{
+																						time
+																					}
+																				</option>
+																			)
+																	  )
+																	: ""}
+															</select>
+															{inputError &&
+															open === false ? (
+																<small>
+																	Required
+																</small>
+															) : null}
+														</div>
+													</div>
+												) : (
+													""
+												)}
 												<Suspense
 													fallback={
 														<div>Loading...</div>
@@ -663,6 +931,7 @@ const Cart = ({ discountCodes }) => {
 														inputError={inputError}
 													/>
 												</Suspense>
+
 												<div className="form-item">
 													<div className="promotional-checkbox">
 														<input
@@ -745,48 +1014,79 @@ const Cart = ({ discountCodes }) => {
 															</StripeCheckout>
 														)}
 													</div>
-												) : (
-													<>
-														<div
-															className="form-item"
-															style={{
-																justifyContent:
-																	"center",
-															}}
+												) : cart.products.length !==
+														0 &&
+												  customer !== "" &&
+												  selectedDay !== "" &&
+												  selectedTime !== "" &&
+												  button !== false &&
+												  loading ? (
+													<div className="form-item">
+														<div className="checkout-button">
+															<i
+																className="fa fa-spinner fa-spin"
+																style={{
+																	marginRight:
+																		"5px",
+																}}
+															></i>
+															Placing Order
+														</div>
+													</div>
+												) : cart.products.length !==
+														0 &&
+												  customer !== "" &&
+												  selectedDay !== "" &&
+												  selectedTime !== "" &&
+												  button !== false ? (
+													<div className="form-item">
+														<StripeCheckout
+															name="Nova's Pizza"
+															description={`Your total is $${cart.total}`}
+															amount={total * 100}
+															token={onToken}
+															stripeKey={
+																process.env
+																	.REACT_APP_PUBLISHABLE_KEY
+															}
 														>
 															<button
-																className="checkout-button"
 																onClick={(
 																	e
 																) => {
 																	e.preventDefault();
-																	setOpenError(
-																		true
-																	);
-																	alert(
-																		"Shops are closed."
-																	);
 																}}
+																className={
+																	cart
+																		.products
+																		.length ===
+																	0
+																		? "checkout-button-disabled"
+																		: "checkout-button"
+																}
 															>
 																Continue
 																Checkout
 															</button>
-														</div>
-														{openError === true ? (
-															<div className="form-item">
-																<p
-																	style={{
-																		color: "red",
-																	}}
-																>
-																	Shops are
-																	closed
-																</p>
-															</div>
-														) : (
-															""
-														)}
-													</>
+														</StripeCheckout>
+													</div>
+												) : (
+													<div className="form-item">
+														<button
+															className="checkout-button"
+															onClick={(e) => {
+																e.preventDefault();
+																setInputError(
+																	true
+																);
+																alert(
+																	"Shops are closed. You can preorder instead"
+																);
+															}}
+														>
+															Continue Checkout
+														</button>
+													</div>
 												)}
 											</form>
 											{paymentError ? (

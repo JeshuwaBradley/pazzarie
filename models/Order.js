@@ -67,6 +67,14 @@ const OrderSchema = new mongoose.Schema(
             type: Boolean,
             required: false,
         },
+        preOrderDate: {
+            type: String,
+            maxlength: 200,
+        },
+        preOrderTime: {
+            type: String,
+            maxlength: 200,
+        },
         deliver: {
             type: String,
             required: true,

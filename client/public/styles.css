@@ -1768,7 +1768,7 @@ input:checked + .slider:before {
 	flex-direction: row;
 	width: 100%;
 	margin-bottom: 15px;
-	margin-left: 20px;
+	/* margin-left: 20px; */
 }
 
 .form-item:last-child {
@@ -1821,12 +1821,12 @@ input:checked + .slider:before {
 }
 
 .form-input input {
-	width: 60%;
+	width: 75%;
 	font-size: 16px;
 	padding: 5px 10px;
 }
 .form-input select {
-	width: 60%;
+	width: 75%;
 	font-size: 16px;
 	-ms-box-sizing: content-box;
 	-moz-box-sizing: content-box;
@@ -1897,6 +1897,15 @@ input:checked + .slider:before {
 
 	.cart-container-right-wrapper {
 		width: 100%;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.form-input {
+		align-items: flex-end;
+	}
+	.form-label label {
+		font-size: 16px;
 	}
 }
 
@@ -3553,113 +3562,5 @@ h2.large-title {
 	}
 	.upselling-item-button button {
 		font-size: 18px;
-	}
-}
-
-/* Pre order  */
-.preorder-container {
-	padding: 10px;
-	border: 1px solid black;
-	margin: 10px;
-	width: 10em;
-}
-
-.preorder {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 30px 10px;
-}
-
-.preorder-form form {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	width: 70vw;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 50px 0 0 0;
-}
-
-.form-item-preorder {
-	width: 80%;
-	display: flex;
-	flex-direction: row;
-	margin: 20px 0 5px 0;
-}
-.form-item-preorder .form-label {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	margin-right: 10px;
-}
-.form-item-preorder-button {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
-.form-item-preorder-button button {
-	margin-top: 10px;
-	letter-spacing: 1px;
-	padding: 15px;
-	font-size: 18px;
-	border-radius: 10px;
-	outline: none;
-	border: none;
-	background-color: #e2241a;
-	color: #fff;
-	cursor: pointer;
-}
-
-.form-item-preorder input {
-	font-size: 18px;
-	font-weight: 500;
-	/* width: 100px; */
-	padding: 5px 10px;
-}
-
-.form-item-preorder textarea {
-	width: 30em;
-	height: 50px;
-}
-
-.preorder-title {
-	font-size: 1rem;
-	color: red;
-	text-decoration: underline;
-	margin-bottom: 20px;
-}
-
-.form-item-preorder.error {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-@media screen and (max-width: 1024px) {
-	.form-item-preorder {
-		flex-direction: column;
-	}
-	.form-item-preorder .form-label {
-		justify-content: start;
-	}
-	.form-item-preorder .form-input {
-		width: 100%;
-	}
-	.form-input input {
-		width: 100%;
-	}
-	.form-input select {
-		width: 100%;
-	}
-	.form-item-preorder textarea {
-		width: 18em;
-		height: 50px;
 	}
 }

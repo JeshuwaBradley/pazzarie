@@ -126,17 +126,6 @@ const Navbar = () => {
 							/>
 						</div>
 						<div className="right">
-							<div className="item">
-								<Link
-									to="/preorder"
-									style={{
-										textDecoration: "none",
-										color: "white",
-									}}
-								>
-									Pre-Order
-								</Link>
-							</div>
 							<div
 								className="item"
 								onClick={() => setList(!list)}
@@ -265,9 +254,6 @@ const Navbar = () => {
 						</Link>
 						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
-						</Link>
-						<Link to="/preorder" className="mobile-nav-item">
-							<div className="mobile-nav-item">Pre-Order</div>
 						</Link>
 						{/* <Link to="/cart" className="mobile-nav-item">
 							<div className="">
