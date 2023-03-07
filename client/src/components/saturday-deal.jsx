@@ -3,43 +3,37 @@ import { useDispatch } from "react-redux";
 import { addProduct, addPromotion } from "../redux/cartSlice";
 import PromotionDealItem from "./deal-item";
 
-const PromotionDealFour = ({ data }) => {
+const SaturdayDeal = ({ data }) => {
 	const dispatch = useDispatch();
 	const [selectedItem, setSelectedItem] = useState([]);
 	const [itemSelected, setItemSelected] = useState(false);
 	const [open, setOpen] = useState(false);
 
-	const [selectedAppetizer, setSelectedAppetizer] = useState(null);
-	const [appetizerSelected, setAppetizerSelected] = useState(false);
 	const extras = [];
 	const quantity = 1;
 	const specialNotes = "";
-	const price = 70;
+	const price = 35;
 	const imgSrc = "https://i.ibb.co/HpL2dTD/CHRISTMAS-PIZZA-SMALLER.jpg";
 	let itemTitle;
 
 	const handleCart = () => {
 		if (itemSelected) {
-			if (appetizerSelected) {
-				itemTitle =
-					`One Large ${selectedItem[0].item["itemTitle"]}, One Large ${selectedItem[1].item["itemTitle"]}, One Large cheese Bread & 18 ${selectedAppetizer.item["itemTitle"]}`.toLowerCase();
-				console.log(itemTitle);
-				dispatch(addPromotion());
-				dispatch(
-					addProduct({
-						itemTitle,
-						price,
-						extras,
-						quantity,
-						specialNotes,
-						imgSrc,
-					})
-				);
-				alert("Product added to cart");
-				setOpen(false);
-			} else {
-				alert("Select any type of wings before clicking add to cart");
-			}
+			itemTitle =
+				`One 15'(Large) ${selectedItem[0].item["itemTitle"]} & One 15'(Large) ${selectedItem[1].item["itemTitle"]}`.toLowerCase();
+			console.log(itemTitle);
+			dispatch(addPromotion());
+			dispatch(
+				addProduct({
+					itemTitle,
+					price,
+					extras,
+					quantity,
+					specialNotes,
+					imgSrc,
+				})
+			);
+			alert("Product added to cart");
+			setOpen(false);
 		} else {
 			alert("Select two pizzas before clicking add to cart");
 		}
@@ -63,18 +57,7 @@ const PromotionDealFour = ({ data }) => {
 	const close = () => {
 		setSelectedItem([]);
 		setItemSelected(false);
-		setSelectedAppetizer(null);
-		setAppetizerSelected(false);
 		setOpen(false);
-	};
-
-	const addAppetizer = (item) => {
-		setSelectedAppetizer(item);
-		setAppetizerSelected(true);
-	};
-	const removeAppetizer = () => {
-		setSelectedAppetizer(null);
-		setAppetizerSelected(false);
 	};
 	return (
 		<>
@@ -85,10 +68,15 @@ const PromotionDealFour = ({ data }) => {
 							className="promotionDeal-main large"
 							onClick={() => close()}
 						>
-							<p className="design">Special Promotion</p>
+							<p
+								className="design"
+								style={{ textAlign: "center" }}
+							>
+								Saturday Special Deal
+							</p>
 							<p className="topic">
-								Get 2 large Speciality Pizzas, one large Cheese
-								Bread, and 18 pieces of wings for $70.
+								Get any two large (15' Inches) Traditional Pizza
+								for just only $35
 							</p>
 						</div>
 						<div className="promotionalDeal-secondary">
@@ -97,7 +85,7 @@ const PromotionDealFour = ({ data }) => {
 							</p>
 						</div>
 						<div className="promotion-select">
-							{data.slice(3, data?.length).map((item, i) => {
+							{data.slice(0, 3).map((item, i) => {
 								if (item.itemCategory === "pizza") {
 									return (
 										<PromotionDealItem
@@ -113,45 +101,6 @@ const PromotionDealFour = ({ data }) => {
 								}
 							})}
 						</div>
-						{selectedItem ? (
-							<>
-								<div className="promotionalDeal-secondary">
-									<p className="promotion-selection">
-										Select any type of wings
-									</p>
-								</div>
-								<div className="promotion-select">
-									{data.map((item, i) => {
-										if (item.itemCategory === "appetizer") {
-											if (
-												item.itemTitle !==
-												"Cheese Bread"
-											) {
-												return (
-													<PromotionDealItem
-														item={item}
-														addToSelect={
-															addAppetizer
-														}
-														removeFromSelect={
-															removeAppetizer
-														}
-														itemSelected={
-															appetizerSelected
-														}
-														key={i}
-													/>
-												);
-											}
-										} else {
-											return null;
-										}
-									})}
-								</div>
-							</>
-						) : (
-							""
-						)}
 						<div
 							className="promotion-button"
 							onClick={() => {
@@ -169,10 +118,15 @@ const PromotionDealFour = ({ data }) => {
 						onClick={() => setOpen(true)}
 					>
 						<div className="promotionDeal-main">
-							<p className="design">Special Promotion</p>
+							<p
+								className="design"
+								style={{ textAlign: "center" }}
+							>
+								Saturday Special Deal
+							</p>
 							<p className="topic">
-								Get 2 large Speciality Pizzas, one large Cheese
-								Bread, and 18 pieces of wings for $70.
+								Get any two large (15' Inches) Traditional Pizza
+								for just only $35
 							</p>
 						</div>
 					</div>
@@ -182,4 +136,4 @@ const PromotionDealFour = ({ data }) => {
 	);
 };
 
-export default PromotionDealFour;
+export default SaturdayDeal;

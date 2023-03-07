@@ -42,8 +42,25 @@ const Hero = () => {
 			>
 				<div className="hero-imageContainer carousel">
 					<div className="hero-text carousel-item carousel-item-visible">
+						<div className="special-tag special-tag-trns">
+							<div className="new-tag">
+								<h2>New</h2>
+							</div>
+							<h2 className="third-h2">limited time offer!</h2>
+						</div>
+						<div className="text fourth-text">
+							<div className="large-text">Daily Deals</div>
+							<div className="small-text small-text-2">
+								Check it out
+							</div>
+						</div>
+						<Link to="/daily-deals">
+							<div className="order-online-btn">Order Online</div>
+						</Link>
+					</div>
+					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-clr">
-							<h2 className="third-h2">$70</h2>
+							<h2 className="third-h2">$40</h2>
 							<h3>only</h3>
 						</div>
 						<div className="text third-text">
@@ -71,25 +88,6 @@ const Hero = () => {
 							<div className="order-online-btn">Order Online</div>
 						</Link>
 					</div>
-					{/* <div className="hero-text carousel-item">
-						<div className="special-tag special-tag-trns">
-							<div className="new-tag">
-								<h2>coming soon</h2>
-							</div>
-							<h2 className="third-h2">limited time offer!</h2>
-						</div>
-						<div className="text fourth-text">
-							<div className="large-text">
-								heart shaped pizzas
-							</div>
-							<div className="small-text small-text-2">
-								Feb 14 & 15
-							</div>
-						</div>
-						<Link to="/menu">
-							<div className="order-online-btn">Order Online</div>
-						</Link>
-					</div> */}
 				</div>
 			</div>
 		</div>

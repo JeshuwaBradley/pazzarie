@@ -346,11 +346,11 @@ const PizzaCard = ({ item, data }) => {
 														<input
 															type="radio"
 															name="size"
-															id={size?.text}
+															id={`${size?.text}${item.itemTitle}`}
 															value={i}
 														/>
 														<label
-															htmlFor={size?.text}
+															htmlFor={`${size?.text}${item.itemTitle}`}
 														>
 															{size?.text}
 														</label>
@@ -373,9 +373,7 @@ const PizzaCard = ({ item, data }) => {
 																<div key={i}>
 																	<input
 																		type="checkbox"
-																		id={
-																			option?.text
-																		}
+																		id={`${option?.text}${item.itemTitle}`}
 																		name={
 																			option?.text
 																		}
@@ -392,9 +390,7 @@ const PizzaCard = ({ item, data }) => {
 																		}
 																	/>
 																	<label
-																		htmlFor={
-																			option?.text
-																		}
+																		htmlFor={`${option?.text}${item.itemTitle}`}
 																	>
 																		{
 																			option?.text

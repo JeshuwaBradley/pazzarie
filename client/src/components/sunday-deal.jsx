@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addProduct, addPromotion } from "../redux/cartSlice";
 import PromotionDealItem from "./deal-item";
 
-const PromotionDealFour = ({ data }) => {
+const SundayDeal = ({ data }) => {
 	const dispatch = useDispatch();
 	const [selectedItem, setSelectedItem] = useState([]);
 	const [itemSelected, setItemSelected] = useState(false);
@@ -14,7 +14,7 @@ const PromotionDealFour = ({ data }) => {
 	const extras = [];
 	const quantity = 1;
 	const specialNotes = "";
-	const price = 70;
+	const price = 27;
 	const imgSrc = "https://i.ibb.co/HpL2dTD/CHRISTMAS-PIZZA-SMALLER.jpg";
 	let itemTitle;
 
@@ -22,7 +22,7 @@ const PromotionDealFour = ({ data }) => {
 		if (itemSelected) {
 			if (appetizerSelected) {
 				itemTitle =
-					`One Large ${selectedItem[0].item["itemTitle"]}, One Large ${selectedItem[1].item["itemTitle"]}, One Large cheese Bread & 18 ${selectedAppetizer.item["itemTitle"]}`.toLowerCase();
+					`One 15'(Large) ${selectedItem[0].item["itemTitle"]} & 6 ${selectedAppetizer.item["itemTitle"]}`.toLowerCase();
 				console.log(itemTitle);
 				dispatch(addPromotion());
 				dispatch(
@@ -47,7 +47,7 @@ const PromotionDealFour = ({ data }) => {
 
 	const addToSelect = (item) => {
 		setSelectedItem((prevItems) => [...prevItems, item]);
-		if (selectedItem.length === 1) {
+		if (selectedItem.length === 0) {
 			setItemSelected(true);
 		}
 	};
@@ -57,8 +57,6 @@ const PromotionDealFour = ({ data }) => {
 		selectedItem.splice(selectedItem.indexOf(y), 1);
 		setItemSelected(false);
 	};
-	console.log(selectedItem);
-	console.log(selectedItem.length);
 
 	const close = () => {
 		setSelectedItem([]);
@@ -85,15 +83,20 @@ const PromotionDealFour = ({ data }) => {
 							className="promotionDeal-main large"
 							onClick={() => close()}
 						>
-							<p className="design">Special Promotion</p>
+							<p
+								className="design"
+								style={{ textAlign: "center" }}
+							>
+								Sunday Special Deal
+							</p>
 							<p className="topic">
-								Get 2 large Speciality Pizzas, one large Cheese
-								Bread, and 18 pieces of wings for $70.
+								Get any Large Specialty Pizza with 6 Wings for
+								only just $27
 							</p>
 						</div>
 						<div className="promotionalDeal-secondary">
 							<p className="promotion-selection">
-								Select any two pizzas
+								Select any specialty pizza you like
 							</p>
 						</div>
 						<div className="promotion-select">
@@ -169,10 +172,15 @@ const PromotionDealFour = ({ data }) => {
 						onClick={() => setOpen(true)}
 					>
 						<div className="promotionDeal-main">
-							<p className="design">Special Promotion</p>
+							<p
+								className="design"
+								style={{ textAlign: "center" }}
+							>
+								Sunday Special Deal
+							</p>
 							<p className="topic">
-								Get 2 large Speciality Pizzas, one large Cheese
-								Bread, and 18 pieces of wings for $70.
+								Get any Large Specialty Pizza with 6 Wings for
+								only just $27
 							</p>
 						</div>
 					</div>
@@ -182,4 +190,4 @@ const PromotionDealFour = ({ data }) => {
 	);
 };
 
-export default PromotionDealFour;
+export default SundayDeal;

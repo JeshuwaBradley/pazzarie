@@ -68,7 +68,7 @@ function App() {
               <Route path='/menu' element={<Menu data={data} />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/privacy-policy' element={<Privacy />} />
-              <Route path='/daily-deals' element={<DailyDeals />} />
+              <Route path='/daily-deals' element={<DailyDeals data={data} />} />
               <Route path='/shop/:id' element={<Shop />} />
               <Route path='/admin' element={<Admin />} />
               <Route path='/unsubscribe/:id' element={<Unsubscribe />} />

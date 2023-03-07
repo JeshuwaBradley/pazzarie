@@ -147,6 +147,14 @@ const Cart = ({ discountCodes }) => {
 			});
 	};
 
+	const validateEmail = (email) => {
+		return String(email)
+			.toLowerCase()
+			.match(
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
+	};
+
 	useEffect(() => {
 		const handleOrder = async (e) => {
 			let x = {
@@ -168,7 +176,7 @@ const Cart = ({ discountCodes }) => {
 				.post("/api/order/", { ...x })
 				.then((response) => {
 					if (response.status === 200) {
-						if (response.data.email) {
+						if (validateEmail(response.data.email)) {
 							sendReciept(response);
 						} else {
 							setSuccess(true);
@@ -479,22 +487,6 @@ const Cart = ({ discountCodes }) => {
 									}}
 								>
 									<p>Order has been placed</p>
-									{orderDeliver === true ? (
-										<p>
-											Your order will be delivered in 30 -
-											45 minutes.
-										</p>
-									) : (
-										<p>
-											Your order will be ready in 15
-											minutes <br />
-											You can collect it from <br />
-											<strong>
-												1706 University Ave, Berkeley,
-												CA 94703, USA.
-											</strong>
-										</p>
-									)}
 								</div>
 							</div>
 						</div>

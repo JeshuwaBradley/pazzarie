@@ -99,7 +99,9 @@ const sendMail = async (data, saved) => {
     }
   }
 
-  let createdDate = saved.createdAt.toUTCString();
+  let createdDate = saved.createdAt.toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles"
+  });
   createdDate = createdDate.split(' ').slice(0, 5).join(' ');
 
   let mail = {

@@ -310,17 +310,13 @@ const SaladCard = ({ item, data }) => {
 																	<input
 																		type="radio"
 																		name="size"
-																		id={
-																			size?.text
-																		}
+																		id={`${size?.text}${item.itemTitle}`}
 																		value={
 																			i
 																		}
 																	/>
 																	<label
-																		htmlFor={
-																			size?.text
-																		}
+																		htmlFor={`${size?.text}${item.itemTitle}`}
 																	>
 																		{
 																			size?.text
