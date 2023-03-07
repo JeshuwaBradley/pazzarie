@@ -286,18 +286,14 @@ const CardSimple = ({ item, data, sp = false }) => {
 																	<input
 																		type="radio"
 																		name="size"
-																		id={
-																			size?.text
-																		}
+																		id={`${size?.text}${item.itemTitle}`}
 																		value={
 																			i
 																		}
 																		defaultChecked
 																	/>
 																	<label
-																		htmlFor={
-																			size?.text
-																		}
+																		htmlFor={`${size?.text}${item.itemTitle}`}
 																	>
 																		{
 																			size?.text

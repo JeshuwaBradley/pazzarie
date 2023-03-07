@@ -108,18 +108,28 @@ const sendMail = async ({ data }) => {
         } else {
             let date = new Date(data['createdAt'])
             if (data['deliver'] === 'deliver') {
-                let newDateObj1 = new Date(date.getTime() + 30 * 60000).toLocaleTimeString();
-                let newDateObj2 = new Date(date.getTime() + 50 * 60000).toLocaleTimeString();
+                let newDateObj1 = new Date(date.getTime() + 30 * 60000).toLocaleTimeString("en-US", {
+                    timeZone: "America/Los_Angeles"
+                });
+                let newDateObj2 = new Date(date.getTime() + 50 * 60000).toLocaleTimeString("en-US", {
+                    timeZone: "America/Los_Angeles"
+                });
                 return `${newDateObj1} - ${newDateObj2}`
             } else if (data['deliver'] === 'pickup') {
-                let newDateObj1 = new Date(date.getTime() + 15 * 60000).toLocaleTimeString();
-                let newDateObj2 = new Date(date.getTime() + 25 * 60000).toLocaleTimeString();
+                let newDateObj1 = new Date(date.getTime() + 15 * 60000).toLocaleTimeString("en-US", {
+                    timeZone: "America/Los_Angeles"
+                });
+                let newDateObj2 = new Date(date.getTime() + 25 * 60000).toLocaleTimeString("en-US", {
+                    timeZone: "America/Los_Angeles"
+                });
                 return `${newDateObj1} - ${newDateObj2}`
             }
         }
         // return `date`
     }
-    let createdDate = new Date(data['createdAt']).toUTCString();
+    let createdDate = new Date(data['createdAt']).toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles"
+    });
     createdDate = createdDate.split(' ').slice(0, 4).join(' ');
 
 
