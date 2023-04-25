@@ -106,6 +106,12 @@ const SaladCard = ({ item, data }) => {
 		alert("Product added to cart");
 	};
 
+	let string = item.itemDesc;
+	let spaceCount = string.split(" ").length - 1;
+	if (string.length + spaceCount > 90) {
+		string = string.substring(0, 80) + "...";
+	}
+
 	return (
 		<>
 			<div className="card">
@@ -154,7 +160,7 @@ const SaladCard = ({ item, data }) => {
 						</p>
 					</div>
 					<div className="card-front-desc">
-						<p>{item?.itemDesc}</p>
+						<p>{string}</p>
 					</div>
 					<div className="card-cart-container-main">
 						<div className="card-cart-container">
@@ -192,12 +198,10 @@ const SaladCard = ({ item, data }) => {
 								</select>
 							</div>
 						</div>
-						<div className="card-cart-container">
-							<div className="card-front-add-button">
-								<button onClick={handleCart}>
-									Add to cart
-								</button>
-							</div>
+					</div>
+					<div className="card-cart-container button">
+						<div className="card-front-add-button">
+							<button onClick={handleCart}>Add to cart</button>
 						</div>
 					</div>
 				</div>
@@ -313,6 +317,10 @@ const SaladCard = ({ item, data }) => {
 																		id={`${size?.text}${item.itemTitle}`}
 																		value={
 																			i
+																		}
+																		defaultChecked={
+																			i ===
+																			1
 																		}
 																	/>
 																	<label

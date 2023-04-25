@@ -83,18 +83,7 @@ const Footer = () => {
 					<span>
 						© {new Date().getFullYear()} Nova's All Rights Reserved.
 					</span>
-					<span>
-						Designed and developed by{" "}
-						<a
-							href="https://portfolio-bradley.herokuapp.com"
-							style={{
-								textDecoration: "underline",
-								color: "#fff",
-							}}
-						>
-							Jeshuwa Bradley
-						</a>
-					</span>
+					<span>Designed and developed by Nova's Pizza LLC.</span>
 					<span>
 						<Link
 							to="/privacy-policy"

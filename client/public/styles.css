@@ -236,6 +236,7 @@ body {
 }
 
 .hero-image {
+	filter: brightness(0.5);
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -499,7 +500,7 @@ body {
 	.hero-text .special-tag-trns {
 		background-color: transparent;
 		width: auto;
-		top: -45%;
+		top: -65%;
 	}
 
 	.special-tag h3 {
@@ -658,6 +659,11 @@ body {
 	display: flex;
 	flex-direction: row;
 }
+.card-cart-container.button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
 .card-front-size label {
 	color: #000;
 }
@@ -668,6 +674,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 }
 .messsage-area textarea {
 	padding: 10px 10px;
@@ -675,7 +682,8 @@ body {
 .card-front-add-button button {
 	cursor: pointer;
 	padding: 10px 8px;
-	width: 85px;
+	width: 100%;
+	font-size: 18px;
 	height: 80%;
 	display: flex;
 	justify-content: center;
@@ -2738,7 +2746,7 @@ h2.large-title {
 	background-color: #fff;
 	color: #fff;
 	border: 5px solid #ea4e45;
-	border-radius: 4px;
+	border-radius: 20px;
 	padding: 15px 25px;
 	display: flex;
 	flex-direction: column;
@@ -2755,11 +2763,15 @@ h2.large-title {
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	padding: 2px 5px;
+	height: 20px;
+	width: 20px;
 	border: 3px solid #ea4e45;
 	border-radius: 50%;
 	cursor: pointer;
 	letter-spacing: 1px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .close .fa {
 }
@@ -2768,6 +2780,7 @@ h2.large-title {
 	width: 100px;
 }
 .popup-container .title {
+	font-family: serif;
 	font-size: 50px;
 	color: #ea4e45;
 	margin-bottom: 30px;
@@ -2775,7 +2788,8 @@ h2.large-title {
 .popup-container p {
 	text-align: center;
 	color: #000;
-	font-weight: 600;
+	letter-spacing: 1px;
+	/* font-weight: 600; */
 	margin-bottom: 20px;
 }
 .popup-form {

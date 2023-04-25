@@ -35,7 +35,7 @@ router.get('/find', async (req, res) => {
         let emmails = [];
         const emails = await Email.find();
         emails.forEach((email) => emmails.push(email['email']))
-        res.status(200).json(emmails)
+        res.status(200).json(emails)
     } catch (error) {
         res.status(500).json(error);
     }

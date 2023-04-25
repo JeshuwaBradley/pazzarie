@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -23,6 +23,7 @@ const Hero = () => {
 		}
 		slides[position].classList?.add("carousel-item-visible");
 	};
+
 	(function loop() {
 		setTimeout(function () {
 			handleMoveToNextSlide();
