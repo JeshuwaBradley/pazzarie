@@ -31,14 +31,14 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 			deliver: true,
 			distance: 5632.7,
 		},
-		{
-			id: 2,
-			location: "Oakland",
-			address: "1438 Broadway, Oakland, CA 94612, USA",
-			pickUp: false,
-			deliver: true,
-			distance: 9656.06,
-		},
+		// {
+		// 	id: 2,
+		// 	location: "Oakland",
+		// 	address: "1438 Broadway, Oakland, CA 94612, USA",
+		// 	pickUp: false,
+		// 	deliver: true,
+		// 	distance: 9656.06,
+		// },
 	];
 
 	const handleChange = (event) => {
