@@ -352,6 +352,7 @@ const Cart = ({ discountCodes }) => {
 
 	let serverOpenS;
 	useEffect(() => {
+		console.log(cart);
 		const d = new Date();
 		let day = d.getDay();
 		const dayByName = [

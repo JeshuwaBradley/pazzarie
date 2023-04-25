@@ -14,6 +14,7 @@ const openRoute = require('./routes/open');
 const discountRoute = require('./routes/discountRoute');
 const recieptRoute = require('./routes/recieptRoute');
 const preorderRoute = require('./routes/preorder')
+const shopsRoute = require('./routes/shops')
 const cors = require("cors");
 const path = require("path");
 
@@ -47,6 +48,7 @@ app.use('/api/open', openRoute);
 app.use('/api/discount', discountRoute);
 app.use('/api/receipt', recieptRoute);
 app.use('/api/preorder', preorderRoute);
+app.use('/api/shops', shopsRoute)
 
 // app.get('/api/open', console.log(openRoute))
 app.get("*", (req, res) => {

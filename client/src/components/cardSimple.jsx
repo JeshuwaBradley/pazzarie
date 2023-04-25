@@ -196,12 +196,10 @@ const CardSimple = ({ item, data, sp = false }) => {
 								</select>
 							</div>
 						</div>
-						<div className="card-cart-container">
-							<div className="card-front-add-button">
-								<button onClick={handleCart}>
-									Add to cart
-								</button>
-							</div>
+					</div>
+					<div className="card-cart-container button">
+						<div className="card-front-add-button">
+							<button onClick={handleCart}>Add to cart</button>
 						</div>
 					</div>
 				</div>
@@ -315,6 +313,10 @@ const CardSimple = ({ item, data, sp = false }) => {
 																		}
 																		value={
 																			i
+																		}
+																		defaultChecked={
+																			i ===
+																			1
 																		}
 																	/>
 																	<label

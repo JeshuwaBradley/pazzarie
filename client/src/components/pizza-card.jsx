@@ -16,7 +16,7 @@ const PizzaCard = ({ item, data }) => {
 
 	let string = item.itemDesc;
 	if (string.length > 90) {
-		string = string.substring(0, 90) + "...";
+		string = string.substring(0, 89) + "...";
 	}
 
 	useEffect(() => {
@@ -226,12 +226,10 @@ const PizzaCard = ({ item, data }) => {
 								</select>
 							</div>
 						</div>
-						<div className="card-cart-container">
-							<div className="card-front-add-button">
-								<button onClick={handleCart}>
-									Add to cart
-								</button>
-							</div>
+					</div>
+					<div className="card-cart-container button">
+						<div className="card-front-add-button">
+							<button onClick={handleCart}>Add to cart</button>
 						</div>
 					</div>
 				</div>
@@ -348,6 +346,9 @@ const PizzaCard = ({ item, data }) => {
 															name="size"
 															id={`${size?.text}${item.itemTitle}`}
 															value={i}
+															defaultChecked={
+																i === 1
+															}
 														/>
 														<label
 															htmlFor={`${size?.text}${item.itemTitle}`}
