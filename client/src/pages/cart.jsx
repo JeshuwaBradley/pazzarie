@@ -368,36 +368,10 @@ const Cart = ({ discountCodes }) => {
 		axios.get("/api/open").then((res) => {
 			serverOpenS = res.data["open"];
 			if (serverOpenS) {
-				if (day === 1) {
-					if (time < 1) {
-						setOpen(true);
-					} else {
-						setOpen(false);
-					}
-				} else if (day === 2) {
-					if (time < 16) {
-						setOpen(false);
-					} else {
-						setOpen(true);
-					}
-				} else if (day === 0) {
-					if (time >= 1 && time < 16) {
-						setOpen(false);
-					} else {
-						setOpen(true);
-					}
-				} else if (day === 3 || day === 4) {
-					if (time >= 1 && time < 16) {
-						setOpen(false);
-					} else {
-						setOpen(true);
-					}
-				} else if (day === 5 || day === 6) {
-					if (time >= 1 && time < 11) {
-						setOpen(false);
-					} else {
-						setOpen(true);
-					}
+				if (time >= 4 && time < 17) {
+					setOpen(false);
+				} else {
+					setOpen(true);
 				}
 			} else if (!serverOpenS) {
 				setOpen(false);

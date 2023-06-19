@@ -9,50 +9,50 @@ router.get('/', (req, res) => {
             {
                 sunday: {
                     open: true,
-                    openTime: 16,
-                    closeTime: 1
+                    openTime: 17,
+                    closeTime: 4
                 }
             },
             {
                 monday: {
-                    open: false,
-                    openTime: 16,
-                    closeTime: 1,
+                    open: true,
+                    openTime: 17,
+                    closeTime: 4,
                 }
             },
             {
                 tuesday: {
                     open: true,
-                    openTime: 16,
-                    closeTime: 1,
+                    openTime: 17,
+                    closeTime: 4,
                 }
             },
             {
                 wednesday: {
                     open: true,
-                    openTime: 16,
-                    closeTime: 1,
+                    openTime: 17,
+                    closeTime: 4,
                 }
             },
             {
                 thursday: {
                     open: true,
-                    openTime: 16,
-                    closeTime: 1,
+                    openTime: 17,
+                    closeTime: 4,
                 }
             },
             {
                 friday: {
                     open: true,
-                    openTime: 11,
-                    closeTime: 1,
+                    openTime: 17,
+                    closeTime: 4,
                 }
             },
             {
                 saturday: {
                     open: true,
-                    openTime: 11,
-                    closeTime: 1,
+                    openTime: 17,
+                    closeTime: 4,
                 }
             },
         ]

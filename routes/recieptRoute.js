@@ -100,8 +100,8 @@ const sendMail = async ({ data }) => {
 
 
     // let createdDate = new Date(data['createdAt']);
-    const shopAddress1 = '1706 University Ave, ';
-    const shopAddress2 = 'Berkeley, CA 94703, USA'
+    const shopAddress1 = '1438 Broadway, ';
+    const shopAddress2 = 'Oakland, CA 94612, USA'
     const calculateEstimatedTime = () => {
         if (data['preOrderTime'] !== '') {
             return `${data['preOrderTime']} / ${data['preOrderDate']}`

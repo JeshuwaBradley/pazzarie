@@ -24,6 +24,7 @@ const Navbar = () => {
 
 	const [openData, setOpenData] = useState({});
 	const [openTime, setOpenTime] = useState("");
+
 	useEffect(() => {
 		const d = new Date();
 		let day = d.getDay();
@@ -42,51 +43,100 @@ const Navbar = () => {
 			let x = res.data["days"][day][dayByName[day]]["openTime"];
 			let y = res.data["days"][day][dayByName[day]]["closeTime"];
 			setOpenTime(
-				`${x > 12 ? x - 12 + ":00PM" : x + ":00AM"} - ${y}:00AM`
+				`${
+					x === 0
+						? "12:00AM"
+						: x > 12
+						? x - 12 + ":00PM"
+						: x + ":00AM"
+				} - ${
+					y === 0
+						? "12:00AM"
+						: y > 12
+						? y - 12 + ":00PM"
+						: y + ":00AM"
+				}`
 			);
 			serverOpen = res.data["open"];
-
 			if (serverOpen) {
-				if (day === 1) {
-					if (time < 1) {
+				if (res.data["days"][day][dayByName[day]]["open"]) {
+					if (time > x && time < y) {
 						setShopOpen(true);
-					} else {
-						setShopOpen(false);
-					}
-				} else if (day === 2) {
-					setEarly(false);
-					if (time < 16) {
-						setShopOpen(false);
 					} else {
 						setShopOpen(true);
 					}
-				} else if (day === 0) {
-					setEarly(false);
-					if (time >= 1 && time < 13) {
-						setShopOpen(false);
-					} else {
-						setShopOpen(true);
-					}
-				} else if (day === 3 || day === 4 || day === 0) {
-					setEarly(false);
-					if (time >= 1 && time < 16) {
-						setShopOpen(false);
-					} else {
-						setShopOpen(true);
-					}
-				} else if (day === 5 || day === 6) {
-					setEarly(true);
-					if (time >= 1 && time < 11) {
-						setShopOpen(false);
-					} else {
-						setShopOpen(true);
-					}
+				} else {
+					setShopOpen(false);
 				}
 			} else if (!serverOpen) {
 				setShopOpen(false);
 			}
 		});
 	}, []);
+
+	// useEffect(() => {
+	// 	const d = new Date();
+	// 	let day = d.getDay();
+	// 	const dayByName = [
+	// 		"sunday",
+	// 		"monday",
+	// 		"tuesday",
+	// 		"wednesday",
+	// 		"thursday",
+	// 		"friday",
+	// 		"saturday",
+	// 	];
+	// 	let time = d.getHours();
+	// 	axios.get("/api/open").then((res) => {
+	// 		setOpenData(res.data);
+	// 		let x = res.data["days"][day][dayByName[day]]["openTime"];
+	// 		let y = res.data["days"][day][dayByName[day]]["closeTime"];
+	// 		setOpenTime(
+	// 			`${x > 12 ? x - 12 + ":00PM" : x + ":00AM"} - ${y}:00AM`
+	// 		);
+	// 		serverOpen = res.data["open"];
+
+	// 		if (serverOpen) {
+	// 			if (day === 1) {
+	// 				if (time < 1) {
+	// 					setShopOpen(true);
+	// 				} else {
+	// 					setShopOpen(false);
+	// 				}
+	// 			} else if (day === 2) {
+	// 				setEarly(false);
+	// 				if (time < 16) {
+	// 					setShopOpen(false);
+	// 				} else {
+	// 					setShopOpen(true);
+	// 				}
+	// 			} else if (day === 0) {
+	// 				setEarly(false);
+	// 				if (time >= 1 && time < 13) {
+	// 					setShopOpen(false);
+	// 				} else {
+	// 					setShopOpen(true);
+	// 				}
+	// 			} else if (day === 3 || day === 4 || day === 0) {
+	// 				setEarly(false);
+	// 				if (time >= 1 && time < 16) {
+	// 					setShopOpen(false);
+	// 				} else {
+	// 					setShopOpen(true);
+	// 				}
+	// 			} else if (day === 5 || day === 6) {
+	// 				setEarly(true);
+	// 				if (time >= 1 && time < 11) {
+	// 					setShopOpen(false);
+	// 				} else {
+	// 					setShopOpen(true);
+	// 				}
+	// 			}
+	// 		} else if (!serverOpen) {
+	// 			setShopOpen(false);
+	// 		}
+	// 	});
+	// }, []);
 
 	const quantity = useSelector((state) => state.cart.quantity);
 	if (width > 900) {
@@ -108,14 +158,14 @@ const Navbar = () => {
 									<Link to="/menu" title="Menu">
 										<li className="listItem">Menu</li>
 									</Link>
-									<Link to="/daily-deals" title="Daily Deals">
+									{/* <Link to="/daily-deals" title="Daily Deals">
 										<li className="listItem">
 											Daily Deals
 										</li>
 									</Link>
 									<Link to="/promotions" title="Promotions">
 										<li className="listItem">Promotions</li>
-									</Link>
+									</Link> */}
 									<Link to="/contact" title="Contact">
 										<li className="listItem">Contact</li>
 									</Link>
@@ -144,12 +194,12 @@ const Navbar = () => {
 										Closed
 									</span>
 								)}
-								{early ? (
-									<span>11:00AM - 1:00AM</span>
+								{/* {early ? (
+									<span>4:00PM - 12:00PM</span>
 								) : (
-									<span>4:00PM - 1:00AM</span>
-								)}
-								{/* <span>{openTime}</span> */}
+									<span>4:00PM - 12:00PM</span>
+								)} */}
+								<span>{openTime}</span>
 								{list ? <List data={openData} /> : ""}
 							</div>
 							<div className="item">
@@ -254,12 +304,12 @@ const Navbar = () => {
 						<Link to="/menu" className="mobile-nav-item">
 							<div className="mobile-nav-item">Menu</div>
 						</Link>
-						<Link to="/daily-deals" className="mobile-nav-item">
+						{/* <Link to="/daily-deals" className="mobile-nav-item">
 							<div className="mobile-nav-item">Daily Deals</div>
 						</Link>
 						<Link to="/promotions" className="mobile-nav-item">
 							<div className="mobile-nav-item">Promotions</div>
-						</Link>
+						</Link> */}
 						<Link to="/contact" className="mobile-nav-item">
 							<div className="mobile-nav-item">Contact</div>
 						</Link>

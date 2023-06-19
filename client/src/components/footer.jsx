@@ -67,9 +67,9 @@ const Footer = () => {
 							<Link to="/menu" title="Menu">
 								Menu
 							</Link>
-							<Link to="/daily-deals" title="Daily Deals">
+							{/* <Link to="/daily-deals" title="Daily Deals">
 								Daily Deals
-							</Link>
+							</Link> */}
 							<Link to="/locations" title="Locations">
 								Locations
 							</Link>

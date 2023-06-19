@@ -62,7 +62,7 @@ const Home = ({ data }) => {
 					<div className="row-item"></div>
 				</div>
 			</div>
-			<HomeDeal />
+			{/* <HomeDeal /> */}
 			<div className="productList">
 				<div className="productList-title-container">
 					<h2 className="productList-title">Today's Specials</h2>

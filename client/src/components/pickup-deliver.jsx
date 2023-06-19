@@ -25,20 +25,12 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 	const shops = [
 		{
 			id: 1,
-			location: "Berkeley",
-			address: "1706 University Ave, Berkeley, CA 94703, USA",
+			location: "Oakland",
+			address: "1438 Broadway, Oakland, CA 94612, USA",
 			pickUp: true,
 			deliver: true,
 			distance: 5632.7,
 		},
-		// {
-		// 	id: 2,
-		// 	location: "Oakland",
-		// 	address: "1438 Broadway, Oakland, CA 94612, USA",
-		// 	pickUp: false,
-		// 	deliver: true,
-		// 	distance: 9656.06,
-		// },
 	];
 
 	const handleChange = (event) => {
@@ -231,7 +223,7 @@ const PickUpDeliver = ({ inputs, setInputs, setButton, inputError }) => {
 		// 	let finalCharge = initialCharge + secondHalf;
 		// 	return finalCharge;
 		// }
-		let finalCharge = 5.99;
+		let finalCharge = 6.99;
 		return finalCharge;
 	};
 
