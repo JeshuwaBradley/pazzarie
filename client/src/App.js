@@ -10,7 +10,7 @@ import Home from './pages/home';
 import Cart from './pages/cart';
 import Menu from './pages/menu';
 import axios from 'axios';
-import Promotion from './pages/promotion';
+// import Promotion from './pages/promotion';
 import ReactGA from 'react-ga';
 
 const Admin = lazy(() => import('./pages/admin'))
@@ -19,7 +19,7 @@ const Privacy = lazy(() => import('./pages/privacy'))
 const About = lazy(() => import('./pages/about'))
 const Locations = lazy(() => import('./pages/locations'))
 const Popup = lazy(() => import('./components/popup'))
-const DailyDeals = lazy(() => import('./pages/daily-deals'))
+// const DailyDeals = lazy(() => import('./pages/daily-deals'))
 const PageNotFound = lazy(() => import('./pages/404-page'))
 const Shop = lazy(() => import('./pages/shop'))
 const Unsubscribe = lazy(() => import('./pages/unsubscribe'))
@@ -68,11 +68,11 @@ function App() {
               <Route path='/menu' element={<Menu data={data} />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/privacy-policy' element={<Privacy />} />
-              <Route path='/daily-deals' element={<DailyDeals data={data} />} />
+              {/* <Route path='/daily-deals' element={<DailyDeals data={data} />} /> */}
               <Route path='/shop/:id' element={<Shop />} />
               <Route path='/admin' element={<Admin />} />
               <Route path='/unsubscribe/:id' element={<Unsubscribe />} />
-              <Route path='/promotions' element={<Promotion data={data} />} />
+              {/* <Route path='/promotions' element={<Promotion data={data} />} /> */}
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </AppContext.Provider>

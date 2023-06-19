@@ -55,9 +55,9 @@ const Hero = () => {
 								Check it out
 							</div>
 						</div>
-						<Link to="/daily-deals">
+						{/* <Link to="/daily-deals">
 							<div className="order-online-btn">Order Online</div>
-						</Link>
+						</Link> */}
 					</div>
 					<div className="hero-text carousel-item">
 						<div className="special-tag special-tag-clr">
@@ -70,9 +70,9 @@ const Hero = () => {
 								promotions
 							</div>
 						</div>
-						<Link to="/promotions">
+						{/* <Link to="/promotions">
 							<div className="order-online-btn">Order Online</div>
-						</Link>
+						</Link> */}
 					</div>
 					<div className="hero-text carousel-item">
 						<h2 className="second-h2">Discover what's new!</h2>

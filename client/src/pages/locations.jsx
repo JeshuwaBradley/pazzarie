@@ -17,7 +17,7 @@ const Locations = () => {
 			</div>
 			<div className="locations">
 				<div className="locations-inner">
-					<div className="location">
+					{/* <div className="location">
 						<h2>
 							<i
 								className="fa fa-map-marker"
@@ -25,7 +25,9 @@ const Locations = () => {
 							></i>{" "}
 							Berkeley, California
 						</h2>
-						{/* <div className="location-name">Berkeley, California</div> */}
+						<div className="location-name">
+							Berkeley, California
+						</div>
 						<div className="location-address">
 							1704, University Avenue, Berkeley, California 94703,
 							USA
@@ -34,8 +36,8 @@ const Locations = () => {
 						<div className="location-deliver">
 							Delivery Available
 						</div>
-					</div>
-					{/* <div className="location">
+					</div> */}
+					<div className="location">
 						<h2>
 							<i
 								className="fa fa-map-marker"
@@ -51,7 +53,7 @@ const Locations = () => {
 						<div className="location-deliver">
 							Delivery Available
 						</div>
-					</div> */}
+					</div>
 				</div>
 			</div>
 			<Footer />
